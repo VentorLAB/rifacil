@@ -2,6 +2,24 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { generateReceipt } from "@riffas/shared/receipt";
+import { PaymentMethod } from "@riffas/db";
+
+// Redondeo a 2 decimales para montos de dinero.
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
+// La marca del rifero NO viaja en la sesión (solo id/name/email/image), así que
+// la leemos de la DB para que el recibo aplique nombre/color/logo correctos.
+async function brandFor(prisma: any, userId: string) {
+  const u = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { name: true, brandName: true, brandColor: true, brandLogo: true },
+  });
+  return {
+    brandName: (u?.brandName || u?.name || "Riffas") as string,
+    brandColor: (u?.brandColor ?? null) as string | null,
+    brandLogo: (u?.brandLogo ?? null) as string | null,
+  };
+}
 
 export const saleRouter = createTRPCRouter({
   create: protectedProcedure
@@ -17,7 +35,13 @@ export const saleRouter = createTRPCRouter({
         }).optional(),
         numbers: z.array(z.string()).min(1),
         vendorId: z.string().optional(),
-        paymentMethod: z.enum(["CASH", "BANK_TRANSFER", "NEQUI", "DAVIPLATA", "MERCADOPAGO", "STRIPE", "WOMPI", "PSE"]),
+        // Todos los metodos (incluye los venezolanos: PAGO_MOVIL, BINANCE, ZELLE, etc.)
+        paymentMethod: z.nativeEnum(PaymentMethod),
+        // Abono inicial. Si se omite => venta completa (paga el total).
+        // Si es 0 < x < total => apartado con abono parcial (queda deuda).
+        amountPaid: z.number().nonnegative().optional(),
+        paymentReference: z.string().optional(),
+        paymentProof: z.string().optional(),
         discountCode: z.string().optional(),
         notes: z.string().optional(),
       })
@@ -95,7 +119,21 @@ export const saleRouter = createTRPCRouter({
         }
       }
 
-      const finalAmount = totalAmount - discountApplied;
+      const finalAmount = round2(totalAmount - discountApplied);
+
+      // Abono inicial: si no se especifica, se asume venta completa.
+      // Se acota a [0, finalAmount] (no se permite sobrepago en la creacion).
+      const requestedPaid =
+        input.amountPaid === undefined ? finalAmount : input.amountPaid;
+      const amountPaid = round2(Math.min(Math.max(requestedPaid, 0), finalAmount));
+      const debt = round2(finalAmount - amountPaid);
+      const isFullyPaid = amountPaid >= finalAmount;
+
+      // Venta completa => PAID. Abono parcial (>0) => RESERVED (apartado).
+      // Sin abono => PENDING. Los numeros se reservan hasta saldar.
+      const saleStatus = isFullyPaid ? "PAID" : amountPaid > 0 ? "RESERVED" : "PENDING";
+      const numberStatus = isFullyPaid ? "PAID" : "RESERVED";
+
       const receiptNumber = `R-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
 
       const sale = await prisma.sale.create({
@@ -109,8 +147,12 @@ export const saleRouter = createTRPCRouter({
           totalAmount,
           discountApplied: discountApplied || undefined,
           finalAmount,
-          status: input.paymentMethod === "CASH" ? "PAID" : "PENDING",
+          amountPaid,
+          status: saleStatus,
           paymentMethod: input.paymentMethod,
+          paymentReference: input.paymentReference,
+          paymentProof: input.paymentProof,
+          paidAt: isFullyPaid ? new Date() : undefined,
           receiptNumber,
           source: input.vendorId ? "vendor" : "direct",
         },
@@ -120,18 +162,32 @@ export const saleRouter = createTRPCRouter({
         },
       });
 
+      // Registrar el abono inicial como Payment real (fuente de verdad del ledger).
+      if (amountPaid > 0) {
+        await prisma.payment.create({
+          data: {
+            saleId: sale.id,
+            amount: amountPaid,
+            method: input.paymentMethod,
+            reference: input.paymentReference,
+            proofUrl: input.paymentProof,
+            status: "CONFIRMED",
+          },
+        });
+      }
+
       await prisma.raffleNumber.updateMany({
         where: {
           raffleId: input.raffleId,
           number: { in: input.numbers },
         },
         data: {
-          status: input.paymentMethod === "CASH" ? "PAID" : "SOLD",
+          status: numberStatus,
           contactId,
           saleId: sale.id,
           vendorId: input.vendorId,
           soldAt: new Date(),
-          paidAt: input.paymentMethod === "CASH" ? new Date() : undefined,
+          paidAt: isFullyPaid ? new Date() : undefined,
           paymentMethod: input.paymentMethod,
           receiptNumber,
         },
@@ -140,7 +196,8 @@ export const saleRouter = createTRPCRouter({
       await prisma.contact.update({
         where: { id: contactId },
         data: {
-          totalSpent: { increment: finalAmount },
+          // Solo lo realmente cobrado (el abono), no el total adeudado.
+          totalSpent: { increment: amountPaid },
           totalTickets: { increment: input.numbers.length },
           totalRaffles: { increment: 1 },
           lastPurchase: new Date(),
@@ -151,17 +208,15 @@ export const saleRouter = createTRPCRouter({
         where: { id: input.raffleId },
         data: {
           soldCount: { increment: input.numbers.length },
-          revenue: { increment: finalAmount },
+          revenue: { increment: amountPaid },
         },
       });
 
       const receiptUrl = await generateReceipt({
-        sale,
+        sale, // incluye amountPaid => el recibo muestra Valor total / Abonado / Deuda reales
         raffle,
         contact: sale.contact,
-        brandName: session.user.brandName || session.user.name,
-        brandLogo: session.user.brandLogo,
-        brandColor: session.user.brandColor,
+        ...(await brandFor(prisma, session.user.id)),
       });
 
       await prisma.sale.update({
@@ -174,23 +229,159 @@ export const saleRouter = createTRPCRouter({
         data: { receiptUrl },
       });
 
-      return { sale: { ...sale, receiptUrl } };
+      return { sale: { ...sale, receiptUrl }, amountPaid, debt, isFullyPaid };
     }),
 
-  confirmPayment: protectedProcedure
-    .input(z.object({ saleId: z.string(), paymentProof: z.string().optional() }))
+  // Registra un abono posterior contra una venta apartada y recalcula la deuda.
+  addPayment: protectedProcedure
+    .input(
+      z.object({
+        saleId: z.string(),
+        amount: z.number().positive(),
+        paymentMethod: z.nativeEnum(PaymentMethod),
+        reference: z.string().optional(),
+        proofUrl: z.string().optional(),
+      })
+    )
     .mutation(async ({ ctx, input }) => {
-      const sale = await ctx.prisma.sale.update({
-        where: { id: input.saleId, userId: ctx.session.user.id },
+      const { prisma, session } = ctx;
+
+      const sale = await prisma.sale.findFirst({
+        where: { id: input.saleId, userId: session.user.id },
+        include: { contact: true, raffle: true },
+      });
+      if (!sale) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada" });
+      if (sale.status === "CANCELLED" || sale.status === "REFUNDED") {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "La venta esta cancelada/reembolsada" });
+      }
+
+      const finalAmount = Number(sale.finalAmount);
+      const already = Number(sale.amountPaid);
+      const remaining = round2(finalAmount - already);
+      if (remaining <= 0) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "La venta ya esta saldada" });
+      }
+
+      // No permitir sobrepago: el abono se acota al saldo pendiente.
+      const applied = round2(Math.min(input.amount, remaining));
+
+      await prisma.payment.create({
         data: {
-          status: "PAID",
-          paidAt: new Date(),
-          paymentProof: input.paymentProof,
+          saleId: sale.id,
+          amount: applied,
+          method: input.paymentMethod,
+          reference: input.reference,
+          proofUrl: input.proofUrl,
+          status: "CONFIRMED",
+        },
+      });
+
+      // Recalcular el cache desde la fuente de verdad (suma de pagos CONFIRMED).
+      const agg = await prisma.payment.aggregate({
+        _sum: { amount: true },
+        where: { saleId: sale.id, status: "CONFIRMED" },
+      });
+      const amountPaid = round2(Number(agg._sum.amount ?? 0));
+      const debt = round2(finalAmount - amountPaid);
+      const isFullyPaid = amountPaid >= finalAmount;
+
+      const updated = await prisma.sale.update({
+        where: { id: sale.id },
+        data: {
+          amountPaid,
+          status: isFullyPaid ? "PAID" : "RESERVED",
+          paymentMethod: input.paymentMethod,
+          paidAt: isFullyPaid ? new Date() : sale.paidAt ?? undefined,
         },
         include: { contact: true, raffle: true },
       });
 
-      await ctx.prisma.raffleNumber.updateMany({
+      if (isFullyPaid) {
+        await prisma.raffleNumber.updateMany({
+          where: { saleId: sale.id },
+          data: { status: "PAID", paidAt: new Date() },
+        });
+      }
+
+      await prisma.contact.update({
+        where: { id: sale.contactId },
+        data: { totalSpent: { increment: applied }, lastPurchase: new Date() },
+      });
+      await prisma.raffle.update({
+        where: { id: sale.raffleId },
+        data: { revenue: { increment: applied } },
+      });
+
+      // Regenerar el recibo con los montos reales actualizados (overwrite en Cloudinary).
+      const receiptUrl = await generateReceipt({
+        sale: updated,
+        raffle: updated.raffle,
+        contact: updated.contact,
+        ...(await brandFor(prisma, session.user.id)),
+      });
+      await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
+      await prisma.raffleNumber.updateMany({
+        where: { saleId: sale.id },
+        data: { receiptUrl },
+      });
+
+      return { sale: { ...updated, receiptUrl }, amountPaid, debt, isFullyPaid };
+    }),
+
+  // Marca una venta como saldada por completo: registra el saldo pendiente como
+  // un Payment CONFIRMED y deja amountPaid == finalAmount.
+  confirmPayment: protectedProcedure
+    .input(
+      z.object({
+        saleId: z.string(),
+        paymentMethod: z.nativeEnum(PaymentMethod).optional(),
+        paymentProof: z.string().optional(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { prisma, session } = ctx;
+
+      const current = await prisma.sale.findFirst({
+        where: { id: input.saleId, userId: session.user.id },
+      });
+      if (!current) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada" });
+
+      const finalAmount = Number(current.finalAmount);
+      const remaining = round2(finalAmount - Number(current.amountPaid));
+
+      if (remaining > 0) {
+        await prisma.payment.create({
+          data: {
+            saleId: current.id,
+            amount: remaining,
+            method: input.paymentMethod ?? current.paymentMethod ?? "CASH",
+            proofUrl: input.paymentProof,
+            status: "CONFIRMED",
+          },
+        });
+        await prisma.contact.update({
+          where: { id: current.contactId },
+          data: { totalSpent: { increment: remaining }, lastPurchase: new Date() },
+        });
+        await prisma.raffle.update({
+          where: { id: current.raffleId },
+          data: { revenue: { increment: remaining } },
+        });
+      }
+
+      const sale = await prisma.sale.update({
+        where: { id: input.saleId },
+        data: {
+          status: "PAID",
+          amountPaid: finalAmount,
+          paidAt: new Date(),
+          paymentProof: input.paymentProof ?? undefined,
+          paymentMethod: input.paymentMethod ?? undefined,
+        },
+        include: { contact: true, raffle: true },
+      });
+
+      await prisma.raffleNumber.updateMany({
         where: { saleId: input.saleId },
         data: { status: "PAID", paidAt: new Date() },
       });
@@ -255,6 +446,7 @@ export const saleRouter = createTRPCRouter({
           raffle: true,
           vendor: true,
           numbers_rel: true,
+          payments: { orderBy: { createdAt: "asc" } },
         },
       });
 

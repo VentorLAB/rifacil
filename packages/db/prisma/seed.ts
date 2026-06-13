@@ -1,4 +1,6 @@
+import "../scripts/_env"; // PRIMERO: puebla process.env (DATABASE_URL + CLOUDINARY_*) antes de instanciar Prisma / cargar receipt.ts
 import { PrismaClient } from "../src/generated";
+import { generateReceipt } from "../../shared/src/receipt";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -96,12 +98,111 @@ async function main() {
     },
   });
 
+  // 5) Venta de ejemplo: APARTADO CON ABONO PARCIAL (queda deuda real).
+  //    Modela el flujo nuevo: Sale + Payment(s) + amountPaid cacheado.
+  const ventaNumeros = ["000", "001"];
+  const precio = Number(raffle.pricePerNumber); // 2.00
+  const totalVenta = Number((precio * ventaNumeros.length).toFixed(2)); // 4.00
+  const abono = 2.5; // deuda 1.50
+  const deuda = Number((totalVenta - abono).toFixed(2));
+  const receiptNumber = `R-${Date.now()}-DEMO`;
+
+  const sale = await prisma.sale.create({
+    data: {
+      raffleId: raffle.id,
+      contactId: contact.id,
+      userId: user.id,
+      numbers: ventaNumeros,
+      totalNumbers: ventaNumeros.length,
+      totalAmount: totalVenta.toFixed(2),
+      finalAmount: totalVenta.toFixed(2),
+      amountPaid: abono.toFixed(2),
+      rateUsed: "140.0000",
+      amountVes: (abono * 140).toFixed(2),
+      status: "RESERVED",
+      paymentMethod: "PAGO_MOVIL",
+      paymentReference: "PM-DEMO-0001",
+      receiptNumber,
+      source: "seed",
+    },
+    include: { contact: true, raffle: true },
+  });
+
+  await prisma.payment.create({
+    data: {
+      saleId: sale.id,
+      amount: abono.toFixed(2),
+      method: "PAGO_MOVIL",
+      reference: "PM-DEMO-0001",
+      status: "CONFIRMED",
+    },
+  });
+
+  await prisma.raffleNumber.updateMany({
+    where: { raffleId: raffle.id, number: { in: ventaNumeros } },
+    data: {
+      status: "RESERVED",
+      contactId: contact.id,
+      saleId: sale.id,
+      soldAt: new Date(),
+      paymentMethod: "PAGO_MOVIL",
+      receiptNumber,
+    },
+  });
+
+  // Stats del contacto en valores absolutos (idempotente al re-sembrar).
+  await prisma.contact.update({
+    where: { id: contact.id },
+    data: {
+      totalSpent: abono.toFixed(2),
+      totalTickets: ventaNumeros.length,
+      totalRaffles: 1,
+      lastPurchase: new Date(),
+    },
+  });
+
+  await prisma.raffle.update({
+    where: { id: raffle.id },
+    data: {
+      soldCount: { increment: ventaNumeros.length },
+      revenue: { increment: abono },
+    },
+  });
+
+  // Recibo server-side (best-effort: sin credenciales de Cloudinary se omite).
+  let receiptUrl: string | null = null;
+  try {
+    receiptUrl = await generateReceipt({
+      sale,
+      raffle,
+      contact,
+      brandName: user.brandName,
+      brandColor: user.brandColor,
+      brandLogo: user.brandLogo,
+    });
+    await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
+    await prisma.raffleNumber.updateMany({
+      where: { saleId: sale.id },
+      data: { receiptUrl },
+    });
+  } catch (e) {
+    console.warn("⚠️  Recibo omitido en el seed:", (e as Error).message);
+  }
+
   console.log("✅ Seed completo:", {
     user: user.email,
     raffle: raffle.title,
     numeros: 50,
     tasaVES: 140,
     contacto: contact.name,
+    ventaDemo: {
+      numeros: ventaNumeros,
+      total: totalVenta,
+      abonado: abono,
+      deuda,
+      status: sale.status,
+      receiptUrl: receiptUrl ?? "(omitido)",
+    },
   });
 }
 

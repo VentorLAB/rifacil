@@ -1,6 +1,7 @@
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { v2 as cloudinary } from "cloudinary";
+import { INTER_SEMIBOLD_WOFF_BASE64 } from "./inter-font";
 
 /**
  * Generación de recibos DEL LADO DEL SERVIDOR.
@@ -23,14 +24,14 @@ cloudinary.config({
 });
 
 // --- Fuente para Satori (se cachea entre invocaciones del worker) ---
-let fontCache: ArrayBuffer | null = null;
-async function getFont(): Promise<ArrayBuffer> {
+// Inter 600 EMBEBIDA en base64 (./inter-font). No se lee del filesystem a
+// propósito: en serverless (Vercel) este paquete se transpila/bundlea y
+// import.meta.url/__dirname no apuntan al .woff en disco — un readFileSync
+// crashearía en prod. Embebida = cero filesystem y cero red.
+let fontCache: Buffer | null = null;
+function getFont(): Buffer {
   if (fontCache) return fontCache;
-  // Inter 600 desde un CDN público; cámbialo por un archivo local si prefieres 0 red.
-  const url =
-    "https://github.com/rsms/inter/raw/master/docs/font-files/Inter-SemiBold.otf";
-  const res = await fetch(url);
-  fontCache = await res.arrayBuffer();
+  fontCache = Buffer.from(INTER_SEMIBOLD_WOFF_BASE64, "base64");
   return fontCache;
 }
 
@@ -63,6 +64,7 @@ export interface GenerateReceiptInput {
     totalNumbers: number;
     totalAmount?: unknown;
     finalAmount: unknown;
+    amountPaid?: unknown; // monto realmente abonado (suma de Payments CONFIRMED)
     paymentMethod?: string | null;
     paidAt?: Date | string | null;
     createdAt?: Date | string | null;
@@ -85,7 +87,12 @@ export async function generateReceipt(
   const brand = input.brandColor || "#7C3AED";
   const brandName = input.brandName || "Riffas";
 
-  const row = (label: string, value: string, strong = false) =>
+  const row = (
+    label: string,
+    value: string,
+    strong = false,
+    valueColor?: string
+  ) =>
     el(
       "div",
       { display: "flex", justifyContent: "space-between", marginBottom: 6 },
@@ -93,11 +100,22 @@ export async function generateReceipt(
         el("span", { color: "#6B7280", fontSize: 22 }, label),
         el(
           "span",
-          { color: strong ? brand : "#111827", fontSize: 22, fontWeight: 600 },
+          {
+            color: valueColor ?? (strong ? brand : "#111827"),
+            fontSize: 22,
+            fontWeight: 600,
+          },
           value
         ),
       ]
     );
+
+  // Montos reales: total a cobrar vs. lo efectivamente abonado. La deuda es el
+  // resto. Si total === abonado, no hay deuda y la etiqueta vuelve a "Pagado".
+  // amountPaid es la fuente de verdad; finalAmount es respaldo retrocompatible.
+  const totalValue = Number(sale.totalAmount ?? sale.finalAmount ?? 0);
+  const paidValue = Number(sale.amountPaid ?? sale.finalAmount ?? 0);
+  const debtValue = Math.max(0, Number((totalValue - paidValue).toFixed(2)));
 
   const divider = el("div", {
     borderTop: "2px dashed #D1D5DB",
@@ -153,8 +171,11 @@ export async function generateReceipt(
       row("Comprador", contact.name),
       row("Teléfono", contact.phone),
       divider,
-      row("Valor total", money(sale.totalAmount ?? sale.finalAmount)),
-      row("Pagado", money(sale.finalAmount), true),
+      row("Valor total", money(totalValue)),
+      row(debtValue > 0 ? "Abonado" : "Pagado", money(paidValue), true),
+      debtValue > 0
+        ? row("Deuda", money(debtValue), false, "#DC2626")
+        : el("div", {}),
       sale.paymentMethod ? row("Método", String(sale.paymentMethod)) : el("div", {}),
       row("Fecha", fmtDate(sale.paidAt || sale.createdAt)),
       divider,
@@ -166,7 +187,7 @@ export async function generateReceipt(
     ]
   );
 
-  const font = await getFont();
+  const font = getFont();
   const svg = await satori(tree, {
     width: 720,
     height: 760,

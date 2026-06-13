@@ -22,7 +22,7 @@
     },
     "db:generate": {
       "cache": false,
-      "outputs": ["packages/db/prisma/generated/**"]
+      "outputs": ["packages/db/src/generated/**"]
     },
     "db:push": {
       "cache": false

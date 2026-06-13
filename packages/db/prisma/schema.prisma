@@ -1,12 +1,14 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated"
+  provider        = "prisma-client-js"
+  output          = "../src/generated"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [pg_trgm] // búsqueda fuzzy de contactos (regla de oro #5)
 }
 
 // ============================================================
@@ -100,6 +102,12 @@ enum PaymentMethod {
   STRIPE
   WOMPI
   CASH
+}
+
+enum PaymentStatus {
+  PENDING    // reportado por el cliente, falta verificar
+  CONFIRMED  // dinero recibido y verificado por el rifero
+  REJECTED   // comprobante invalido / rechazado
 }
 
 enum RateSource {
@@ -406,6 +414,10 @@ model Contact {
   @@index([userId, tags])
   @@index([userId, source])
   @@index([userId, lastPurchase])
+  // Búsqueda fuzzy tolerante a errores (pg_trgm). Gestionados por Prisma para
+  // que no se vuelvan a perder como "drift" en futuras migraciones.
+  @@index([name(ops: raw("gin_trgm_ops"))], type: Gin, map: "contact_name_trgm")
+  @@index([phone(ops: raw("gin_trgm_ops"))], type: Gin, map: "contact_phone_trgm")
 }
 
 // ============================================================
@@ -428,6 +440,7 @@ model Sale {
   discountApplied Decimal? @db.Decimal(10, 2)
   discountReason  String?
   finalAmount     Decimal @db.Decimal(12, 2)
+  amountPaid      Decimal @db.Decimal(12, 2) @default(0) // cacheado: suma de Payments CONFIRMED. deuda = totalAmount - amountPaid
   rateUsed        Decimal? @db.Decimal(14, 4)   // VES por USD al momento de la venta
   amountVes       Decimal? @db.Decimal(14, 2)   // equivalente cobrado en bolivares
 
@@ -473,6 +486,7 @@ model Sale {
   vendor   Vendor?       @relation(fields: [vendorId], references: [id])
   user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   numbers_rel RaffleNumber[]
+  payments    Payment[]
   campaign Campaign?     @relation(fields: [campaignId], references: [id])
 
   @@index([raffleId])
@@ -482,6 +496,24 @@ model Sale {
   @@index([status])
   @@index([createdAt])
   @@index([campaignId])
+}
+
+// Cada abono/pago real contra una venta (apartado con abonos parciales o pago total).
+// La deuda de una Sale = totalAmount - SUM(payments donde status = CONFIRMED).
+model Payment {
+  id        String        @id @default(cuid())
+  saleId    String
+  amount    Decimal       @db.Decimal(12, 2)
+  method    PaymentMethod
+  reference String?       // referencia/nro de operacion (Pago Movil, transferencia, etc.)
+  proofUrl  String?       // captura del comprobante (Cloudinary)
+  status    PaymentStatus @default(CONFIRMED)
+  createdAt DateTime      @default(now())
+
+  sale Sale @relation(fields: [saleId], references: [id], onDelete: Cascade)
+
+  @@index([saleId])
+  @@index([status])
 }
 
 // ============================================================
