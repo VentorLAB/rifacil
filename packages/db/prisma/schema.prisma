@@ -199,6 +199,7 @@ model User {
   settings      UserSettings?
   activityLogs  ActivityLog[]
   exchangeRates ExchangeRate[]
+  paymentAccounts PaymentAccount[]
 
   @@index([email])
   @@index([phone])
@@ -252,6 +253,32 @@ model UserSettings {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Cuentas/datos de cobro del rifero, una fila por método de pago. Se muestran al
+// cliente al momento de pagar. Campos opcionales: cada método usa los que aplican.
+model PaymentAccount {
+  id     String        @id @default(cuid())
+  userId String
+  method PaymentMethod
+  active Boolean       @default(true)
+
+  bankName      String? // Pago Móvil, Transferencia
+  phone         String? // Pago Móvil
+  idDocument    String? // cédula/RIF (Pago Móvil)
+  email         String? // Binance, Zelle
+  wallet        String? // Binance USDT (wallet o correo)
+  holderName    String? // Zelle, Transferencia (titular)
+  accountNumber String? // Transferencia (número de cuenta)
+  note          String? // Efectivo u observaciones
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, method])
+  @@index([userId])
 }
 
 // ============================================================

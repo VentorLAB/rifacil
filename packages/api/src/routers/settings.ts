@@ -68,4 +68,50 @@ export const settingsRouter = createTRPCRouter({
       });
       return settings;
     }),
+
+  // --- Medios de pago / Datos de cobro (una fila por método) ---
+
+  listPaymentAccounts: protectedProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.paymentAccount.findMany({
+      where: { userId: ctx.session.user.id },
+      orderBy: { method: "asc" },
+    });
+  }),
+
+  savePaymentAccount: protectedProcedure
+    .input(
+      z.object({
+        method: z.nativeEnum(PaymentMethod),
+        active: z.boolean().default(true),
+        bankName: z.string().optional().nullable(),
+        phone: z.string().optional().nullable(),
+        idDocument: z.string().optional().nullable(),
+        email: z.string().optional().nullable(),
+        wallet: z.string().optional().nullable(),
+        holderName: z.string().optional().nullable(),
+        accountNumber: z.string().optional().nullable(),
+        note: z.string().optional().nullable(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const clean = (v?: string | null) => (v && v.trim() ? v.trim() : null);
+      const { method } = input;
+      const data = {
+        active: input.active,
+        bankName: clean(input.bankName),
+        phone: clean(input.phone),
+        idDocument: clean(input.idDocument),
+        email: clean(input.email),
+        wallet: clean(input.wallet),
+        holderName: clean(input.holderName),
+        accountNumber: clean(input.accountNumber),
+        note: clean(input.note),
+      };
+
+      return ctx.prisma.paymentAccount.upsert({
+        where: { userId_method: { userId: ctx.session.user.id, method } },
+        update: data,
+        create: { userId: ctx.session.user.id, method, ...data },
+      });
+    }),
 });

@@ -2,6 +2,7 @@
 import { api } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { PaymentAccountsSection } from "@/components/payment-accounts-section";
 
 export default function SettingsPage() {
   const { data: settings, refetch } = api.settings.get.useQuery();
@@ -33,6 +34,8 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
+
+      <PaymentAccountsSection />
     </div>
   );
 }
