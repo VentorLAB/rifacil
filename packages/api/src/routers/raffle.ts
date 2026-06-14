@@ -77,6 +77,60 @@ export const raffleRouter = createTRPCRouter({
       return raffle;
     }),
 
+  // Listar números de una rifa, paginado + filtros (para el tablero de números).
+  // Paginado en servidor: una rifa puede tener 10.000 números — nunca los traemos
+  // todos de golpe.
+  listNumbers: protectedProcedure
+    .input(
+      z.object({
+        raffleId: z.string(),
+        status: z.enum(["ALL", "AVAILABLE", "RESERVED", "SOLD", "PAID"]).default("ALL"),
+        search: z.string().optional(),
+        page: z.number().int().min(0).default(0),
+        pageSize: z.number().int().min(20).max(500).default(120),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const { prisma, session } = ctx;
+
+      // Multi-tenant: la rifa debe ser del usuario en sesión.
+      const raffle = await prisma.raffle.findFirst({
+        where: { id: input.raffleId, userId: session.user.id },
+        select: { id: true },
+      });
+      if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
+
+      const where: any = { raffleId: input.raffleId };
+      if (input.status !== "ALL") where.status = input.status;
+      const search = input.search?.trim();
+      if (search) where.number = { contains: search };
+
+      const [total, numbers] = await Promise.all([
+        prisma.raffleNumber.count({ where }),
+        prisma.raffleNumber.findMany({
+          where,
+          orderBy: { number: "asc" },
+          skip: input.page * input.pageSize,
+          take: input.pageSize,
+          select: {
+            id: true,
+            number: true,
+            status: true,
+            saleId: true,
+            contact: { select: { id: true, name: true, phone: true } },
+          },
+        }),
+      ]);
+
+      return {
+        numbers,
+        total,
+        page: input.page,
+        pageSize: input.pageSize,
+        totalPages: Math.max(1, Math.ceil(total / input.pageSize)),
+      };
+    }),
+
   // Crear nueva rifa
   create: protectedProcedure
     .input(

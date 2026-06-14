@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
 import { ArrowLeft, Loader2, Play, Pause, Trash2 } from "lucide-react";
+import { NumberBoard } from "@/components/number-board";
 
 export default function RaffleDetailPage() {
   const params = useParams<{ id: string }>();
@@ -121,6 +122,12 @@ export default function RaffleDetailPage() {
         <Row label="Valor del premio" value={`$${Number(raffle.prizeValue)}`} />
         <Row label="Reservados" value={String(stats?.reserved ?? "—")} />
       </div>
+
+      <NumberBoard
+        raffleId={id}
+        raffleStatus={raffle.status}
+        pricePerNumber={Number(raffle.pricePerNumber)}
+      />
 
       {confirmDelete && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-0 sm:items-center sm:p-4">
