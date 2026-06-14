@@ -3,6 +3,18 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { normalizePhone, parseGoogleContacts, countryFromE164 } from "@riffas/shared";
 
+// Email tolerante para contactos phone-first: vacío, ausente o malformado -> null.
+// NUNCA rechaza la fila — los contactos requieren solo teléfono; muchos no traen
+// email o lo traen mal escrito. Así un email inválido no tumba el batch entero.
+const lenientEmail = z.preprocess(
+  (val) => {
+    if (typeof val !== "string") return null;
+    const trimmed = val.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  },
+  z.string().email().nullable().catch(null)
+);
+
 export const contactRouter = createTRPCRouter({
   list: protectedProcedure
     .input(
@@ -113,7 +125,7 @@ export const contactRouter = createTRPCRouter({
       z.object({
         name: z.string().min(1),
         phone: z.string().min(8),
-        email: z.string().email().optional(),
+        email: lenientEmail,
         city: z.string().optional(),
         country: z.string().default("VE"),
         tags: z.array(z.string()).optional(),
@@ -215,7 +227,7 @@ export const contactRouter = createTRPCRouter({
           z.object({
             name: z.string().min(1),
             phone: z.string().min(8),
-            email: z.string().email().optional().nullable(),
+            email: lenientEmail,
             city: z.string().optional().nullable(),
             tags: z.array(z.string()).optional(),
             notes: z.string().optional().nullable(),
