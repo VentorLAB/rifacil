@@ -267,6 +267,18 @@ model Raffle {
   prizeValue  Decimal  @db.Decimal(12, 2)
   prizeImages String[]
 
+  // Datos del organizador / sorteo (paridad con app original)
+  representanteLegal  String?
+  representanteCedula String?
+  loteria             String?
+  contactWhatsapp     String?  // normalizado E.164 (VE por defecto)
+  color               String   @default("#7c3aed") // hex, branding de la rifa
+
+  // Imágenes de marca (Cloudinary)
+  bannerUrl       String?
+  bannerMobileUrl String?
+  iconUrl         String?
+
   // Number configuration
   totalNumbers    Int
   pricePerNumber  Decimal  @db.Decimal(10, 2)
@@ -284,7 +296,8 @@ model Raffle {
   // Dates
   startDate   DateTime
   endDate     DateTime?
-  drawDate    DateTime?
+  drawDate    DateTime?    // fecha de juego/sorteo
+  buyDeadline DateTime?    // fecha límite de compra
   status      RaffleStatus @default(DRAFT)
 
   // Draw

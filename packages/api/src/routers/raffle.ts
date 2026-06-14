@@ -1,7 +1,10 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, premiumProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
-import { generateNumbers } from "@riffas/shared";
+import { generateNumbers, normalizePhone } from "@riffas/shared";
+import { uploadImage } from "@riffas/shared/cloudinary";
+
+const HEX_COLOR = /^#([0-9a-fA-F]{6})$/;
 
 export const raffleRouter = createTRPCRouter({
   // Listar rifas del usuario
@@ -101,10 +104,20 @@ export const raffleRouter = createTRPCRouter({
         startDate: z.string().datetime(),
         endDate: z.string().datetime().optional(),
         drawDate: z.string().datetime().optional(),
+        buyDeadline: z.string().datetime().optional(),
         isPublic: z.boolean().default(true),
         allowSharing: z.boolean().default(true),
         passwordProtected: z.boolean().default(false),
         password: z.string().optional(),
+        // Datos del organizador / sorteo + branding
+        representanteLegal: z.string().max(120).optional(),
+        representanteCedula: z.string().max(40).optional(),
+        loteria: z.string().max(120).optional(),
+        contactWhatsapp: z.string().min(6).optional(),
+        color: z.string().regex(HEX_COLOR, "Color inválido (usa formato #rrggbb)").optional(),
+        bannerUrl: z.string().url().optional(),
+        bannerMobileUrl: z.string().url().optional(),
+        iconUrl: z.string().url().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -134,10 +147,25 @@ export const raffleRouter = createTRPCRouter({
         });
       }
 
+      // Normalizar WhatsApp de contacto (default Venezuela)
+      const { contactWhatsapp, ...rest } = input;
+      let normalizedWhatsapp: string | undefined;
+      if (contactWhatsapp) {
+        const n = normalizePhone(contactWhatsapp, "VE");
+        if (!n) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "El WhatsApp de contacto no es un número válido.",
+          });
+        }
+        normalizedWhatsapp = n;
+      }
+
       // Crear rifa
       const raffle = await prisma.raffle.create({
         data: {
-          ...input,
+          ...rest,
+          contactWhatsapp: normalizedWhatsapp,
           userId: session.user.id,
           status: "DRAFT",
         },
@@ -171,6 +199,28 @@ export const raffleRouter = createTRPCRouter({
       });
 
       return raffle;
+    }),
+
+  // Subir una imagen de la rifa (banner / banner móvil / icono) a Cloudinary.
+  // Recibe un data URI base64 desde el cliente y devuelve la secure_url.
+  uploadImage: protectedProcedure
+    .input(
+      z.object({
+        dataUri: z
+          .string()
+          .refine((v) => v.startsWith("data:image/"), "Debe ser una imagen"),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        const url = await uploadImage(input.dataUri, { folder: "riffas/raffles" });
+        return { url };
+      } catch (err) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No se pudo subir la imagen. Intenta de nuevo.",
+        });
+      }
     }),
 
   // Activar rifa
