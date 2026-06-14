@@ -73,6 +73,7 @@ export interface GenerateReceiptInput {
     title: string;
     lottery?: string | null;
     drawDate?: Date | string | null;
+    prizes?: { titulo: string }[] | null;
   };
   contact: { name: string; phone: string };
   brandName?: string | null;
@@ -162,6 +163,23 @@ export async function generateReceipt(
         { fontSize: 18, color: "#6B7280", marginBottom: 4 },
         `${fmtDate(raffle.drawDate)}${raffle.lottery ? ` · Lotería: ${raffle.lottery}` : ""}`
       ),
+      // Premios (1º, 2º, 3º…)
+      raffle.prizes && raffle.prizes.length > 0
+        ? el(
+            "div",
+            { display: "flex", flexDirection: "column", marginTop: 6 },
+            [
+              el("span", { fontSize: 18, color: "#6B7280", marginBottom: 4 }, "Premios"),
+              ...raffle.prizes.map((p, i) =>
+                el(
+                  "span",
+                  { fontSize: 20, color: "#111827", fontWeight: 600, marginBottom: 2 },
+                  `${i + 1}º  ${p.titulo}`
+                )
+              ),
+            ]
+          )
+        : el("div", {}),
       divider,
       row("Recibo", sale.receiptNumber),
       row(

@@ -229,9 +229,19 @@ export const saleRouter = createTRPCRouter({
         },
       });
 
+      const prizes = await prisma.prize.findMany({
+        where: { raffleId: raffle.id },
+        orderBy: { orden: "asc" },
+        select: { titulo: true },
+      });
       const receiptUrl = await safeGenerateReceipt({
         sale, // incluye amountPaid => el recibo muestra Valor total / Abonado / Deuda reales
-        raffle,
+        raffle: {
+          title: raffle.title,
+          lottery: raffle.loteria,
+          drawDate: raffle.drawDate,
+          prizes,
+        },
         contact: sale.contact,
         ...(await brandFor(prisma, session.user.id)),
       });
@@ -330,9 +340,19 @@ export const saleRouter = createTRPCRouter({
       });
 
       // Regenerar el recibo con los montos reales actualizados (overwrite en Cloudinary).
+      const prizes = await prisma.prize.findMany({
+        where: { raffleId: updated.raffleId },
+        orderBy: { orden: "asc" },
+        select: { titulo: true },
+      });
       const receiptUrl = await safeGenerateReceipt({
         sale: updated,
-        raffle: updated.raffle,
+        raffle: {
+          title: updated.raffle.title,
+          lottery: updated.raffle.loteria,
+          drawDate: updated.raffle.drawDate,
+          prizes,
+        },
         contact: updated.contact,
         ...(await brandFor(prisma, session.user.id)),
       });

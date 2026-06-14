@@ -6,6 +6,13 @@ import { uploadImage } from "@riffas/shared/cloudinary";
 
 const HEX_COLOR = /^#([0-9a-fA-F]{6})$/;
 
+// Premio individual al crear/editar una rifa (el `orden` lo asigna el servidor).
+const prizeInput = z.object({
+  titulo: z.string().min(1, "El título del premio es obligatorio").max(120),
+  descripcion: z.string().max(500).optional(),
+  imagenUrl: z.string().url().optional(),
+});
+
 export const raffleRouter = createTRPCRouter({
   // Listar rifas del usuario
   list: protectedProcedure
@@ -131,6 +138,58 @@ export const raffleRouter = createTRPCRouter({
       };
     }),
 
+  // --- Premios de la rifa ---
+
+  listPrizes: protectedProcedure
+    .input(z.object({ raffleId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const raffle = await ctx.prisma.raffle.findFirst({
+        where: { id: input.raffleId, userId: ctx.session.user.id },
+        select: { id: true },
+      });
+      if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return ctx.prisma.prize.findMany({
+        where: { raffleId: input.raffleId },
+        orderBy: { orden: "asc" },
+      });
+    }),
+
+  // Reemplaza TODOS los premios de la rifa (maneja añadir/quitar/reordenar en una
+  // sola operación; el orden es la posición en el array). Multi-tenant.
+  setPrizes: protectedProcedure
+    .input(
+      z.object({
+        raffleId: z.string(),
+        prizes: z.array(prizeInput),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const raffle = await ctx.prisma.raffle.findFirst({
+        where: { id: input.raffleId, userId: ctx.session.user.id },
+        select: { id: true },
+      });
+      if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
+
+      await ctx.prisma.$transaction([
+        ctx.prisma.prize.deleteMany({ where: { raffleId: input.raffleId } }),
+        ctx.prisma.prize.createMany({
+          data: input.prizes.map((p, i) => ({
+            raffleId: input.raffleId,
+            titulo: p.titulo,
+            descripcion: p.descripcion || null,
+            imagenUrl: p.imagenUrl || null,
+            orden: i,
+          })),
+        }),
+      ]);
+
+      return ctx.prisma.prize.findMany({
+        where: { raffleId: input.raffleId },
+        orderBy: { orden: "asc" },
+      });
+    }),
+
   // Crear nueva rifa
   create: protectedProcedure
     .input(
@@ -172,6 +231,7 @@ export const raffleRouter = createTRPCRouter({
         bannerUrl: z.string().url().optional(),
         bannerMobileUrl: z.string().url().optional(),
         iconUrl: z.string().url().optional(),
+        prizes: z.array(prizeInput).optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -202,7 +262,7 @@ export const raffleRouter = createTRPCRouter({
       }
 
       // Normalizar WhatsApp de contacto (default Venezuela)
-      const { contactWhatsapp, ...rest } = input;
+      const { contactWhatsapp, prizes, ...rest } = input;
       let normalizedWhatsapp: string | undefined;
       if (contactWhatsapp) {
         const n = normalizePhone(contactWhatsapp, "VE");
@@ -224,6 +284,19 @@ export const raffleRouter = createTRPCRouter({
           status: "DRAFT",
         },
       });
+
+      // Crear premios (orden = posición en el array)
+      if (prizes && prizes.length > 0) {
+        await prisma.prize.createMany({
+          data: prizes.map((p, i) => ({
+            raffleId: raffle.id,
+            titulo: p.titulo,
+            descripcion: p.descripcion || null,
+            imagenUrl: p.imagenUrl || null,
+            orden: i,
+          })),
+        });
+      }
 
       // Generar números
       const numbers = generateNumbers({

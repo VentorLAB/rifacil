@@ -359,10 +359,28 @@ model Raffle {
   numbers  RaffleNumber[]
   sales    Sale[]
   campaigns Campaign[]
+  prizes   Prize[]
 
   @@index([userId, status])
   @@index([status])
   @@index([startDate])
+}
+
+// Premios de una rifa (1º, 2º, 3º…). `orden` define la posición.
+model Prize {
+  id          String   @id @default(cuid())
+  raffleId    String
+  titulo      String
+  descripcion String?  @db.Text
+  orden       Int      @default(0)
+  imagenUrl   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  raffle Raffle @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  @@index([raffleId, orden])
 }
 
 model RaffleNumber {

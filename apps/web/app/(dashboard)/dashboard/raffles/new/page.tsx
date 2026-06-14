@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { ArrowLeft, Loader2, ImagePlus, X } from "lucide-react";
 import { useState } from "react";
+import { PrizesEditor, type PrizeDraft } from "@/components/prizes-editor";
 
 // Estilos reutilizables — contraste legible (ver globals.css: input/label fuerzan
 // texto oscuro sobre fondo blanco incluso en iOS Safari).
@@ -35,6 +36,7 @@ export default function NewRafflePage() {
     iconUrl: "",
   });
   const [uploading, setUploading] = useState<ImageKind | null>(null);
+  const [prizes, setPrizes] = useState<PrizeDraft[]>([]);
 
   const uploadImage = api.raffle.uploadImage.useMutation();
 
@@ -86,6 +88,15 @@ export default function NewRafflePage() {
     }
     const startISO = toISO(data.startDate) ?? new Date().toISOString();
 
+    // Premios con título no vacío (el orden es la posición en el array).
+    const cleanPrizes = prizes
+      .filter((p) => p.titulo.trim())
+      .map((p) => ({
+        titulo: p.titulo.trim(),
+        descripcion: p.descripcion?.trim() || undefined,
+        imagenUrl: p.imagenUrl || undefined,
+      }));
+
     createRaffle.mutate({
       title: data.title,
       description: data.description || undefined,
@@ -104,6 +115,7 @@ export default function NewRafflePage() {
       bannerUrl: images.bannerUrl || undefined,
       bannerMobileUrl: images.bannerMobileUrl || undefined,
       iconUrl: images.iconUrl || undefined,
+      prizes: cleanPrizes.length > 0 ? cleanPrizes : undefined,
     });
   };
 
@@ -273,6 +285,10 @@ export default function NewRafflePage() {
           <ImageField label="Banner móvil" kind="bannerMobileUrl" url={images.bannerMobileUrl} uploading={uploading === "bannerMobileUrl"} onPick={handleImage} onClear={(k) => setImages((p) => ({ ...p, [k]: "" }))} />
           <ImageField label="Icono" kind="iconUrl" url={images.iconUrl} uploading={uploading === "iconUrl"} onPick={handleImage} onClear={(k) => setImages((p) => ({ ...p, [k]: "" }))} />
         </div>
+
+        {/* --- Premios --- */}
+        <div className={sectionCls}>Premios</div>
+        <PrizesEditor value={prizes} onChange={setPrizes} />
 
         <button
           type="submit"
