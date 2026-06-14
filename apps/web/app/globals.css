@@ -2,24 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Contraste DEFINITIVO — robusto en modo claro Y oscuro del celular.
+ * NO hay @media (prefers-color-scheme: dark): la UI está diseñada en claro
+ * (tarjetas blancas). Forzamos esquema claro y fijamos colores explícitos para
+ * que iOS Safari no repinte el texto en oscuro ("no se ve lo que escribes").
+ */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a; /* slate-900 */
-  --muted-foreground: #334155; /* slate-700 (labels) */
-  --placeholder: #94a3b8; /* slate-400 */
-  --card: #ffffff;
-  --border: #e2e8f0; /* slate-200 */
-  /*
-   * La UI está diseñada en claro: tarjetas blancas + variantes `dark:` de Tailwind
-   * en modo "class" que nunca se activan. Forzamos esquema claro para que iOS Safari
-   * NO repinte inputs/controles en oscuro (causa de "no se ve lo que escribes").
-   */
   color-scheme: light;
 }
 
-html {
-  color-scheme: light;
-  background: var(--background);
+html,
+body {
+  background-color: #f8fafc;
+  color: #0f172a; /* slate-900 */
 }
 
 html,
@@ -29,8 +25,6 @@ body {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -38,24 +32,20 @@ body {
   box-sizing: border-box;
 }
 
-/*
- * Contraste definitivo de formularios — robusto en modo claro Y oscuro del celular.
- * En iOS Safari `color` no alcanza: el sistema usa `-webkit-text-fill-color` para
- * forzar texto claro en modo oscuro y en autofill, así que lo fijamos también.
- */
+/* Texto que escribe el usuario: oscuro y legible sobre fondo blanco. */
 input,
 textarea,
 select {
-  color: var(--foreground);
-  -webkit-text-fill-color: var(--foreground);
-  background-color: #ffffff;
-  caret-color: var(--foreground);
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a; /* iOS usa esto para forzar color en oscuro/autofill */
+  background: #fff;
+  caret-color: #0f172a;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--placeholder);
-  -webkit-text-fill-color: var(--placeholder);
+  color: #94a3b8; /* slate-400 */
+  -webkit-text-fill-color: #94a3b8;
   opacity: 1; /* Firefox baja la opacidad de los placeholders por defecto. */
 }
 
@@ -65,12 +55,12 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-text-fill-color: var(--foreground);
+  -webkit-text-fill-color: #0f172a;
   -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
   box-shadow: 0 0 0px 1000px #ffffff inset;
 }
 
 /* Labels legibles aunque la página no les ponga color explícito. */
 label {
-  color: var(--muted-foreground);
+  color: #334155; /* slate-700 */
 }
