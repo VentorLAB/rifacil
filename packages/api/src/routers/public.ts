@@ -45,6 +45,7 @@ export const publicRouter = createTRPCRouter({
               brandName: true,
               brandLogo: true,
               brandColor: true,
+              brandColorSecondary: true,
               paymentAccounts: { where: { active: true }, orderBy: { method: "asc" } },
             },
           },
@@ -112,6 +113,7 @@ export const publicRouter = createTRPCRouter({
           name: raffle.user.brandName || raffle.user.name || "Rifa",
           logo: raffle.user.brandLogo,
           color: raffle.user.brandColor,
+          colorSecondary: raffle.user.brandColorSecondary,
         },
         paymentAccounts: raffle.user.paymentAccounts.map((a) => ({
           method: a.method,

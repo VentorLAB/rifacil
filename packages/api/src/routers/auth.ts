@@ -83,10 +83,11 @@ export const authRouter = createTRPCRouter({
         email: z.string().email().optional(),
         phone: z.string().optional(),
         avatar: z.string().url().optional(),
-        brandName: z.string().optional(),
-        brandLogo: z.string().url().optional(),
-        brandColor: z.string().optional(),
-        brandSlug: z.string().optional(),
+        brandName: z.string().optional().nullable(),
+        brandLogo: z.string().url().optional().nullable(),
+        brandColor: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Color inválido").optional().nullable(),
+        brandColorSecondary: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Color inválido").optional().nullable(),
+        brandSlug: z.string().optional().nullable(),
       })
     )
     .mutation(async ({ ctx, input }) => {

@@ -88,7 +88,10 @@ export default function PublicRafflePage() {
     );
   }
 
-  const color = raffle.color || "#7c3aed";
+  // Identidad del negocio: priorizar colores de marca del rifero; la rifa los
+  // complementa. Secundario para degradados/acentos.
+  const color = raffle.brand.color || raffle.color || "#7c3aed";
+  const color2 = raffle.brand.colorSecondary || color;
   const total = raffle.pricePerNumber * selected.size;
 
   function toggle(n: string) {
@@ -127,7 +130,7 @@ export default function PublicRafflePage() {
             className="h-44 w-full object-cover sm:h-60"
           />
         ) : (
-          <div className="h-32 w-full" style={{ backgroundColor: color }} />
+          <div className="h-32 w-full" style={{ background: `linear-gradient(135deg, ${color}, ${color2})` }} />
         )}
         <div className="mx-auto -mt-8 max-w-2xl px-4">
           <div className="rounded-2xl border bg-white p-4 shadow-sm">

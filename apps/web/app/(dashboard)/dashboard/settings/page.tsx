@@ -2,6 +2,7 @@
 import { api } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { BrandSection } from "@/components/brand-section";
 import { PaymentAccountsSection } from "@/components/payment-accounts-section";
 import { RateSection } from "@/components/rate-section";
 import { WhatsappSection } from "@/components/whatsapp-section";
@@ -22,6 +23,9 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6 max-w-2xl">
       <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Configuracion</h1>
+
+      <BrandSection />
+
       <div className="bg-white dark:bg-slate-900 rounded-xl border p-6 space-y-4">
         <h2 className="text-lg font-semibold">Apariencia</h2>
         <div>

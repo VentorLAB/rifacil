@@ -175,10 +175,11 @@ model User {
   role          Role      @default(RIFERO)
 
   // Branding personal
-  brandName     String?
-  brandLogo     String?
-  brandColor    String?   @default("#3b82f6")
-  brandSlug     String?   @unique // riffas.app/mi-marca
+  brandName          String?
+  brandLogo          String?
+  brandColor         String?   @default("#3b82f6") // color primario de marca
+  brandColorSecondary String?  @default("#1e293b") // color secundario de marca
+  brandSlug          String?   @unique // riffas.app/mi-marca
 
   // Onboarding
   onboardingCompleted Boolean @default(false)
