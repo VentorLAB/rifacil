@@ -262,18 +262,21 @@ export default function NewRafflePage() {
           </div>
         </div>
 
+        {/* min-w-0 en celda e input: en Safari los datetime-local tienen ancho
+            intrínseco mínimo y, como los grid items son min-width:auto, desbordan
+            y se solapan. min-w-0 les permite encogerse a la celda. */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
+          <div className="min-w-0">
             <label className={labelCls}>Inicio</label>
-            <input type="datetime-local" {...register("startDate")} className={inputCls} />
+            <input type="datetime-local" {...register("startDate")} className={`${inputCls} min-w-0 max-w-full box-border`} />
           </div>
-          <div>
+          <div className="min-w-0">
             <label className={labelCls}>Fecha del sorteo</label>
-            <input type="datetime-local" {...register("drawDate")} className={inputCls} />
+            <input type="datetime-local" {...register("drawDate")} className={`${inputCls} min-w-0 max-w-full box-border`} />
           </div>
-          <div>
+          <div className="min-w-0">
             <label className={labelCls}>Límite de compra</label>
-            <input type="datetime-local" {...register("buyDeadline")} className={inputCls} />
+            <input type="datetime-local" {...register("buyDeadline")} className={`${inputCls} min-w-0 max-w-full box-border`} />
           </div>
         </div>
 
