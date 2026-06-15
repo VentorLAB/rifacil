@@ -13,11 +13,13 @@ import {
   MessageSquare,
   Settings,
   LogOut,
+  ClipboardCheck,
 } from "lucide-react";
 
 const NAV = [
   { href: "/dashboard", label: "Inicio", icon: LayoutDashboard },
   { href: "/dashboard/raffles", label: "Rifas", icon: Ticket },
+  { href: "/dashboard/pending", label: "Por confirmar", icon: ClipboardCheck },
   { href: "/dashboard/sales", label: "Ventas", icon: Receipt },
   { href: "/dashboard/contacts", label: "Contactos", icon: Users },
   { href: "/dashboard/vendors", label: "Vendedores", icon: UserCog },

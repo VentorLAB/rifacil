@@ -14,6 +14,7 @@ import {
   Receipt,
   CheckCircle2,
   Ticket,
+  Upload,
 } from "lucide-react";
 
 const PAGE_SIZE = 120;
@@ -44,6 +45,15 @@ const PILL: Record<string, string> = {
 
 const money = (v: number) =>
   `$${Number(v ?? 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+function fileToDataUri(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
 
 export default function PublicRafflePage() {
   const params = useParams<{ id: string }>();
@@ -484,9 +494,36 @@ function CheckoutSheet({
   const [method, setMethod] = useState<string>(paymentAccounts[0]?.method ?? "PAGO_MOVIL");
   const [amount, setAmount] = useState(String(total));
   const [reference, setReference] = useState("");
+  const [proofUrl, setProofUrl] = useState<string>("");
+  const [uploadingProof, setUploadingProof] = useState(false);
 
   const paid = Number(amount) || 0;
   const willReserve = paid > 0 && paid < total;
+
+  const uploadProof = api.public.uploadProof.useMutation();
+
+  async function handleProof(file?: File) {
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("El comprobante debe ser una imagen");
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      toast.error("La imagen no puede superar 8 MB");
+      return;
+    }
+    try {
+      setUploadingProof(true);
+      const dataUri = await fileToDataUri(file);
+      const { url } = await uploadProof.mutateAsync({ dataUri });
+      setProofUrl(url);
+      toast.success("Comprobante subido");
+    } catch (e: any) {
+      toast.error(e?.message || "No se pudo subir el comprobante");
+    } finally {
+      setUploadingProof(false);
+    }
+  }
 
   const create = api.public.createSale.useMutation({
     onSuccess: (res) => {
@@ -515,6 +552,7 @@ function CheckoutSheet({
       paymentMethod: method as any,
       amountPaid: Number(paid.toFixed(2)),
       paymentReference: reference.trim() || undefined,
+      paymentProof: proofUrl || undefined,
     });
   }
 
@@ -634,9 +672,40 @@ function CheckoutSheet({
             />
           </div>
 
+          {/* Comprobante de pago (captura) */}
+          <div>
+            <label className="mb-1 block text-sm font-medium text-slate-700">Comprobante de pago</label>
+            {proofUrl ? (
+              <div className="relative h-40 overflow-hidden rounded-xl border">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={proofUrl} alt="Comprobante" className="h-full w-full object-contain bg-slate-50" />
+                <button
+                  type="button"
+                  onClick={() => setProofUrl("")}
+                  className="absolute right-2 top-2 rounded-full bg-black/60 p-1 text-white"
+                  aria-label="Quitar comprobante"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            ) : (
+              <label className="flex cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-slate-300 bg-slate-50 py-6 text-sm text-slate-500">
+                {uploadingProof ? <Loader2 className="h-5 w-5 animate-spin" /> : <Upload className="h-5 w-5" />}
+                <span>{uploadingProof ? "Subiendo…" : "Subir captura del pago"}</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  disabled={uploadingProof}
+                  onChange={(e) => handleProof(e.target.files?.[0])}
+                />
+              </label>
+            )}
+          </div>
+
           <button
             onClick={submit}
-            disabled={create.isLoading}
+            disabled={create.isLoading || uploadingProof}
             className="flex w-full items-center justify-center gap-2 rounded-xl py-3.5 font-semibold text-white disabled:opacity-50"
             style={{ backgroundColor: color }}
           >

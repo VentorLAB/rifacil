@@ -3,6 +3,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { normalizePhone } from "@riffas/shared";
+import { uploadImage } from "@riffas/shared/cloudinary";
 import { getActiveRate } from "../lib/exchangeRate";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -235,6 +236,25 @@ export const publicRouter = createTRPCRouter({
       };
     }),
 
+  // Sube el comprobante de pago (captura) a Cloudinary. Sin login.
+  uploadProof: publicProcedure
+    .input(
+      z.object({
+        dataUri: z.string().refine((v) => v.startsWith("data:image/"), "Debe ser una imagen"),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        const url = await uploadImage(input.dataUri, { folder: "riffas/proofs" });
+        return { url };
+      } catch (err) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "No se pudo subir el comprobante. Intenta de nuevo.",
+        });
+      }
+    }),
+
   // El comprador aparta número(s) → venta "por confirmar" (PENDING). Sin login.
   createSale: publicProcedure
     .input(
@@ -246,6 +266,7 @@ export const publicRouter = createTRPCRouter({
         paymentMethod: z.nativeEnum(PaymentMethod),
         amountPaid: z.number().nonnegative().optional(),
         paymentReference: z.string().optional(),
+        paymentProof: z.string().url().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -317,6 +338,7 @@ export const publicRouter = createTRPCRouter({
           status: "PENDING", // por confirmar
           paymentMethod: input.paymentMethod,
           paymentReference: input.paymentReference,
+          paymentProof: input.paymentProof,
           receiptNumber,
           source: "public",
         },
@@ -331,6 +353,7 @@ export const publicRouter = createTRPCRouter({
             amount: declared,
             method: input.paymentMethod,
             reference: input.paymentReference,
+            proofUrl: input.paymentProof,
             status: "PENDING",
           },
         });

@@ -434,6 +434,171 @@ export const saleRouter = createTRPCRouter({
       return sale;
     }),
 
+  // --- Bandeja "Por confirmar" (ventas PENDING, p. ej. desde el storefront) ---
+
+  listPending: protectedProcedure
+    .input(z.object({ raffleId: z.string().optional() }).optional())
+    .query(async ({ ctx, input }) => {
+      const { prisma, session } = ctx;
+      const where: any = { userId: session.user.id, status: "PENDING" };
+      if (input?.raffleId) where.raffleId = input.raffleId;
+
+      const sales = await prisma.sale.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        take: 100,
+        include: {
+          contact: { select: { name: true, phone: true } },
+          raffle: { select: { id: true, title: true } },
+          payments: {
+            orderBy: { createdAt: "desc" },
+            select: { amount: true, method: true, reference: true, proofUrl: true, status: true, createdAt: true },
+          },
+        },
+      });
+      return { sales };
+    }),
+
+  // Aprobar: confirma el pago reportado, pasa a pagado/apartado, emite recibo y audita.
+  confirmSale: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { prisma, session } = ctx;
+
+      const sale = await prisma.sale.findFirst({
+        where: { id: input.id, userId: session.user.id, status: "PENDING" },
+        include: { contact: true, raffle: true },
+      });
+      if (!sale) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada o ya procesada" });
+
+      // Pagos reportados PENDING -> CONFIRMED.
+      await prisma.payment.updateMany({
+        where: { saleId: sale.id, status: "PENDING" },
+        data: { status: "CONFIRMED" },
+      });
+
+      const agg = await prisma.payment.aggregate({
+        where: { saleId: sale.id, status: "CONFIRMED" },
+        _sum: { amount: true },
+      });
+      const amountPaid = round2(Number(agg._sum.amount ?? 0));
+      const finalAmount = Number(sale.finalAmount);
+      const isFullyPaid = amountPaid >= finalAmount;
+
+      const updated = await prisma.sale.update({
+        where: { id: sale.id },
+        data: {
+          amountPaid,
+          status: isFullyPaid ? "PAID" : "RESERVED",
+          paidAt: isFullyPaid ? new Date() : sale.paidAt ?? undefined,
+        },
+        include: { contact: true, raffle: true },
+      });
+
+      // Números: PAID si saldado, RESERVED (apartado) si abono parcial.
+      await prisma.raffleNumber.updateMany({
+        where: { saleId: sale.id },
+        data: { status: isFullyPaid ? "PAID" : "RESERVED", paidAt: isFullyPaid ? new Date() : null },
+      });
+
+      // Ahora el dinero está confirmado → impacta métricas.
+      await prisma.contact.update({
+        where: { id: sale.contactId },
+        data: { totalSpent: { increment: amountPaid }, lastPurchase: new Date() },
+      });
+      await prisma.raffle.update({
+        where: { id: sale.raffleId },
+        data: { revenue: { increment: amountPaid } },
+      });
+
+      // Recibo con montos confirmados.
+      const prizes = await prisma.prize.findMany({
+        where: { raffleId: sale.raffleId },
+        orderBy: { orden: "asc" },
+        select: { titulo: true },
+      });
+      const receiptUrl = await safeGenerateReceipt({
+        sale: updated,
+        raffle: {
+          title: updated.raffle.title,
+          lottery: updated.raffle.loteria,
+          drawDate: updated.raffle.drawDate,
+          prizes,
+        },
+        contact: updated.contact,
+        ...(await brandFor(prisma, session.user.id)),
+      });
+      await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
+      await prisma.raffleNumber.updateMany({ where: { saleId: sale.id }, data: { receiptUrl } });
+
+      // Auditoría: quién confirmó.
+      await prisma.activityLog.create({
+        data: {
+          userId: session.user.id,
+          action: "SALE_CONFIRMED",
+          entityType: "Sale",
+          entityId: sale.id,
+          metadata: { amountPaid, isFullyPaid, receiptNumber: sale.receiptNumber },
+        },
+      });
+
+      return { ...updated, receiptUrl, amountPaid, isFullyPaid };
+    }),
+
+  // Rechazar: libera los números (vuelven a disponibles), cancela la venta y audita.
+  rejectSale: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { prisma, session } = ctx;
+
+      const sale = await prisma.sale.findFirst({
+        where: { id: input.id, userId: session.user.id, status: "PENDING" },
+      });
+      if (!sale) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada o ya procesada" });
+
+      // Liberar los números.
+      await prisma.raffleNumber.updateMany({
+        where: { saleId: sale.id },
+        data: {
+          status: "AVAILABLE",
+          contactId: null,
+          saleId: null,
+          vendorId: null,
+          soldAt: null,
+          paidAt: null,
+          paymentMethod: null,
+          receiptNumber: null,
+          receiptUrl: null,
+        },
+      });
+
+      // Pagos reportados -> RECHAZADOS.
+      await prisma.payment.updateMany({
+        where: { saleId: sale.id, status: "PENDING" },
+        data: { status: "REJECTED" },
+      });
+
+      await prisma.sale.update({ where: { id: sale.id }, data: { status: "CANCELLED" } });
+
+      // Revertir soldCount (la creación pública lo incrementó).
+      await prisma.raffle.update({
+        where: { id: sale.raffleId },
+        data: { soldCount: { decrement: sale.totalNumbers } },
+      });
+
+      await prisma.activityLog.create({
+        data: {
+          userId: session.user.id,
+          action: "SALE_REJECTED",
+          entityType: "Sale",
+          entityId: sale.id,
+          metadata: { numbers: sale.numbers, receiptNumber: sale.receiptNumber },
+        },
+      });
+
+      return { success: true };
+    }),
+
   list: protectedProcedure
     .input(
       z.object({
