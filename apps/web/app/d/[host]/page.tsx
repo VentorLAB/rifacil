@@ -13,16 +13,45 @@ import {
   PaymentAccountsSection,
   VerifyWidget,
   WhatsAppFloat,
+  Countdown,
+  ExitIntentPopup,
 } from "@/components/storefront-client";
 import { storefrontFontVars } from "./fonts";
 import "./storefront.css";
 
 export const dynamic = "force-dynamic";
 
+// Audiencia VE: formatear SIEMPRE en hora de Caracas (UTC-4), independiente del
+// TZ del servidor (Vercel corre en UTC; sin esto el sorteo se vería un día corrido).
+const VE_TZ = "America/Caracas";
 const money = (v: number, c = "$") =>
   `${c}${Number(v ?? 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 const fmtDate = (d: Date | string | null) =>
-  d ? new Date(d).toLocaleDateString("es-VE", { day: "2-digit", month: "short", year: "numeric" }) : "";
+  d ? new Date(d).toLocaleDateString("es-VE", { timeZone: VE_TZ, day: "2-digit", month: "short", year: "numeric" }) : "";
+const fmtDateShort = (d: Date | string | null) =>
+  d ? new Date(d).toLocaleDateString("es-VE", { timeZone: VE_TZ, day: "2-digit", month: "short" }) : "";
+
+// Packs como AHORRO. discountPackages = [{qty, discountPercent}]; se calcula el
+// precio total del pack y cuánto ahorra vs comprar suelto. qty 1 = base.
+function computePacks(dp: unknown, price: number) {
+  const base = { qty: 1, price, save: 0 };
+  const extra = (Array.isArray(dp) ? dp : [])
+    .map((p: any) => {
+      const qty = Number(p?.qty) || 0;
+      const pct = Number(p?.discountPercent) || 0;
+      const full = qty * price;
+      const packPrice = Math.round(full * (1 - pct / 100));
+      return { qty, price: packPrice, save: Math.round(full - packPrice) };
+    })
+    .filter((p) => p.qty > 1 && p.save > 0);
+  return [base, ...extra];
+}
+
+// Nombre corto del premio principal (para el CTA "Quiero ganar el …").
+function shortPrize(prizes: { titulo: string }[], fallback: string) {
+  const t = prizes?.[0]?.titulo || fallback || "";
+  return t.split(/ \+ | \(/)[0].trim();
+}
 
 const DEFAULT_FAQS = [
   { q: "¿Cómo participo en una rifa?", a: "Entrá a la rifa que quieras, elegí tus números, completá tus datos, pagá por el método que prefieras y subí tu comprobante. Confirmamos tu boleto por WhatsApp." },
@@ -54,13 +83,16 @@ export default async function BrandLanding({ params }: { params: { host: string 
     notFound();
   }
 
-  const { brand, config, raffles, paymentAccounts } = data;
+  const { brand, config, raffles, winners, paymentAccounts } = data;
   const tagline = config?.tagline || "Grandes Rifas";
   const stats = config?.stats ?? [];
   const faqs = config?.faqs?.length ? config.faqs : DEFAULT_FAQS;
   const contacts = config?.contacts ?? [];
   const instagram = config?.instagram || null;
   const instagramHandle = config?.instagramHandle || null;
+  const testimonials = config?.testimonials ?? [];
+  // Rifa principal (la más vendida) para el popup de salida.
+  const featured = [...raffles].sort((a, b) => b.soldPct - a.soldPct)[0];
 
   return (
     <div className={`sf ${storefrontFontVars}`}>
@@ -119,13 +151,19 @@ export default async function BrandLanding({ params }: { params: { host: string 
           ) : (
             <div className="grid-rifas">
               {raffles.map((r) => {
-                const pct = r.totalNumbers > 0 ? Math.min(100, Math.round((r.soldCount / r.totalNumbers) * 100)) : 0;
+                const pct = Math.min(100, Math.round(r.soldPct));
+                const remaining = r.available;
+                const almostGone = pct >= 80;
                 const img = r.bannerUrl || r.bannerMobileUrl || r.iconUrl;
+                const packs = computePacks(r.discountPackages, r.pricePerNumber);
+                const sp = shortPrize(r.prizes, r.prize);
+                const isObject = !/^\$/.test(sp); // premio "objeto" (carro/moto) vs efectivo
+                const ctaText = isObject ? `Quiero ganar el ${sp}` : "Apartá tus números";
                 return (
                   <article className="rifa-card" data-reveal key={r.id}>
                     <div className="rifa-media">
-                      <span className="rifa-badge">Activa</span>
-                      <span className="rifa-price">{money(r.pricePerNumber)}</span>
+                      {almostGone && <span className="rifa-badge hot">🔥 Casi agotada</span>}
+                      <span className="rifa-price">{money(r.pricePerNumber)} <small>x número</small></span>
                       {img ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={img} alt={r.title} />
@@ -136,14 +174,43 @@ export default async function BrandLanding({ params }: { params: { host: string 
                     <div className="rifa-body">
                       <h3>{r.title}</h3>
                       {r.prize && <p className="rifa-prize">{r.prize}</p>}
+
                       {r.drawDate && (
-                        <div className="rifa-meta">🗓️ Sorteo {fmtDate(r.drawDate)}{r.loteria ? ` · ${r.loteria}` : ""}</div>
+                        <div className="rifa-count">
+                          <span className="rifa-count-l">⏳ Sorteo en</span>
+                          <Countdown target={r.drawDate as unknown as string} />
+                        </div>
                       )}
-                      <div>
+
+                      {/* Escasez REAL: quedan N + barra casi llena */}
+                      <div className="scarcity">
+                        <div className="scarcity-row">
+                          <span className={`remaining ${almostGone ? "hot" : ""}`}>🔥 ¡Solo quedan {remaining}!</span>
+                          <span className="scarcity-pct">{pct}% vendido</span>
+                        </div>
                         <div className="progress"><i style={{ width: `${pct}%` }} /></div>
-                        <div className="progress-row"><span>Completado {pct}%</span><span>{r.totalNumbers} números</span></div>
                       </div>
-                      <Link className="btn btn-gold btn-block" href={`/r/${r.id}`}>🎟️ Participar ahora</Link>
+
+                      {/* Packs como ahorro */}
+                      {packs.length > 1 && (
+                        <div className="packs">
+                          {packs.map((p) => (
+                            <div className={`pack ${p.save > 0 ? "save" : ""}`} key={p.qty}>
+                              <span className="pack-q">{p.qty} {p.qty === 1 ? "número" : "números"}</span>
+                              <span className="pack-p">{money(p.price)}</span>
+                              {p.save > 0 ? <span className="pack-s">ahorrás {money(p.save)}</span> : <span className="pack-s base">precio normal</span>}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Badges de confianza */}
+                      <div className="rifa-badges">
+                        <span className="tb">🏆 Juega hasta que haya ganador</span>
+                        <span className="tb">🔴 EN VIVO por Instagram{r.loteria ? ` · ${r.loteria}` : ""}</span>
+                      </div>
+
+                      <Link className="btn btn-gold btn-block btn-lg" href={`/r/${r.id}`}>🎟️ {ctaText}</Link>
                     </div>
                   </article>
                 );
@@ -152,6 +219,52 @@ export default async function BrandLanding({ params }: { params: { host: string 
           )}
         </div>
       </section>
+
+      {/* ───────── GANADORES / SORTEOS CUMPLIDOS ───────── */}
+      {winners.length > 0 && (
+        <section className="section" id="ganadores" style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="section-head">
+              <span className="kicker">🏆 Sorteos cumplidos</span>
+              <h2 className="h-lg">Nuestros <span className="gold-text">ganadores</span></h2>
+              <p className="lead">Premios entregados de verdad. El próximo podés ser vos.</p>
+            </div>
+            <div className="grid-winners">
+              {winners.map((w) => {
+                const img = w.winnerPhotoUrl || w.bannerUrl || w.iconUrl;
+                return (
+                  <article className="winner-card" data-reveal key={w.id}>
+                    <div className="winner-media">
+                      {img ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={img} alt={w.title} />
+                      ) : (
+                        <div className="ph">🏆</div>
+                      )}
+                      <span className="winner-tag">✓ Entregado</span>
+                    </div>
+                    <div className="winner-body">
+                      <h3>{w.title}</h3>
+                      <p className="winner-prize">{w.prize}</p>
+                      <div className="winner-meta">
+                        <span>🗓️ {fmtDate(w.drawDate)}</span>
+                        {w.winnerNumber && <span>· N° {w.winnerNumber}</span>}
+                      </div>
+                      <div className="winner-who">
+                        {w.winnerName ? (
+                          <b>🎉 {w.winnerName}</b>
+                        ) : (
+                          <span className="winner-soon">🎉 Ganador anunciado en nuestro Instagram</span>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ───────── PARTICIPAR ───────── */}
       <section className="section" id="participar" style={{ paddingTop: 0 }}>
@@ -191,6 +304,34 @@ export default async function BrandLanding({ params }: { params: { host: string 
           <VerifyWidget raffles={raffles.map((r) => ({ id: r.id, title: r.title }))} />
         </div>
       </section>
+
+      {/* ───────── TESTIMONIOS (estructura lista; se llena vía storefrontConfig.testimonials) ───────── */}
+      {testimonials.length > 0 && (
+        <section className="section" id="testimonios" style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="section-head">
+              <span className="kicker">💬 Lo que dicen</span>
+              <h2 className="h-lg">Testimonios de <span className="gold-text">ganadores</span></h2>
+            </div>
+            <div className="grid-testi">
+              {testimonials.map((t, i) => (
+                <figure className="testi" data-reveal key={i}>
+                  <blockquote>“{t.text}”</blockquote>
+                  <figcaption>
+                    {t.photoUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={t.photoUrl} alt={t.name} />
+                    ) : (
+                      <span className="testi-ava">🧑</span>
+                    )}
+                    <span className="testi-who"><b>{t.name}</b>{t.detail && <small>{t.detail}</small>}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ───────── FAQ ───────── */}
       <section className="section" id="faq" style={{ paddingTop: 0 }}>
@@ -260,6 +401,15 @@ export default async function BrandLanding({ params }: { params: { host: string 
       </footer>
 
       <WhatsAppFloat contacts={contacts} text={config?.whatsappText} />
+      {featured && (
+        <ExitIntentPopup
+          raffleId={featured.id}
+          remaining={featured.available}
+          prizeShort={shortPrize(featured.prizes, featured.prize)}
+          drawLabel={fmtDateShort(featured.drawDate)}
+          whatsapp={config?.whatsapp ?? contacts[0]?.phone ?? null}
+        />
+      )}
       <RevealInit />
     </div>
   );

@@ -22,6 +22,14 @@ export const storefrontContactSchema = z.object({
   phone: z.string().min(7).max(20), // dígitos país+número sin +, para wa.me
 });
 
+// Testimonios (estructura lista; se llenan después con datos reales de ganadores).
+export const storefrontTestimonialSchema = z.object({
+  name: z.string().min(1).max(60),
+  text: z.string().min(1).max(400),
+  detail: z.string().max(80).optional(), // p.ej. "Ganador El Azulejo · Táchira"
+  photoUrl: z.string().url().max(300).optional(),
+});
+
 export const storefrontConfigSchema = z.object({
   tagline: z.string().max(60).optional(),
   whatsappText: z.string().max(280).optional(),
@@ -35,6 +43,7 @@ export const storefrontConfigSchema = z.object({
   contacts: z.array(storefrontContactSchema).max(10).optional(),
   stats: z.array(storefrontStatSchema).max(6).optional(),
   faqs: z.array(storefrontFaqSchema).max(20).optional(),
+  testimonials: z.array(storefrontTestimonialSchema).max(12).optional(),
 });
 
 export type StorefrontConfig = z.infer<typeof storefrontConfigSchema>;

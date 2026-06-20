@@ -73,30 +73,54 @@ export const publicRouter = createTRPCRouter({
       });
       if (!rifero) throw new TRPCError({ code: "NOT_FOUND" });
 
-      // Landing de marca: SOLO rifas ACTIVE en el listado (sin pausadas/sorteadas).
-      const raffles = await ctx.prisma.raffle.findMany({
-        where: {
-          userId: rifero.id,
-          isPublic: true,
-          status: "ACTIVE",
+      const raffleSelect = {
+        id: true,
+        title: true,
+        prize: true,
+        prizeValue: true,
+        pricePerNumber: true,
+        bannerUrl: true,
+        bannerMobileUrl: true,
+        iconUrl: true,
+        color: true,
+        status: true,
+        drawDate: true,
+        loteria: true,
+        totalNumbers: true,
+        discountPackages: true,
+        winnerNumber: true,
+        winnerName: true,
+        winnerPhotoUrl: true,
+        prizes: {
+          orderBy: { orden: "asc" as const },
+          select: { titulo: true, descripcion: true, imagenUrl: true },
         },
-        orderBy: { createdAt: "desc" },
-        select: {
-          id: true,
-          title: true,
-          prize: true,
-          pricePerNumber: true,
-          bannerUrl: true,
-          bannerMobileUrl: true,
-          iconUrl: true,
-          color: true,
-          status: true,
-          drawDate: true,
-          loteria: true,
-          soldCount: true,
-          totalNumbers: true,
-        },
+      };
+
+      // Listado activo (ACTIVE) + vitrina de sorteos cumplidos (DRAWN). Una sola
+      // pasada: separamos por estado abajo.
+      const all = await ctx.prisma.raffle.findMany({
+        where: { userId: rifero.id, isPublic: true, status: { in: ["ACTIVE", "DRAWN"] } },
+        orderBy: { drawDate: "desc" },
+        select: raffleSelect,
       });
+      const active = all.filter((r) => r.status === "ACTIVE");
+      const drawn = all.filter((r) => r.status === "DRAWN");
+
+      // Conteo REAL de disponibles por rifa activa (un solo groupBy). "Vendido/
+      // ocupado" = total - disponibles (incluye RESERVED, que NO está disponible).
+      // Esto unifica el número con /r/[id] y arregla el bug del % (antes solo
+      // contaba SOLD+PAID y mostraba el % disponible como "vendido").
+      const activeIds = active.map((r) => r.id);
+      const grouped = activeIds.length
+        ? await ctx.prisma.raffleNumber.groupBy({
+            by: ["raffleId", "status"],
+            where: { raffleId: { in: activeIds }, status: "AVAILABLE" },
+            _count: { _all: true },
+          })
+        : [];
+      const availByRaffle = new Map<string, number>();
+      for (const g of grouped) availByRaffle.set(g.raffleId, g._count._all);
 
       return {
         brand: {
@@ -106,9 +130,46 @@ export const publicRouter = createTRPCRouter({
           colorSecondary: rifero.brandColorSecondary || "#1e293b",
         },
         config: parseStorefrontConfig(rifero.storefrontConfig),
-        raffles: raffles.map((r) => ({
-          ...r,
-          pricePerNumber: Number(r.pricePerNumber),
+        raffles: active.map((r) => {
+          const total = r.totalNumbers ?? 0;
+          const available = availByRaffle.get(r.id) ?? total;
+          const taken = Math.max(0, total - available);
+          const soldPct = total > 0 ? Math.round((taken / total) * 1000) / 10 : 0;
+          return {
+            id: r.id,
+            title: r.title,
+            prize: r.prize,
+            prizeValue: Number(r.prizeValue),
+            pricePerNumber: Number(r.pricePerNumber),
+            bannerUrl: r.bannerUrl,
+            bannerMobileUrl: r.bannerMobileUrl,
+            iconUrl: r.iconUrl,
+            color: r.color,
+            status: r.status,
+            drawDate: r.drawDate,
+            loteria: r.loteria,
+            totalNumbers: total,
+            available,
+            soldCount: taken,
+            soldPct,
+            discountPackages: r.discountPackages,
+            prizes: r.prizes,
+          };
+        }),
+        // Sorteos cumplidos → "Ganadores": premio + slot de foto/nombre del ganador.
+        winners: drawn.map((r) => ({
+          id: r.id,
+          title: r.title,
+          prize: r.prize,
+          prizeValue: Number(r.prizeValue),
+          drawDate: r.drawDate,
+          loteria: r.loteria,
+          iconUrl: r.iconUrl,
+          bannerUrl: r.bannerUrl,
+          winnerNumber: r.winnerNumber,
+          winnerName: r.winnerName,
+          winnerPhotoUrl: r.winnerPhotoUrl,
+          prizes: r.prizes,
         })),
         paymentAccounts: rifero.paymentAccounts,
       };
@@ -147,7 +208,10 @@ export const publicRouter = createTRPCRouter({
       const byStatus: Record<string, number> = { AVAILABLE: 0, RESERVED: 0, SOLD: 0, PAID: 0 };
       for (const g of grouped) byStatus[g.status] = g._count._all;
       const total = Object.values(byStatus).reduce((a, b) => a + b, 0);
-      const soldCount = byStatus.SOLD + byStatus.PAID;
+      // "Vendido/ocupado" = todo lo que NO está disponible (RESERVED + SOLD + PAID).
+      // Antes contaba solo SOLD+PAID y, con data importada (apartados = RESERVED),
+      // mostraba ~9% cuando lo real era ~91%. Unificado con getStorefrontByDomain.
+      const soldCount = total - byStatus.AVAILABLE;
       const soldPct = total > 0 ? Math.round((soldCount / total) * 1000) / 10 : 0;
 
       await ctx.prisma.raffle

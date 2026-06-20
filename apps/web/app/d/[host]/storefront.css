@@ -205,6 +205,83 @@
 .sf [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
 .sf [data-reveal].in { opacity: 1; transform: none; }
 
+/* ── Conversión: badge "casi agotada", precio ── */
+.sf .rifa-badge.hot { background: rgba(232, 35, 43, .18); color: #ffb4ad; border-color: rgba(232, 35, 43, .55); animation: sf-pulseHot 1.6s ease-in-out infinite; }
+@keyframes sf-pulseHot { 50% { box-shadow: 0 0 0 4px rgba(232, 35, 43, .18); } }
+.sf .rifa-price small { font-family: var(--body); font-weight: 700; font-size: .62rem; opacity: .85; }
+
+/* ── Countdown ── */
+.sf .rifa-count { display: flex; flex-direction: column; gap: 7px; }
+.sf .rifa-count-l { font-size: .82rem; font-weight: 700; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+.sf .countdown { display: flex; align-items: center; gap: 6px; min-height: 48px; }
+.sf .countdown.done { color: #ffb4ad; font-weight: 800; min-height: 48px; align-items: center; }
+.sf .cd-u { display: flex; flex-direction: column; align-items: center; min-width: 46px; padding: 7px 6px; border-radius: 10px; background: linear-gradient(180deg, var(--ink-4), var(--ink-3)); border: 1px solid var(--line-2); }
+.sf .cd-n { font-family: var(--display); font-size: 1.35rem; line-height: 1; color: var(--gold-2); }
+.sf .cd-l { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 3px; font-weight: 700; }
+.sf .cd-sep { font-family: var(--display); color: var(--muted-2); font-size: 1.1rem; }
+
+/* ── Escasez ── */
+.sf .scarcity { display: flex; flex-direction: column; gap: 8px; }
+.sf .scarcity-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.sf .remaining { font-family: var(--display); font-size: 1.15rem; color: var(--gold-2); letter-spacing: .01em; }
+.sf .remaining.hot { color: #ff6a5e; text-shadow: 0 2px 16px rgba(232, 35, 43, .5); }
+.sf .scarcity-pct { font-size: .82rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+
+/* ── Packs como ahorro ── */
+.sf .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.sf .pack { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px; border-radius: 12px; background: rgba(255, 255, 255, .04); border: 1px solid var(--line); text-align: center; }
+.sf .pack.save { background: rgba(247, 183, 51, .09); border-color: rgba(247, 183, 51, .34); }
+.sf .pack-q { font-size: .72rem; color: var(--muted); font-weight: 700; }
+.sf .pack-p { font-family: var(--display); font-size: 1.15rem; color: var(--text); }
+.sf .pack-s { font-size: .68rem; font-weight: 800; color: var(--ok); }
+.sf .pack-s.base { color: var(--muted-2); font-weight: 600; }
+
+/* ── Badges de confianza por rifa ── */
+.sf .rifa-badges { display: flex; flex-wrap: wrap; gap: 7px; }
+.sf .tb { font-size: .73rem; font-weight: 700; color: var(--muted); background: rgba(255, 255, 255, .05); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 5px 11px; }
+
+/* ── Ganadores ── */
+.sf .grid-winners { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+.sf .winner-card { background: linear-gradient(180deg, var(--ink-3), var(--ink-2)); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
+.sf .winner-media { aspect-ratio: 16/10; position: relative; overflow: hidden; }
+.sf .winner-media img { width: 100%; height: 100%; object-fit: cover; }
+.sf .winner-media .ph { width: 100%; height: 100%; display: grid; place-items: center; font-size: 3.4rem; background: linear-gradient(135deg, var(--ink-4), var(--ink-3)); }
+.sf .winner-tag { position: absolute; top: 12px; left: 12px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 6px 11px; border-radius: var(--r-pill); background: rgba(52, 211, 153, .18); color: #7cf3c3; border: 1px solid rgba(52, 211, 153, .5); backdrop-filter: blur(6px); }
+.sf .winner-body { padding: 18px; display: flex; flex-direction: column; gap: 9px; }
+.sf .winner-body h3 { font-size: 1.2rem; }
+.sf .winner-prize { color: var(--muted); font-size: .9rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sf .winner-meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: .82rem; color: var(--gold-2); font-weight: 600; }
+.sf .winner-who { margin-top: 2px; font-size: .92rem; }
+.sf .winner-who b { color: var(--text); }
+.sf .winner-soon { color: var(--muted); font-style: italic; }
+
+/* ── Testimonios ── */
+.sf .grid-testi { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.sf .testi { background: linear-gradient(180deg, var(--ink-3), var(--ink-2)); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.sf .testi blockquote { margin: 0; color: var(--text); font-size: 1rem; line-height: 1.55; }
+.sf .testi figcaption { display: flex; align-items: center; gap: 11px; }
+.sf .testi figcaption img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+.sf .testi-ava { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-size: 1.2rem; background: rgba(247, 183, 51, .12); border: 1px solid rgba(247, 183, 51, .3); }
+.sf .testi-who { display: flex; flex-direction: column; line-height: 1.2; }
+.sf .testi-who b { color: var(--text); }
+.sf .testi-who small { color: var(--muted-2); font-size: .78rem; }
+
+/* ── Exit-intent popup (global, como el WhatsApp float) ── */
+.sf-exit { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 20px; }
+.sf-exit-bg { position: absolute; inset: 0; background: rgba(0, 0, 0, .72); backdrop-filter: blur(3px); animation: sf-fade .25s ease; }
+@keyframes sf-fade { from { opacity: 0; } }
+.sf-exit-card { position: relative; z-index: 1; width: 100%; max-width: 420px; text-align: center; background: linear-gradient(180deg, #161c28, #0f141d); border: 1px solid rgba(247, 183, 51, .3); border-radius: 22px; padding: 30px 26px 26px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .9); animation: sf-pop .3s cubic-bezier(.2, .8, .2, 1); font-family: var(--font-outfit), system-ui, sans-serif; color: #f5f2ea; }
+@keyframes sf-pop { from { transform: translateY(16px) scale(.96); opacity: 0; } }
+.sf-exit-x { position: absolute; top: 12px; right: 14px; background: rgba(255, 255, 255, .08); border: none; color: #99a1b3; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; }
+.sf-exit-x:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+.sf-exit-emoji { font-size: 2.6rem; }
+.sf-exit-h { font-family: var(--font-anton), sans-serif; font-weight: 400; font-size: 2rem; text-transform: uppercase; margin: 8px 0 6px; color: #fff; }
+.sf-exit-p { color: #c2c8d4; font-size: 1rem; line-height: 1.5; margin: 0 0 20px; }
+.sf-exit-p b { color: #ffdd7a; }
+.sf-exit-cta { width: 100%; }
+.sf-exit-wa { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; color: #34e07a; font-weight: 700; font-size: .95rem; }
+.sf-exit-wa:hover { text-decoration: underline; }
+
 /* Responsive */
 @media (max-width: 920px) {
   .sf .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 26px; min-height: auto; }

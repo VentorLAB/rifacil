@@ -353,6 +353,11 @@ model Raffle {
   drawMethod    DrawMethod @default(RANDOM_SYSTEM)
   winnerNumber  String?
   winnerId      String?
+  // Ganador para la vitrina pública de sorteos cumplidos (/d/[host]). Cuando el
+  // ganador no es un Contact del sistema (rifas históricas importadas), guardamos
+  // nombre + foto acá. Nullable: el "slot" puede quedar vacío hasta tener los datos.
+  winnerName    String?
+  winnerPhotoUrl String?
   drawVideoUrl  String?
   drawTimestamp DateTime?
   drawSeed      String?
