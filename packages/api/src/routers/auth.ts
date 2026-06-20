@@ -88,12 +88,48 @@ export const authRouter = createTRPCRouter({
         brandColor: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Color inválido").optional().nullable(),
         brandColorSecondary: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Color inválido").optional().nullable(),
         brandSlug: z.string().optional().nullable(),
+        // Dominio propio del rifero. Se acepta con o sin esquema/www; lo normalizamos abajo.
+        customDomain: z.string().optional().nullable(),
       })
     )
     .mutation(async ({ ctx, input }) => {
+      const { customDomain, ...rest } = input;
+
+      // Normalizar el dominio: sin esquema, sin www., sin slash final, minúsculas.
+      // "" o null → desvincular (guardar null). Validar formato y unicidad.
+      let normalizedDomain: string | null | undefined = undefined; // undefined = no tocar
+      if (customDomain !== undefined) {
+        const cleaned = (customDomain ?? "")
+          .trim()
+          .toLowerCase()
+          .replace(/^https?:\/\//, "")
+          .replace(/^www\./, "")
+          .replace(/\/.*$/, "");
+        if (cleaned === "") {
+          normalizedDomain = null; // desvincular
+        } else {
+          // Validación básica de dominio (label.tld, permite subdominios).
+          if (!/^([a-z0-9-]+\.)+[a-z]{2,}$/.test(cleaned)) {
+            throw new TRPCError({ code: "BAD_REQUEST", message: "Dominio inválido. Ej: rifashermanospernia.com" });
+          }
+          // Chequear colisión (el campo es @unique) con OTRO rifero.
+          const taken = await ctx.prisma.user.findFirst({
+            where: { customDomain: cleaned, NOT: { id: ctx.session.user.id } },
+            select: { id: true },
+          });
+          if (taken) {
+            throw new TRPCError({ code: "CONFLICT", message: "Ese dominio ya está en uso por otra cuenta" });
+          }
+          normalizedDomain = cleaned;
+        }
+      }
+
       const user = await ctx.prisma.user.update({
         where: { id: ctx.session.user.id },
-        data: input,
+        data: {
+          ...rest,
+          ...(normalizedDomain !== undefined ? { customDomain: normalizedDomain } : {}),
+        },
       });
       return user;
     }),

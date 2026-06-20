@@ -32,6 +32,67 @@ async function safeGenerateReceipt(args: ReceiptArgs): Promise<string | null> {
 }
 
 export const publicRouter = createTRPCRouter({
+  // Tienda del rifero servida en SU dominio propio (rifashermanospernia.com).
+  // Resuelve el rifero por customDomain y devuelve su marca + rifas activas.
+  // Cada rifa enlaza al /r/[id] que ya existe. Sin login (publicProcedure).
+  getStorefrontByDomain: publicProcedure
+    .input(z.object({ host: z.string() }))
+    .query(async ({ ctx, input }) => {
+      // Normalizar igual que se guarda el customDomain: minúsculas, sin www.
+      const host = input.host.toLowerCase().replace(/^www\./, "");
+
+      const rifero = await ctx.prisma.user.findUnique({
+        where: { customDomain: host },
+        select: {
+          id: true,
+          name: true,
+          brandName: true,
+          brandLogo: true,
+          brandColor: true,
+          brandColorSecondary: true,
+        },
+      });
+      if (!rifero) throw new TRPCError({ code: "NOT_FOUND" });
+
+      const raffles = await ctx.prisma.raffle.findMany({
+        where: {
+          userId: rifero.id,
+          isPublic: true,
+          status: { in: ["ACTIVE", "PAUSED", "DRAWN"] },
+        },
+        // Activas primero, luego más recientes.
+        orderBy: [{ status: "asc" }, { createdAt: "desc" }],
+        select: {
+          id: true,
+          title: true,
+          prize: true,
+          pricePerNumber: true,
+          bannerUrl: true,
+          bannerMobileUrl: true,
+          iconUrl: true,
+          color: true,
+          status: true,
+          drawDate: true,
+          loteria: true,
+          soldCount: true,
+          totalNumbers: true,
+        },
+      });
+
+      return {
+        brand: {
+          name: rifero.brandName || rifero.name || "Rifas",
+          logo: rifero.brandLogo,
+          color: rifero.brandColor || "#7c3aed",
+          colorSecondary: rifero.brandColorSecondary || "#1e293b",
+        },
+        raffles: raffles.map((r) => ({
+          ...r,
+          pricePerNumber: Number(r.pricePerNumber),
+        })),
+      };
+    }),
+
   // Datos públicos de la rifa para la tienda (/r/[id]). Sin login.
   getRaffle: publicProcedure
     .input(z.object({ id: z.string() }))

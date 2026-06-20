@@ -190,6 +190,7 @@ model User {
   brandColor         String?   @default("#3b82f6") // color primario de marca
   brandColorSecondary String?  @default("#1e293b") // color secundario de marca
   brandSlug          String?   @unique // riffas.app/mi-marca
+  customDomain       String?   @unique // dominio propio del rifero, ej. rifashermanospernia.com (guardar en minúsculas, sin www.)
 
   // Onboarding
   onboardingCompleted Boolean @default(false)

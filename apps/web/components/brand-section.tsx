@@ -24,6 +24,7 @@ export function BrandSection() {
   const [logo, setLogo] = useState("");
   const [color, setColor] = useState("#3b82f6");
   const [colorSecondary, setColorSecondary] = useState("#1e293b");
+  const [domain, setDomain] = useState("");
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export function BrandSection() {
     setLogo(me.brandLogo ?? "");
     setColor(me.brandColor ?? "#3b82f6");
     setColorSecondary(me.brandColorSecondary ?? "#1e293b");
+    setDomain(me.customDomain ?? "");
   }, [me]);
 
   const upload = api.raffle.uploadImage.useMutation();
@@ -69,6 +71,7 @@ export function BrandSection() {
       brandLogo: logo || null,
       brandColor: color,
       brandColorSecondary: colorSecondary,
+      customDomain: domain.trim() || null,
     });
   }
 
@@ -142,6 +145,43 @@ export function BrandSection() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ColorField label="Color primario" value={color} onChange={setColor} />
             <ColorField label="Color secundario" value={colorSecondary} onChange={setColorSecondary} />
+          </div>
+
+          {/* Dominio propio */}
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <label className="mb-1 block text-sm font-medium text-slate-700">
+              Dominio propio <span className="font-normal text-slate-400">(opcional)</span>
+            </label>
+            <input
+              value={domain}
+              onChange={(e) => setDomain(e.target.value)}
+              placeholder="rifashermanospernia.com"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-slate-900"
+            />
+            <p className="mt-2 text-xs text-slate-500">
+              Tu tienda se verá en tu propio dominio. Pasos:
+            </p>
+            <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-xs text-slate-500">
+              <li>Escribe tu dominio acá (sin <span className="font-mono">https://</span> ni <span className="font-mono">www.</span>) y guardá.</li>
+              <li>En tu proveedor de DNS, apuntá un registro <span className="font-mono">CNAME</span> a <span className="font-mono">cname.vercel-dns.com</span>.</li>
+              <li>Avisanos para activar el dominio en el servidor (puede tardar unos minutos en propagar).</li>
+            </ol>
+            {me?.customDomain && (
+              <p className="mt-2 text-xs text-slate-600">
+                Activo:{" "}
+                <a
+                  href={`https://${me.customDomain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 underline"
+                >
+                  {me.customDomain}
+                </a>
+              </p>
+            )}
           </div>
 
           <button
