@@ -107,12 +107,21 @@ export function PaymentAccountsSection({
               </button>
             </div>
             <dl className="space-y-1 text-sm">
-              {fields.map((f) => (
-                <div key={f as string} className="flex justify-between gap-3">
-                  <dt className="shrink-0 text-slate-400">{FIELD_LABEL[f as string]}</dt>
-                  <dd className="truncate text-right font-medium text-slate-100">{a[f]}</dd>
-                </div>
-              ))}
+              {fields.map((f) =>
+                f === "note" ? (
+                  // La nota suele ser una instrucción para el comprador → envolver,
+                  // nunca truncar.
+                  <div key={f as string} className="pt-1">
+                    <dt className="text-slate-400">{FIELD_LABEL[f as string]}</dt>
+                    <dd className="font-medium leading-snug text-slate-100">{a[f]}</dd>
+                  </div>
+                ) : (
+                  <div key={f as string} className="flex justify-between gap-3">
+                    <dt className="shrink-0 text-slate-400">{FIELD_LABEL[f as string]}</dt>
+                    <dd className="truncate text-right font-medium text-slate-100">{a[f]}</dd>
+                  </div>
+                )
+              )}
             </dl>
           </div>
         );
