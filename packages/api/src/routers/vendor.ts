@@ -27,8 +27,8 @@ export const vendorRouter = createTRPCRouter({
         .optional()
     )
     .query(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
-      const where: any = { userId: session.user.id };
+      const { prisma } = ctx;
+      const where: any = { userId: ctx.businessId };
       if (input?.activeOnly) where.active = true;
       if (input?.role && input.role !== "ALL") where.role = input.role;
       if (input?.search) {
@@ -53,7 +53,7 @@ export const vendorRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const vendor = await ctx.prisma.vendor.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         include: {
           _count: { select: { sales: true, numbers: true } },
         },
@@ -76,7 +76,7 @@ export const vendorRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
       const phone = normalizePhone(input.phone, "VE");
       if (!phone) {
@@ -85,10 +85,10 @@ export const vendorRouter = createTRPCRouter({
 
       // Verificar límite de vendedores del plan.
       const sub = await prisma.subscription.findUnique({
-        where: { userId: session.user.id },
+        where: { userId: ctx.businessId },
       });
       if (sub) {
-        const count = await prisma.vendor.count({ where: { userId: session.user.id } });
+        const count = await prisma.vendor.count({ where: { userId: ctx.businessId } });
         if (count >= sub.maxVendors) {
           throw new TRPCError({
             code: "FORBIDDEN",
@@ -109,7 +109,7 @@ export const vendorRouter = createTRPCRouter({
 
       const vendor = await prisma.vendor.create({
         data: {
-          userId: session.user.id,
+          userId: ctx.businessId,
           name: input.name,
           lastName: input.lastName || null,
           idDocument: input.idDocument || null,
@@ -130,7 +130,7 @@ export const vendorRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const owned = await ctx.prisma.vendor.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: { id: true },
       });
       if (!owned) throw new TRPCError({ code: "NOT_FOUND" });
@@ -171,7 +171,7 @@ export const vendorRouter = createTRPCRouter({
       }
       // Asegurar pertenencia (multi-tenant) antes de actualizar.
       const owned = await ctx.prisma.vendor.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: { id: true },
       });
       if (!owned) throw new TRPCError({ code: "NOT_FOUND" });
@@ -187,7 +187,7 @@ export const vendorRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const owned = await ctx.prisma.vendor.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: { id: true },
       });
       if (!owned) throw new TRPCError({ code: "NOT_FOUND" });

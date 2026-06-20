@@ -3,6 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
+import { sendSaleReceiptWhatsApp } from "../lib/whatsapp";
 
 // Redondeo a 2 decimales para montos de dinero.
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -65,34 +66,24 @@ export const saleRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
 
       const raffle = await prisma.raffle.findFirst({
-        where: { id: input.raffleId, userId: session.user.id, status: "ACTIVE" },
+        where: { id: input.raffleId, userId: businessId, status: "ACTIVE" },
         include: { numbers: true },
       });
 
       if (!raffle) throw new TRPCError({ code: "NOT_FOUND", message: "Rifa no encontrada o inactiva" });
 
-      const requestedNumbers = await prisma.raffleNumber.findMany({
-        where: {
-          raffleId: input.raffleId,
-          number: { in: input.numbers },
-        },
-      });
-
-      const unavailable = requestedNumbers.filter((n) => n.status !== "AVAILABLE");
-      if (unavailable.length > 0) {
-        throw new TRPCError({
-          code: "CONFLICT",
-          message: `Números no disponibles: ${unavailable.map((n) => n.number).join(", ")}`,
-        });
-      }
+      // La disponibilidad se garantiza con la RESERVA ATÓMICA de más abajo
+      // (UPDATE condicional por receiptNumber), no con check-then-update (race).
 
       let contactId = input.contactId;
       if (!contactId && input.contactData) {
         const existing = await prisma.contact.findFirst({
-          where: { userId: session.user.id, phone: input.contactData.phone },
+          where: { userId, phone: input.contactData.phone },
         });
 
         if (existing) {
@@ -111,7 +102,7 @@ export const saleRouter = createTRPCRouter({
           const newContact = await prisma.contact.create({
             data: {
               ...input.contactData,
-              userId: session.user.id,
+              userId,
               source: "manual",
               lastContactDate: new Date(),
               lastContactMethod: "sale",
@@ -154,8 +145,29 @@ export const saleRouter = createTRPCRouter({
 
       const receiptNumber = `R-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
 
+      // RESERVA ATÓMICA (anti doble-venta): toma SOLO los AVAILABLE en un único
+      // UPDATE condicional, etiquetados con receiptNumber. Si no alcanza, revierte
+      // lo que tomó ESTE request y aborta.
+      const claim = await prisma.raffleNumber.updateMany({
+        where: { raffleId: input.raffleId, number: { in: input.numbers }, status: "AVAILABLE" },
+        data: {
+          status: numberStatus,
+          soldAt: new Date(),
+          paidAt: isFullyPaid ? new Date() : null,
+          paymentMethod: input.paymentMethod,
+          receiptNumber,
+        },
+      });
+      if (claim.count !== input.numbers.length) {
+        await prisma.raffleNumber.updateMany({
+          where: { raffleId: input.raffleId, number: { in: input.numbers }, receiptNumber, saleId: null },
+          data: { status: "AVAILABLE", soldAt: null, paidAt: null, paymentMethod: null, receiptNumber: null },
+        });
+        throw new TRPCError({ code: "CONFLICT", message: "Algún número ya no está disponible" });
+      }
+
       // Tasa activa del rifero: congela el equivalente en Bs al momento de la venta.
-      const activeRate = await getActiveRate(prisma, session.user.id);
+      const activeRate = await getActiveRate(prisma, businessId);
       const rateUsed = activeRate ? Number(activeRate.vesPerUsd) : null;
       const amountVes = rateUsed ? round2(finalAmount * rateUsed) : null;
 
@@ -164,7 +176,7 @@ export const saleRouter = createTRPCRouter({
           raffleId: input.raffleId,
           contactId,
           vendorId: input.vendorId,
-          userId: session.user.id,
+          userId: businessId,
           numbers: input.numbers,
           totalNumbers: input.numbers.length,
           totalAmount,
@@ -201,21 +213,11 @@ export const saleRouter = createTRPCRouter({
         });
       }
 
+      // Vincular los números YA reclamados a la venta/cliente (status/soldAt ya
+      // fijados por el reclamo atómico; aquí solo saleId/contactId/vendorId).
       await prisma.raffleNumber.updateMany({
-        where: {
-          raffleId: input.raffleId,
-          number: { in: input.numbers },
-        },
-        data: {
-          status: numberStatus,
-          contactId,
-          saleId: sale.id,
-          vendorId: input.vendorId,
-          soldAt: new Date(),
-          paidAt: isFullyPaid ? new Date() : undefined,
-          paymentMethod: input.paymentMethod,
-          receiptNumber,
-        },
+        where: { raffleId: input.raffleId, number: { in: input.numbers }, receiptNumber },
+        data: { contactId, saleId: sale.id, vendorId: input.vendorId },
       });
 
       await prisma.contact.update({
@@ -242,6 +244,7 @@ export const saleRouter = createTRPCRouter({
         orderBy: { orden: "asc" },
         select: { titulo: true },
       });
+      const brand = await brandFor(prisma, businessId);
       const receiptUrl = await safeGenerateReceipt({
         sale, // incluye amountPaid => el recibo muestra Valor total / Abonado / Deuda reales
         raffle: {
@@ -251,7 +254,7 @@ export const saleRouter = createTRPCRouter({
           prizes,
         },
         contact: sale.contact,
-        ...(await brandFor(prisma, session.user.id)),
+        ...brand,
       });
 
       await prisma.sale.update({
@@ -263,6 +266,23 @@ export const saleRouter = createTRPCRouter({
         where: { saleId: sale.id },
         data: { receiptUrl },
       });
+
+      // Envío automático del comprobante por WhatsApp (Cloud API). NO bloquea la
+      // venta: si no hay credenciales o Meta falla, se loguea y se sigue.
+      try {
+        const wa = await sendSaleReceiptWhatsApp({
+          prisma,
+          userId: businessId,
+          sale: { ...sale, receiptUrl },
+          raffleTitle: raffle.title,
+          brandName: brand.brandName,
+        });
+        if (!wa.sent && wa.reason !== "not_configured") {
+          console.warn("[sale.create] WhatsApp comprobante no enviado:", wa.reason, wa.detail ?? "");
+        }
+      } catch (err) {
+        console.error("[sale.create] envío WhatsApp falló (venta guardada igual):", err);
+      }
 
       return { sale: { ...sale, receiptUrl }, amountPaid, debt, isFullyPaid };
     }),
@@ -279,10 +299,12 @@ export const saleRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
 
       const sale = await prisma.sale.findFirst({
-        where: { id: input.saleId, userId: session.user.id },
+        where: { id: input.saleId, userId: businessId },
         include: { contact: true, raffle: true },
       });
       if (!sale) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada" });
@@ -362,7 +384,7 @@ export const saleRouter = createTRPCRouter({
           prizes,
         },
         contact: updated.contact,
-        ...(await brandFor(prisma, session.user.id)),
+        ...(await brandFor(prisma, businessId)),
       });
       await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
       await prisma.raffleNumber.updateMany({
@@ -384,10 +406,12 @@ export const saleRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
 
       const current = await prisma.sale.findFirst({
-        where: { id: input.saleId, userId: session.user.id },
+        where: { id: input.saleId, userId: businessId },
       });
       if (!current) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada" });
 
@@ -439,8 +463,10 @@ export const saleRouter = createTRPCRouter({
   listPending: protectedProcedure
     .input(z.object({ raffleId: z.string().optional() }).optional())
     .query(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
-      const where: any = { userId: session.user.id, status: "PENDING" };
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
+      const where: any = { userId: businessId, status: "PENDING" };
       if (input?.raffleId) where.raffleId = input.raffleId;
 
       const sales = await prisma.sale.findMany({
@@ -463,10 +489,12 @@ export const saleRouter = createTRPCRouter({
   confirmSale: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
 
       const sale = await prisma.sale.findFirst({
-        where: { id: input.id, userId: session.user.id, status: "PENDING" },
+        where: { id: input.id, userId: businessId, status: "PENDING" },
         include: { contact: true, raffle: true },
       });
       if (!sale) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada o ya procesada" });
@@ -517,6 +545,7 @@ export const saleRouter = createTRPCRouter({
         orderBy: { orden: "asc" },
         select: { titulo: true },
       });
+      const brand = await brandFor(prisma, businessId);
       const receiptUrl = await safeGenerateReceipt({
         sale: updated,
         raffle: {
@@ -526,15 +555,31 @@ export const saleRouter = createTRPCRouter({
           prizes,
         },
         contact: updated.contact,
-        ...(await brandFor(prisma, session.user.id)),
+        ...brand,
       });
       await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
       await prisma.raffleNumber.updateMany({ where: { saleId: sale.id }, data: { receiptUrl } });
 
+      // Envío automático del comprobante por WhatsApp (Cloud API). NO bloquea.
+      try {
+        const wa = await sendSaleReceiptWhatsApp({
+          prisma,
+          userId: businessId,
+          sale: { ...updated, receiptUrl },
+          raffleTitle: updated.raffle.title,
+          brandName: brand.brandName,
+        });
+        if (!wa.sent && wa.reason !== "not_configured") {
+          console.warn("[sale.confirmSale] WhatsApp comprobante no enviado:", wa.reason, wa.detail ?? "");
+        }
+      } catch (err) {
+        console.error("[sale.confirmSale] envío WhatsApp falló (venta confirmada igual):", err);
+      }
+
       // Auditoría: quién confirmó.
       await prisma.activityLog.create({
         data: {
-          userId: session.user.id,
+          userId,
           action: "SALE_CONFIRMED",
           entityType: "Sale",
           entityId: sale.id,
@@ -549,10 +594,12 @@ export const saleRouter = createTRPCRouter({
   rejectSale: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
 
       const sale = await prisma.sale.findFirst({
-        where: { id: input.id, userId: session.user.id, status: "PENDING" },
+        where: { id: input.id, userId: businessId, status: "PENDING" },
       });
       if (!sale) throw new TRPCError({ code: "NOT_FOUND", message: "Venta no encontrada o ya procesada" });
 
@@ -588,7 +635,7 @@ export const saleRouter = createTRPCRouter({
 
       await prisma.activityLog.create({
         data: {
-          userId: session.user.id,
+          userId,
           action: "SALE_REJECTED",
           entityType: "Sale",
           entityId: sale.id,
@@ -612,10 +659,12 @@ export const saleRouter = createTRPCRouter({
       }).optional()
     )
     .query(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
+      const businessId = ctx.businessId; // rifas/ventas/config compartidas del negocio
+      const userId = ctx.userId; // contactos y auditoría del usuario real
       const { raffleId, contactId, status = "ALL", startDate, endDate, limit = 20, cursor } = input || {};
 
-      const where: any = { userId: session.user.id };
+      const where: any = { userId: businessId };
       if (raffleId) where.raffleId = raffleId;
       if (contactId) where.contactId = contactId;
       if (status !== "ALL") where.status = status;
@@ -650,7 +699,7 @@ export const saleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const sale = await ctx.prisma.sale.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         include: {
           contact: true,
           raffle: true,
@@ -668,7 +717,7 @@ export const saleRouter = createTRPCRouter({
     .input(z.object({ id: z.string(), reason: z.string().optional() }))
     .mutation(async ({ ctx, input }) => {
       const sale = await ctx.prisma.sale.update({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         data: { status: "CANCELLED" },
       });
 
@@ -693,7 +742,7 @@ export const saleRouter = createTRPCRouter({
     .input(z.object({ saleId: z.string(), channel: z.enum(["WHATSAPP", "EMAIL", "SMS"]) }))
     .mutation(async ({ ctx, input }) => {
       const sale = await ctx.prisma.sale.findFirst({
-        where: { id: input.saleId, userId: ctx.session.user.id },
+        where: { id: input.saleId, userId: ctx.businessId },
         include: { contact: true, raffle: true },
       });
 

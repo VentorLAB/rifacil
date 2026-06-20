@@ -297,20 +297,8 @@ export const publicRouter = createTRPCRouter({
       const phone = normalizePhone(input.phone, "VE");
       if (!phone) throw new TRPCError({ code: "BAD_REQUEST", message: "Teléfono inválido" });
 
-      // Disponibilidad de los números solicitados.
-      const requested = await prisma.raffleNumber.findMany({
-        where: { raffleId: raffle.id, number: { in: input.numbers } },
-      });
-      if (requested.length !== input.numbers.length) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "Algún número no existe" });
-      }
-      const taken = requested.filter((n) => n.status !== "AVAILABLE");
-      if (taken.length > 0) {
-        throw new TRPCError({
-          code: "CONFLICT",
-          message: `Ya no disponibles: ${taken.map((n) => n.number).join(", ")}`,
-        });
-      }
+      // La reserva atómica (anti doble-venta) se hace más abajo, etiquetada con el
+      // receiptNumber único de este request. No usamos check-then-update (race).
 
       // Atribución a vendedor por código de referido (scoped al rifero dueño).
       let vendorId: string | null = null;
@@ -347,6 +335,22 @@ export const publicRouter = createTRPCRouter({
       const amountVes = rateUsed ? round2(finalAmount * rateUsed) : null;
 
       const receiptNumber = `R-${Date.now()}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+
+      // RESERVA ATÓMICA (anti doble-venta): flip AVAILABLE -> SOLD SOLO para los
+      // números pedidos, en un único UPDATE condicional. Postgres bloquea las filas,
+      // así que dos requests concurrentes no pueden tomar el mismo número.
+      const claim = await prisma.raffleNumber.updateMany({
+        where: { raffleId: raffle.id, number: { in: input.numbers }, status: "AVAILABLE" },
+        data: { status: "SOLD", soldAt: new Date(), paymentMethod: input.paymentMethod, receiptNumber },
+      });
+      if (claim.count !== input.numbers.length) {
+        // Revertir SOLO lo que reclamó ESTE request (etiqueta: receiptNumber, aún sin saleId).
+        await prisma.raffleNumber.updateMany({
+          where: { raffleId: raffle.id, number: { in: input.numbers }, receiptNumber, saleId: null },
+          data: { status: "AVAILABLE", soldAt: null, paymentMethod: null, receiptNumber: null },
+        });
+        throw new TRPCError({ code: "CONFLICT", message: "Algún número ya no está disponible" });
+      }
 
       const sale = await prisma.sale.create({
         data: {
@@ -386,18 +390,11 @@ export const publicRouter = createTRPCRouter({
         });
       }
 
-      // Números -> SOLD ("por confirmar").
+      // Vincular los números YA reclamados a la venta/cliente (status/soldAt fijados
+      // por el reclamo atómico; aquí solo agregamos saleId/contactId/vendorId).
       await prisma.raffleNumber.updateMany({
-        where: { raffleId: raffle.id, number: { in: input.numbers } },
-        data: {
-          status: "SOLD",
-          contactId: contact.id,
-          saleId: sale.id,
-          vendorId,
-          soldAt: new Date(),
-          paymentMethod: input.paymentMethod,
-          receiptNumber,
-        },
+        where: { raffleId: raffle.id, number: { in: input.numbers }, receiptNumber },
+        data: { contactId: contact.id, saleId: sale.id, vendorId },
       });
 
       // No tocamos revenue ni totalSpent: el dinero aún no está confirmado.

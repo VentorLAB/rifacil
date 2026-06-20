@@ -2,7 +2,7 @@ import { z } from "zod";
 import { PaymentMethod } from "@riffas/db";
 import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-import { fetchBcvRate, getActiveRate, saveRate } from "../lib/exchangeRate";
+import { fetchBinanceP2PRate, getActiveRate, saveRate } from "../lib/exchangeRate";
 
 // Valores válidos del enum PaymentMethod de Prisma (Set para filtrado O(1)).
 const VALID_PAYMENT_METHODS = new Set<string>(Object.values(PaymentMethod));
@@ -23,7 +23,7 @@ function toPaymentMethods(raw: string[]): PaymentMethod[] {
 export const settingsRouter = createTRPCRouter({
   get: protectedProcedure.query(async ({ ctx }) => {
     const settings = await ctx.prisma.userSettings.findUnique({
-      where: { userId: ctx.session.user.id },
+      where: { userId: ctx.businessId },
     });
     return settings;
   }),
@@ -67,10 +67,10 @@ export const settingsRouter = createTRPCRouter({
       };
 
       const settings = await ctx.prisma.userSettings.upsert({
-        where: { userId: ctx.session.user.id },
+        where: { userId: ctx.businessId },
         update: data,
         create: {
-          userId: ctx.session.user.id,
+          userId: ctx.businessId,
           ...data,
         },
       });
@@ -81,7 +81,7 @@ export const settingsRouter = createTRPCRouter({
 
   listPaymentAccounts: protectedProcedure.query(async ({ ctx }) => {
     return ctx.prisma.paymentAccount.findMany({
-      where: { userId: ctx.session.user.id },
+      where: { userId: ctx.businessId },
       orderBy: { method: "asc" },
     });
   }),
@@ -117,36 +117,36 @@ export const settingsRouter = createTRPCRouter({
       };
 
       return ctx.prisma.paymentAccount.upsert({
-        where: { userId_method: { userId: ctx.session.user.id, method } },
+        where: { userId_method: { userId: ctx.businessId, method } },
         update: data,
-        create: { userId: ctx.session.user.id, method, ...data },
+        create: { userId: ctx.businessId, method, ...data },
       });
     }),
 
   // --- Tasa de cambio USD <-> VES ---
 
   getRate: protectedProcedure.query(async ({ ctx }) => {
-    return getActiveRate(ctx.prisma, ctx.session.user.id);
+    return getActiveRate(ctx.prisma, ctx.businessId);
   }),
 
-  // Trae la tasa del BCV y la guarda. Si la fuente falla, sugiere el override manual.
+  // Trae la tasa de Binance P2P y la guarda. Si la fuente falla, sugiere el override manual.
   refreshRate: protectedProcedure.mutation(async ({ ctx }) => {
     let rate: number;
     try {
-      rate = await fetchBcvRate();
+      rate = await fetchBinanceP2PRate();
     } catch (err) {
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
-        message: "No se pudo obtener la tasa del BCV. Ingrésala manualmente.",
+        message: "No se pudo obtener la tasa de Binance P2P. Ingrésala manualmente.",
       });
     }
-    return saveRate(ctx.prisma, ctx.session.user.id, rate, "BCV");
+    return saveRate(ctx.prisma, ctx.businessId, rate, "BINANCE");
   }),
 
   // Override manual de la tasa (cuando la fuente automática no está disponible).
   setManualRate: protectedProcedure
     .input(z.object({ vesPerUsd: z.number().positive("La tasa debe ser mayor a 0") }))
     .mutation(async ({ ctx, input }) => {
-      return saveRate(ctx.prisma, ctx.session.user.id, input.vesPerUsd, "MANUAL");
+      return saveRate(ctx.prisma, ctx.businessId, input.vesPerUsd, "MANUAL");
     }),
 });

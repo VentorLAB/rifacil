@@ -10,17 +10,21 @@ const METHODS = [
   "PAGO_MOVIL",
   "BINANCE",
   "ZELLE",
+  "ZINLI",
   "EFECTIVO_USD",
   "EFECTIVO_VES",
   "TRANSFERENCIA_VES",
+  "BANCOLOMBIA",
 ] as const;
 const METHOD_LABELS: Record<(typeof METHODS)[number], string> = {
   PAGO_MOVIL: "Pago Móvil",
   BINANCE: "Binance / USDT",
   ZELLE: "Zelle",
+  ZINLI: "Zinli",
   EFECTIVO_USD: "Efectivo USD",
   EFECTIVO_VES: "Efectivo Bs",
   TRANSFERENCIA_VES: "Transferencia Bs",
+  BANCOLOMBIA: "Bancolombia",
 };
 
 const money = (v: unknown) =>

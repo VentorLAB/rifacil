@@ -5,7 +5,7 @@ import { TRPCError } from "@trpc/server";
 export const subscriptionRouter = createTRPCRouter({
   get: protectedProcedure.query(async ({ ctx }) => {
     const sub = await ctx.prisma.subscription.findUnique({
-      where: { userId: ctx.session.user.id },
+      where: { userId: ctx.businessId },
     });
     return sub;
   }),
@@ -56,7 +56,7 @@ export const subscriptionRouter = createTRPCRouter({
 
   cancel: protectedProcedure.mutation(async ({ ctx }) => {
     await ctx.prisma.subscription.update({
-      where: { userId: ctx.session.user.id },
+      where: { userId: ctx.businessId },
       data: { cancelAtPeriodEnd: true, cancelledAt: new Date() },
     });
     return { success: true };

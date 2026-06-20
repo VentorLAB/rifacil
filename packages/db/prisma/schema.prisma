@@ -106,6 +106,9 @@ enum PaymentMethod {
   STRIPE
   WOMPI
   CASH
+  // Agregados (negocio Pernía): billetera USD venezolana y banco colombiano.
+  ZINLI
+  BANCOLOMBIA
 }
 
 enum PaymentStatus {
@@ -174,6 +177,13 @@ model User {
   image         String?   // requerido por PrismaAdapter (NextAuth); foto de perfil OAuth
   role          Role      @default(RIFERO)
 
+  // Equipo / negocio: un usuario puede ser miembro del negocio de otro (co-admin).
+  // La "raíz" del negocio tiene businessOwnerId = null (es su propio negocio).
+  // El businessId efectivo = businessOwnerId ?? id.
+  businessOwnerId String?
+  businessOwner   User?    @relation("BusinessTeam", fields: [businessOwnerId], references: [id], onDelete: SetNull)
+  teamMembers     User[]   @relation("BusinessTeam")
+
   // Branding personal
   brandName          String?
   brandLogo          String?
@@ -205,6 +215,7 @@ model User {
   @@index([email])
   @@index([phone])
   @@index([role])
+  @@index([businessOwnerId])
 }
 
 model UserSettings {

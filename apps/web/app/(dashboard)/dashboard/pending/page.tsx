@@ -19,6 +19,8 @@ const METHOD_LABELS: Record<string, string> = {
   STRIPE: "Stripe",
   WOMPI: "Wompi",
   CASH: "Efectivo",
+  ZINLI: "Zinli",
+  BANCOLOMBIA: "Bancolombia",
 };
 
 const money = (v: unknown) =>

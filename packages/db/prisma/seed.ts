@@ -49,11 +49,12 @@ async function main() {
   await prisma.exchangeRate.deleteMany({ where: { userId: user.id } });
   await prisma.raffle.deleteMany({ where: { userId: user.id } }); // cascada a RaffleNumber
 
-  // 2) Tasa de cambio activa (BCV): 1 USD = 140 VES
+  // 2) Tasa de cambio activa (Binance P2P, ilustrativa): 1 USD = 140 VES.
+  //    En producción se refresca desde Binance P2P o se fija manual en Ajustes.
   await prisma.exchangeRate.create({
     data: {
       userId: user.id,
-      source: "BCV",
+      source: "BINANCE",
       vesPerUsd: "140.0000",
       isActive: true,
     },

@@ -5,15 +5,16 @@ export const analyticsRouter = createTRPCRouter({
 
   // Resumen para el home del panel: tarjetas de métricas. Todo filtra por userId (multi-tenant).
   summary: protectedProcedure.query(async ({ ctx }) => {
-    const { prisma, session } = ctx;
-    const userId = session.user.id;
+    const { prisma } = ctx;
+    const businessId = ctx.businessId; // rifas/ventas compartidas del negocio
+    const userId = ctx.userId; // contactos personales del usuario
 
     const [activeRaffles, rafflesTotal, contactsCount, salesAgg] = await Promise.all([
-      prisma.raffle.count({ where: { userId, status: "ACTIVE" } }),
-      prisma.raffle.count({ where: { userId, status: { not: "CANCELLED" } } }),
+      prisma.raffle.count({ where: { userId: businessId, status: "ACTIVE" } }),
+      prisma.raffle.count({ where: { userId: businessId, status: { not: "CANCELLED" } } }),
       prisma.contact.count({ where: { userId } }),
       prisma.sale.aggregate({
-        where: { userId, status: { notIn: ["CANCELLED", "REFUNDED"] } },
+        where: { userId: businessId, status: { notIn: ["CANCELLED", "REFUNDED"] } },
         _sum: { finalAmount: true, amountPaid: true },
         _count: true,
       }),
@@ -35,17 +36,18 @@ export const analyticsRouter = createTRPCRouter({
 
   // Tarjetas de la pantalla /dashboard/analytics.
   dashboard: protectedProcedure.query(async ({ ctx }) => {
-    const { prisma, session } = ctx;
-    const userId = session.user.id;
+    const { prisma } = ctx;
+    const businessId = ctx.businessId;
+    const userId = ctx.userId;
 
     const [salesAgg, totalContacts, totalRaffles] = await Promise.all([
       prisma.sale.aggregate({
-        where: { userId, status: { notIn: ["CANCELLED", "REFUNDED"] } },
+        where: { userId: businessId, status: { notIn: ["CANCELLED", "REFUNDED"] } },
         _sum: { finalAmount: true },
         _count: true,
       }),
       prisma.contact.count({ where: { userId } }),
-      prisma.raffle.count({ where: { userId, status: { not: "CANCELLED" } } }),
+      prisma.raffle.count({ where: { userId: businessId, status: { not: "CANCELLED" } } }),
     ]);
 
     return {

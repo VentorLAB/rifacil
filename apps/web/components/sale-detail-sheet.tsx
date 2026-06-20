@@ -21,6 +21,8 @@ const METHOD_LABELS: Record<string, string> = {
   STRIPE: "Stripe",
   WOMPI: "Wompi",
   CASH: "Efectivo",
+  ZINLI: "Zinli",
+  BANCOLOMBIA: "Bancolombia",
 };
 
 // Métodos ofrecidos para registrar un abono.
@@ -28,8 +30,10 @@ const ABONO_METHODS = [
   "PAGO_MOVIL",
   "BINANCE",
   "ZELLE",
+  "ZINLI",
   "EFECTIVO_USD",
   "EFECTIVO_VES",
+  "BANCOLOMBIA",
 ] as const;
 
 const STATUS_STYLES: Record<string, string> = {

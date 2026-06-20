@@ -30,13 +30,15 @@ const FIELD_PLACEHOLDERS: Partial<Record<Field, string>> = {
   note: "Ej: solo efectivo en el local",
 };
 
-// Los 5 métodos configurables, con sus campos relevantes (Venezuela primero).
+// Métodos configurables, con sus campos relevantes (Venezuela primero).
 const METHODS: { method: string; label: string; fields: Field[] }[] = [
-  { method: "PAGO_MOVIL", label: "Pago Móvil", fields: ["bankName", "phone", "idDocument"] },
+  { method: "PAGO_MOVIL", label: "Pago Móvil", fields: ["bankName", "phone", "idDocument", "holderName"] },
   { method: "BINANCE", label: "Binance / USDT", fields: ["email", "wallet"] },
-  { method: "ZELLE", label: "Zelle", fields: ["email", "holderName"] },
+  { method: "ZELLE", label: "Zelle", fields: ["email", "holderName", "note"] },
+  { method: "ZINLI", label: "Zinli", fields: ["email", "holderName"] },
   { method: "EFECTIVO_USD", label: "Efectivo", fields: ["note"] },
   { method: "TRANSFERENCIA_VES", label: "Transferencia", fields: ["bankName", "accountNumber", "holderName"] },
+  { method: "BANCOLOMBIA", label: "Bancolombia", fields: ["accountNumber", "holderName", "idDocument", "note"] },
 ];
 
 type AccountState = {

@@ -6,8 +6,8 @@ import { toast } from "react-hot-toast";
 import { Loader2, RefreshCw, Check, DollarSign } from "lucide-react";
 
 const SOURCE_LABELS: Record<string, string> = {
-  BCV: "BCV (automática)",
-  BINANCE: "Binance",
+  BCV: "BCV",
+  BINANCE: "Binance P2P (automática)",
   MANUAL: "Manual",
 };
 
@@ -26,7 +26,7 @@ export function RateSection() {
 
   const refresh = api.settings.refreshRate.useMutation({
     onSuccess: () => {
-      toast.success("Tasa BCV actualizada");
+      toast.success("Tasa de Binance P2P actualizada");
       utils.settings.getRate.invalidate();
     },
     onError: (e) => toast.error(e.message),
@@ -84,14 +84,14 @@ export function RateSection() {
         )}
       </div>
 
-      {/* Actualizar desde BCV */}
+      {/* Actualizar desde Binance P2P */}
       <button
         onClick={() => refresh.mutate()}
         disabled={refresh.isLoading}
         className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
       >
         {refresh.isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
-        Actualizar desde BCV
+        Actualizar desde Binance P2P
       </button>
 
       {/* Override manual */}

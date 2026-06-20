@@ -25,10 +25,10 @@ export const raffleRouter = createTRPCRouter({
       }).optional()
     )
     .query(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
       const { status = "ALL", search, limit = 20, cursor } = input || {};
 
-      const where: any = { userId: session.user.id };
+      const where: any = { userId: ctx.businessId };
       if (status !== "ALL") where.status = status;
       if (search) {
         where.OR = [
@@ -61,7 +61,7 @@ export const raffleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         include: {
           numbers: {
             orderBy: { number: "asc" },
@@ -98,11 +98,11 @@ export const raffleRouter = createTRPCRouter({
       })
     )
     .query(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
       // Multi-tenant: la rifa debe ser del usuario en sesión.
       const raffle = await prisma.raffle.findFirst({
-        where: { id: input.raffleId, userId: session.user.id },
+        where: { id: input.raffleId, userId: ctx.businessId },
         select: { id: true },
       });
       if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
@@ -144,7 +144,7 @@ export const raffleRouter = createTRPCRouter({
     .input(z.object({ raffleId: z.string() }))
     .query(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.findFirst({
-        where: { id: input.raffleId, userId: ctx.session.user.id },
+        where: { id: input.raffleId, userId: ctx.businessId },
         select: { id: true },
       });
       if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
@@ -166,7 +166,7 @@ export const raffleRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.findFirst({
-        where: { id: input.raffleId, userId: ctx.session.user.id },
+        where: { id: input.raffleId, userId: ctx.businessId },
         select: { id: true },
       });
       if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
@@ -235,15 +235,15 @@ export const raffleRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
       // Verificar límite de rifas según plan
       const sub = await prisma.subscription.findUnique({
-        where: { userId: session.user.id },
+        where: { userId: ctx.businessId },
       });
 
       const raffleCount = await prisma.raffle.count({
-        where: { userId: session.user.id, status: { not: "CANCELLED" } },
+        where: { userId: ctx.businessId, status: { not: "CANCELLED" } },
       });
 
       if (sub && raffleCount >= sub.maxRaffles) {
@@ -280,7 +280,7 @@ export const raffleRouter = createTRPCRouter({
         data: {
           ...rest,
           contactWhatsapp: normalizedWhatsapp,
-          userId: session.user.id,
+          userId: ctx.businessId,
           status: "DRAFT",
         },
       });
@@ -321,7 +321,7 @@ export const raffleRouter = createTRPCRouter({
 
       // Actualizar uso (updateMany no lanza si no hay suscripción todavía).
       await prisma.subscription.updateMany({
-        where: { userId: session.user.id },
+        where: { userId: ctx.businessId },
         data: { rafflesUsed: { increment: 1 }, numbersUsed: { increment: input.totalNumbers } },
       });
 
@@ -355,7 +355,7 @@ export const raffleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.update({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         data: { status: "ACTIVE" },
       });
       return raffle;
@@ -366,7 +366,7 @@ export const raffleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.update({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         data: { status: "PAUSED" },
       });
       return raffle;
@@ -378,11 +378,11 @@ export const raffleRouter = createTRPCRouter({
   delete: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
       // Verificar propiedad (multi-tenant).
       const raffle = await prisma.raffle.findFirst({
-        where: { id: input.id, userId: session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: { id: true, totalNumbers: true },
       });
       if (!raffle) {
@@ -408,7 +408,7 @@ export const raffleRouter = createTRPCRouter({
 
       // Liberar uso del plan (no baja de 0 en la práctica; simétrico al create).
       await prisma.subscription.updateMany({
-        where: { userId: session.user.id },
+        where: { userId: ctx.businessId },
         data: {
           rafflesUsed: { decrement: 1 },
           numbersUsed: { decrement: raffle.totalNumbers },
@@ -423,7 +423,7 @@ export const raffleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: {
           status: true,
           winnerNumber: true,
@@ -475,12 +475,12 @@ export const raffleRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
       const raffle = await prisma.raffle.findFirst({
         where: {
           id: input.id,
-          userId: session.user.id,
+          userId: ctx.businessId,
           status: { in: ["ACTIVE", "PAUSED", "SOLD_OUT"] },
         },
         include: { numbers: { where: { status: { in: ["SOLD", "PAID"] } }, orderBy: { number: "asc" } } },
@@ -496,7 +496,7 @@ export const raffleRouter = createTRPCRouter({
       }
 
       // Número ganador (aleatorio verificable a partir del seed).
-      const seed = input.seed || `${input.id}-${soldNumbers.length}-${session.user.id}`;
+      const seed = input.seed || `${input.id}-${soldNumbers.length}-${ctx.businessId}`;
       const winnerIndex = await provableRandom(soldNumbers.length, seed);
       const winner = soldNumbers[winnerIndex];
 
@@ -515,7 +515,7 @@ export const raffleRouter = createTRPCRouter({
       // Auditoría del sorteo.
       await prisma.activityLog.create({
         data: {
-          userId: session.user.id,
+          userId: ctx.businessId,
           action: "RAFFLE_DRAWN",
           entityType: "Raffle",
           entityId: input.id,
@@ -583,7 +583,7 @@ export const raffleRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         include: {
           numbers: {
             select: { status: true, number: true, soldAt: true, paidAt: true },
@@ -618,10 +618,10 @@ export const raffleRouter = createTRPCRouter({
   getReport: protectedProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
       const raffle = await prisma.raffle.findFirst({
-        where: { id: input.id, userId: session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: { id: true, title: true },
       });
       if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
@@ -750,7 +750,7 @@ export const raffleRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const raffle = await ctx.prisma.raffle.update({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         data: input.data,
       });
       return raffle;
