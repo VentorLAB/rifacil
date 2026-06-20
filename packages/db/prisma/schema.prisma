@@ -191,6 +191,11 @@ model User {
   brandColorSecondary String?  @default("#1e293b") // color secundario de marca
   brandSlug          String?   @unique // riffas.app/mi-marca
   customDomain       String?   @unique // dominio propio del rifero, ej. rifashermanospernia.com (guardar en minúsculas, sin www.)
+  // Config flexible de la tienda de marca (landing /d/[host]): tagline, stats[],
+  // faqs[], instagram, nit, organizer, contacts[], whatsappText. Validada con Zod
+  // al escribir (ver storefrontConfigSchema en @riffas/api). Lo estructurado
+  // (marca, rifas, PaymentAccount) vive en columnas/modelos propios.
+  storefrontConfig   Json?
 
   // Onboarding
   onboardingCompleted Boolean @default(false)

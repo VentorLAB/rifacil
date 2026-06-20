@@ -5,6 +5,7 @@ import { PaymentMethod } from "@riffas/db";
 import { normalizePhone } from "@riffas/shared";
 import { uploadImage } from "@riffas/shared/cloudinary";
 import { getActiveRate } from "../lib/exchangeRate";
+import { parseStorefrontConfig } from "../lib/storefrontConfig";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -50,6 +51,7 @@ export const publicRouter = createTRPCRouter({
           brandLogo: true,
           brandColor: true,
           brandColorSecondary: true,
+          storefrontConfig: true,
           // Cuentas de pago activas del rifero (mismo shape público que getRaffle).
           // Son datos que el comprador necesita ver para pagar; NO hay secretos.
           paymentAccounts: {
@@ -103,6 +105,7 @@ export const publicRouter = createTRPCRouter({
           color: rifero.brandColor || "#7c3aed",
           colorSecondary: rifero.brandColorSecondary || "#1e293b",
         },
+        config: parseStorefrontConfig(rifero.storefrontConfig),
         raffles: raffles.map((r) => ({
           ...r,
           pricePerNumber: Number(r.pricePerNumber),

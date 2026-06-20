@@ -50,3 +50,7 @@ coverage/
 *.pem
 
 .vercel
+
+# Fuente de referencia rifas-hp (no parte de la app)
+rifas-hermanos-pernia/
+rifas-hermanos-pernia.zip
