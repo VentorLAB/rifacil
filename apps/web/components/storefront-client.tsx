@@ -17,6 +17,33 @@ const prefersReduced = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
+/* ───────────────────── BannerImage (foto del premio + tap para ampliar) ─────
+   La card recorta el flyer (object-fit: cover, foco en el premio); al tocar se
+   abre el flyer COMPLETO en un lightbox (object-fit: contain). Mobile-first. */
+export function BannerImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [open]);
+  return (
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} className={className} loading="lazy" style={{ cursor: "zoom-in" }} onClick={() => setOpen(true)} />
+      {open && (
+        <div className="sf-flyer" role="dialog" aria-modal="true" aria-label={`Flyer ${alt}`} onClick={() => setOpen(false)}>
+          <button className="sf-flyer-x" aria-label="Cerrar" onClick={() => setOpen(false)}>✕</button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} alt={alt} onClick={(e) => e.stopPropagation()} />
+        </div>
+      )}
+    </>
+  );
+}
+
 /* ───────────────────── MoneyRain (canvas) ───────────────────── */
 export function MoneyRain() {
   const ref = useRef<HTMLCanvasElement>(null);

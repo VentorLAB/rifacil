@@ -118,7 +118,9 @@
 .sf .rifa-card:hover { transform: translateY(-6px); border-color: var(--line-2); }
 .sf .rifa-media { aspect-ratio: 16/10; position: relative; overflow: hidden; }
 .sf .rifa-media .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem; background: linear-gradient(135deg, var(--ink-4), var(--ink-3)); }
-.sf .rifa-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 26%; }
+.sf .rifa-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+/* Hint "tocar para ampliar" (no captura el tap; el click va a la imagen). */
+.sf .media-zoom { position: absolute; bottom: 10px; left: 10px; z-index: 2; pointer-events: none; font-size: .68rem; font-weight: 700; color: #fff; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.25); border-radius: var(--r-pill); padding: 4px 9px; backdrop-filter: blur(4px); }
 .sf .rifa-badge { position: absolute; top: 14px; left: 14px; z-index: 2; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 7px 12px; border-radius: var(--r-pill); backdrop-filter: blur(6px); background: rgba(52, 211, 153, .16); color: #7cf3c3; border: 1px solid rgba(52, 211, 153, .5); }
 .sf .rifa-price { position: absolute; bottom: 12px; right: 12px; z-index: 2; font-family: var(--display); background: var(--gold-grad); color: #2a1b00; padding: 8px 14px; border-radius: 12px; font-size: 1.15rem; box-shadow: 0 8px 20px -6px rgba(247, 183, 51, .7); }
 .sf .rifa-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
@@ -244,7 +246,7 @@
 .sf .grid-winners { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
 .sf .winner-card { background: linear-gradient(180deg, var(--ink-3), var(--ink-2)); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow); }
 .sf .winner-media { aspect-ratio: 16/10; position: relative; overflow: hidden; }
-.sf .winner-media img { width: 100%; height: 100%; object-fit: cover; }
+.sf .winner-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
 .sf .winner-media .ph { width: 100%; height: 100%; display: grid; place-items: center; font-size: 3.4rem; background: linear-gradient(135deg, var(--ink-4), var(--ink-3)); }
 .sf .winner-tag { position: absolute; top: 12px; left: 12px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 6px 11px; border-radius: var(--r-pill); background: rgba(52, 211, 153, .18); color: #7cf3c3; border: 1px solid rgba(52, 211, 153, .5); backdrop-filter: blur(6px); }
 .sf .winner-body { padding: 18px; display: flex; flex-direction: column; gap: 9px; }
@@ -281,6 +283,12 @@
 .sf-exit-cta { width: 100%; }
 .sf-exit-wa { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; color: #34e07a; font-weight: 700; font-size: .95rem; }
 .sf-exit-wa:hover { text-decoration: underline; }
+
+/* ── Lightbox del flyer (tap para ampliar el flyer completo) ── */
+.sf-flyer { position: fixed; inset: 0; z-index: 120; background: rgba(0, 0, 0, .9); display: grid; place-items: center; padding: 16px; cursor: zoom-out; animation: sf-fade .2s ease; }
+.sf-flyer img { max-width: 100%; max-height: 92vh; width: auto; height: auto; border-radius: 12px; box-shadow: 0 24px 70px rgba(0, 0, 0, .7); cursor: default; }
+.sf-flyer-x { position: fixed; top: 14px; right: 16px; z-index: 121; width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, .16); color: #fff; border: none; font-size: 1.15rem; cursor: pointer; display: grid; place-items: center; }
+.sf-flyer-x:hover { background: rgba(255, 255, 255, .3); }
 
 /* Responsive */
 @media (max-width: 920px) {

@@ -26,8 +26,17 @@ type Seed = {
   price: number;
   total: number;
   drawDateZ: string;
+  banner: string; // flyer real (Cloudinary). Match CONFIRMADO viendo cada imagen.
   packs?: { qty: number; discountPercent: number }[];
   prizes: { titulo: string; descripcion: string }[];
+};
+
+// Flyers reales (Cloudinary dfbwjrpdu). Verificados visualmente uno por uno.
+const BANNER = {
+  elDubai:  "https://res.cloudinary.com/dfbwjrpdu/image/upload/v1779209875/pxfvi0cxiaswhyabnnox.jpg", // Toyota Agya 2026, 11 jul
+  resuelve: "https://res.cloudinary.com/dfbwjrpdu/image/upload/v1776862259/n7awwoek3tindh4uinyi.jpg", // $5.000 "Especial para Mamá", 9 may
+  azulejo:  "https://res.cloudinary.com/dfbwjrpdu/image/upload/v1772976263/bwlquhdwwrwwkfhz0hbj.jpg", // Aveo 2007 + moto, 11 abr
+  marino:   "https://res.cloudinary.com/dfbwjrpdu/image/upload/v1769714511/wghrajnlrhotocwgbi7x.jpg", // Aveo 2013 azul + moto, 28 feb
 };
 
 const RAFFLES: Seed[] = [
@@ -39,6 +48,7 @@ const RAFFLES: Seed[] = [
     price: 55,
     total: 1000,
     drawDateZ: "2026-07-12T03:10:00Z", // 11 jul 23:10 VE
+    banner: BANNER.elDubai,
     // packs de data.js: 1=$55, 2=$100, 3=$145. Guardados como % para que el
     // checkout (createSale usa discountPercent) cobre exacto $100 / $145.
     packs: [
@@ -59,6 +69,7 @@ const RAFFLES: Seed[] = [
     price: 13,
     total: 1000,
     drawDateZ: "2026-05-10T02:15:00Z", // 9 may 22:15 VE
+    banner: BANNER.resuelve,
     prizes: [
       { titulo: "$5.000 en efectivo", descripcion: "Triple “A” de la Lotería del Táchira, 10:10 pm." },
       { titulo: "$500 en efectivo", descripcion: "Triple “B” de la Lotería del Táchira, 10:10 pm." },
@@ -72,6 +83,7 @@ const RAFFLES: Seed[] = [
     price: 25,
     total: 1000,
     drawDateZ: "2026-04-12T03:10:00Z", // 11 abr 23:10 VE
+    banner: BANNER.azulejo,
     prizes: [
       { titulo: "Aveo Automático 2007 + $200 en efectivo", descripcion: "Táchira Triple “A”, 10:10 pm." },
       { titulo: "Moto EK Xpress 2026", descripcion: "Táchira Triple “B”, 10:10 pm." },
@@ -86,6 +98,7 @@ const RAFFLES: Seed[] = [
     price: 35,
     total: 1000,
     drawDateZ: "2026-03-01T03:10:00Z", // 28 feb 23:10 VE
+    banner: BANNER.marino,
     prizes: [
       { titulo: "Aveo 2013 + $200 en efectivo", descripcion: "Táchira Triple “A”, 10:10 pm." },
       { titulo: "Moto EK Xpress 2026", descripcion: "Táchira Triple “B”, 10:10 pm." },
@@ -117,6 +130,7 @@ const RAFFLES: Seed[] = [
       isPublic: true,
       contactWhatsapp: "+584123863998",
       discountPackages: r.packs ?? undefined,
+      bannerUrl: r.banner,
     };
 
     let raffleId: string;

@@ -15,6 +15,7 @@ import {
   WhatsAppFloat,
   Countdown,
   ExitIntentPopup,
+  BannerImage,
 } from "@/components/storefront-client";
 import { storefrontFontVars } from "./fonts";
 import "./storefront.css";
@@ -165,8 +166,10 @@ export default async function BrandLanding({ params }: { params: { host: string 
                       {almostGone && <span className="rifa-badge hot">🔥 Casi agotada</span>}
                       <span className="rifa-price">{money(r.pricePerNumber)} <small>x número</small></span>
                       {img ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={img} alt={r.title} />
+                        <>
+                          <BannerImage src={img} alt={`Flyer ${r.title}`} />
+                          <span className="media-zoom">🔍 Ver flyer</span>
+                        </>
                       ) : (
                         <div className="ph">🎁</div>
                       )}
@@ -236,8 +239,10 @@ export default async function BrandLanding({ params }: { params: { host: string 
                   <article className="winner-card" data-reveal key={w.id}>
                     <div className="winner-media">
                       {img ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={img} alt={w.title} />
+                        <>
+                          <BannerImage src={img} alt={`Flyer ${w.title}`} />
+                          <span className="media-zoom">🔍 Ver flyer</span>
+                        </>
                       ) : (
                         <div className="ph">🏆</div>
                       )}
