@@ -85,8 +85,18 @@ const HOW_IT_WORKS: { h: string; p: string }[] = [
   { h: "Mira el sorteo EN VIVO — si tu número sale, ganaste 🏆", p: "El sorteo se transmite por Instagram con la Lotería del Táchira. Transparencia total: el resultado no lo decidimos nosotros." },
 ];
 
-// Paso 2 — mensaje pre-escrito del CTA secundario de WhatsApp (dinámico con el nombre de la rifa).
-const waMessage = (title: string) => `Hola Hermanos Pernía, quiero apartar mi número para la rifa ${title} 🚗`;
+// Paso 2 — mensaje pre-escrito del CTA secundario de WhatsApp.
+// Emoji dinámico según el premio (carro→🚗, moto→🏍️, efectivo→💵, tecno→📱, resto→🎟️).
+function prizeEmoji(prizeText: string | null | undefined): string {
+  const t = (prizeText || "").toLowerCase();
+  if (/(carro|auto|toyota|agya|aveo|veh[ií]culo|camioneta|0\s?km)/.test(t)) return "🚗";
+  if (/(moto|motocicleta|scooter)/.test(t)) return "🏍️";
+  if (/(efectivo|d[oó]lares|dinero|cash|usd|\$)/.test(t)) return "💵";
+  if (/(iphone|celular|tel[eé]fono|laptop|tv|televisor|tecnolog)/.test(t)) return "📱";
+  return "🎟️";
+}
+const waMessage = (title: string, emoji: string) =>
+  `Hola Hermanos Pernía, quiero apartar mi número para la rifa ${title} ${emoji}`;
 
 // Paso 6 — Prueba social. Los testimonios (texto/foto/VIDEO) se cargan vía
 // storefrontConfig.testimonials (cada uno puede traer videoUrl). La galería de
@@ -291,7 +301,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
                         {waNumber && (
                           <a
                             className="btn btn-wa btn-block"
-                            href={`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage(r.title))}`}
+                            href={`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage(r.title, prizeEmoji(r.prize)))}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
