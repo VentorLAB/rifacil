@@ -9,14 +9,17 @@ import { parseStorefrontConfig } from "../lib/storefrontConfig";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
-// Enmascara el nombre para no exponer datos completos al verificar por boleto.
-// "Juan Pérez" -> "Ju** P****"
+// Nombre legible pero con privacidad: muestra los nombres completos y deja el
+// apellido (última palabra) como inicial. Nada de hileras de asteriscos.
+//   "María Espinoza"          -> "María E."
+//   "María Esther de Marcano" -> "María Esther de M."
+//   "Madonna"                 -> "Madonna"  (un solo nombre: nada que ocultar)
 function maskName(name: string): string {
-  return (name || "")
-    .trim()
-    .split(/\s+/)
-    .map((w) => (w.length <= 2 ? w : w.slice(0, 2) + "*".repeat(Math.min(4, w.length - 2))))
-    .join(" ");
+  const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0];
+  const last = parts[parts.length - 1];
+  return [...parts.slice(0, -1), `${last.charAt(0).toUpperCase()}.`].join(" ");
 }
 
 // Carga diferida del recibo (binarios nativos satori/resvg) — igual que en sale.ts,
