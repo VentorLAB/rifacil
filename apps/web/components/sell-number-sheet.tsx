@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { X, Loader2, Search, UserPlus, Check, Receipt } from "lucide-react";
+import { buildReceiptWaLink } from "@riffas/shared";
+import { X, Loader2, Search, UserPlus, Check, Receipt, MessageCircle, CheckCircle2 } from "lucide-react";
 
 // Métodos de pago ofrecidos (Venezuela primero).
 const METHODS = [
@@ -86,6 +87,14 @@ export function SellNumberSheet({
   const willReserve = paid > 0 && paid < total; // apartado
   const isActive = raffleStatus === "ACTIVE";
 
+  // Resultado del apartado/venta: dispara la pantalla de "Enviar por WhatsApp".
+  const [sold, setSold] = useState<{
+    waLink: string | null;
+    receiptUrl: string | null;
+    isFullyPaid: boolean;
+    debt: number;
+  } | null>(null);
+
   const createSale = api.sale.create.useMutation({
     onSuccess: (res) => {
       toast.success(
@@ -93,7 +102,26 @@ export function SellNumberSheet({
           ? `¡Número ${number} vendido! 🎉`
           : `Número ${number} apartado · Deuda ${money(res.debt)}`
       );
-      onSold();
+      const c = res.sale.contact;
+      const waLink = c?.phone
+        ? buildReceiptWaLink({
+            phone: c.phone,
+            contactName: c.name,
+            brandName: res.brandName,
+            raffleTitle: res.sale.raffle.title,
+            numbers: res.sale.numbers,
+            total: res.sale.finalAmount,
+            paid: res.sale.amountPaid,
+            receiptUrl: res.sale.receiptUrl,
+          })
+        : null;
+      setSold({
+        waLink,
+        receiptUrl: res.sale.receiptUrl ?? null,
+        isFullyPaid: res.isFullyPaid,
+        debt: res.debt,
+      });
+      onSold(); // refresca la grilla por detrás; el sheet queda en pantalla de envío
     },
     onError: (e) => toast.error(e.message || "No se pudo registrar la venta"),
   });
@@ -160,6 +188,61 @@ export function SellNumberSheet({
           </button>
         </div>
 
+        {sold ? (
+          <div className="space-y-5 p-5 text-center">
+            <CheckCircle2 className="mx-auto h-14 w-14 text-green-600" />
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">
+                {sold.isFullyPaid
+                  ? `¡Número ${number} vendido!`
+                  : `Número ${number} apartado`}
+              </h3>
+              <p className="mt-1 text-sm text-slate-500">
+                {sold.isFullyPaid
+                  ? "Envíale el comprobante al cliente."
+                  : `Quedó apartado · deuda ${money(sold.debt)}. Envíale el comprobante al cliente.`}
+              </p>
+            </div>
+
+            {sold.waLink ? (
+              <a
+                href={sold.waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3.5 font-medium text-white hover:bg-green-700"
+              >
+                <MessageCircle className="h-5 w-5" /> Enviar recibo por WhatsApp
+              </a>
+            ) : (
+              <p className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
+                No se pudo armar el WhatsApp (teléfono inválido). Podés ver el recibo abajo.
+              </p>
+            )}
+
+            {sold.receiptUrl && (
+              <a
+                href={sold.receiptUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-sm text-blue-600 hover:underline"
+              >
+                <Receipt className="h-4 w-4" /> Ver recibo
+              </a>
+            )}
+            {!sold.receiptUrl && (
+              <p className="text-xs text-slate-400">
+                El recibo no se generó (revisá la configuración de imágenes).
+              </p>
+            )}
+
+            <button
+              onClick={onClose}
+              className="w-full rounded-xl border py-3 font-medium text-slate-600 hover:bg-slate-50"
+            >
+              Listo
+            </button>
+          </div>
+        ) : (
         <div className="space-y-5 p-5">
           {!isActive && (
             <div className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
@@ -340,6 +423,7 @@ export function SellNumberSheet({
             )}
           </button>
         </div>
+        )}
       </div>
     </div>
   );

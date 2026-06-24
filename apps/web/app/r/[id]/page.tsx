@@ -794,7 +794,9 @@ function SuccessScreen({
 }) {
   const waLink = contactWhatsapp
     ? `https://wa.me/${contactWhatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
-        `Hola ${brandName}, aparté el/los número(s) ${result.numbers.join(", ")}.`
+        `Hola ${brandName}, aparté el/los número(s) ${result.numbers.join(", ")}.` +
+          (result.debt > 0 ? ` Aboné ${money(result.amountPaid)} (resta ${money(result.debt)}).` : "") +
+          (result.receiptUrl ? `\n\nMi comprobante: ${result.receiptUrl}` : "")
       )}`
     : null;
 
@@ -844,7 +846,7 @@ function SuccessScreen({
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 rounded-xl border py-3 font-medium text-slate-700 hover:bg-slate-50"
           >
-            Escribir al organizador
+            {result.receiptUrl ? "Enviar mi comprobante al organizador" : "Escribir al organizador"}
           </a>
         )}
         <button onClick={onReset} className="text-sm text-slate-500 hover:underline">

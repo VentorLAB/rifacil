@@ -26,6 +26,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@resvg/resvg-js':
+        specifier: ^2.6.2
+        version: 2.6.2
       '@riffas/api':
         specifier: workspace:*
         version: link:../../packages/api
@@ -80,6 +83,9 @@ importers:
       react-hot-toast:
         specifier: ^2.4.1
         version: 2.6.0(react-dom@18.3.1)(react@18.3.1)
+      satori:
+        specifier: ^0.12.1
+        version: 0.12.2
       superjson:
         specifier: ^2.2.0
         version: 2.2.6

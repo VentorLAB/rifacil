@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { X, Loader2, Plus, Receipt } from "lucide-react";
+import { buildReceiptWaLink } from "@riffas/shared";
+import { X, Loader2, Plus, Receipt, MessageCircle } from "lucide-react";
 
 // Etiquetas legibles por método (los del abono primero: Venezuela).
 const METHOD_LABELS: Record<string, string> = {
@@ -334,6 +335,32 @@ export function SaleDetailSheet({
                 </div>
               </div>
             )}
+
+            {/* Enviar comprobante por WhatsApp (wa.me, sin Cloud API) */}
+            {(() => {
+              const waLink = sale.contact.phone
+                ? buildReceiptWaLink({
+                    phone: sale.contact.phone,
+                    contactName: sale.contact.name,
+                    brandName: sale.user?.brandName || sale.user?.name,
+                    raffleTitle: sale.raffle.title,
+                    numbers: sale.numbers,
+                    total: sale.finalAmount,
+                    paid: sale.amountPaid,
+                    receiptUrl: sale.receiptUrl,
+                  })
+                : null;
+              return waLink ? (
+                <a
+                  href={waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3 font-medium text-white hover:bg-green-700"
+                >
+                  <MessageCircle className="h-5 w-5" /> Enviar por WhatsApp
+                </a>
+              ) : null;
+            })()}
 
             {/* Recibo */}
             {sale.receiptUrl && (

@@ -5,3 +5,4 @@
 export * from "./phone";
 export * from "./google-contacts";
 export * from "./numbers";
+export * from "./whatsapp-link";

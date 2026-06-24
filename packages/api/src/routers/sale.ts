@@ -3,7 +3,6 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
-import { sendSaleReceiptWhatsApp } from "../lib/whatsapp";
 
 // Redondeo a 2 decimales para montos de dinero.
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -267,24 +266,15 @@ export const saleRouter = createTRPCRouter({
         data: { receiptUrl },
       });
 
-      // Envío automático del comprobante por WhatsApp (Cloud API). NO bloquea la
-      // venta: si no hay credenciales o Meta falla, se loguea y se sigue.
-      try {
-        const wa = await sendSaleReceiptWhatsApp({
-          prisma,
-          userId: businessId,
-          sale: { ...sale, receiptUrl },
-          raffleTitle: raffle.title,
-          brandName: brand.brandName,
-        });
-        if (!wa.sent && wa.reason !== "not_configured") {
-          console.warn("[sale.create] WhatsApp comprobante no enviado:", wa.reason, wa.detail ?? "");
-        }
-      } catch (err) {
-        console.error("[sale.create] envío WhatsApp falló (venta guardada igual):", err);
-      }
-
-      return { sale: { ...sale, receiptUrl }, amountPaid, debt, isFullyPaid };
+      // El comprobante se envía por wa.me desde la UI (no Cloud API): la mutación
+      // devuelve sale.contact + receiptUrl + brandName y el cliente arma el wa.me.
+      return {
+        sale: { ...sale, receiptUrl },
+        amountPaid,
+        debt,
+        isFullyPaid,
+        brandName: brand.brandName,
+      };
     }),
 
   // Registra un abono posterior contra una venta apartada y recalcula la deuda.
@@ -560,22 +550,7 @@ export const saleRouter = createTRPCRouter({
       await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
       await prisma.raffleNumber.updateMany({ where: { saleId: sale.id }, data: { receiptUrl } });
 
-      // Envío automático del comprobante por WhatsApp (Cloud API). NO bloquea.
-      try {
-        const wa = await sendSaleReceiptWhatsApp({
-          prisma,
-          userId: businessId,
-          sale: { ...updated, receiptUrl },
-          raffleTitle: updated.raffle.title,
-          brandName: brand.brandName,
-        });
-        if (!wa.sent && wa.reason !== "not_configured") {
-          console.warn("[sale.confirmSale] WhatsApp comprobante no enviado:", wa.reason, wa.detail ?? "");
-        }
-      } catch (err) {
-        console.error("[sale.confirmSale] envío WhatsApp falló (venta confirmada igual):", err);
-      }
-
+      // El comprobante se reenvía por wa.me desde la UI (no Cloud API).
       // Auditoría: quién confirmó.
       await prisma.activityLog.create({
         data: {
@@ -706,6 +681,7 @@ export const saleRouter = createTRPCRouter({
           vendor: true,
           numbers_rel: true,
           payments: { orderBy: { createdAt: "asc" } },
+          user: { select: { brandName: true, name: true } },
         },
       });
 

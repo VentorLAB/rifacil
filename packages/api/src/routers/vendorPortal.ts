@@ -4,7 +4,6 @@ import { PaymentMethod } from "@riffas/db";
 import { createTRPCRouter, publicProcedure, vendorProcedure } from "../trpc";
 import { getVendorIdFromReq } from "../lib/vendorAuth";
 import { getActiveRate } from "../lib/exchangeRate";
-import { sendSaleReceiptWhatsApp } from "../lib/whatsapp";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -32,10 +31,11 @@ async function brandFor(prisma: any, userId: string) {
   };
 }
 
-// Genera y guarda el recibo de una venta (+ envío WhatsApp best-effort). Reutilizable.
-async function emitReceipt(prisma: any, businessId: string, saleId: string) {
+// Genera y guarda el recibo de una venta. Devuelve la URL para que la UI arme el
+// enlace wa.me (el envío es por wa.me desde el cliente, no por Cloud API).
+async function emitReceipt(prisma: any, businessId: string, saleId: string): Promise<string | null> {
   const sale = await prisma.sale.findUnique({ where: { id: saleId }, include: { contact: true, raffle: true } });
-  if (!sale) return;
+  if (!sale) return null;
   const prizes = await prisma.prize.findMany({
     where: { raffleId: sale.raffleId },
     orderBy: { orden: "asc" },
@@ -50,17 +50,7 @@ async function emitReceipt(prisma: any, businessId: string, saleId: string) {
   });
   await prisma.sale.update({ where: { id: saleId }, data: { receiptUrl } });
   await prisma.raffleNumber.updateMany({ where: { saleId }, data: { receiptUrl } });
-  try {
-    await sendSaleReceiptWhatsApp({
-      prisma,
-      userId: businessId,
-      sale: { ...sale, receiptUrl },
-      raffleTitle: sale.raffle.title,
-      brandName: brand.brandName,
-    });
-  } catch (err) {
-    console.error("[vendorPortal] envío WhatsApp falló (venta guardada igual):", err);
-  }
+  return receiptUrl;
 }
 
 // Portal del VENDEDOR: lee la cookie de vendedor (no la sesión del rifero) y
@@ -301,8 +291,19 @@ export const vendorPortalRouter = createTRPCRouter({
       });
       await prisma.raffle.update({ where: { id: raffle.id }, data: { soldCount: { increment: input.numbers.length }, revenue: { increment: amountPaid } } });
 
-      await emitReceipt(prisma, businessId, sale.id);
-      return { saleId: sale.id, status: saleStatus, amountPaid, debt: round2(finalAmount - amountPaid) };
+      const receiptUrl = await emitReceipt(prisma, businessId, sale.id);
+      return {
+        saleId: sale.id,
+        status: saleStatus,
+        amountPaid,
+        debt: round2(finalAmount - amountPaid),
+        receiptUrl,
+        contactName: contact.name,
+        contactPhone: contact.phone,
+        numbers: input.numbers,
+        finalAmount,
+        raffleTitle: raffle.title,
+      };
     }),
 
   // Cobrar/abonar una venta — SOLO si es del propio vendedor (regla del negocio).

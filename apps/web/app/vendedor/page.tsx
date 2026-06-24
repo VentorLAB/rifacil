@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { Loader2, LogOut, Wallet, Receipt, Copy, Link2, Store, ShoppingBag, Plus, DollarSign } from "lucide-react";
+import { buildReceiptWaLink } from "@riffas/shared";
+import { Loader2, LogOut, Wallet, Receipt, Copy, Link2, Store, ShoppingBag, Plus, DollarSign, MessageCircle } from "lucide-react";
 
 const money = (v: number) =>
   `$${Number(v ?? 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -190,10 +191,26 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
   const [method, setMethod] = useState("PAGO_MOVIL");
   const [abono, setAbono] = useState("");
 
+  // Resultado de la última venta para ofrecer el envío del recibo por wa.me.
+  const [lastSale, setLastSale] = useState<{ waLink: string | null; receiptUrl: string | null } | null>(null);
+
   const live = api.vendorPortal.numbers.useQuery({ raffleId }, { enabled: !!raffleId });
   const register = api.vendorPortal.registerSale.useMutation({
     onSuccess: (r) => {
       toast.success(r.debt > 0 ? `Apartada. Resta ${money(r.debt)}` : "¡Venta registrada y pagada!");
+      const waLink = r.contactPhone
+        ? buildReceiptWaLink({
+            phone: r.contactPhone,
+            contactName: r.contactName,
+            brandName: me?.brand?.name,
+            raffleTitle: r.raffleTitle,
+            numbers: r.numbers,
+            total: r.finalAmount,
+            paid: r.amountPaid,
+            receiptUrl: r.receiptUrl,
+          })
+        : null;
+      setLastSale({ waLink, receiptUrl: r.receiptUrl ?? null });
       setNumbers(""); setName(""); setPhone(""); setAbono("");
       utils.vendorPortal.numbers.invalidate();
       utils.vendorPortal.sales.invalidate();
@@ -271,6 +288,25 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
         <button onClick={submit} disabled={register.isLoading} className="flex w-full items-center justify-center gap-2 rounded-xl py-3 font-medium text-white disabled:opacity-50" style={{ backgroundColor: color }}>
           {register.isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Registrar venta"}
         </button>
+
+        {/* Envío del comprobante por WhatsApp (wa.me) tras registrar */}
+        {lastSale && (
+          <div className="space-y-2 rounded-xl border border-green-200 bg-green-50 p-3">
+            <p className="text-sm font-medium text-green-800">Venta registrada. Envíale el recibo al cliente:</p>
+            {lastSale.waLink ? (
+              <a href={lastSale.waLink} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-2.5 text-sm font-medium text-white hover:bg-green-700">
+                <MessageCircle className="h-4 w-4" /> Enviar recibo por WhatsApp
+              </a>
+            ) : (
+              <p className="text-xs text-amber-700">No se pudo armar el WhatsApp (teléfono inválido).</p>
+            )}
+            {lastSale.receiptUrl && (
+              <a href={lastSale.receiptUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-xs text-blue-600 hover:underline">
+                <Receipt className="h-3.5 w-3.5" /> Ver recibo
+              </a>
+            )}
+          </div>
+        )}
       </section>
     </div>
   );
