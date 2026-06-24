@@ -152,8 +152,14 @@
 .sf .verify { max-width: 680px; margin-inline: auto; }
 .sf .verify .box { background: linear-gradient(180deg, var(--ink-3), var(--ink-2)); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; margin-top: 20px; }
 .sf .verify-form { display: flex; gap: 10px; flex-wrap: wrap; }
-.sf .input { flex: 1; min-width: 200px; background: var(--ink); border: 1px solid var(--line-2); border-radius: var(--r-pill); padding: 15px 20px; color: var(--text); font-size: 1rem; outline: none; transition: .2s; font-family: inherit; }
+.sf .input { flex: 1; min-width: 200px; background: var(--ink); border: 1px solid var(--line-2); border-radius: var(--r-pill); padding: 15px 20px; color: var(--text); -webkit-text-fill-color: var(--text); caret-color: var(--gold); font-size: 1rem; outline: none; transition: .2s; font-family: inherit; }
 .sf .input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(247, 183, 51, .18); }
+/* Placeholder legible (antes usaba el gris por defecto del navegador, casi invisible) */
+.sf .input::placeholder { color: var(--muted); -webkit-text-fill-color: var(--muted); opacity: 1; }
+/* Autofill: en iOS/Safari el texto autocompletado puede salir en gris; forzar claro */
+.sf .input:-webkit-autofill,
+.sf .input:-webkit-autofill:hover,
+.sf .input:-webkit-autofill:focus { -webkit-text-fill-color: var(--text); caret-color: var(--gold); transition: background-color 9999s ease-in-out 0s; }
 .sf select.input { border-radius: 14px; }
 
 /* FAQ */
