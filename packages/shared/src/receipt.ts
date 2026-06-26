@@ -12,8 +12,10 @@ import { INTER_SEMIBOLD_WOFF_BASE64 } from "./inter-font";
  * (Satori -> SVG -> PNG con resvg) y se sube a Cloudinary FIRMADO. El iPhone solo
  * recibe una imagen ya hecha: imposible que falle por el navegador.
  *
- * Reemplaza el stub `generateReceipt` que `packages/api/src/routers/sale.ts` ya
- * importa de "@riffas/shared".
+ * Diseño: recibo de marca "Grandes Rifas Hermanos Pernía" (mockup v4 aprobado).
+ * Negro + rojo #e2001a + dorado #f5c518 + verde billete. Encabezado con logo real,
+ * banner del premio, franja de escasez con N/% DINÁMICOS, números en dorado,
+ * datos del comprador con zona, gancho de descuento dinámico y pie de confianza.
  */
 
 cloudinary.config({
@@ -22,6 +24,21 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
 });
+
+// Paleta de marca (un solo lugar para tunear el tema del recibo)
+const C = {
+  bg: "#0a0a0a",
+  black: "#000000",
+  ink: "#141414",
+  inkLine: "#222222",
+  red: "#e2001a",
+  gold: "#f5c518",
+  green: "#3bd16f",
+  white: "#ffffff",
+  text: "#cccccc",
+  muted: "#888888",
+  faint: "#777777",
+};
 
 // --- Fuente para Satori (se cachea entre invocaciones del worker) ---
 // Inter 600 EMBEBIDA en base64 (./inter-font). No se lee del filesystem a
@@ -35,27 +52,108 @@ function getFont(): Buffer {
   return fontCache;
 }
 
-// Helper para construir el árbol sin JSX (shared no tiene React/JSX configurado)
+// Helper para construir el árbol sin JSX (shared no tiene React/JSX configurado).
+// En Satori el display por defecto ya es flex; igual lo seteamos explícito donde importa.
 function el(type: string, style: Record<string, any>, children?: any): any {
   return { type, props: { style, children } };
+}
+function img(src: string, style: Record<string, any>): any {
+  return { type: "img", props: { src, style } };
 }
 
 const money = (v: unknown) =>
   `$${Number(v ?? 0).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   })}`;
 
-const fmtDate = (d?: Date | string | null) =>
-  d
-    ? new Date(d).toLocaleString("es-VE", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : "";
+const MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+
+// "11 JUL 2026, 10:10PM" (para la fecha del sorteo, en la franja de escasez)
+function fmtDraw(d?: Date | string | null): string {
+  if (!d) return "";
+  const dt = new Date(d);
+  let h = dt.getHours();
+  const ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  const mm = dt.getMinutes().toString().padStart(2, "0");
+  return `${dt.getDate()} ${MONTHS[dt.getMonth()]} ${dt.getFullYear()}, ${h}:${mm}${ampm}`;
+}
+
+// Fecha de reserva (corta, es-VE)
+function fmtReserva(d?: Date | string | null): string {
+  if (!d) return "";
+  return new Date(d).toLocaleString("es-VE", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+// Gancho de descuento DINÁMICO según cuántos números apartó (regla del spec; editable).
+function ganchoFor(n: number): string {
+  if (n <= 1) return "Apartá 1 número más y llevá 2 por $100 — ahorrás $10 🍀";
+  if (n === 2) return "Sumá 1 número más y llevá 3 por $145 — ahorrás $20 🍀";
+  return "Mientras más números apartás, más chances de ganar 🍀";
+}
+
+// --- Imágenes: Satori NO baja URLs remotas de forma confiable; las traemos y
+// las embebemos como data-URI. Falla suave: si una imagen no carga, se omite y
+// el recibo igual se renderiza. ---
+async function fetchDataUri(url?: string | null): Promise<string | null> {
+  if (!url) return null;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const buf = Buffer.from(await res.arrayBuffer());
+    const ct = res.headers.get("content-type") || "image/png";
+    return `data:${ct};base64,${buf.toString("base64")}`;
+  } catch {
+    return null;
+  }
+}
+
+// --- Emojis: Satori sin cargador de emojis los dibuja vacíos. Resolvemos cada
+// grafema con un SVG de Twemoji (cacheado entre invocaciones). Falla suave. ---
+const emojiCache = new Map<string, string>();
+function emojiCodePoint(str: string): string {
+  const out: string[] = [];
+  let prev = 0;
+  for (let i = 0; i < str.length; i++) {
+    const c = str.charCodeAt(i);
+    if (prev) {
+      out.push((0x10000 + ((prev - 0xd800) << 10) + (c - 0xdc00)).toString(16));
+      prev = 0;
+    } else if (c >= 0xd800 && c <= 0xdbff) {
+      prev = c;
+    } else {
+      out.push(c.toString(16));
+    }
+  }
+  return out.join("-");
+}
+async function loadEmoji(segment: string): Promise<string> {
+  // Quitamos el selector de variación (FE0F) para casar con los nombres de Twemoji.
+  const cp = emojiCodePoint(segment.replace(/️/g, ""));
+  if (emojiCache.has(cp)) return emojiCache.get(cp)!;
+  try {
+    const res = await fetch(
+      `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/${cp}.svg`
+    );
+    if (!res.ok) {
+      emojiCache.set(cp, "");
+      return "";
+    }
+    const svg = await res.text();
+    const uri = `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
+    emojiCache.set(cp, uri);
+    return uri;
+  } catch {
+    return "";
+  }
+}
 
 export interface GenerateReceiptInput {
   sale: {
@@ -75,60 +173,102 @@ export interface GenerateReceiptInput {
     lottery?: string | null;
     drawDate?: Date | string | null;
     prizes?: { titulo: string }[] | null;
+    prize?: string | null; // texto del premio (respaldo si no hay prizes[])
+    bannerUrl?: string | null; // foto del premio (Cloudinary) para el banner
+    totalNumbers?: number | null; // total de números de la rifa (para % escasez)
+    remaining?: number | null; // números disponibles AHORA (para "quedan N")
   };
-  contact: { name: string; phone: string };
+  contact: { name: string; phone: string; city?: string | null };
   brandName?: string | null;
   brandLogo?: string | null;
   brandColor?: string | null;
+  brandInstagram?: string | null;
+  brandWebsite?: string | null;
 }
 
-export async function generateReceipt(
+// Render puro (sin Cloudinary): árbol Satori -> SVG -> PNG. Separado de la subida
+// para poder probar el layout localmente (scripts/render-receipt) sin credenciales.
+export async function renderReceiptPng(
   input: GenerateReceiptInput
-): Promise<string> {
+): Promise<Buffer> {
   const { sale, raffle, contact } = input;
-  const brand = input.brandColor || "#7C3AED";
-  const brandName = input.brandName || "Riffas";
+  const brandName = input.brandName || "Hermanos Pernía";
+  const instagram = input.brandInstagram || "@granderifaspernia";
+  const website = (input.brandWebsite || "rifashermanospernia.com").replace(/^https?:\/\//, "");
 
-  const row = (
-    label: string,
-    value: string,
-    strong = false,
-    valueColor?: string
-  ) =>
-    el(
-      "div",
-      { display: "flex", justifyContent: "space-between", marginBottom: 6 },
-      [
-        el("span", { color: "#6B7280", fontSize: 22 }, label),
-        el(
-          "span",
-          {
-            color: valueColor ?? (strong ? brand : "#111827"),
-            fontSize: 22,
-            fontWeight: 600,
-          },
-          value
-        ),
-      ]
-    );
-
-  // Montos reales: total a cobrar vs. lo efectivamente abonado. La deuda es el
-  // resto. Si total === abonado, no hay deuda y la etiqueta vuelve a "Pagado".
-  // amountPaid es la fuente de verdad; finalAmount es respaldo retrocompatible.
+  // Montos reales: total a cobrar vs. lo efectivamente abonado. La deuda es el resto.
   const totalValue = Number(sale.totalAmount ?? sale.finalAmount ?? 0);
   const paidValue = Number(sale.amountPaid ?? sale.finalAmount ?? 0);
   const debtValue = Math.max(0, Number((totalValue - paidValue).toFixed(2)));
-
-  // Equivalente en bolívares según la tasa congelada en la venta.
   const rate = Number(sale.rateUsed ?? 0);
-  const bs = (v: number) =>
-    `${(v * rate).toLocaleString("es-VE", { maximumFractionDigits: 2 })} Bs`;
 
-  const divider = el("div", {
-    borderTop: "2px dashed #D1D5DB",
-    margin: "14px 0",
-    width: "100%",
-  });
+  // Escasez DINÁMICA desde la DB.
+  const total = Number(raffle.totalNumbers ?? 0);
+  const remaining = Math.max(0, Number(raffle.remaining ?? 0));
+  const soldPct = total > 0 ? Math.min(100, Math.round(((total - remaining) / total) * 100)) : 0;
+
+  // Premio: "Bello Toyota Agya 2026 GR" + "+ $1.500" en dorado (si viene en el texto).
+  const prizeText = (raffle.prizes?.[0]?.titulo || raffle.prize || "Gran premio").trim();
+  const prizeMatch = prizeText.match(/^(.*?)(\+\s*\$.*)$/);
+  const prizeMain = (prizeMatch ? prizeMatch[1] : prizeText).trim();
+  const prizeAdd = prizeMatch ? prizeMatch[2].trim() : "";
+
+  // Línea de sorteo: "{pct}% vendido · Sorteo 11 JUL 2026, 10:10PM · Lotería Táchira"
+  const drawStr = fmtDraw(raffle.drawDate);
+  const lotStr = raffle.lottery ? `Lotería ${raffle.lottery}` : "";
+  const scarcityMeta = [
+    `${soldPct}% vendido`,
+    drawStr ? `Sorteo ${drawStr}` : "",
+    lotStr,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
+  const zona = contact.city ? ` · ${contact.city}` : "";
+
+  // Imágenes (en paralelo); fallan suave a null.
+  const [logoUri, bannerUri] = await Promise.all([
+    fetchDataUri(input.brandLogo),
+    fetchDataUri(raffle.bannerUrl),
+  ]);
+
+  // Fila de la tabla de comprador
+  const dataRow = (
+    label: string,
+    value: string,
+    valueColor: string = C.white,
+    opts: { topBorder?: boolean; small?: boolean } = {}
+  ) =>
+    el(
+      "div",
+      {
+        display: "flex",
+        justifyContent: "space-between",
+        padding: opts.topBorder ? "6px 0 0" : "3px 0",
+        marginTop: opts.topBorder ? 4 : 0,
+        ...(opts.topBorder ? { borderTop: `1px solid ${C.inkLine}` } : {}),
+      },
+      [
+        el("div", { color: opts.small ? C.faint : "#aaaaaa", fontSize: opts.small ? 11 : 12 }, label),
+        el("div", { color: valueColor, fontSize: opts.small ? 11 : 12 }, value),
+      ]
+    );
+
+  const numberPills = sale.numbers.map((n) =>
+    el(
+      "div",
+      {
+        backgroundColor: C.gold,
+        color: C.bg,
+        fontWeight: 700,
+        fontSize: 18,
+        padding: "8px 16px",
+        borderRadius: 8,
+        letterSpacing: 1,
+      },
+      n
+    )
+  );
 
   const tree = el(
     "div",
@@ -136,99 +276,280 @@ export async function generateReceipt(
       display: "flex",
       flexDirection: "column",
       width: "100%",
-      height: "100%",
-      backgroundColor: "#FFFFFF",
-      padding: 40,
+      backgroundColor: C.bg,
+      border: "1px solid #2a2a2a",
+      borderRadius: 14,
+      overflow: "hidden",
       fontFamily: "Inter",
     },
     [
-      // Encabezado de marca
+      // 1) Encabezado: logo HP real + nombre, borde rojo
       el(
         "div",
-        { display: "flex", alignItems: "center", marginBottom: 8 },
+        {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "12px 16px",
+          backgroundColor: C.black,
+          borderBottom: `3px solid ${C.red}`,
+        },
         [
-          el("div", {
-            width: 56,
-            height: 56,
-            borderRadius: 12,
-            backgroundColor: brand,
-            marginRight: 16,
-          }),
+          logoUri ? img(logoUri, { height: 30, marginRight: 9 }) : el("div", {}),
           el(
             "div",
             { display: "flex", flexDirection: "column" },
             [
-              el("span", { fontSize: 30, fontWeight: 600, color: "#111827" }, brandName),
-              el("span", { fontSize: 20, color: "#6B7280" }, raffle.title),
+              el(
+                "div",
+                { color: C.red, fontSize: 9, fontWeight: 700, letterSpacing: 0.5 },
+                "GRANDES RIFAS"
+              ),
+              el("div", { color: C.white, fontSize: 13, fontWeight: 700 }, brandName),
             ]
           ),
         ]
       ),
+
+      // 2) Banner del premio (foto real) con "EL DUBAI" en dorado
       el(
-        "span",
-        { fontSize: 18, color: "#6B7280", marginBottom: 4 },
-        `${fmtDate(raffle.drawDate)}${raffle.lottery ? ` · Lotería: ${raffle.lottery}` : ""}`
-      ),
-      // Premios (1º, 2º, 3º…)
-      raffle.prizes && raffle.prizes.length > 0
-        ? el(
+        "div",
+        { display: "flex", position: "relative", height: 130, width: "100%", overflow: "hidden" },
+        [
+          bannerUri
+            ? img(bannerUri, { width: "100%", height: "100%", objectFit: "cover" })
+            : el("div", { width: "100%", height: "100%", backgroundColor: "#1a1a1a" }),
+          // título sobre la foto
+          el(
             "div",
-            { display: "flex", flexDirection: "column", marginTop: 6 },
+            { display: "flex", position: "absolute", top: 8, left: 0, right: 0, justifyContent: "center" },
+            el(
+              "div",
+              {
+                color: C.gold,
+                fontSize: 24,
+                fontWeight: 700,
+                letterSpacing: 2,
+                textShadow: "0 1px 3px #000",
+              },
+              (raffle.title || "").toUpperCase()
+            )
+          ),
+          // subtítulo del premio (gradiente inferior)
+          el(
+            "div",
+            {
+              display: "flex",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              padding: "8px 14px",
+              backgroundImage: `linear-gradient(transparent, ${C.bg})`,
+            },
+            el(
+              "div",
+              { display: "flex", color: C.white, fontSize: 11, fontWeight: 700 },
+              [
+                el("div", { color: C.white }, prizeMain + (prizeAdd ? " " : "")),
+                prizeAdd ? el("div", { color: C.gold }, prizeAdd) : el("div", {}),
+              ]
+            )
+          ),
+        ]
+      ),
+
+      // 3) Franja de escasez ROJA (N y % dinámicos)
+      el(
+        "div",
+        {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "9px 16px",
+          backgroundColor: C.red,
+        },
+        [
+          el(
+            "div",
+            { color: C.white, fontSize: 12, fontWeight: 700, textAlign: "center" },
+            `🔥 ¡CASI AGOTADA! Solo quedan ${remaining} números`
+          ),
+          // barra de progreso
+          el(
+            "div",
+            {
+              display: "flex",
+              width: "100%",
+              height: 5,
+              backgroundColor: "rgba(0,0,0,0.25)",
+              borderRadius: 3,
+              marginTop: 6,
+              overflow: "hidden",
+            },
+            el("div", { width: `${soldPct}%`, height: "100%", backgroundColor: C.gold })
+          ),
+          el("div", { color: "#ffffee", fontSize: 9, marginTop: 4, textAlign: "center" }, scarcityMeta),
+        ]
+      ),
+
+      // 4) Cuerpo: números + tabla del comprador
+      el(
+        "div",
+        { display: "flex", flexDirection: "column", padding: 16 },
+        [
+          el(
+            "div",
+            { display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 14 },
             [
-              el("span", { fontSize: 18, color: "#6B7280", marginBottom: 4 }, "Premios"),
-              ...raffle.prizes.map((p, i) =>
-                el(
-                  "span",
-                  { fontSize: 20, color: "#111827", fontWeight: 600, marginBottom: 2 },
-                  `${i + 1}º  ${p.titulo}`
-                )
+              el(
+                "div",
+                { color: C.muted, fontSize: 10, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 },
+                "Tus números de la suerte"
+              ),
+              el(
+                "div",
+                { display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center" },
+                numberPills
               ),
             ]
-          )
-        : el("div", {}),
-      divider,
-      row("Recibo", sale.receiptNumber),
-      row(
-        sale.totalNumbers > 1 ? "Boletos" : "Boleto",
-        sale.numbers.join(", ")
+          ),
+          el(
+            "div",
+            {
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: C.ink,
+              borderRadius: 8,
+              padding: 12,
+              border: `1px solid ${C.inkLine}`,
+            },
+            [
+              dataRow("Comprador", `${contact.name}${zona}`),
+              dataRow("Valor total", money(totalValue)),
+              dataRow(debtValue > 0 ? "Abonado" : "Pagado", money(paidValue), C.green),
+              debtValue > 0 ? dataRow("Deuda", money(debtValue), C.gold) : el("div", {}),
+              rate > 0
+                ? dataRow(
+                    "Equivalente",
+                    `${((debtValue > 0 ? debtValue : totalValue) * rate).toLocaleString("es-VE", {
+                      maximumFractionDigits: 2,
+                    })} Bs`,
+                    C.faint,
+                    { small: true }
+                  )
+                : el("div", {}),
+              dataRow("Fecha de reserva", fmtReserva(sale.createdAt), C.faint, { topBorder: true, small: true }),
+              dataRow("Recibo", sale.receiptNumber, C.faint, { small: true }),
+            ]
+          ),
+        ]
       ),
-      row("Comprador", contact.name),
-      row("Teléfono", contact.phone),
-      divider,
-      row("Valor total", money(totalValue)),
-      row(debtValue > 0 ? "Abonado" : "Pagado", money(paidValue), true),
-      debtValue > 0
-        ? row("Deuda", money(debtValue), false, "#DC2626")
-        : el("div", {}),
-      // Equivalente en Bs (si hay tasa registrada).
-      rate > 0 ? row("Tasa", `${rate.toLocaleString("es-VE", { maximumFractionDigits: 4 })} Bs/USD`) : el("div", {}),
-      rate > 0 ? row(debtValue > 0 ? "Deuda en Bs" : "Total en Bs", bs(debtValue > 0 ? debtValue : totalValue)) : el("div", {}),
-      sale.paymentMethod ? row("Método", String(sale.paymentMethod)) : el("div", {}),
-      row("Fecha", fmtDate(sale.paidAt || sale.createdAt)),
-      divider,
+
+      // 5) Gancho de descuento dinámico
       el(
-        "span",
-        { fontSize: 24, color: brand, fontWeight: 600, textAlign: "center", marginTop: 8 },
-        "¡Gracias por su compra!"
+        "div",
+        {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          margin: "0 16px 16px",
+          backgroundColor: "#1a1205",
+          border: `1px solid ${C.gold}`,
+          borderRadius: 10,
+          padding: 12,
+        },
+        [
+          el(
+            "div",
+            { color: C.gold, fontSize: 12, fontWeight: 700, marginBottom: 3, textAlign: "center" },
+            "🎁 ¡Más números, más chances de ganar!"
+          ),
+          el(
+            "div",
+            { color: "#dddddd", fontSize: 11, textAlign: "center" },
+            ganchoFor(sale.numbers.length)
+          ),
+        ]
+      ),
+
+      // 6) Pie de confianza
+      el(
+        "div",
+        {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "12px 16px",
+          backgroundColor: "#111111",
+          borderTop: `1px solid ${C.inkLine}`,
+        },
+        [
+          el(
+            "div",
+            { color: C.red, fontSize: 10, fontWeight: 700, textAlign: "center" },
+            "🏆 TODO JUEGA HASTA TENER GANADOR"
+          ),
+          el(
+            "div",
+            { color: C.text, fontSize: 10, marginTop: 3, textAlign: "center" },
+            "Desde 2019 entregando premios reales · Sorteo oficial"
+          ),
+          el(
+            "div",
+            { display: "flex", color: C.text, fontSize: 10, marginTop: 3 },
+            [
+              el("div", { color: C.text }, "📸 "),
+              el("div", { color: C.white, fontWeight: 700 }, instagram),
+            ]
+          ),
+        ]
+      ),
+
+      // 7) Barra final
+      el(
+        "div",
+        {
+          display: "flex",
+          justifyContent: "center",
+          padding: 10,
+          backgroundColor: C.black,
+          borderTop: "1px solid #1a1a1a",
+        },
+        el("div", { color: C.muted, fontSize: 10 }, `🌐 ${website} · ¡Gracias por tu compra!`)
       ),
     ]
   );
 
   const font = getFont();
-  const svg = await satori(tree, {
-    width: 720,
-    height: 760,
-    fonts: [{ name: "Inter", data: font, weight: 600, style: "normal" }],
-  });
+  // Registramos el mismo buffer en varios pesos para que cualquier fontWeight
+  // (400/600/700) resuelva sin caer al fallback.
+  const svg = await satori(tree as any, {
+    width: 340,
+    fonts: [
+      { name: "Inter", data: font, weight: 400, style: "normal" },
+      { name: "Inter", data: font, weight: 600, style: "normal" },
+      { name: "Inter", data: font, weight: 700, style: "normal" },
+    ],
+    loadAdditionalAsset: async (code: string, segment: string) =>
+      code === "emoji" ? await loadEmoji(segment) : "",
+  } as any);
 
-  const png = new Resvg(svg, { fitTo: { mode: "width", value: 720 } })
+  // Rasterizamos a ~3x (340 -> 1020) para un PNG nítido en pantallas retina.
+  const png = new Resvg(svg, { fitTo: { mode: "width", value: 1020 } })
     .render()
     .asPng();
+  return png;
+}
 
+export async function generateReceipt(
+  input: GenerateReceiptInput
+): Promise<string> {
+  const png = await renderReceiptPng(input);
   const dataUri = `data:image/png;base64,${png.toString("base64")}`;
   const uploaded = await cloudinary.uploader.upload(dataUri, {
     folder: "riffas/receipts",
-    public_id: sale.receiptNumber,
+    public_id: input.sale.receiptNumber,
     overwrite: true,
     resource_type: "image",
   });

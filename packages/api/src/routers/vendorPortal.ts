@@ -4,6 +4,7 @@ import { PaymentMethod } from "@riffas/db";
 import { createTRPCRouter, publicProcedure, vendorProcedure } from "../trpc";
 import { getVendorIdFromReq } from "../lib/vendorAuth";
 import { getActiveRate } from "../lib/exchangeRate";
+import { brandFor, raffleReceiptFields } from "../lib/receiptData";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -19,18 +20,6 @@ async function safeGenerateReceipt(args: any): Promise<string | null> {
   }
 }
 
-async function brandFor(prisma: any, userId: string) {
-  const u = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { name: true, brandName: true, brandColor: true, brandLogo: true },
-  });
-  return {
-    brandName: (u?.brandName || u?.name || "Riffas") as string,
-    brandColor: (u?.brandColor ?? null) as string | null,
-    brandLogo: (u?.brandLogo ?? null) as string | null,
-  };
-}
-
 // Genera y guarda el recibo de una venta. Devuelve la URL para que la UI arme el
 // enlace wa.me (el envío es por wa.me desde el cliente, no por Cloud API).
 async function emitReceipt(prisma: any, businessId: string, saleId: string): Promise<string | null> {
@@ -44,7 +33,7 @@ async function emitReceipt(prisma: any, businessId: string, saleId: string): Pro
   const brand = await brandFor(prisma, businessId);
   const receiptUrl = await safeGenerateReceipt({
     sale,
-    raffle: { title: sale.raffle.title, lottery: sale.raffle.loteria, drawDate: sale.raffle.drawDate, prizes },
+    raffle: await raffleReceiptFields(prisma, sale.raffle, prizes),
     contact: sale.contact,
     ...brand,
   });
