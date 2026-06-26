@@ -92,11 +92,27 @@ function fmtReserva(d?: Date | string | null): string {
   });
 }
 
-// Gancho de descuento DINÁMICO según cuántos números apartó (regla del spec; editable).
-function ganchoFor(n: number): string {
-  if (n <= 1) return "Apartá 1 número más y llevá 2 por $100 — ahorrás $10 🍀";
-  if (n === 2) return "Sumá 1 número más y llevá 3 por $145 — ahorrás $20 🍀";
-  return "Mientras más números apartás, más chances de ganar 🍀";
+// Gancho de descuento DINÁMICO (data-driven): según cuántos números apartó, ofrece
+// el siguiente pack real de la rifa (qty mayor) con su precio y ahorro calculados de
+// pricePerNumber + discountPercent. Para El Dubai: 1→"2 por $100 (ahorra $10)",
+// 2→"3 por $145 (ahorra $20)". Sin packs aplicables, mensaje genérico.
+function ganchoFor(
+  n: number,
+  unitPrice: number,
+  packs?: { qty: number; discountPercent: number }[] | null
+): string {
+  const generic = "Mientras más números apartás, más chances de ganar 🍀";
+  if (!unitPrice || !packs || packs.length === 0) return generic;
+  const next = packs
+    .filter((p) => p.qty > n)
+    .sort((a, b) => a.qty - b.qty)[0];
+  if (!next) return generic;
+  const full = next.qty * unitPrice;
+  const price = Math.round(full * (1 - next.discountPercent / 100));
+  const save = Math.round(full - price);
+  const more = next.qty - n;
+  const plural = more > 1 ? "s" : "";
+  return `Apartá ${more} número${plural} más y llevá ${next.qty} por $${price} — ahorrás $${save} 🍀`;
 }
 
 // --- Imágenes: Satori NO baja URLs remotas de forma confiable; las traemos y
@@ -174,9 +190,11 @@ export interface GenerateReceiptInput {
     drawDate?: Date | string | null;
     prizes?: { titulo: string }[] | null;
     prize?: string | null; // texto del premio (respaldo si no hay prizes[])
-    bannerUrl?: string | null; // foto del premio (Cloudinary) para el banner
+    bannerUrl?: string | null; // foto LIMPIA del premio (Cloudinary) para el banner
     totalNumbers?: number | null; // total de números de la rifa (para % escasez)
     remaining?: number | null; // números disponibles AHORA (para "quedan N")
+    pricePerNumber?: number | null; // precio unitario (para el gancho data-driven)
+    discountPackages?: { qty: number; discountPercent: number }[] | null; // packs reales
   };
   contact: { name: string; phone: string; city?: string | null };
   brandName?: string | null;
@@ -193,7 +211,7 @@ export async function renderReceiptPng(
 ): Promise<Buffer> {
   const { sale, raffle, contact } = input;
   const brandName = input.brandName || "Hermanos Pernía";
-  const instagram = input.brandInstagram || "@granderifaspernia";
+  const instagram = input.brandInstagram || "@rifashermanospernia";
   const website = (input.brandWebsite || "rifashermanospernia.com").replace(/^https?:\/\//, "");
 
   // Montos reales: total a cobrar vs. lo efectivamente abonado. La deuda es el resto.
@@ -468,7 +486,11 @@ export async function renderReceiptPng(
           el(
             "div",
             { color: "#dddddd", fontSize: 11, textAlign: "center" },
-            ganchoFor(sale.numbers.length)
+            ganchoFor(
+              sale.numbers.length,
+              Number(raffle.pricePerNumber ?? 0),
+              raffle.discountPackages ?? null
+            )
           ),
         ]
       ),
