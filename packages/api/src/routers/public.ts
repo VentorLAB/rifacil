@@ -6,6 +6,7 @@ import { normalizePhone } from "@riffas/shared";
 import { uploadImage } from "@riffas/shared/cloudinary";
 import { getActiveRate } from "../lib/exchangeRate";
 import { parseStorefrontConfig } from "../lib/storefrontConfig";
+import { brandFor, raffleReceiptFields } from "../lib/receiptData";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -565,17 +566,13 @@ export const publicRouter = createTRPCRouter({
         orderBy: { orden: "asc" },
         select: { titulo: true },
       });
-      const u = await prisma.user.findUnique({
-        where: { id: userId },
-        select: { name: true, brandName: true, brandColor: true, brandLogo: true },
-      });
+      const brand = await brandFor(prisma, userId);
       const receiptUrl = await safeGenerateReceipt({
         sale,
-        raffle: { title: raffle.title, lottery: raffle.loteria, drawDate: raffle.drawDate, prizes },
+        raffle: await raffleReceiptFields(prisma, raffle, prizes),
         contact: sale.contact,
-        brandName: u?.brandName || u?.name || "Rifa",
-        brandColor: raffle.color || u?.brandColor || null,
-        brandLogo: u?.brandLogo || null,
+        ...brand,
+        brandColor: raffle.color || brand.brandColor || null,
       });
       await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
       if (receiptUrl) {

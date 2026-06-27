@@ -3,6 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
+import { brandFor, raffleReceiptFields } from "../lib/receiptData";
 
 // Redondeo a 2 decimales para montos de dinero.
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -25,19 +26,9 @@ async function safeGenerateReceipt(args: ReceiptArgs): Promise<string | null> {
   }
 }
 
-// La marca del rifero NO viaja en la sesión (solo id/name/email/image), así que
-// la leemos de la DB para que el recibo aplique nombre/color/logo correctos.
-async function brandFor(prisma: any, userId: string) {
-  const u = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { name: true, brandName: true, brandColor: true, brandLogo: true },
-  });
-  return {
-    brandName: (u?.brandName || u?.name || "Riffas") as string,
-    brandColor: (u?.brandColor ?? null) as string | null,
-    brandLogo: (u?.brandLogo ?? null) as string | null,
-  };
-}
+// brandFor (marca: logo/instagram/web) + raffleReceiptFields (escasez dinámica)
+// viven en lib/receiptData para que panel, portal del vendedor y tienda pública
+// emitan el MISMO recibo.
 
 export const saleRouter = createTRPCRouter({
   create: protectedProcedure
@@ -246,12 +237,7 @@ export const saleRouter = createTRPCRouter({
       const brand = await brandFor(prisma, businessId);
       const receiptUrl = await safeGenerateReceipt({
         sale, // incluye amountPaid => el recibo muestra Valor total / Abonado / Deuda reales
-        raffle: {
-          title: raffle.title,
-          lottery: raffle.loteria,
-          drawDate: raffle.drawDate,
-          prizes,
-        },
+        raffle: await raffleReceiptFields(prisma, raffle, prizes),
         contact: sale.contact,
         ...brand,
       });
@@ -367,12 +353,7 @@ export const saleRouter = createTRPCRouter({
       });
       const receiptUrl = await safeGenerateReceipt({
         sale: updated,
-        raffle: {
-          title: updated.raffle.title,
-          lottery: updated.raffle.loteria,
-          drawDate: updated.raffle.drawDate,
-          prizes,
-        },
+        raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
         contact: updated.contact,
         ...(await brandFor(prisma, businessId)),
       });
@@ -538,12 +519,7 @@ export const saleRouter = createTRPCRouter({
       const brand = await brandFor(prisma, businessId);
       const receiptUrl = await safeGenerateReceipt({
         sale: updated,
-        raffle: {
-          title: updated.raffle.title,
-          lottery: updated.raffle.loteria,
-          drawDate: updated.raffle.drawDate,
-          prizes,
-        },
+        raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
         contact: updated.contact,
         ...brand,
       });

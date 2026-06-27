@@ -11,9 +11,11 @@
 // desde Client Components.
 import { normalizePhone } from "./phone";
 
+// Mismo formato que el recibo (imagen): sin decimales si es entero, hasta 2 si hay
+// centavos. Antes usaba 2 fijos ($9.00) y no cuadraba con la imagen ($9).
 const money = (v: unknown) =>
   `$${Number(v ?? 0).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   })}`;
 
@@ -41,15 +43,22 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const paid = Number(input.paid ?? total);
   const debt = Math.max(0, Math.round((total - paid) * 100) / 100);
 
+  const hola = input.contactName ? `¡Hola ${input.contactName}! ` : "";
   return [
-    `¡Hola ${input.contactName ?? ""}! 🎟️ Tu apartado en *${input.raffleTitle}* quedó registrado.`,
+    `🎟️ *${input.raffleTitle}*`,
+    `${hola}Tu apartado quedó registrado. 🍀`,
     ``,
-    `Número(s): ${input.numbers.join(", ")}`,
+    `Tus números: *${input.numbers.join(", ")}*`,
     `Valor total: ${money(total)}`,
-    debt > 0 ? `Abonado: ${money(paid)} · Deuda: ${money(debt)}` : `Estado: PAGADO ✅`,
+    debt > 0
+      ? `Abonado: ${money(paid)} · *Te falta: ${money(debt)}*`
+      : `Estado: *PAGADO* ✅`,
+    debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
     input.receiptUrl ? `` : null,
-    input.receiptUrl ? `Tu comprobante: ${input.receiptUrl}` : null,
+    input.receiptUrl ? `📄 Tu comprobante oficial:` : null,
+    input.receiptUrl ? input.receiptUrl : null,
     ``,
+    `🏆 Todo juega hasta tener ganador.`,
     `— ${input.brandName ?? "Riffas"}`,
   ]
     .filter((l) => l !== null)
