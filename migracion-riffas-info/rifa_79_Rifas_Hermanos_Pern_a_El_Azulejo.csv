@@ -1,0 +1,993 @@
+raffleId,raffleName,number,status,client,phone,address,paid_usd,due_usd,reservedDate
+79,Rifas Hermanos Pernía - El Azulejo,0,sold,Derwin Lunares,+584145051038,🍓🍓🍓,22.50,0.00,2026-03-09T20:05:29.533Z
+79,Rifas Hermanos Pernía - El Azulejo,2,sold,Daniel morles Estados unidos,+14078194864,Estados unidos,25.00,0.00,2026-03-14T00:51:17.400Z
+79,Rifas Hermanos Pernía - El Azulejo,3,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,4,sold,Miguel Tapias,+13316279808,Estados Unidos,12.50,0.00,2026-04-12T00:01:15.180Z
+79,Rifas Hermanos Pernía - El Azulejo,5,sold,Marlin Santos,+16822608711,Estados unidos,25.00,0.00,2026-03-20T20:43:54.082Z
+79,Rifas Hermanos Pernía - El Azulejo,6,sold,Daniel morles Estados unidos,+14078194864,Estados unidos,25.00,0.00,2026-03-14T00:51:17.400Z
+79,Rifas Hermanos Pernía - El Azulejo,7,sold,Alfredo Escobar           Maracay,+584267344809,Maracay,25.00,0.00,2026-03-18T16:18:10.960Z
+79,Rifas Hermanos Pernía - El Azulejo,8,sold,Gladys Sanchez,+5799999999,La Grita,25.00,0.00,2026-03-15T01:51:56.278Z
+79,Rifas Hermanos Pernía - El Azulejo,9,sold,Eduin Sánchez,+18439411093,Estados unidos,25.00,0.00,2026-03-28T14:37:28.772Z
+79,Rifas Hermanos Pernía - El Azulejo,10,sold,Rafael Molina,+584147484747,La Fría,22.50,0.00,2026-03-10T03:55:09.951Z
+79,Rifas Hermanos Pernía - El Azulejo,11,pending,ROKI GARCIA LA FRIA,+584247662581,La fria,0.00,21.67,2026-03-20T00:36:21.749Z
+79,Rifas Hermanos Pernía - El Azulejo,12,sold,Juanita Muñoz,+584143797435,La fria,22.50,0.00,2026-03-20T00:38:19.214Z
+79,Rifas Hermanos Pernía - El Azulejo,13,sold,Germary aranguren Usa,+13124509506,Estados unidpa,22.33,0.00,2026-03-20T00:41:14.011Z
+79,Rifas Hermanos Pernía - El Azulejo,14,sold,Cristian Escalante,+573126594950,La Fria,25.00,0.00,2026-03-14T14:24:22.929Z
+79,Rifas Hermanos Pernía - El Azulejo,15,sold,Ivan herrera Pocholo,+584147014632,La fria,25.00,0.00,2026-03-14T00:48:47.796Z
+79,Rifas Hermanos Pernía - El Azulejo,16,sold,Deivi Velandria usa,+14073084039,Estados unidos,22.50,0.00,2026-03-20T00:51:03.334Z
+79,Rifas Hermanos Pernía - El Azulejo,17,sold,Ever Colón,+573202150251,Colón,22.50,0.00,2026-03-20T00:52:39.238Z
+79,Rifas Hermanos Pernía - El Azulejo,18,sold,Yenifer Perez,+16894652656,La Fria - Usa,22.50,0.00,2026-03-14T00:38:33.029Z
+79,Rifas Hermanos Pernía - El Azulejo,19,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,22.30,0.00,2026-03-20T01:03:15.543Z
+79,Rifas Hermanos Pernía - El Azulejo,20,sold,Jose Aldana,+16823309290,Estados Unidos,25.00,0.00,2026-03-14T19:58:36.479Z
+79,Rifas Hermanos Pernía - El Azulejo,21,sold,Yuglendy carrero,+584147348041,Ls fria,25.00,0.00,2026-03-21T03:04:20.523Z
+79,Rifas Hermanos Pernía - El Azulejo,22,sold,Yeimi Toledo,+584147387511,La Fria,22.50,0.00,2026-03-14T00:40:01.738Z
+79,Rifas Hermanos Pernía - El Azulejo,23,sold,Yackelin Fuentes usa,+50761249348,Estados unidos,22.50,0.00,2026-03-16T18:38:26.583Z
+79,Rifas Hermanos Pernía - El Azulejo,24,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,25,sold,Juneifer Mendoza,+584140112658,La fría,21.00,0.00,2026-03-15T02:58:56.867Z
+79,Rifas Hermanos Pernía - El Azulejo,26,sold,Maryelis Flores,+13184386409,Estados Unidos,22.50,0.00,2026-03-15T00:39:38.590Z
+79,Rifas Hermanos Pernía - El Azulejo,27,sold,Olga Cabrera,+17432090645,Colón,22.50,0.00,2026-03-15T00:46:11.041Z
+79,Rifas Hermanos Pernía - El Azulejo,28,sold,Jazmin duque España,+34722239450,España,25.00,0.00,2026-03-14T00:01:47.706Z
+79,Rifas Hermanos Pernía - El Azulejo,29,sold,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,22.00,0.00,2026-03-15T23:31:52.653Z
+79,Rifas Hermanos Pernía - El Azulejo,30,sold,Freddy Medina,+13126328062,Estados unidos,22.33,0.00,2026-03-14T01:20:37.564Z
+79,Rifas Hermanos Pernía - El Azulejo,31,sold,Yefferson Chacón,+584247452532,Queniquea,22.50,0.00,2026-03-15T00:59:31.282Z
+79,Rifas Hermanos Pernía - El Azulejo,32,sold,Ricardo Ramirez,+16159389001,La Fria Usa,22.00,0.00,2026-03-20T20:48:48.180Z
+79,Rifas Hermanos Pernía - El Azulejo,33,sold,Gil Rodriguez  El llanito - Capacho,+584247003290,Capacho,25.00,0.00,2026-04-08T20:31:54.099Z
+79,Rifas Hermanos Pernía - El Azulejo,34,sold,Brandon Gandica  la grita,+584147558518,La grita,25.00,0.00,2026-03-14T18:13:31.147Z
+79,Rifas Hermanos Pernía - El Azulejo,35,pending,Celman Rubio,+573202794981,La Fría,0.00,25.00,2026-03-28T17:11:11.212Z
+79,Rifas Hermanos Pernía - El Azulejo,36,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,22.50,0.00,2026-04-12T00:21:48.914Z
+79,Rifas Hermanos Pernía - El Azulejo,37,sold,Jose Manuel cepeda,+584121251625,Maracaibo,25.00,0.00,2026-03-18T02:35:13.251Z
+79,Rifas Hermanos Pernía - El Azulejo,38,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,25.00,0.00,2026-04-08T13:09:54.598Z
+79,Rifas Hermanos Pernía - El Azulejo,39,sold,Manuel alfonso ( MAELO) castro,+584247419599,La fria,25.00,0.00,2026-03-15T19:06:13.994Z
+79,Rifas Hermanos Pernía - El Azulejo,40,sold,Wilmer Serrano          Tachira,+56936609791,Táchira,25.00,0.00,2026-03-17T13:24:55.953Z
+79,Rifas Hermanos Pernía - El Azulejo,41,sold,Nolberto Nolberto,+584247745969,La fria,25.00,0.00,2026-03-20T20:23:47.821Z
+79,Rifas Hermanos Pernía - El Azulejo,42,sold,jhon de pablo Usa,+12109655075,Estados unidos,22.00,0.00,2026-03-13T12:14:09.562Z
+79,Rifas Hermanos Pernía - El Azulejo,43,sold,Chadi El Sakaan,+584143760000,La Fria,25.00,0.00,2026-04-09T14:09:40.104Z
+79,Rifas Hermanos Pernía - El Azulejo,44,sold,Andres Jaimes,+56972040687,Chile,25.00,0.00,2026-03-20T20:28:53.442Z
+79,Rifas Hermanos Pernía - El Azulejo,45,sold,Sami lopez vecino,+573108029764,La fria,25.00,0.00,2026-03-20T01:17:46.703Z
+79,Rifas Hermanos Pernía - El Azulejo,46,sold,Yen Buitriago,+19803610415,Estados unidos,22.00,0.00,2026-03-20T01:21:15.017Z
+79,Rifas Hermanos Pernía - El Azulejo,47,sold,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,22.00,0.00,2026-03-25T03:05:44.680Z
+79,Rifas Hermanos Pernía - El Azulejo,48,sold,Isabel Cardena.         La Grita,+584147532956,La Grita,25.00,0.00,2026-03-22T22:53:49.010Z
+79,Rifas Hermanos Pernía - El Azulejo,49,sold,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,22.00,0.00,2026-03-25T03:05:44.680Z
+79,Rifas Hermanos Pernía - El Azulejo,50,sold,Franklin Alchain repuestos,+584247722153,La fria,22.50,0.00,2026-03-20T01:25:00.763Z
+79,Rifas Hermanos Pernía - El Azulejo,51,sold,Franklin Alchain repuestos,+584247722153,La fria,22.50,0.00,2026-03-20T01:25:00.763Z
+79,Rifas Hermanos Pernía - El Azulejo,52,sold,Mirian Santander,+573239018602,Bucaramanga,25.00,0.00,2026-03-20T20:55:57.097Z
+79,Rifas Hermanos Pernía - El Azulejo,53,sold,Erika Moncada    Municipio Fernando Feo,+584226378838,Municipio Fernando Feo,22.50,0.00,2026-03-26T01:18:41.969Z
+79,Rifas Hermanos Pernía - El Azulejo,54,sold,Nelson Ramirez colon,+584163742090,Colon,25.00,0.00,2026-03-18T00:25:16.488Z
+79,Rifas Hermanos Pernía - El Azulejo,55,sold,Libardo Arciniegas,+573223410298,Colombia,25.00,0.00,2026-03-09T22:12:42.363Z
+79,Rifas Hermanos Pernía - El Azulejo,56,sold,Angelo Parada usa,+19207141166,Estados Unidos,25.00,0.00,2026-03-14T14:40:48.944Z
+79,Rifas Hermanos Pernía - El Azulejo,57,sold,Arturo Gonzalez    ( La concordia ),+584247503431,La concordia,25.00,0.00,2026-04-07T15:54:08.191Z
+79,Rifas Hermanos Pernía - El Azulejo,58,sold,Marcos carrillo       La Grita,+584147437472,La grita,25.00,0.00,2026-03-16T00:04:24.265Z
+79,Rifas Hermanos Pernía - El Azulejo,59,sold,Yorman Duarte,+584247443558,La Fria,25.00,0.00,2026-04-10T22:23:13.813Z
+79,Rifas Hermanos Pernía - El Azulejo,60,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,61,sold,Jean Carlos Ramirez,+584247321597,La Fria,21.00,0.00,2026-04-06T22:28:47.041Z
+79,Rifas Hermanos Pernía - El Azulejo,62,sold,Herlyn Montilla San felix,+584247767238,San felix,25.00,0.00,2026-03-14T19:56:09.439Z
+79,Rifas Hermanos Pernía - El Azulejo,63,sold,carolina contreras usa,+16297298655,Estados unidos,22.33,0.00,2026-03-14T15:42:40.343Z
+79,Rifas Hermanos Pernía - El Azulejo,64,sold,Reinaldo Marchan,+14143082362,Estados unidos,22.33,0.00,2026-03-21T15:51:35.312Z
+79,Rifas Hermanos Pernía - El Azulejo,65,sold,Sander Velandria,+17083486017,Estados Unidos,20.00,0.00,2026-04-09T14:49:11.319Z
+79,Rifas Hermanos Pernía - El Azulejo,66,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,67,sold,doris rojas usa,+13316005782,Estados unidos,22.33,0.00,2026-03-14T14:18:54.173Z
+79,Rifas Hermanos Pernía - El Azulejo,68,sold,Manuel Rangel chile,+584247273914,La fria,25.00,0.00,2026-03-17T20:26:34.617Z
+79,Rifas Hermanos Pernía - El Azulejo,69,sold,Alvaro Javier la fria,+573112553175,La fria,25.00,0.00,2026-03-10T03:48:23.967Z
+79,Rifas Hermanos Pernía - El Azulejo,70,sold,Leonor Joya,+17209685102,Estados unidos,25.00,0.00,2026-04-09T15:54:04.694Z
+79,Rifas Hermanos Pernía - El Azulejo,71,pending,Andrés Coraspe Puerto Ordaz,+584148671480,Puerto Ordaz edo Bolivar,0.00,25.00,2026-04-09T13:02:25.035Z
+79,Rifas Hermanos Pernía - El Azulejo,72,sold,Eulises Ramirez,+584247744516,La fría,25.00,0.00,2026-03-27T20:28:25.092Z
+79,Rifas Hermanos Pernía - El Azulejo,73,sold,Sergio Ramos,+584128629758,San Cristóbal,22.33,0.00,2026-03-14T19:30:54.916Z
+79,Rifas Hermanos Pernía - El Azulejo,74,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,75,sold,Jaymar Ramírez,+34643221261,España,22.30,0.00,2026-03-10T11:34:48.657Z
+79,Rifas Hermanos Pernía - El Azulejo,76,sold,Jose gregorio Leon gollo,+584247069005,La fria,25.00,0.00,2026-03-14T16:18:02.942Z
+79,Rifas Hermanos Pernía - El Azulejo,77,sold,Krisbel Perez 《Usa-La fria 》,+14437354900,Estados unidos,22.00,0.00,2026-03-19T12:23:42.664Z
+79,Rifas Hermanos Pernía - El Azulejo,78,sold,Marina Monsalve,+584265307247,La fria,25.00,0.00,2026-03-14T16:23:37.993Z
+79,Rifas Hermanos Pernía - El Azulejo,79,sold,Enrique Gasolina,+584247047355,La fria,20.00,0.00,2026-04-08T14:32:31.820Z
+79,Rifas Hermanos Pernía - El Azulejo,80,sold,Jhoan Perez,+15125918454,Estados Unidos,22.30,0.00,2026-03-20T01:29:41.433Z
+79,Rifas Hermanos Pernía - El Azulejo,81,sold,Juneifer Mendoza,+584140112658,La fría,21.00,0.00,2026-03-15T02:58:56.867Z
+79,Rifas Hermanos Pernía - El Azulejo,82,sold,Sara Mendez,+584247268426,La fria,25.00,0.00,2026-03-16T21:17:49.395Z
+79,Rifas Hermanos Pernía - El Azulejo,83,sold,Deivi Ramirez,+584247779680,La fria,25.00,0.00,2026-03-20T16:19:25.008Z
+79,Rifas Hermanos Pernía - El Azulejo,84,sold,Yonni reyes Pasteles,+584147091716,La fria,25.00,0.00,2026-03-18T19:34:44.179Z
+79,Rifas Hermanos Pernía - El Azulejo,85,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,21.00,0.00,2026-03-19T00:23:01.780Z
+79,Rifas Hermanos Pernía - El Azulejo,86,sold,Yovani Toledo,+584147191457,La fría,22.50,0.00,2026-03-14T17:22:29.213Z
+79,Rifas Hermanos Pernía - El Azulejo,87,sold,Eudes Brenes sobrino,+584141799340,Vigia,20.00,0.00,2026-04-10T18:45:15.614Z
+79,Rifas Hermanos Pernía - El Azulejo,88,sold,Jonnathan Velasquez,+525653399283,La Fría,22.50,0.00,2026-03-17T11:35:59.759Z
+79,Rifas Hermanos Pernía - El Azulejo,89,sold,Rosbeily Morles usa,+12067421305,Estados unidos,22.51,0.00,2026-03-14T14:55:37.127Z
+79,Rifas Hermanos Pernía - El Azulejo,90,sold,Deivi Velandria usa,+14073084039,Estados unidos,20.00,0.00,2026-04-10T17:12:54.240Z
+79,Rifas Hermanos Pernía - El Azulejo,91,sold,Angélica boscan,+584247412268,La fria,25.00,0.00,2026-03-28T22:54:36.621Z
+79,Rifas Hermanos Pernía - El Azulejo,92,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.50,0.00,2026-03-25T00:22:49.793Z
+79,Rifas Hermanos Pernía - El Azulejo,93,sold,Dorimar Prada moto tsxi,+584145320539,La fría,25.00,0.00,2026-04-10T15:03:22.524Z
+79,Rifas Hermanos Pernía - El Azulejo,94,sold,Yohana chourio Esposa de roberth,+14078616017,Estados unidos,25.00,0.00,2026-03-15T21:04:19.066Z
+79,Rifas Hermanos Pernía - El Azulejo,95,sold,Belisario Muñoz,+17206201568,Estados Unidos,25.00,0.00,2026-04-07T19:11:17.077Z
+79,Rifas Hermanos Pernía - El Azulejo,96,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,21.00,0.00,2026-03-19T00:23:01.780Z
+79,Rifas Hermanos Pernía - El Azulejo,97,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,98,sold,Nesler zanbrano españa,+34667257390,españa,25.00,0.00,2026-04-11T20:10:30.399Z
+79,Rifas Hermanos Pernía - El Azulejo,99,sold,Yoel 5 milazo,+584226438032,La fria,20.00,0.00,2026-04-11T21:55:58.683Z
+79,Rifas Hermanos Pernía - El Azulejo,100,sold,Jairo Ramires colon papa de jaymar españa,+584147191362,Colon,25.00,0.00,2026-03-18T00:35:55.137Z
+79,Rifas Hermanos Pernía - El Azulejo,101,sold,Victor molina,+56933670260,Chile,25.00,0.00,2026-03-14T18:31:21.316Z
+79,Rifas Hermanos Pernía - El Azulejo,103,sold,Albany ramirez usa,+12105481181,Estados unidos,22.33,0.00,2026-03-20T01:52:22.548Z
+79,Rifas Hermanos Pernía - El Azulejo,104,sold,Antonino Montero la fria,+584147387335,La fría,25.00,0.00,2026-03-28T02:01:35.270Z
+79,Rifas Hermanos Pernía - El Azulejo,105,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,22.00,0.00,2026-03-14T22:57:41.713Z
+79,Rifas Hermanos Pernía - El Azulejo,106,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,22.00,0.00,2026-03-14T22:57:41.713Z
+79,Rifas Hermanos Pernía - El Azulejo,107,sold,Marleny arellano Tia,+584247120271,La fria,25.00,0.00,2026-03-16T20:41:13.304Z
+79,Rifas Hermanos Pernía - El Azulejo,108,sold,Elias Ramirez la fria,+584247402182,La fria,25.00,0.00,2026-03-17T13:49:11.735Z
+79,Rifas Hermanos Pernía - El Azulejo,109,sold,Meivy Sierra,+584122995705,La fria,25.00,0.00,2026-03-18T18:44:40.447Z
+79,Rifas Hermanos Pernía - El Azulejo,110,sold,Maria Reaño,+584247843616,La fria,25.00,0.00,2026-03-29T02:00:21.350Z
+79,Rifas Hermanos Pernía - El Azulejo,111,pending,ROKI GARCIA LA FRIA,+584247662581,La fria,0.00,21.67,2026-03-20T00:36:21.749Z
+79,Rifas Hermanos Pernía - El Azulejo,112,sold,Jose sanchez La fria,+584149742615,La fria,25.01,0.00,2026-03-17T00:39:22.092Z
+79,Rifas Hermanos Pernía - El Azulejo,113,sold,Jessica León,+584247466819,La Fría,25.00,0.00,2026-03-15T00:41:34.970Z
+79,Rifas Hermanos Pernía - El Azulejo,114,sold,Germary aranguren Usa,+13124509506,Estados unidpa,22.33,0.00,2026-03-20T00:41:14.011Z
+79,Rifas Hermanos Pernía - El Azulejo,115,sold,Nelson Roa,+17869147200,Estados Unidos,22.33,0.00,2026-03-14T19:51:01.375Z
+79,Rifas Hermanos Pernía - El Azulejo,116,sold,Alvaro guzman,+56990998845,Chile,25.00,0.00,2026-03-26T23:00:25.103Z
+79,Rifas Hermanos Pernía - El Azulejo,117,sold,Marisol Arellano mama,+584243367487,La grita,25.00,0.00,2026-04-07T19:24:40.302Z
+79,Rifas Hermanos Pernía - El Azulejo,118,sold,Jesus Contreras,+56945427238,La fria,25.00,0.00,2026-03-14T19:16:48.694Z
+79,Rifas Hermanos Pernía - El Azulejo,119,sold,Idelmary Martinez,+584121703512,La Fría,25.00,0.00,2026-03-14T19:59:28.802Z
+79,Rifas Hermanos Pernía - El Azulejo,120,sold,Kathlyn Torrejano,+584247029845,La Fría,25.00,0.00,2026-03-17T11:38:32.571Z
+79,Rifas Hermanos Pernía - El Azulejo,121,sold,Francisco Payares     ( Colombia ),+573005790054,Colombia,25.00,0.00,2026-03-14T22:46:09.918Z
+79,Rifas Hermanos Pernía - El Azulejo,122,sold,Joseimy Hernández,+584247571473,L fría usa,25.00,0.00,2026-03-14T19:12:33.332Z
+79,Rifas Hermanos Pernía - El Azulejo,123,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,25.00,0.00,2026-03-15T22:01:59.956Z
+79,Rifas Hermanos Pernía - El Azulejo,124,sold,Ritzon Corpoelet colon,+584163717668,Colon,25.00,0.00,2026-03-14T19:18:20.726Z
+79,Rifas Hermanos Pernía - El Azulejo,125,sold,Angel Rosales,+584242197659,La Fría,22.50,0.00,2026-03-14T19:55:55.805Z
+79,Rifas Hermanos Pernía - El Azulejo,126,sold,Lucy Rey,+584143796817,La Fría,22.33,0.00,2026-03-14T19:21:56.634Z
+79,Rifas Hermanos Pernía - El Azulejo,127,sold,jhon de pablo Usa,+12109655075,Estados unidos,22.00,0.00,2026-03-13T12:14:09.562Z
+79,Rifas Hermanos Pernía - El Azulejo,128,sold,Freddy Medina,+13126328062,Estados unidos,22.33,0.00,2026-03-14T01:20:37.564Z
+79,Rifas Hermanos Pernía - El Azulejo,129,sold,Delcy zambrano,+584247100514,La fria,25.00,0.00,2026-03-14T17:17:06.258Z
+79,Rifas Hermanos Pernía - El Azulejo,130,sold,Marcos Osorio,+573173134587,La Fría,25.00,0.00,2026-04-07T21:07:21.618Z
+79,Rifas Hermanos Pernía - El Azulejo,131,sold,Cristian Medina alacran,+584147013376,Colombia,25.00,0.00,2026-03-14T19:28:48.506Z
+79,Rifas Hermanos Pernía - El Azulejo,132,sold,Rosbeily Morles usa,+12067421305,Estados unidos,22.50,0.00,2026-03-14T14:55:37.127Z
+79,Rifas Hermanos Pernía - El Azulejo,133,sold,Tina suarez rifera,+584143711379,La fria,25.00,0.00,2026-03-14T19:26:15.170Z
+79,Rifas Hermanos Pernía - El Azulejo,134,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,22.50,0.00,2026-03-10T12:03:36.629Z
+79,Rifas Hermanos Pernía - El Azulejo,135,sold,Yorwin Suescun,+584247474246,La fría,22.50,0.00,2026-03-14T18:07:25.182Z
+79,Rifas Hermanos Pernía - El Azulejo,136,sold,Jose Rafael Lopez (Pelon),+56932848548,Chile,22.33,0.00,2026-03-14T20:07:17.036Z
+79,Rifas Hermanos Pernía - El Azulejo,137,sold,yesica Vargas usa,+14257665142,Estados unidoa,22.33,0.00,2026-03-14T19:48:11.220Z
+79,Rifas Hermanos Pernía - El Azulejo,138,sold,Miguel Benavides,+19127104280,La Fria - Usa,22.00,0.00,2026-03-29T00:15:50.877Z
+79,Rifas Hermanos Pernía - El Azulejo,139,sold,Gerardo Toledo,+56947525688,Chile,22.33,0.00,2026-04-07T21:35:16.536Z
+79,Rifas Hermanos Pernía - El Azulejo,140,sold,Nancy rivera sociedad,+584247180680,La fria,22.50,0.00,2026-03-28T22:51:59.371Z
+79,Rifas Hermanos Pernía - El Azulejo,141,sold,Henrry Serrano,+18433050408,La Fria - Usa,22.00,0.00,2026-03-18T02:32:15.985Z
+79,Rifas Hermanos Pernía - El Azulejo,142,sold,Mevis Sayago,+584147492548,La fría,22.00,0.00,2026-04-12T00:21:32.962Z
+79,Rifas Hermanos Pernía - El Azulejo,143,sold,Alcides sandía maracay,+584265306210,Maracay,25.00,0.00,2026-03-14T19:50:36.331Z
+79,Rifas Hermanos Pernía - El Azulejo,144,sold,Luis Miguel waooo,+584147545453,La fría,25.00,0.00,2026-03-24T23:35:36.887Z
+79,Rifas Hermanos Pernía - El Azulejo,145,sold,Jonnathan Florez,+18432981188,Estados unidos,25.00,0.00,2026-03-14T20:03:00.479Z
+79,Rifas Hermanos Pernía - El Azulejo,146,sold,Enrrique Cárdenas,+16822603711,Estados unidos,22.50,0.00,2026-03-20T20:46:05.715Z
+79,Rifas Hermanos Pernía - El Azulejo,147,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,22.34,0.00,2026-03-14T19:54:11.190Z
+79,Rifas Hermanos Pernía - El Azulejo,148,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,22.34,0.00,2026-03-21T15:59:37.104Z
+79,Rifas Hermanos Pernía - El Azulejo,149,sold,Nubia Ramírez,+56964480846,Chile,25.00,0.00,2026-03-20T20:54:40.894Z
+79,Rifas Hermanos Pernía - El Azulejo,150,sold,Andrea Martinez,+17208095947,La Fría,22.00,0.00,2026-04-09T17:11:12.398Z
+79,Rifas Hermanos Pernía - El Azulejo,151,sold,Jhon caicedo usa,+18182977354,Estados unidos,25.00,0.00,2026-03-18T20:14:08.703Z
+79,Rifas Hermanos Pernía - El Azulejo,152,sold,Ali Labrador       La Grita,+584247181642,La Grita,25.00,0.00,2026-03-20T23:49:27.060Z
+79,Rifas Hermanos Pernía - El Azulejo,153,sold,Yeferson Cely,+584121719620,La fria,25.00,0.00,2026-03-14T20:04:17.278Z
+79,Rifas Hermanos Pernía - El Azulejo,154,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,22.00,0.00,2026-03-14T22:57:41.713Z
+79,Rifas Hermanos Pernía - El Azulejo,155,sold,Milanyela Duran,+584126614644,la fria,25.00,0.00,2026-03-28T21:52:42.408Z
+79,Rifas Hermanos Pernía - El Azulejo,156,sold,Eduardo Zambrano,+584247392707,La Fría,25.00,0.00,2026-03-17T00:09:53.819Z
+79,Rifas Hermanos Pernía - El Azulejo,157,sold,Yen Buitriago,+19803610415,Estados unidos,22.00,0.00,2026-03-20T01:21:15.017Z
+79,Rifas Hermanos Pernía - El Azulejo,158,sold,Jorgue Angarita,+584122913601,La Fria,25.00,0.00,2026-03-14T20:36:34.205Z
+79,Rifas Hermanos Pernía - El Azulejo,159,sold,Reinaldo Marchan,+14143082362,Estados unidos,22.33,0.00,2026-03-21T15:54:30.052Z
+79,Rifas Hermanos Pernía - El Azulejo,160,sold,Eduard Benavidez,+19124382469,La fría,25.00,0.00,2026-03-22T01:25:57.501Z
+79,Rifas Hermanos Pernía - El Azulejo,161,sold,Jose Rafael Tortosa       La Grita - Usa,+14193153960,La Grita,25.00,0.00,2026-03-15T00:53:25.872Z
+79,Rifas Hermanos Pernía - El Azulejo,162,sold,Domingo sandoval usa,+12163135810,Estados unidos,22.00,0.00,2026-03-10T02:57:40.425Z
+79,Rifas Hermanos Pernía - El Azulejo,163,sold,Henrry Serrano,+18433050408,La Fria - Usa,22.00,0.00,2026-03-18T02:32:15.985Z
+79,Rifas Hermanos Pernía - El Azulejo,164,sold,Maria chacon,+584247430093,La fria,25.00,0.00,2026-03-16T21:34:03.621Z
+79,Rifas Hermanos Pernía - El Azulejo,165,sold,Jesus Narváez,+584127953481,Margarita,25.00,0.00,2026-03-18T20:15:34.506Z
+79,Rifas Hermanos Pernía - El Azulejo,166,pending,Dayana Perez,+584121769567,La Fria,0.00,18.00,2026-04-12T01:44:56.031Z
+79,Rifas Hermanos Pernía - El Azulejo,167,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,22.33,0.00,2026-03-21T15:59:37.104Z
+79,Rifas Hermanos Pernía - El Azulejo,168,sold,Adriana Marcela,+584247748193,La Fria,25.00,0.00,2026-03-15T01:58:28.960Z
+79,Rifas Hermanos Pernía - El Azulejo,169,sold,victor contreras ls fria,+584247036467,La fria,25.00,0.00,2026-03-10T11:54:59.013Z
+79,Rifas Hermanos Pernía - El Azulejo,170,sold,Brian Buen día,+15083610533,Estados Unidos,22.33,0.00,2026-03-21T17:30:22.001Z
+79,Rifas Hermanos Pernía - El Azulejo,171,sold,Carlos Jimeno,+584147290794,La fria,25.00,0.00,2026-04-09T13:56:03.492Z
+79,Rifas Hermanos Pernía - El Azulejo,172,sold,Miguel Benavides,+19127104280,La Fria - Usa,22.00,0.00,2026-03-29T00:15:50.877Z
+79,Rifas Hermanos Pernía - El Azulejo,173,sold,Maria Esposa de eulises,+584247314606,La fria,25.00,0.00,2026-03-15T18:49:21.011Z
+79,Rifas Hermanos Pernía - El Azulejo,174,sold,Ricardo Ramirez,+16159389001,La Fria Usa,22.00,0.00,2026-03-20T20:48:48.180Z
+79,Rifas Hermanos Pernía - El Azulejo,175,sold,Jose Rafael Tortosa  ( La Grita - Usa ),+584121741766,La grita,25.00,0.00,2026-03-15T23:43:59.781Z
+79,Rifas Hermanos Pernía - El Azulejo,176,sold,Sander Velandria,+17083486017,Estados Unidos,22.50,0.00,2026-03-14T15:28:40.932Z
+79,Rifas Hermanos Pernía - El Azulejo,177,sold,Amancio Marin,+18172044645,La Fria - Usa,25.00,0.00,2026-03-14T02:05:31.319Z
+79,Rifas Hermanos Pernía - El Azulejo,178,sold,Karla Rojas colon,+584143754773,Colon,22.50,0.00,2026-03-16T18:35:40.574Z
+79,Rifas Hermanos Pernía - El Azulejo,179,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,180,sold,Yeiker Colmenarez usa,+13313224845,La fria,22.33,0.00,2026-03-21T15:18:15.671Z
+79,Rifas Hermanos Pernía - El Azulejo,181,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,21.00,0.00,2026-03-17T02:01:19.980Z
+79,Rifas Hermanos Pernía - El Azulejo,182,sold,José Cruz,+584162017368,La Fría,22.50,0.00,2026-03-17T11:34:10.770Z
+79,Rifas Hermanos Pernía - El Azulejo,183,sold,Yohana chourio Esposa de roberth,+14078616017,Estados unidos,25.00,0.00,2026-03-15T21:04:19.066Z
+79,Rifas Hermanos Pernía - El Azulejo,184,sold,Alex Contreras,+16153729785,Estados unidos,22.50,0.00,2026-03-20T20:50:05.499Z
+79,Rifas Hermanos Pernía - El Azulejo,185,sold,Estefania Sánchez,+18543457863,Estados unidos,25.00,0.00,2026-03-19T21:53:01.184Z
+79,Rifas Hermanos Pernía - El Azulejo,186,sold,Luis Ávila,+584247831281,Valencia,25.00,0.00,2026-04-11T20:06:14.232Z
+79,Rifas Hermanos Pernía - El Azulejo,187,sold,Robert Bettin usa,+14078616053,Estados unidos,22.01,0.00,2026-03-15T19:50:11.945Z
+79,Rifas Hermanos Pernía - El Azulejo,188,sold,Judit Molina coloncito,+584247401308,Coloncito,25.00,0.00,2026-04-09T14:00:04.023Z
+79,Rifas Hermanos Pernía - El Azulejo,189,sold,Javier Porras,+584147388794,La Fria,25.00,0.00,2026-03-15T19:09:12.987Z
+79,Rifas Hermanos Pernía - El Azulejo,190,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,191,sold,doris rojas usa,+13316005782,Estados unidos,22.33,0.00,2026-03-14T14:18:54.173Z
+79,Rifas Hermanos Pernía - El Azulejo,192,sold,Belisario Muñoz,+17206201568,Estados Unidos,25.00,0.00,2026-03-15T19:11:09.550Z
+79,Rifas Hermanos Pernía - El Azulejo,193,sold,Yerson Portillo usa,+13476777246,Estados unidos,22.33,0.00,2026-03-19T00:51:21.803Z
+79,Rifas Hermanos Pernía - El Azulejo,194,sold,Richard Duarte,+584147339746,La fría,25.00,0.00,2026-03-15T19:21:59.957Z
+79,Rifas Hermanos Pernía - El Azulejo,195,sold,Daniel Vigia,+584145310435,el vigía,25.00,0.00,2026-03-20T22:33:41.881Z
+79,Rifas Hermanos Pernía - El Azulejo,196,sold,Javier chavez Colon,+584261690378,Colon,25.00,0.00,2026-03-10T11:50:10.673Z
+79,Rifas Hermanos Pernía - El Azulejo,197,sold,Derwin Lunares,+584145051038,🍓🍓🍓,22.50,0.00,2026-03-09T20:05:29.533Z
+79,Rifas Hermanos Pernía - El Azulejo,198,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,199,sold,Alexander Contreras     El cobre,+584147521842,El cobre,25.00,0.00,2026-03-20T14:40:49.007Z
+79,Rifas Hermanos Pernía - El Azulejo,200,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,201,sold,Karina Rojas usa,+15128451679,Estados unidos,22.34,0.00,2026-03-15T19:21:06.775Z
+79,Rifas Hermanos Pernía - El Azulejo,202,sold,Anthony Gonzales policia,+584247691612,La fria,25.00,0.00,2026-03-18T02:07:03.961Z
+79,Rifas Hermanos Pernía - El Azulejo,203,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,204,sold,Cristobal Zambrano,+13609992787,Estados Unidos,22.33,0.00,2026-03-15T20:58:44.171Z
+79,Rifas Hermanos Pernía - El Azulejo,205,sold,Jesus Apolinar      San Juan de Colon,+584247110660,San juan de colon,25.00,0.00,2026-03-17T03:01:10.621Z
+79,Rifas Hermanos Pernía - El Azulejo,206,sold,Yohana chourio Esposa de roberth,+14078616017,Estados unidos,25.00,0.00,2026-03-15T21:04:19.066Z
+79,Rifas Hermanos Pernía - El Azulejo,207,sold,Ruben Mercado,+584247136016,La Fría,22.33,0.00,2026-03-14T19:23:23.194Z
+79,Rifas Hermanos Pernía - El Azulejo,208,sold,Yenis Bettin,+584147577344,La Fría,25.00,0.00,2026-03-14T22:22:50.455Z
+79,Rifas Hermanos Pernía - El Azulejo,209,sold,Yony Perez,+584147385318,La Fría Ronet,22.50,0.00,2026-03-20T20:14:21.318Z
+79,Rifas Hermanos Pernía - El Azulejo,210,sold,Juanita Muñoz,+584143797435,La fria,22.50,0.00,2026-03-20T00:38:19.214Z
+79,Rifas Hermanos Pernía - El Azulejo,211,sold,Yuliana Villasmil,+584247750975,La Fria,25.00,0.00,2026-03-20T23:11:59.873Z
+79,Rifas Hermanos Pernía - El Azulejo,212,sold,Karina Carnes,+584147428933,La Fría,20.00,0.00,2026-03-26T21:39:43.631Z
+79,Rifas Hermanos Pernía - El Azulejo,213,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,20.00,0.00,2026-04-11T22:20:30.610Z
+79,Rifas Hermanos Pernía - El Azulejo,214,pending,Grisel León,+584247562898,La fría,0.00,25.00,2026-03-20T20:58:08.545Z
+79,Rifas Hermanos Pernía - El Azulejo,215,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,22.33,0.00,2026-03-14T19:54:11.190Z
+79,Rifas Hermanos Pernía - El Azulejo,216,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,217,sold,Junior Laguado,+584147554601,La fría,25.00,0.00,2026-03-16T02:25:12.824Z
+79,Rifas Hermanos Pernía - El Azulejo,218,sold,Jesus baraja Mecanico,+584147354430,La fria,22.50,0.00,2026-03-17T14:15:50.866Z
+79,Rifas Hermanos Pernía - El Azulejo,219,sold,Ruben Mercado,+584247136016,La Fría,22.33,0.00,2026-03-14T19:23:23.194Z
+79,Rifas Hermanos Pernía - El Azulejo,220,sold,Crisanyely Prado,+573108139130,La fria,22.30,0.00,2026-03-15T23:36:24.800Z
+79,Rifas Hermanos Pernía - El Azulejo,221,sold,Yefferson Chacón,+584247452532,Queniquea,22.50,0.00,2026-03-15T00:59:31.282Z
+79,Rifas Hermanos Pernía - El Azulejo,222,sold,carolina contreras usa,+16297298655,Estados unidos,22.33,0.00,2026-03-14T15:42:40.343Z
+79,Rifas Hermanos Pernía - El Azulejo,223,sold,Daniela Suarez,+584167270923,Colón,22.50,0.00,2026-03-15T21:23:09.527Z
+79,Rifas Hermanos Pernía - El Azulejo,224,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,22.50,0.00,2026-03-15T00:49:07.063Z
+79,Rifas Hermanos Pernía - El Azulejo,225,sold,Jonnathan Florez,+18432981188,Estados unidos,25.00,0.00,2026-03-14T20:03:00.479Z
+79,Rifas Hermanos Pernía - El Azulejo,226,sold,Luis Muro     Maracaibo Edo Zulia  Usa,+14322079194,Maracaibo Edo Zulia,20.00,0.00,2026-04-10T03:05:05.917Z
+79,Rifas Hermanos Pernía - El Azulejo,227,sold,Yésica Espinoza,+13137337965,La Fria - Usa,25.00,0.00,2026-03-20T20:27:37.364Z
+79,Rifas Hermanos Pernía - El Azulejo,228,sold,Blanca Sierra,+584143756074,La fría,25.00,0.00,2026-03-18T14:06:28.427Z
+79,Rifas Hermanos Pernía - El Azulejo,229,sold,Daylennys MendeZ,+18438098800,Estados unidos,25.00,0.00,2026-03-20T19:04:29.326Z
+79,Rifas Hermanos Pernía - El Azulejo,230,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,22.00,0.00,2026-03-16T13:06:28.826Z
+79,Rifas Hermanos Pernía - El Azulejo,231,sold,Aldo Laurano,+584247211003,La Fría,25.00,0.00,2026-04-07T20:29:12.884Z
+79,Rifas Hermanos Pernía - El Azulejo,232,sold,jonatan castro caracas,+584242629287,Caracas,22.50,0.00,2026-04-11T20:22:46.111Z
+79,Rifas Hermanos Pernía - El Azulejo,233,sold,Ana Karina,+584147324069,San cristobal,25.00,0.00,2026-03-14T20:40:11.363Z
+79,Rifas Hermanos Pernía - El Azulejo,234,sold,Jesus Torres      San Cristóbal,+584247629438,San Cristóbal,25.00,0.00,2026-03-16T12:50:21.980Z
+79,Rifas Hermanos Pernía - El Azulejo,235,sold,alfonso lizcano La fria,+584247080304,La fria,25.00,0.00,2026-03-17T19:51:23.643Z
+79,Rifas Hermanos Pernía - El Azulejo,236,pending,Jhoan vaca,+584147388551,La fria,0.00,25.00,2026-03-17T18:55:14.705Z
+79,Rifas Hermanos Pernía - El Azulejo,237,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,22.00,0.00,2026-03-16T13:11:36.441Z
+79,Rifas Hermanos Pernía - El Azulejo,238,sold,Daniela Vivas,+584142682865,Ls fria,25.00,0.00,2026-03-14T23:25:57.243Z
+79,Rifas Hermanos Pernía - El Azulejo,239,sold,Gabriel Sandoval,+12163726045,La Fria,22.50,0.00,2026-03-18T23:41:24.687Z
+79,Rifas Hermanos Pernía - El Azulejo,240,sold,Rossy Mora,+573144629424,La fria,25.00,0.00,2026-03-27T21:58:54.241Z
+79,Rifas Hermanos Pernía - El Azulejo,241,pending,Javier delgado sociedad,+584265730047,La fria,10.00,15.00,2026-03-15T22:25:17.870Z
+79,Rifas Hermanos Pernía - El Azulejo,242,sold,Yeiker Colmenarez usa,+13313224845,La fria,22.33,0.00,2026-03-21T15:18:15.671Z
+79,Rifas Hermanos Pernía - El Azulejo,243,sold,Jose Jaime Valera Trujillo,+584261708105,Valera edo Trujillo,25.00,0.00,2026-04-11T16:28:25.699Z
+79,Rifas Hermanos Pernía - El Azulejo,244,sold,Liliana Mendez,+584247196052,La fría,25.00,0.00,2026-03-17T18:52:14.536Z
+79,Rifas Hermanos Pernía - El Azulejo,245,sold,Albert Quinceno    ( La Fria - Usa ),+19123381129,La fria usa,25.00,0.00,2026-03-17T22:01:33.120Z
+79,Rifas Hermanos Pernía - El Azulejo,246,sold,Maikel Diaz,+584247521868,La fría,25.00,0.00,2026-03-22T01:09:17.870Z
+79,Rifas Hermanos Pernía - El Azulejo,247,sold,Miguel tapias Michelena-usa,+18722906392,Estados unidos,22.50,0.00,2026-03-10T11:21:23.372Z
+79,Rifas Hermanos Pernía - El Azulejo,248,sold,Eduardo Jaime   Colombia,+573203726305,Colombia,25.00,0.00,2026-03-15T01:59:32.632Z
+79,Rifas Hermanos Pernía - El Azulejo,249,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,250,sold,Andrea Martinez,+17208095947,La Fría,22.33,0.00,2026-03-14T18:08:47.495Z
+79,Rifas Hermanos Pernía - El Azulejo,251,sold,Jean Carlos Ramirez,+584247321597,La Fria,21.00,0.00,2026-04-06T22:28:47.041Z
+79,Rifas Hermanos Pernía - El Azulejo,252,sold,Jimmy Silva,+584161724113,La fria,25.00,0.00,2026-03-14T19:57:47.859Z
+79,Rifas Hermanos Pernía - El Azulejo,253,sold,Jhoan Perez,+15125918454,Estados Unidos,22.30,0.00,2026-03-20T01:29:41.433Z
+79,Rifas Hermanos Pernía - El Azulejo,254,sold,Yefri Fernández,+584143711389,La fría,22.50,0.00,2026-03-10T12:19:04.263Z
+79,Rifas Hermanos Pernía - El Azulejo,255,sold,Krisbel Perez 《Usa-La fria 》,+14437354900,Estados unidos,22.00,0.00,2026-03-19T12:23:42.664Z
+79,Rifas Hermanos Pernía - El Azulejo,256,sold,Yonellys rodriguez Estados unidos,+18035545936,Estados unidos,22.50,0.00,2026-03-13T23:45:47.317Z
+79,Rifas Hermanos Pernía - El Azulejo,257,pending,Wilderson Acosta,+584247623996,La fria,0.00,25.00,2026-03-14T01:03:25.520Z
+79,Rifas Hermanos Pernía - El Azulejo,258,sold,Yeison naranjo usa,+18542457903,Estados unidos,25.00,0.00,2026-03-18T00:22:29.634Z
+79,Rifas Hermanos Pernía - El Azulejo,259,sold,Yolimar Galviz,+16615414832,Estados Unidos,25.00,0.00,2026-03-14T21:20:12.504Z
+79,Rifas Hermanos Pernía - El Azulejo,260,sold,Eduardo Colmenarez,+584265320111,Colón,20.00,0.00,2026-04-10T18:31:47.333Z
+79,Rifas Hermanos Pernía - El Azulejo,261,sold,Karina Carnes,+584147428933,La Fría,20.00,0.00,2026-03-17T01:43:12.986Z
+79,Rifas Hermanos Pernía - El Azulejo,262,sold,Frainy Perez,+584247481755,La fría,22.50,0.00,2026-03-14T19:26:21.941Z
+79,Rifas Hermanos Pernía - El Azulejo,263,sold,Johan frenos Sociedad,+584247235032,La fria,25.00,0.00,2026-03-15T22:04:47.157Z
+79,Rifas Hermanos Pernía - El Azulejo,264,sold,Daniela Suarez,+584167270923,Colón,22.50,0.00,2026-03-15T21:23:09.527Z
+79,Rifas Hermanos Pernía - El Azulejo,265,sold,Luis Padron       Valle frio,+584121269650,Valle frio,25.00,0.00,2026-04-09T13:23:12.519Z
+79,Rifas Hermanos Pernía - El Azulejo,266,pending,Maykol Narvaez,+584247552806,San Cristobal,0.00,25.00,2026-04-12T02:17:14.474Z
+79,Rifas Hermanos Pernía - El Azulejo,267,sold,Saul Ramírez,+584147220896,La Moruzca,25.00,0.00,2026-03-14T15:35:55.906Z
+79,Rifas Hermanos Pernía - El Azulejo,268,sold,Yonaiker Suarez,+19127595784,Estados unidos,22.00,0.00,2026-03-14T13:33:44.875Z
+79,Rifas Hermanos Pernía - El Azulejo,269,sold,Tahis Ramírez,+584247554489,La fría,25.00,0.00,2026-03-28T23:27:10.021Z
+79,Rifas Hermanos Pernía - El Azulejo,270,sold,cristian mendez usa,+19126550240,Estados unidos,22.50,0.00,2026-03-10T03:29:51.315Z
+79,Rifas Hermanos Pernía - El Azulejo,271,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,272,sold,Yuglendy Bello,+12819129773,La Fria - Usa,22.00,0.00,2026-03-10T03:02:58.900Z
+79,Rifas Hermanos Pernía - El Azulejo,273,sold,Libardo Borjas chile,+56974451688,Chile,25.00,0.00,2026-03-17T01:02:47.459Z
+79,Rifas Hermanos Pernía - El Azulejo,274,sold,Pinto Carrera 8 la fria,+584247498984,La fria,25.00,0.00,2026-03-15T21:43:16.436Z
+79,Rifas Hermanos Pernía - El Azulejo,275,sold,Said Alvarado maracucho,+584143644877,La fria,22.30,0.00,2026-03-10T00:36:18.060Z
+79,Rifas Hermanos Pernía - El Azulejo,276,sold,Anthony de luca la fria,+584147387793,La fria,21.25,0.00,2026-03-18T18:36:49.417Z
+79,Rifas Hermanos Pernía - El Azulejo,277,sold,Dahir Di domenico colon,+584248562540,Colon,25.00,0.00,2026-03-16T02:41:43.013Z
+79,Rifas Hermanos Pernía - El Azulejo,278,sold,Leomar guerrero usa,+17373952299,Estados unidos,25.00,0.00,2026-03-15T21:48:21.280Z
+79,Rifas Hermanos Pernía - El Azulejo,279,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,21.00,0.00,2026-03-19T00:23:01.780Z
+79,Rifas Hermanos Pernía - El Azulejo,280,sold,Robert Bettin usa,+14078616053,Estados unidos,22.50,0.00,2026-03-29T00:13:38.840Z
+79,Rifas Hermanos Pernía - El Azulejo,281,sold,Pedro Nieto,+15165544157,Estados unidos,22.00,0.00,2026-03-17T12:05:22.351Z
+79,Rifas Hermanos Pernía - El Azulejo,282,sold,Robinson Rico      Ureña,+584147576728,Ureña,25.00,0.00,2026-03-19T02:54:53.436Z
+79,Rifas Hermanos Pernía - El Azulejo,283,sold,Lucy Rey,+584143796817,La Fría,22.33,0.00,2026-03-14T19:21:56.634Z
+79,Rifas Hermanos Pernía - El Azulejo,284,sold,Laura Zanbrano prima,+584140821823,La grita,25.00,0.00,2026-03-18T20:43:09.003Z
+79,Rifas Hermanos Pernía - El Azulejo,285,sold,Leycer Campos       Valera,+584121718924,Valera,25.00,0.00,2026-03-11T01:32:08.824Z
+79,Rifas Hermanos Pernía - El Azulejo,286,sold,Jesus Cardenas.  La grita,+584165020522,La Grita,25.00,0.00,2026-03-11T01:26:54.684Z
+79,Rifas Hermanos Pernía - El Azulejo,287,sold,Gabriel Mujica       La Fria,+584247276204,La fria,22.00,0.00,2026-03-14T22:52:40.259Z
+79,Rifas Hermanos Pernía - El Azulejo,288,sold,Thalia Garcia    Caracas,+584242519224,Caracas,25.00,0.00,2026-04-11T13:21:02.525Z
+79,Rifas Hermanos Pernía - El Azulejo,289,sold,wesly rodrigues la fria,+584247357640,La fria,25.00,0.00,2026-03-09T20:38:51.997Z
+79,Rifas Hermanos Pernía - El Azulejo,291,sold,Jesus Alviarez,+584121715054,Colón,25.00,0.00,2026-03-15T20:57:54.986Z
+79,Rifas Hermanos Pernía - El Azulejo,292,pending,Alejandro Arellano,+525562185848,La Grita,0.00,20.00,2026-04-11T22:09:30.169Z
+79,Rifas Hermanos Pernía - El Azulejo,293,sold,yesica Vargas usa,+14257665142,Estados unidoa,22.33,0.00,2026-03-14T19:48:11.220Z
+79,Rifas Hermanos Pernía - El Azulejo,294,sold,Miguel Molina       San Cristóbal,+584141757738,San Cristobal,25.00,0.00,2026-03-17T02:27:18.388Z
+79,Rifas Hermanos Pernía - El Azulejo,295,sold,Diego Morales      ( Chile ),+56978747174,Chile,22.00,0.00,2026-03-21T21:10:38.494Z
+79,Rifas Hermanos Pernía - El Azulejo,296,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,297,sold,Alexis Perdómo    Guárico,+584241061201,Guarico,25.00,0.00,2026-04-11T17:20:23.747Z
+79,Rifas Hermanos Pernía - El Azulejo,298,sold,yuleidy alvernia,+584247031321,La fria,25.00,0.00,2026-03-21T20:22:16.748Z
+79,Rifas Hermanos Pernía - El Azulejo,299,sold,Luis Cardona san cristobal,+584147231824,San cristobal,20.00,0.00,2026-04-11T15:35:06.858Z
+79,Rifas Hermanos Pernía - El Azulejo,300,sold,Martin Colina.   San Antonio de los Altos - Usa,+13026470880,Usa usa,25.00,0.00,2026-03-11T01:45:34.589Z
+79,Rifas Hermanos Pernía - El Azulejo,301,sold,Gerson Arellano guarico \Colon,+584143659658,Guarico,25.00,0.00,2026-03-14T18:48:07.196Z
+79,Rifas Hermanos Pernía - El Azulejo,302,sold,Eduin velazco la fria,+584247134497,La fria,25.00,0.00,2026-03-16T12:49:31.317Z
+79,Rifas Hermanos Pernía - El Azulejo,303,sold,Yeritzon Carrero tatto,+584121278332,La fria,25.00,0.00,2026-03-16T02:26:07.235Z
+79,Rifas Hermanos Pernía - El Azulejo,304,sold,Ivan rivera mendez arauca,+573226423552,Arauca,22.50,0.00,2026-03-10T12:09:31.817Z
+79,Rifas Hermanos Pernía - El Azulejo,305,sold,Richard Ramirez,+525659395391,Mexico,25.00,0.00,2026-03-22T02:01:40.520Z
+79,Rifas Hermanos Pernía - El Azulejo,306,sold,yesica Vargas usa,+14257665142,Estados unidoa,22.33,0.00,2026-03-14T19:48:11.220Z
+79,Rifas Hermanos Pernía - El Azulejo,307,sold,Enrrique Cárdenas,+16822603711,Estados unidos,22.50,0.00,2026-03-20T20:46:05.715Z
+79,Rifas Hermanos Pernía - El Azulejo,308,sold,Jean Carlos palma      ( La Grita ),+584247004792,La Grita,22.50,0.00,2026-03-15T00:41:18.022Z
+79,Rifas Hermanos Pernía - El Azulejo,309,sold,Jesús Malpica,+584147061815,Barinas,22.50,0.00,2026-03-20T21:01:44.717Z
+79,Rifas Hermanos Pernía - El Azulejo,310,sold,Albany ramirez usa,+12105481181,Estados unidos,22.33,0.00,2026-03-20T01:52:22.548Z
+79,Rifas Hermanos Pernía - El Azulejo,311,sold,Iris Correa,+573212317214,Colombia,22.50,0.00,2026-04-12T01:57:24.691Z
+79,Rifas Hermanos Pernía - El Azulejo,312,sold,Franyer Pernia,+584247549479,La fría,25.00,0.00,2026-03-18T21:03:56.134Z
+79,Rifas Hermanos Pernía - El Azulejo,313,sold,omarcito caracas,+584143010693,Caracas,22.50,0.00,2026-03-16T00:41:32.329Z
+79,Rifas Hermanos Pernía - El Azulejo,314,sold,Marcos Osorio,+573173134587,La Fría,25.00,0.00,2026-04-07T21:07:21.618Z
+79,Rifas Hermanos Pernía - El Azulejo,315,sold,Said (Barbero),+584247383532,La fría,22.50,0.00,2026-04-11T23:18:44.053Z
+79,Rifas Hermanos Pernía - El Azulejo,316,sold,Katty Panchano     La Grita,+584247221696,La Grita,25.00,0.00,2026-03-11T01:28:42.198Z
+79,Rifas Hermanos Pernía - El Azulejo,317,sold,Ivan rivera mendez arauca,+573226423552,Arauca,22.50,0.00,2026-03-10T12:09:31.817Z
+79,Rifas Hermanos Pernía - El Azulejo,318,pending,Eliecer Millan,+584141796609,Estados Unidos,0.00,25.00,2026-04-07T21:11:39.758Z
+79,Rifas Hermanos Pernía - El Azulejo,319,sold,Wilian Colon Quesera,+584220117835,Colon,25.00,0.00,2026-03-15T14:05:36.142Z
+79,Rifas Hermanos Pernía - El Azulejo,320,sold,Gabriela Muñoz,+13802394964,La Fria Usa,22.34,0.00,2026-03-14T19:35:02.664Z
+79,Rifas Hermanos Pernía - El Azulejo,321,sold,Franklin vergel usa,+12162069770,Estados unidos,22.50,0.00,2026-03-10T03:36:12.896Z
+79,Rifas Hermanos Pernía - El Azulejo,322,sold,Ruben Mercado,+584247136016,La Fría,22.33,0.00,2026-03-14T19:23:23.194Z
+79,Rifas Hermanos Pernía - El Azulejo,323,sold,Cristian Aguilar,+584247544438,Seboruco,25.00,0.00,2026-03-18T22:05:09.135Z
+79,Rifas Hermanos Pernía - El Azulejo,324,sold,Henrry Serrano,+18433050408,La Fria - Usa,22.00,0.00,2026-03-18T02:32:15.985Z
+79,Rifas Hermanos Pernía - El Azulejo,325,sold,Andres Camargo.   ( La Grita ),+584247038899,La Grita,22.50,0.00,2026-03-16T13:26:09.239Z
+79,Rifas Hermanos Pernía - El Azulejo,326,sold,Ivan rivera mendez arauca,+573226423552,Arauca,22.50,0.00,2026-03-10T12:09:31.817Z
+79,Rifas Hermanos Pernía - El Azulejo,327,sold,Germary aranguren Usa,+13124509506,Estados unidpa,22.33,0.00,2026-03-20T00:41:14.011Z
+79,Rifas Hermanos Pernía - El Azulejo,328,sold,Luis Muro     Maracaibo Edo Zulia  Usa,+14322079194,Maracaibo Edo Zulia,20.00,0.00,2026-04-10T03:05:05.917Z
+79,Rifas Hermanos Pernía - El Azulejo,329,sold,Jeferson Bonilla,+17202702745,Estados unidos,22.33,0.00,2026-03-14T19:33:37.530Z
+79,Rifas Hermanos Pernía - El Azulejo,330,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,22.00,0.00,2026-03-16T13:06:28.826Z
+79,Rifas Hermanos Pernía - El Azulejo,331,sold,Deynis Moreno  ( La Grita ),+584122901463,La grita,25.00,0.00,2026-03-28T23:58:17.612Z
+79,Rifas Hermanos Pernía - El Azulejo,332,sold,Yacson mendoza,+584247393236,La fria,25.00,0.00,2026-03-21T21:26:06.080Z
+79,Rifas Hermanos Pernía - El Azulejo,333,sold,Crisanyely Prado,+573108139130,La fria,20.00,0.00,2026-04-08T02:08:03.957Z
+79,Rifas Hermanos Pernía - El Azulejo,334,sold,Kandy Fabra,+584140798113,L fria,25.00,0.00,2026-03-19T00:52:59.512Z
+79,Rifas Hermanos Pernía - El Azulejo,335,sold,Daniel Garcia,+584147573085,Maracay,25.00,0.00,2026-03-21T18:13:12.339Z
+79,Rifas Hermanos Pernía - El Azulejo,336,sold,Kleiver duran,+584247018387,La fria,25.00,0.00,2026-03-16T00:10:32.774Z
+79,Rifas Hermanos Pernía - El Azulejo,337,sold,Nelly Rey.          (La grita),+584247072555,La grita,22.50,0.00,2026-03-15T01:41:01.499Z
+79,Rifas Hermanos Pernía - El Azulejo,338,sold,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,san Josecito,25.00,0.00,2026-03-11T02:05:43.425Z
+79,Rifas Hermanos Pernía - El Azulejo,339,sold,Krisbel Perez 《Usa-La fria 》,+14437354900,Estados unidos,22.00,0.00,2026-03-19T12:23:42.664Z
+79,Rifas Hermanos Pernía - El Azulejo,340,sold,Gerardo Toledo,+56947525688,Chile,22.33,0.00,2026-04-07T21:35:16.536Z
+79,Rifas Hermanos Pernía - El Azulejo,341,sold,Juneifer Mendoza,+584140112658,La fría,21.00,0.00,2026-03-15T02:58:56.867Z
+79,Rifas Hermanos Pernía - El Azulejo,342,sold,Sandra Rivera,+584147541423,La fria,25.00,0.00,2026-03-16T00:18:48.833Z
+79,Rifas Hermanos Pernía - El Azulejo,343,sold,Javier Pérez,+56921928867,La Fria chile,25.00,0.00,2026-03-14T16:43:33.307Z
+79,Rifas Hermanos Pernía - El Azulejo,344,sold,Alcadio Leon la fria,+584247062164,La fria,22.00,0.00,2026-04-11T22:56:25.804Z
+79,Rifas Hermanos Pernía - El Azulejo,345,sold,Keismer Contreras,+17372028084,Estados Unidos,22.00,0.00,2026-03-20T19:47:28.301Z
+79,Rifas Hermanos Pernía - El Azulejo,346,sold,Alberto Alvarado,+584149766905,La fria,25.00,0.00,2026-03-14T15:40:55.729Z
+79,Rifas Hermanos Pernía - El Azulejo,347,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,22.50,0.00,2026-03-10T12:03:36.629Z
+79,Rifas Hermanos Pernía - El Azulejo,348,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,22.33,0.00,2026-03-14T19:54:11.190Z
+79,Rifas Hermanos Pernía - El Azulejo,349,sold,Anderson Gutiérrez luna,+584147150254,Estados unidos,25.00,0.00,2026-03-20T23:02:36.953Z
+79,Rifas Hermanos Pernía - El Azulejo,350,sold,Ronal Zorro bodega 1ro de mayo,+584121717122,La fria,25.00,0.00,2026-03-16T00:51:46.249Z
+79,Rifas Hermanos Pernía - El Azulejo,351,sold,Said Alvarado maracucho,+584143644877,La fria,22.30,0.00,2026-03-10T00:36:18.060Z
+79,Rifas Hermanos Pernía - El Azulejo,352,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,22.30,0.00,2026-03-20T01:03:15.543Z
+79,Rifas Hermanos Pernía - El Azulejo,353,sold,Yoni Garcia,+584147567062,La fria,25.00,0.00,2026-03-16T00:46:02.505Z
+79,Rifas Hermanos Pernía - El Azulejo,354,sold,Keismer Contreras,+17372028084,Estados Unidos,22.00,0.00,2026-03-20T19:47:28.301Z
+79,Rifas Hermanos Pernía - El Azulejo,355,sold,Alicia luna sociedad,+16307768771,Estados unidos,17.50,0.00,2026-04-11T15:03:50.443Z
+79,Rifas Hermanos Pernía - El Azulejo,356,sold,Heidy Vergel,+13309621518,Estados unidos,25.00,0.00,2026-03-22T01:05:29.047Z
+79,Rifas Hermanos Pernía - El Azulejo,357,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,358,sold,Luis avila,+584147294479,La fria,25.00,0.00,2026-03-28T15:20:17.173Z
+79,Rifas Hermanos Pernía - El Azulejo,359,sold,terapias Garcia,+17745228026,Estados unidos,22.50,0.00,2026-03-14T19:23:48.266Z
+79,Rifas Hermanos Pernía - El Azulejo,360,sold,Teresa Urdaneta,+584247527335,Colon,25.00,0.00,2026-03-09T22:11:36.779Z
+79,Rifas Hermanos Pernía - El Azulejo,361,sold,Andrea ramirez el mercado la fria,+584147265354,La fria,25.00,0.00,2026-03-15T21:11:14.653Z
+79,Rifas Hermanos Pernía - El Azulejo,362,sold,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,22.50,0.00,2026-03-20T14:36:16.920Z
+79,Rifas Hermanos Pernía - El Azulejo,363,sold,Yuglendy Bello,+12819129773,La Fria - Usa,22.00,0.00,2026-03-10T03:02:58.900Z
+79,Rifas Hermanos Pernía - El Azulejo,364,sold,Reinaldo Marchan,+14143082362,Estados unidos,22.33,0.00,2026-03-21T15:54:30.052Z
+79,Rifas Hermanos Pernía - El Azulejo,365,sold,Nelson Roa,+17869147200,Estados Unidos,22.33,0.00,2026-03-14T19:51:01.375Z
+79,Rifas Hermanos Pernía - El Azulejo,366,sold,Enderson Rojas marantoquito,+584140815791,La fria,25.00,0.00,2026-03-17T14:31:15.992Z
+79,Rifas Hermanos Pernía - El Azulejo,367,sold,Manuel Contreras     El Cobre,+584247339211,El cobre,25.00,0.00,2026-03-11T01:57:46.907Z
+79,Rifas Hermanos Pernía - El Azulejo,368,sold,Olga Cabrera,+17432090645,Colón,22.50,0.00,2026-03-15T00:46:11.041Z
+79,Rifas Hermanos Pernía - El Azulejo,369,sold,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,22.00,0.00,2026-03-15T23:31:52.653Z
+79,Rifas Hermanos Pernía - El Azulejo,370,sold,Johander ramirez La fria - chile,+56932679127,Chile,25.00,0.00,2026-03-13T23:40:16.281Z
+79,Rifas Hermanos Pernía - El Azulejo,371,sold,Marbely Pernia esposa de pablo,+584145323469,La fria,25.00,0.00,2026-03-17T18:54:09.482Z
+79,Rifas Hermanos Pernía - El Azulejo,372,sold,Jesus Figueroa  usa,+14633128554,Estados unidos,25.00,0.00,2026-03-10T02:19:16.786Z
+79,Rifas Hermanos Pernía - El Azulejo,373,sold,Gerson Macoco la grita,+584147406337,La grita,25.00,0.00,2026-03-18T22:06:31.423Z
+79,Rifas Hermanos Pernía - El Azulejo,374,sold,Yorvi Zambrano,+584247163958,La Fria,22.34,0.00,2026-03-22T01:02:15.049Z
+79,Rifas Hermanos Pernía - El Azulejo,375,sold,Julieth Ramos,+584247663669,Puerto Cabello,25.00,0.00,2026-03-14T19:29:20.380Z
+79,Rifas Hermanos Pernía - El Azulejo,376,sold,Maite Calderon,+573145459211,La fria,25.00,0.00,2026-03-16T22:04:53.094Z
+79,Rifas Hermanos Pernía - El Azulejo,377,sold,Crisanyely Prado,+573108139130,La fria,22.30,0.00,2026-03-15T23:36:24.800Z
+79,Rifas Hermanos Pernía - El Azulejo,378,sold,Edixon Rojas    ( Rubio ),+573017413743,Rubio,25.00,0.00,2026-03-15T19:49:18.056Z
+79,Rifas Hermanos Pernía - El Azulejo,379,sold,Alexander Uzcátegui,+17373349944,Estados unidos,25.00,0.00,2026-03-16T12:51:02.814Z
+79,Rifas Hermanos Pernía - El Azulejo,380,pending,Nelson Leon.       ( San Cristobal),+584247641133,San Cristobal,0.00,25.00,2026-04-09T23:02:51.470Z
+79,Rifas Hermanos Pernía - El Azulejo,381,sold,Guwer Ruedas,+17543497323,Estados Unidos,22.33,0.00,2026-03-21T22:35:25.739Z
+79,Rifas Hermanos Pernía - El Azulejo,382,sold,Jaymar Ramírez,+34643221261,España,22.30,0.00,2026-03-10T11:34:48.657Z
+79,Rifas Hermanos Pernía - El Azulejo,383,sold,Yeraldin Vivas usa,+15127122718,Estados unidos,22.33,0.00,2026-03-14T19:01:52.025Z
+79,Rifas Hermanos Pernía - El Azulejo,384,sold,Yoel 5 milazo,+584226438032,La fria,25.00,0.00,2026-03-29T00:23:36.645Z
+79,Rifas Hermanos Pernía - El Azulejo,385,sold,Yerson Portillo usa,+13476777246,Estados unidos,22.33,0.00,2026-03-19T00:51:21.803Z
+79,Rifas Hermanos Pernía - El Azulejo,386,sold,Cristobal Zambrano,+13609992787,Estados Unidos,22.33,0.00,2026-03-15T20:58:44.171Z
+79,Rifas Hermanos Pernía - El Azulejo,387,sold,Ever Colón,+573202150251,Colón,22.50,0.00,2026-03-20T00:52:39.238Z
+79,Rifas Hermanos Pernía - El Azulejo,388,sold,Gerardo Toledo,+56947525688,Chile,22.33,0.00,2026-04-07T21:35:16.536Z
+79,Rifas Hermanos Pernía - El Azulejo,389,sold,Yeritzon Ramirez (paguer),+584147572198,La fría,21.70,0.00,2026-03-16T15:46:13.157Z
+79,Rifas Hermanos Pernía - El Azulejo,390,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,391,sold,Gabriel ferrer san Cristóbal,+584247711976,San cristobal,25.00,0.00,2026-03-17T21:22:11.135Z
+79,Rifas Hermanos Pernía - El Azulejo,392,sold,jonatan castro caracas,+584242629287,Caracas,22.50,0.00,2026-04-11T20:22:46.111Z
+79,Rifas Hermanos Pernía - El Azulejo,393,sold,Pedro Nieto,+15165544157,Estados unidos,22.00,0.00,2026-03-17T12:05:22.351Z
+79,Rifas Hermanos Pernía - El Azulejo,394,sold,Simon Sanchez la fria,+34634160039,La fria,20.00,0.00,2026-04-11T19:32:15.334Z
+79,Rifas Hermanos Pernía - El Azulejo,395,sold,Reycar Rey      La Grita,+584247256205,La Grita,25.00,0.00,2026-03-22T01:19:52.892Z
+79,Rifas Hermanos Pernía - El Azulejo,396,sold,Wiliam Garzón,+16824169365,La Fria - Usa,22.50,0.00,2026-03-20T23:04:08.046Z
+79,Rifas Hermanos Pernía - El Azulejo,397,sold,Yen Buitriago,+19803610415,Estados unidos,22.00,0.00,2026-03-20T01:21:15.017Z
+79,Rifas Hermanos Pernía - El Azulejo,398,sold,Yeritzon Ramirez (paguer),+584147572198,La fría,21.70,0.00,2026-03-16T15:46:13.157Z
+79,Rifas Hermanos Pernía - El Azulejo,399,sold,Miguel Tapias,+13316279808,Estados Unidos,22.50,0.00,2026-04-12T00:00:27.853Z
+79,Rifas Hermanos Pernía - El Azulejo,401,sold,Franyer Pernia,+584247549479,La fría,25.00,0.00,2026-03-18T21:03:56.134Z
+79,Rifas Hermanos Pernía - El Azulejo,402,sold,Yony Perez,+584147385318,La Fría Ronet,22.50,0.00,2026-03-20T20:14:21.318Z
+79,Rifas Hermanos Pernía - El Azulejo,403,sold,Erika Moncada    Municipio Fernando Feo,+584226378838,Municipio Fernando Feo,22.50,0.00,2026-03-26T01:18:41.969Z
+79,Rifas Hermanos Pernía - El Azulejo,404,sold,Tihamer Muñoz           La Concordia,+573152351455,La Concordia san Cristobal,22.50,0.00,2026-03-17T02:22:34.461Z
+79,Rifas Hermanos Pernía - El Azulejo,405,sold,Jonnathan Velasquez,+525653399283,La Fría,22.50,0.00,2026-03-17T11:35:59.759Z
+79,Rifas Hermanos Pernía - El Azulejo,406,sold,Javier Contreras,+13126509222,La Fria,22.50,0.00,2026-03-18T21:23:15.953Z
+79,Rifas Hermanos Pernía - El Azulejo,407,sold,Yackelin Romero,+573138163228,Colombia,25.00,0.00,2026-03-21T22:46:47.565Z
+79,Rifas Hermanos Pernía - El Azulejo,408,sold,Said Alvarado maracucho,+584143644877,La fria,22.30,0.00,2026-03-10T00:36:18.060Z
+79,Rifas Hermanos Pernía - El Azulejo,409,sold,Yefri Fernández,+584143711389,La fría,22.50,0.00,2026-03-10T12:19:04.263Z
+79,Rifas Hermanos Pernía - El Azulejo,410,sold,Yunior Carrascal,+584149751355,La Fría,25.00,0.00,2026-03-14T14:43:17.982Z
+79,Rifas Hermanos Pernía - El Azulejo,411,sold,Rokicucuya contreras,+573214381625,cucuta,22.50,0.00,2026-03-28T23:26:02.126Z
+79,Rifas Hermanos Pernía - El Azulejo,412,sold,Elba Mendoza,+584121749496,La Fría,25.00,0.00,2026-03-14T20:36:28.913Z
+79,Rifas Hermanos Pernía - El Azulejo,413,sold,Ronet Ramirez,+584147361575,La Fria,25.00,0.00,2026-03-20T20:17:01.822Z
+79,Rifas Hermanos Pernía - El Azulejo,414,sold,Frank torrado La fria,+584147467546,La fria,25.00,0.00,2026-03-21T21:32:28.237Z
+79,Rifas Hermanos Pernía - El Azulejo,415,sold,Jose Durango,+584125004219,La fria,25.00,0.00,2026-03-20T14:55:19.302Z
+79,Rifas Hermanos Pernía - El Azulejo,416,sold,Deivi Velandria usa,+14073084039,Estados unidos,22.50,0.00,2026-03-20T00:51:03.334Z
+79,Rifas Hermanos Pernía - El Azulejo,417,sold,Daiver velazques,+584241951963,Estados unidos,22.50,0.00,2026-03-10T02:08:32.701Z
+79,Rifas Hermanos Pernía - El Azulejo,418,sold,Yenifer Perez,+16894652656,La Fria - Usa,22.50,0.00,2026-03-14T00:38:33.029Z
+79,Rifas Hermanos Pernía - El Azulejo,419,sold,Nixon Barajas usa,+14144601147,Estados unidos,25.00,0.00,2026-04-11T22:48:53.270Z
+79,Rifas Hermanos Pernía - El Azulejo,420,sold,Norelis de delgado Colon,+584247168207,Colon,25.00,0.00,2026-03-15T18:41:18.986Z
+79,Rifas Hermanos Pernía - El Azulejo,421,sold,Brian Buen día,+15083610533,Estados Unidos,22.33,0.00,2026-03-21T17:30:22.001Z
+79,Rifas Hermanos Pernía - El Azulejo,422,sold,Berlys Mendoza,+16823611968,Estados Unidos,22.50,0.00,2026-03-20T20:30:26.428Z
+79,Rifas Hermanos Pernía - El Azulejo,423,sold,Jean Carlos palma      ( La Grita ),+584247004792,La Grita,22.50,0.00,2026-03-15T00:41:18.022Z
+79,Rifas Hermanos Pernía - El Azulejo,424,sold,Dr Alexandra Molina,+584147385295,La Fría,25.00,0.00,2026-03-18T00:26:29.387Z
+79,Rifas Hermanos Pernía - El Azulejo,425,sold,Yei Herrera,+17542319760,Estados Unidos,20.00,0.00,2026-04-10T22:38:48.258Z
+79,Rifas Hermanos Pernía - El Azulejo,426,sold,Javier Contreras,+13126509222,La Fria,22.50,0.00,2026-03-18T21:23:15.953Z
+79,Rifas Hermanos Pernía - El Azulejo,427,sold,Miguel tapias Michelena-usa,+18722906392,Estados unidos,22.50,0.00,2026-03-10T11:21:23.372Z
+79,Rifas Hermanos Pernía - El Azulejo,428,sold,Alonso Cardenas pintor,+584247772937,La fria,25.00,0.00,2026-03-28T15:43:12.315Z
+79,Rifas Hermanos Pernía - El Azulejo,429,sold,Luis medina     ( Valencia ),+584247359519,Valencia,25.00,0.00,2026-03-16T12:51:58.628Z
+79,Rifas Hermanos Pernía - El Azulejo,430,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,22.00,0.00,2026-03-16T13:06:28.826Z
+79,Rifas Hermanos Pernía - El Azulejo,431,sold,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,Quito Ecuador,22.50,0.00,2026-03-17T02:30:34.118Z
+79,Rifas Hermanos Pernía - El Azulejo,432,sold,Domingo sandoval usa,+12163135810,Estados unidos,22.00,0.00,2026-03-10T02:57:40.425Z
+79,Rifas Hermanos Pernía - El Azulejo,433,sold,Orlando Espinel   ( San Antonio del Táchira),+573135679179,San Antonio del Táchira,25.00,0.00,2026-03-15T19:52:33.924Z
+79,Rifas Hermanos Pernía - El Azulejo,434,sold,bernardo burro orope,+584149754893,La fria,25.00,0.00,2026-03-16T21:48:12.460Z
+79,Rifas Hermanos Pernía - El Azulejo,435,sold,Jonnathan Florez,+18432981188,Estados unidos,25.00,0.00,2026-03-14T20:03:00.479Z
+79,Rifas Hermanos Pernía - El Azulejo,436,sold,yuleidy alvernia,+584247031321,La fria,25.00,0.00,2026-03-21T20:22:16.748Z
+79,Rifas Hermanos Pernía - El Azulejo,437,sold,Johanna Rojas,+573244999691,La fria,25.00,0.00,2026-03-14T12:29:12.895Z
+79,Rifas Hermanos Pernía - El Azulejo,438,sold,Dario Usa,+16784990901,Estados unidos,22.50,0.00,2026-04-10T21:08:02.855Z
+79,Rifas Hermanos Pernía - El Azulejo,439,sold,Rober sanchez Colombia,+573219617546,Colombia,25.00,0.00,2026-03-18T01:49:54.386Z
+79,Rifas Hermanos Pernía - El Azulejo,440,sold,Henrry Serrano,+18433050408,La Fria - Usa,25.00,0.00,2026-03-18T19:59:32.262Z
+79,Rifas Hermanos Pernía - El Azulejo,441,sold,Eduard sanchez usa,+19843561048,Estados unidos,22.50,0.00,2026-03-10T03:33:49.968Z
+79,Rifas Hermanos Pernía - El Azulejo,442,sold,Luberlys Salcedo,+584247506501,La Fría,22.50,0.00,2026-03-14T21:16:35.468Z
+79,Rifas Hermanos Pernía - El Azulejo,443,sold,Wiliam Garzón,+16824169365,La Fria - Usa,22.50,0.00,2026-03-20T23:04:08.046Z
+79,Rifas Hermanos Pernía - El Azulejo,444,sold,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,22.00,0.00,2026-03-25T03:05:44.680Z
+79,Rifas Hermanos Pernía - El Azulejo,445,sold,Crisanyely Prado,+573108139130,La fria,20.00,0.00,2026-04-08T02:08:03.957Z
+79,Rifas Hermanos Pernía - El Azulejo,446,sold,Edson romero usa,+16892715875,Estados unidos,22.30,0.00,2026-04-11T23:23:25.657Z
+79,Rifas Hermanos Pernía - El Azulejo,447,sold,Jose Vargas       valera edo Trujillo,+584247549985,Valera edo Trujillo,25.00,0.00,2026-04-10T19:05:26.394Z
+79,Rifas Hermanos Pernía - El Azulejo,448,sold,Carlos Marchan,+584269752548,La fría,25.00,0.00,2026-03-21T22:21:58.811Z
+79,Rifas Hermanos Pernía - El Azulejo,449,sold,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,22.00,0.00,2026-03-25T03:05:44.680Z
+79,Rifas Hermanos Pernía - El Azulejo,450,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,21.00,0.00,2026-03-17T02:01:19.980Z
+79,Rifas Hermanos Pernía - El Azulejo,451,pending,ROKI GARCIA LA FRIA,+584247662581,La fria,0.00,21.67,2026-03-20T00:36:21.749Z
+79,Rifas Hermanos Pernía - El Azulejo,452,sold,Freddy chef señas torta,+584147424454,La fria,25.00,0.00,2026-03-17T03:00:55.013Z
+79,Rifas Hermanos Pernía - El Azulejo,453,sold,Robert Bettin usa,+14078616053,Estados unidos,22.01,0.00,2026-03-15T19:50:11.945Z
+79,Rifas Hermanos Pernía - El Azulejo,454,sold,Yovani Toledo,+584147191457,La fría,22.50,0.00,2026-03-14T17:22:29.213Z
+79,Rifas Hermanos Pernía - El Azulejo,455,sold,Enrique Gasolina,+584247047355,La fria,20.00,0.00,2026-04-08T14:32:31.820Z
+79,Rifas Hermanos Pernía - El Azulejo,456,sold,Miguel Duran,+584247218713,La fria,25.00,0.00,2026-03-17T22:09:39.259Z
+79,Rifas Hermanos Pernía - El Azulejo,457,sold,Tomas glaterol delicias,+584141758019,La fria,22.33,0.00,2026-03-21T17:36:12.550Z
+79,Rifas Hermanos Pernía - El Azulejo,458,sold,Hector medina la fria,+584247450446,La fria,22.50,0.00,2026-03-15T18:38:40.428Z
+79,Rifas Hermanos Pernía - El Azulejo,459,sold,Diana Valbuena,+573228230571,Colombia,22.50,0.00,2026-03-21T01:16:21.660Z
+79,Rifas Hermanos Pernía - El Azulejo,460,sold,Deysi Moncada     ( La Grita),+584247829118,La Grita,25.00,0.00,2026-04-11T23:23:13.371Z
+79,Rifas Hermanos Pernía - El Azulejo,461,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,462,sold,Jorge Luis Castro   San Cristóbal - Chile,+56922179755,San Cristobal chile,25.00,0.00,2026-04-07T15:50:10.516Z
+79,Rifas Hermanos Pernía - El Azulejo,463,sold,Alvey Calderon,+584247046284,La fria,25.00,0.00,2026-03-15T22:12:26.395Z
+79,Rifas Hermanos Pernía - El Azulejo,464,sold,Ramon Zambrano       Barinas,+584123497717,Barinas,25.00,0.00,2026-03-16T13:20:17.420Z
+79,Rifas Hermanos Pernía - El Azulejo,465,sold,Chola Toledo,+584147379205,La fría,25.00,0.00,2026-03-16T15:42:43.479Z
+79,Rifas Hermanos Pernía - El Azulejo,466,sold,Frainy Perez,+584247481755,La fría,22.50,0.00,2026-03-14T19:26:21.941Z
+79,Rifas Hermanos Pernía - El Azulejo,467,sold,Maryelis Flores,+13184386409,Estados Unidos,22.50,0.00,2026-03-15T00:39:38.590Z
+79,Rifas Hermanos Pernía - El Azulejo,468,sold,Yeraldin Vivas usa,+15127122718,Estados unidos,22.33,0.00,2026-03-14T19:01:52.025Z
+79,Rifas Hermanos Pernía - El Azulejo,469,sold,Willian Valencia,+584147387580,La Fría,20.00,0.00,2026-04-11T17:23:02.777Z
+79,Rifas Hermanos Pernía - El Azulejo,470,sold,Henrry omaña la grita,+584247739657,La grita,25.00,0.00,2026-03-24T00:32:22.846Z
+79,Rifas Hermanos Pernía - El Azulejo,471,sold,jesus Duque colombia,+573204326737,Colombia,22.50,0.00,2026-03-17T00:15:11.875Z
+79,Rifas Hermanos Pernía - El Azulejo,472,sold,Miguel tapias Michelena-usa,+18722906392,Estados unidos,22.50,0.00,2026-03-10T11:21:23.372Z
+79,Rifas Hermanos Pernía - El Azulejo,473,sold,Antony Duarte españa,+584121760980,España,25.00,0.00,2026-03-28T19:09:55.240Z
+79,Rifas Hermanos Pernía - El Azulejo,474,sold,Abel Osorio,+584247443856,La fría,25.00,0.00,2026-03-17T01:41:31.698Z
+79,Rifas Hermanos Pernía - El Azulejo,475,sold,Kev Aguero    Caracas,+584142051096,Caracas,25.00,0.00,2026-04-12T01:12:53.378Z
+79,Rifas Hermanos Pernía - El Azulejo,476,sold,Leonardo Vargas,+584247631600,La fria,25.00,0.00,2026-03-18T01:29:55.888Z
+79,Rifas Hermanos Pernía - El Azulejo,477,sold,Cesar Vargas    Barcelona,+573122355359,Barcelona Colombia,25.00,0.00,2026-03-11T02:00:27.063Z
+79,Rifas Hermanos Pernía - El Azulejo,478,sold,Yorvi Zambrano,+584247163958,La Fria,22.33,0.00,2026-03-22T01:02:15.049Z
+79,Rifas Hermanos Pernía - El Azulejo,479,sold,Jhon Noriega.     San Cristóbal- Chile,+56937651021,San Cristobal,25.00,0.00,2026-03-16T12:48:51.017Z
+79,Rifas Hermanos Pernía - El Azulejo,480,sold,Anyery Vega,+584226424513,La fria,25.00,0.00,2026-03-17T00:45:18.808Z
+79,Rifas Hermanos Pernía - El Azulejo,481,sold,Nelson Roa,+17869147200,Estados Unidos,22.33,0.00,2026-03-14T19:51:01.375Z
+79,Rifas Hermanos Pernía - El Azulejo,482,sold,Luis fleming la fria,+18324183244,Ls fria,22.00,0.00,2026-03-21T18:59:54.470Z
+79,Rifas Hermanos Pernía - El Azulejo,483,sold,Geovanny Ramírez,+18177365566,Estados unidos,25.00,0.00,2026-03-20T20:25:49.125Z
+79,Rifas Hermanos Pernía - El Azulejo,484,sold,Juana iris argentina,+5491165805763,Argentina,25.00,0.00,2026-03-17T18:58:11.060Z
+79,Rifas Hermanos Pernía - El Azulejo,485,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,25.00,0.00,2026-03-11T01:21:54.335Z
+79,Rifas Hermanos Pernía - El Azulejo,486,sold,Tihamer Muñoz           La Concordia,+573152351455,La Concordia san Cristobal,22.50,0.00,2026-03-17T02:22:34.461Z
+79,Rifas Hermanos Pernía - El Azulejo,487,sold,Freddy Medina,+13126328062,Estados unidos,22.33,0.00,2026-03-14T01:20:37.564Z
+79,Rifas Hermanos Pernía - El Azulejo,488,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,20.00,0.00,2026-04-11T20:17:18.709Z
+79,Rifas Hermanos Pernía - El Azulejo,489,sold,Felipe alineación,+584247500708,La fria,25.00,0.00,2026-03-14T15:26:53.168Z
+79,Rifas Hermanos Pernía - El Azulejo,490,sold,Rodrigo Parra papa de carlitos,+584266729512,La fria,25.00,0.00,2026-03-27T15:03:14.964Z
+79,Rifas Hermanos Pernía - El Azulejo,491,sold,William Contreras     Usa,+15617649165,Usa - Usa,25.00,0.00,2026-03-14T22:44:01.555Z
+79,Rifas Hermanos Pernía - El Azulejo,492,sold,Yohana Ayala,+584147576344,La Fría,25.00,0.00,2026-03-17T01:44:52.126Z
+79,Rifas Hermanos Pernía - El Azulejo,493,sold,Custodio orope,+573150410579,La fria,25.00,0.00,2026-03-21T22:11:40.810Z
+79,Rifas Hermanos Pernía - El Azulejo,494,sold,Jose luis diaz la fria,+584247228026,La fria,25.00,0.00,2026-04-08T21:56:04.975Z
+79,Rifas Hermanos Pernía - El Azulejo,495,sold,Yen Buitriago,+19803610415,Estados unidos,22.00,0.00,2026-03-20T01:21:15.017Z
+79,Rifas Hermanos Pernía - El Azulejo,496,sold,Robert Bettin usa,+14078616053,Estados unidos,22.00,0.00,2026-03-15T19:50:11.945Z
+79,Rifas Hermanos Pernía - El Azulejo,497,sold,Reinaldo Chávez,+584247370004,La fría,25.00,0.00,2026-03-20T20:33:32.544Z
+79,Rifas Hermanos Pernía - El Azulejo,498,sold,Yefferson Chacón,+584247452532,Queniquea,22.50,0.00,2026-03-28T17:42:03.684Z
+79,Rifas Hermanos Pernía - El Azulejo,499,sold,Miguel Tapias,+13316279808,Estados Unidos,22.50,0.00,2026-04-12T00:00:27.853Z
+79,Rifas Hermanos Pernía - El Azulejo,500,sold,Nelson molina chile,+56941445035,Chile,25.00,0.00,2026-03-14T20:37:52.453Z
+79,Rifas Hermanos Pernía - El Azulejo,501,pending,Nancy rivera sociedad,+584247180680,La fria,0.00,12.50,2026-04-12T00:36:57.911Z
+79,Rifas Hermanos Pernía - El Azulejo,502,sold,Maria Elena Marcano        Maturin,+584249377452,Maturin,25.00,0.00,2026-03-19T02:56:43.062Z
+79,Rifas Hermanos Pernía - El Azulejo,503,sold,Manuel abasto DyU,+584247706745,La fria,25.00,0.00,2026-03-15T22:43:25.093Z
+79,Rifas Hermanos Pernía - El Azulejo,504,sold,Deynis Moreno  ( La Grita ),+584122901463,La grita,25.00,0.00,2026-03-28T23:58:17.612Z
+79,Rifas Hermanos Pernía - El Azulejo,505,sold,Andrea Martinez,+17208095947,La Fría,22.33,0.00,2026-03-14T18:08:47.495Z
+79,Rifas Hermanos Pernía - El Azulejo,506,sold,Angelo Parada usa,+19204140344,Estados unidos,22.50,0.00,2026-04-12T00:24:41.364Z
+79,Rifas Hermanos Pernía - El Azulejo,507,sold,Patricia Fernández,+584147471530,España,25.00,0.00,2026-03-17T11:37:37.535Z
+79,Rifas Hermanos Pernía - El Azulejo,508,sold,Alfonso Pernia papa,+584268033286,La grita,25.00,0.00,2026-03-15T23:00:41.708Z
+79,Rifas Hermanos Pernía - El Azulejo,509,sold,Juneifer Mendoza,+584140112658,La fría,21.00,0.00,2026-03-15T02:58:56.867Z
+79,Rifas Hermanos Pernía - El Azulejo,510,sold,Yeimy Ramirez muebles,+584247060503,La fría,25.00,0.00,2026-03-26T22:11:39.315Z
+79,Rifas Hermanos Pernía - El Azulejo,511,sold,Jhoel Zambrano,+584147095429,La Fría,25.00,0.00,2026-03-21T23:07:35.711Z
+79,Rifas Hermanos Pernía - El Azulejo,512,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,513,sold,Said (Barbero),+584247383532,La fría,22.50,0.00,2026-04-11T23:18:44.053Z
+79,Rifas Hermanos Pernía - El Azulejo,514,sold,Willian ortega,+584247114136,La fria,25.00,0.00,2026-03-26T23:39:13.550Z
+79,Rifas Hermanos Pernía - El Azulejo,515,sold,Osman Gil,+584149796001,La Fría,22.33,0.00,2026-03-28T20:24:58.235Z
+79,Rifas Hermanos Pernía - El Azulejo,516,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,517,sold,Eduard sanchez usa,+19843561048,Estados unidos,22.50,0.00,2026-03-10T03:33:49.968Z
+79,Rifas Hermanos Pernía - El Azulejo,518,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,519,sold,Herlyn Montilla San felix,+584247767238,San felix,25.00,0.00,2026-03-14T19:56:09.439Z
+79,Rifas Hermanos Pernía - El Azulejo,520,sold,Rokicucuya contreras,+573214381625,cucuta,22.50,0.00,2026-03-28T23:26:02.126Z
+79,Rifas Hermanos Pernía - El Azulejo,521,sold,Patricia Fernández,+584147471530,España,25.00,0.00,2026-03-14T19:52:32.520Z
+79,Rifas Hermanos Pernía - El Azulejo,522,sold,Diego Morales      ( Chile ),+56978747174,Chile,22.00,0.00,2026-03-21T21:10:38.494Z
+79,Rifas Hermanos Pernía - El Azulejo,523,sold,jose glaterol usa,+16154579492,Estados unidos,25.00,0.00,2026-03-09T20:46:28.558Z
+79,Rifas Hermanos Pernía - El Azulejo,524,sold,Yonellys rodriguez Estados unidos,+18035545936,Estados unidos,22.50,0.00,2026-03-13T23:45:47.317Z
+79,Rifas Hermanos Pernía - El Azulejo,525,sold,Ronal Quintero colon,+584247687907,Colon,25.00,0.00,2026-03-14T23:23:36.178Z
+79,Rifas Hermanos Pernía - El Azulejo,526,sold,Armando galvis,+584264222113,La fria,25.00,0.00,2026-03-16T21:41:57.949Z
+79,Rifas Hermanos Pernía - El Azulejo,527,sold,henrry carriso,+584142134025,Colon,25.00,0.00,2026-03-15T20:54:11.880Z
+79,Rifas Hermanos Pernía - El Azulejo,528,sold,Angel Rosales,+584242197659,La Fría,22.50,0.00,2026-03-14T19:55:55.805Z
+79,Rifas Hermanos Pernía - El Azulejo,529,sold,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,22.00,0.00,2026-03-15T23:31:52.653Z
+79,Rifas Hermanos Pernía - El Azulejo,530,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,22.00,0.00,2026-03-16T13:06:28.826Z
+79,Rifas Hermanos Pernía - El Azulejo,531,sold,gerson contreras alineación,+584247432468,La fria,25.00,0.00,2026-03-15T01:21:28.293Z
+79,Rifas Hermanos Pernía - El Azulejo,532,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,22.00,0.00,2026-03-16T13:11:36.441Z
+79,Rifas Hermanos Pernía - El Azulejo,533,sold,Jorgue Gomez alineacion,+584247295936,La fria,25.00,0.00,2026-03-17T18:46:39.044Z
+79,Rifas Hermanos Pernía - El Azulejo,534,sold,jhon de pablo Usa,+12109655075,Estados unidos,22.00,0.00,2026-03-13T12:14:09.562Z
+79,Rifas Hermanos Pernía - El Azulejo,535,sold,Yefry Contreras,+584247460286,La fria,25.00,0.00,2026-03-22T00:02:28.541Z
+79,Rifas Hermanos Pernía - El Azulejo,536,sold,Maira cadena Lafria,+584247009255,La fría,25.00,0.00,2026-03-14T01:28:47.536Z
+79,Rifas Hermanos Pernía - El Azulejo,537,sold,Cesar Morales     La Guaira,+593985592902,La Guaira,25.00,0.00,2026-04-08T03:33:43.085Z
+79,Rifas Hermanos Pernía - El Azulejo,538,sold,Romel vargas Doctor,+584247568485,La fria,20.00,0.00,2026-04-11T22:32:39.011Z
+79,Rifas Hermanos Pernía - El Azulejo,539,sold,Victor Obregon,+584247505863,La fria,25.00,0.00,2026-03-15T01:38:21.550Z
+79,Rifas Hermanos Pernía - El Azulejo,540,sold,erick Labrador usa,+16094313621,Estados unidos,22.50,0.00,2026-03-18T19:42:38.779Z
+79,Rifas Hermanos Pernía - El Azulejo,541,sold,Ehiner Mendoza,+584147360001,La fría,25.00,0.00,2026-03-20T20:51:45.050Z
+79,Rifas Hermanos Pernía - El Azulejo,542,sold,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,22.50,0.00,2026-03-20T14:36:16.920Z
+79,Rifas Hermanos Pernía - El Azulejo,543,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,544,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,25.00,0.00,2026-03-15T22:01:59.956Z
+79,Rifas Hermanos Pernía - El Azulejo,545,sold,Lorena Luna,+584247656227,La fría,22.50,0.00,2026-03-20T20:57:19.206Z
+79,Rifas Hermanos Pernía - El Azulejo,546,sold,Karelys Lopez,+584126181455,La Fría,25.00,0.00,2026-04-11T21:58:27.869Z
+79,Rifas Hermanos Pernía - El Azulejo,547,sold,Jose sanchez La fria,+584149742615,La fria,25.00,0.00,2026-03-17T00:39:22.092Z
+79,Rifas Hermanos Pernía - El Azulejo,548,sold,Jose fleming usa,+16823647880,Estados unidos,25.00,0.00,2026-03-20T00:31:58.598Z
+79,Rifas Hermanos Pernía - El Azulejo,549,sold,Alejandra Isidro colon Quesera,+584122067259,Colon,25.00,0.00,2026-03-18T18:46:10.346Z
+79,Rifas Hermanos Pernía - El Azulejo,550,sold,Andrea Martinez,+17208095947,La Fría,22.33,0.00,2026-03-14T18:08:47.495Z
+79,Rifas Hermanos Pernía - El Azulejo,551,sold,Jordan hijo de gollo rifero Alex linowol,+584241737886,La fria,10.00,0.00,2026-04-12T02:00:16.955Z
+79,Rifas Hermanos Pernía - El Azulejo,552,sold,Kelianny Novia de gollo,+584168741463,La fria,25.00,0.00,2026-03-14T16:31:33.749Z
+79,Rifas Hermanos Pernía - El Azulejo,553,sold,Carlos moto taxi,+584147213985,La fria,25.00,0.00,2026-03-16T18:32:46.087Z
+79,Rifas Hermanos Pernía - El Azulejo,554,sold,Yerixon ortega Tucu tucu,+56988694444,La fria,25.00,0.00,2026-03-22T16:58:34.387Z
+79,Rifas Hermanos Pernía - El Azulejo,555,sold,Juliana Rosales,+584149755198,La fria,22.00,0.00,2026-03-19T22:51:06.596Z
+79,Rifas Hermanos Pernía - El Azulejo,556,sold,Nelly Rey.          (La grita),+584247072555,La grita,22.50,0.00,2026-03-15T01:41:01.499Z
+79,Rifas Hermanos Pernía - El Azulejo,557,sold,Margiory Vera         La Grita,+584147223133,La Grita,25.00,0.00,2026-03-16T13:14:16.497Z
+79,Rifas Hermanos Pernía - El Azulejo,558,sold,Jesús Malpica,+584147061815,Barinas,22.50,0.00,2026-03-20T21:01:44.717Z
+79,Rifas Hermanos Pernía - El Azulejo,559,sold,Gabriel Sandoval,+12163726045,La Fria,25.00,0.00,2026-04-09T21:59:09.349Z
+79,Rifas Hermanos Pernía - El Azulejo,560,sold,Angelo Parada usa,+19204140344,Estados unidos,22.50,0.00,2026-04-12T00:24:41.364Z
+79,Rifas Hermanos Pernía - El Azulejo,561,sold,Anthony Quintero,+19733922718,Estados unidos,25.00,0.00,2026-03-20T20:34:33.516Z
+79,Rifas Hermanos Pernía - El Azulejo,562,sold,Yonaiker Suarez,+19127595784,Estados unidos,22.00,0.00,2026-03-14T13:33:44.875Z
+79,Rifas Hermanos Pernía - El Azulejo,563,sold,Ronal niño la fria,+573112216790,La fria,25.00,0.00,2026-03-18T01:52:49.013Z
+79,Rifas Hermanos Pernía - El Azulejo,564,sold,Danni Carvajal,+584147032665,La Fría,25.00,0.00,2026-03-14T19:54:03.308Z
+79,Rifas Hermanos Pernía - El Azulejo,565,sold,Franklin vergel usa,+12162069770,Estados unidos,22.50,0.00,2026-03-10T03:36:12.896Z
+79,Rifas Hermanos Pernía - El Azulejo,566,sold,Vicencio Sandoval,+584147041212,Colón,25.00,0.00,2026-03-14T19:24:24.689Z
+79,Rifas Hermanos Pernía - El Azulejo,567,sold,Jesus Figueroa  usa,+14633128554,Estados unidos,25.00,0.00,2026-03-10T02:19:16.786Z
+79,Rifas Hermanos Pernía - El Azulejo,568,sold,Emileidy Aquino guarico,+584144496362,Guarico,25.00,0.00,2026-03-14T18:49:30.415Z
+79,Rifas Hermanos Pernía - El Azulejo,569,sold,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,22.00,0.00,2026-03-15T23:31:52.653Z
+79,Rifas Hermanos Pernía - El Azulejo,570,sold,Karina Rojas usa,+15128451679,Estados unidos,22.33,0.00,2026-03-15T19:21:06.775Z
+79,Rifas Hermanos Pernía - El Azulejo,571,sold,JAVIER GARCIA La fria,+584247602624,La fria,22.00,0.00,2026-03-16T20:45:50.046Z
+79,Rifas Hermanos Pernía - El Azulejo,572,sold,Yuglendy Bello,+12819129773,La Fria - Usa,22.00,0.00,2026-03-10T03:02:58.900Z
+79,Rifas Hermanos Pernía - El Azulejo,573,sold,Douglas Jaimes,+18179640637,Estados Unidos,22.50,0.00,2026-03-20T20:32:03.007Z
+79,Rifas Hermanos Pernía - El Azulejo,574,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,25.00,0.00,2026-03-15T23:10:27.359Z
+79,Rifas Hermanos Pernía - El Azulejo,575,sold,Domingo sandoval usa,+12163135810,Estados unidos,22.00,0.00,2026-03-10T02:57:40.425Z
+79,Rifas Hermanos Pernía - El Azulejo,576,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,21.00,0.00,2026-03-17T02:01:19.980Z
+79,Rifas Hermanos Pernía - El Azulejo,577,sold,Gabriela Muñoz,+13802394964,La Fria Usa,22.33,0.00,2026-03-14T19:35:02.664Z
+79,Rifas Hermanos Pernía - El Azulejo,578,sold,Glaudys Gonzales,+51991756036,La fria,25.00,0.00,2026-03-19T18:32:33.143Z
+79,Rifas Hermanos Pernía - El Azulejo,579,sold,Tomas glaterol delicias,+584141758019,La fria,22.33,0.00,2026-03-21T17:36:12.550Z
+79,Rifas Hermanos Pernía - El Azulejo,580,sold,Milton molina,+584147211459,La fria,25.00,0.00,2026-04-10T17:14:42.394Z
+79,Rifas Hermanos Pernía - El Azulejo,581,sold,Jacinto Mendoza,+16157699605,Estados unidos,25.00,0.00,2026-03-28T15:41:26.188Z
+79,Rifas Hermanos Pernía - El Azulejo,582,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,583,sold,Eiver Zambrano,+14705365326,Estados unidos,25.00,0.00,2026-03-15T14:19:42.314Z
+79,Rifas Hermanos Pernía - El Azulejo,584,sold,Jampier colon,+584122900680,Colon,25.00,0.00,2026-03-09T20:40:25.689Z
+79,Rifas Hermanos Pernía - El Azulejo,585,sold,Armando Villazmil,+584147282679,Maracaibo,25.00,0.00,2026-04-06T22:21:43.380Z
+79,Rifas Hermanos Pernía - El Azulejo,586,sold,Jean Carlos Ramirez,+584247321597,La Fria,21.00,0.00,2026-04-06T22:28:47.041Z
+79,Rifas Hermanos Pernía - El Azulejo,587,sold,Nixon Barajas usa,+14144601147,Estados unidos,25.00,0.00,2026-04-11T22:48:53.270Z
+79,Rifas Hermanos Pernía - El Azulejo,588,sold,Wendy Amaya,+573243191324,La Fría,22.50,0.00,2026-03-22T02:09:15.750Z
+79,Rifas Hermanos Pernía - El Azulejo,589,sold,JAVIER GARCIA La fria,+584247602624,La fria,22.00,0.00,2026-03-16T20:45:50.046Z
+79,Rifas Hermanos Pernía - El Azulejo,590,sold,Yenis Bettin,+584147577344,La Fría,22.00,0.00,2026-04-10T22:49:24.867Z
+79,Rifas Hermanos Pernía - El Azulejo,591,pending,Karina Rojas usa,+15128451679,Estados unidos,22.32,0.01,2026-03-15T19:21:06.775Z
+79,Rifas Hermanos Pernía - El Azulejo,592,sold,Richard Moncada,+584247863327,"La fría, el yukero",25.00,0.00,2026-03-17T01:13:12.661Z
+79,Rifas Hermanos Pernía - El Azulejo,593,sold,Hector medina la fria,+584247450446,La fria,22.50,0.00,2026-03-15T18:38:40.428Z
+79,Rifas Hermanos Pernía - El Azulejo,594,sold,Tahilor rey,+584147098346,La fria,25.00,0.00,2026-03-18T03:18:35.143Z
+79,Rifas Hermanos Pernía - El Azulejo,595,sold,Gustavo valdes,+584149772920,La fria,25.00,0.00,2026-03-19T00:48:17.613Z
+79,Rifas Hermanos Pernía - El Azulejo,596,sold,Yunior Carrascal,+584149751355,La Fría,25.00,0.00,2026-03-14T14:43:17.982Z
+79,Rifas Hermanos Pernía - El Azulejo,597,sold,Yorwin Suescun,+584247474246,La fría,22.50,0.00,2026-03-14T18:07:25.182Z
+79,Rifas Hermanos Pernía - El Azulejo,598,sold,Selenni Villegas,+584147157903,La fria,25.00,0.00,2026-03-18T15:57:26.364Z
+79,Rifas Hermanos Pernía - El Azulejo,599,pending,Guillermo Rincon sociedad,+584247464568,La fria,0.00,20.00,2026-04-11T18:48:45.073Z
+79,Rifas Hermanos Pernía - El Azulejo,600,sold,Milka Plata,+14143500536,Estados unidos,25.00,0.00,2026-04-11T23:51:12.430Z
+79,Rifas Hermanos Pernía - El Azulejo,601,sold,Ramón Guedez         Caracas,+584141049652,Caracas,25.00,0.00,2026-03-25T01:09:18.964Z
+79,Rifas Hermanos Pernía - El Azulejo,602,sold,Yaneth Alvarez    (  Caracas ),+584125014454,Caracas,22.50,0.00,2026-03-17T23:03:23.347Z
+79,Rifas Hermanos Pernía - El Azulejo,603,sold,Edson romero usa,+16892715875,Estados unidos,22.30,0.00,2026-04-11T23:23:25.657Z
+79,Rifas Hermanos Pernía - El Azulejo,604,sold,Marcos contreras Betania esposa chile,+584147513003,Chile,25.00,0.00,2026-03-17T02:20:54.065Z
+79,Rifas Hermanos Pernía - El Azulejo,605,sold,Kerwin Barajas,+584247651891,La fria,25.00,0.00,2026-03-10T02:02:56.806Z
+79,Rifas Hermanos Pernía - El Azulejo,606,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,25.00,0.00,2026-03-15T21:12:12.815Z
+79,Rifas Hermanos Pernía - El Azulejo,607,sold,Frederick Alejandro martines usa,+17543272037,Estados unidos,22.34,0.00,2026-03-14T15:59:07.713Z
+79,Rifas Hermanos Pernía - El Azulejo,608,sold,Reinaldo Marchan,+14143082362,Estados unidos,22.33,0.00,2026-03-21T15:51:35.312Z
+79,Rifas Hermanos Pernía - El Azulejo,609,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,21.00,0.00,2026-03-19T00:23:01.780Z
+79,Rifas Hermanos Pernía - El Azulejo,610,sold,Alex Contreras,+16153729785,Estados unidos,22.50,0.00,2026-03-20T20:50:05.499Z
+79,Rifas Hermanos Pernía - El Azulejo,611,sold,Saul varela,+584147135237,La grita,25.00,0.00,2026-03-28T23:58:18.450Z
+79,Rifas Hermanos Pernía - El Azulejo,612,sold,José Buitrago,+14254036252,Estados unidos,22.33,0.00,2026-03-20T19:15:15.655Z
+79,Rifas Hermanos Pernía - El Azulejo,613,pending,Rosbeily Morles usa,+12067421305,Estados unidos,22.49,0.01,2026-03-14T14:55:37.127Z
+79,Rifas Hermanos Pernía - El Azulejo,614,sold,Eduardo Colmenarez,+584265320111,Colón,25.00,0.00,2026-03-28T15:00:51.827Z
+79,Rifas Hermanos Pernía - El Azulejo,615,sold,Daniel Caballero,+584140775883,La fria,25.00,0.00,2026-03-20T17:35:46.709Z
+79,Rifas Hermanos Pernía - El Azulejo,616,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,22.50,0.00,2026-03-10T12:03:36.629Z
+79,Rifas Hermanos Pernía - El Azulejo,617,sold,Jorge Arellano chile,+56934892474,Chile,20.00,0.00,2026-03-16T21:46:16.249Z
+79,Rifas Hermanos Pernía - El Azulejo,618,sold,Gilber Duque,+584146618203,La Fría,25.00,0.00,2026-03-21T21:09:06.689Z
+79,Rifas Hermanos Pernía - El Azulejo,619,sold,JAVIER GARCIA La fria,+584247602624,La fria,22.00,0.00,2026-03-16T20:45:50.046Z
+79,Rifas Hermanos Pernía - El Azulejo,620,sold,Diana Valbuena,+573228230571,Colombia,22.50,0.00,2026-03-21T01:16:21.660Z
+79,Rifas Hermanos Pernía - El Azulejo,621,sold,Dario Usa,+16784990901,Estados unidos,22.50,0.00,2026-04-10T21:08:02.855Z
+79,Rifas Hermanos Pernía - El Azulejo,622,sold,José Cruz,+584162017368,La Fría,22.50,0.00,2026-03-17T11:34:10.770Z
+79,Rifas Hermanos Pernía - El Azulejo,623,sold,Antonio Gonzáles,+584247396138,La Fría,22.33,0.00,2026-03-18T19:02:58.475Z
+79,Rifas Hermanos Pernía - El Azulejo,624,sold,Waldelinder Jose Castellanos    Ureña,+584247220512,Ureña,25.00,0.00,2026-04-09T15:58:49.642Z
+79,Rifas Hermanos Pernía - El Azulejo,625,sold,Mixaida rincon Colon,+584162777629,Colon,22.50,0.00,2026-03-13T23:27:11.652Z
+79,Rifas Hermanos Pernía - El Azulejo,626,sold,Junior varela Comida doña Rosa,+584247349850,La fria,25.00,0.00,2026-03-17T12:55:17.258Z
+79,Rifas Hermanos Pernía - El Azulejo,627,sold,Cesar Augusto,+584147097860,Capacho,25.00,0.00,2026-03-15T21:14:18.695Z
+79,Rifas Hermanos Pernía - El Azulejo,628,sold,Robert Bettin usa,+14078616053,Estados unidos,22.00,0.00,2026-03-15T19:50:11.945Z
+79,Rifas Hermanos Pernía - El Azulejo,629,sold,Yonaiker Suarez,+19127595784,Estados unidos,22.00,0.00,2026-03-14T13:33:44.875Z
+79,Rifas Hermanos Pernía - El Azulejo,630,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,22.00,0.00,2026-03-16T13:06:28.826Z
+79,Rifas Hermanos Pernía - El Azulejo,631,sold,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,Quito Ecuador,22.50,0.00,2026-03-17T02:30:34.118Z
+79,Rifas Hermanos Pernía - El Azulejo,632,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,22.50,0.00,2026-03-15T00:49:07.063Z
+79,Rifas Hermanos Pernía - El Azulejo,633,sold,Enyuly Toledo,+584247467083,La fría,25.00,0.00,2026-03-28T15:25:23.411Z
+79,Rifas Hermanos Pernía - El Azulejo,634,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,635,sold,Ismael Romero,+584141777144,La Fría,25.00,0.00,2026-03-20T20:36:42.540Z
+79,Rifas Hermanos Pernía - El Azulejo,636,sold,Yuglendy Bello,+12819129773,La Fria - Usa,22.00,0.00,2026-03-10T03:02:58.900Z
+79,Rifas Hermanos Pernía - El Azulejo,637,sold,Jordan hijo de gollo rifero Alex linowol,+584241737886,La fria,25.00,0.00,2026-03-14T18:44:55.704Z
+79,Rifas Hermanos Pernía - El Azulejo,638,sold,Mirexy mendez La grita,+584147047877,La grita,25.00,0.00,2026-03-16T02:18:25.747Z
+79,Rifas Hermanos Pernía - El Azulejo,639,sold,emilyer ibarra odontologo,+584226469843,La fria,20.00,0.00,2026-04-11T20:52:24.715Z
+79,Rifas Hermanos Pernía - El Azulejo,640,sold,Franyely Marquez,+584121718008,la fria,25.00,0.00,2026-03-16T22:37:10.909Z
+79,Rifas Hermanos Pernía - El Azulejo,641,sold,Enyelber baez vecino sociedad,+584147267764,La fria,25.00,0.00,2026-04-11T16:36:57.884Z
+79,Rifas Hermanos Pernía - El Azulejo,642,sold,Yenifer Soto,+17375291807,Estados unidos,25.00,0.00,2026-03-18T01:16:57.349Z
+79,Rifas Hermanos Pernía - El Azulejo,643,sold,erick Labrador usa,+16094313621,Estados unidos,22.50,0.00,2026-03-18T19:42:38.779Z
+79,Rifas Hermanos Pernía - El Azulejo,644,sold,Luis avila,+584147294479,La fria,25.00,0.00,2026-03-28T15:24:12.111Z
+79,Rifas Hermanos Pernía - El Azulejo,645,sold,Sander Velandria,+17083486017,Estados Unidos,20.00,0.00,2026-04-09T14:49:11.319Z
+79,Rifas Hermanos Pernía - El Azulejo,646,sold,Chepe sanchez gym,+584247422526,La fria,25.00,0.00,2026-03-28T22:33:28.811Z
+79,Rifas Hermanos Pernía - El Azulejo,647,sold,Rogelio Zambrano,+4125237974,La fria,25.00,0.00,2026-03-14T18:15:50.111Z
+79,Rifas Hermanos Pernía - El Azulejo,648,sold,Jose Alvaro      Los Toques,+584244057790,Los Teques,25.00,0.00,2026-04-11T16:37:21.311Z
+79,Rifas Hermanos Pernía - El Azulejo,649,sold,Isabel ortiz usa,+17047565519,Estados unidos,25.00,0.00,2026-03-16T12:42:57.292Z
+79,Rifas Hermanos Pernía - El Azulejo,650,sold,Daniela sanchez pajaro usa,+14784422001,Estados unidos,25.00,0.00,2026-03-16T03:11:58.905Z
+79,Rifas Hermanos Pernía - El Azulejo,651,sold,Carlos Alberto Torres   Barquisimeto,+584245596162,Barquisimeto,25.00,0.00,2026-04-12T01:07:49.238Z
+79,Rifas Hermanos Pernía - El Azulejo,652,sold,Yoselin Machado la fria,+584247744349,La fría,25.00,0.00,2026-03-17T20:11:15.582Z
+79,Rifas Hermanos Pernía - El Azulejo,653,sold,Luis Rujano    Socopo - Barinas,+584245402012,Barinas,25.00,0.00,2026-03-11T01:54:26.513Z
+79,Rifas Hermanos Pernía - El Azulejo,654,sold,Jakelin vivas usa,+15128798132,Estados unidos,22.30,0.00,2026-03-10T02:34:52.269Z
+79,Rifas Hermanos Pernía - El Azulejo,655,sold,Mogollon Gnb,+584147574458,La fria,25.00,0.00,2026-03-17T20:23:14.153Z
+79,Rifas Hermanos Pernía - El Azulejo,656,sold,Gregory Princeso,+584147367045,La fría,25.00,0.00,2026-03-10T12:14:30.110Z
+79,Rifas Hermanos Pernía - El Azulejo,657,sold,lisbet rosales rosales,+584247714133,La fria,25.00,0.00,2026-04-11T15:10:06.850Z
+79,Rifas Hermanos Pernía - El Azulejo,658,sold,Angely Rondón      Merida,+584247349984,Merida,25.00,0.00,2026-03-17T22:03:20.027Z
+79,Rifas Hermanos Pernía - El Azulejo,659,sold,Ivan rivera mendez arauca,+573226423552,Arauca,22.50,0.00,2026-03-10T12:09:31.817Z
+79,Rifas Hermanos Pernía - El Azulejo,660,pending,Guillermo Rincon sociedad,+584247464568,La fria,0.00,10.00,2026-04-11T23:20:59.355Z
+79,Rifas Hermanos Pernía - El Azulejo,661,sold,terapias Garcia,+17745228026,Estados unidos,22.50,0.00,2026-03-14T19:23:48.266Z
+79,Rifas Hermanos Pernía - El Azulejo,662,pending,José Cruz,+584162017368,La Fría,20.00,5.00,2026-04-06T20:18:31.963Z
+79,Rifas Hermanos Pernía - El Azulejo,663,sold,Pedro medina guayabo,+584147544973,El guayabo,25.00,0.00,2026-03-14T18:50:55.826Z
+79,Rifas Hermanos Pernía - El Azulejo,664,sold,Gisela Chacón,+584121713491,La fria,25.00,0.00,2026-03-21T21:53:39.115Z
+79,Rifas Hermanos Pernía - El Azulejo,665,sold,Lorena Luna,+584247656227,La fría,22.50,0.00,2026-03-20T20:57:19.206Z
+79,Rifas Hermanos Pernía - El Azulejo,666,sold,Miguel Benavides,+19127104280,La Fria - Usa,25.00,0.00,2026-04-12T02:11:20.472Z
+79,Rifas Hermanos Pernía - El Azulejo,667,sold,Jeferson Bonilla,+17202702745,Estados unidos,22.33,0.00,2026-03-14T19:33:37.530Z
+79,Rifas Hermanos Pernía - El Azulejo,668,sold,Dainner montilla Sociedad,+584165768746,Colon,22.50,0.00,2026-03-17T20:08:32.886Z
+79,Rifas Hermanos Pernía - El Azulejo,669,sold,Abelardo Rey,+584140074968,La fria,25.00,0.00,2026-03-14T21:36:15.775Z
+79,Rifas Hermanos Pernía - El Azulejo,670,sold,Cesar Gonzales   San Cristóbal,+584125478882,San Cristobal,25.00,0.00,2026-04-11T20:32:12.826Z
+79,Rifas Hermanos Pernía - El Azulejo,671,sold,Denny Portillo usa,+18437830863,Estados unidos,25.00,0.00,2026-03-18T21:35:54.678Z
+79,Rifas Hermanos Pernía - El Azulejo,672,sold,Luis fleming la fria,+18324183244,Ls fria,22.00,0.00,2026-03-21T18:59:54.470Z
+79,Rifas Hermanos Pernía - El Azulejo,673,sold,carolina contreras usa,+16297298655,Estados unidos,22.00,0.00,2026-03-14T16:55:35.708Z
+79,Rifas Hermanos Pernía - El Azulejo,674,sold,Manuel abasto DyU,+584247706745,La fria,25.00,0.00,2026-03-15T22:43:25.093Z
+79,Rifas Hermanos Pernía - El Azulejo,675,sold,Reinaldo Alvarez     Usa,+584121761854,Usa usa,25.00,0.00,2026-03-27T18:37:15.009Z
+79,Rifas Hermanos Pernía - El Azulejo,676,sold,Anthony de luca la fria,+584147387793,La fria,21.25,0.00,2026-03-18T18:36:49.417Z
+79,Rifas Hermanos Pernía - El Azulejo,677,sold,Yolimar Sanchez hija yadira,+584160777495,La fria,22.50,0.00,2026-03-19T02:21:00.602Z
+79,Rifas Hermanos Pernía - El Azulejo,678,sold,jose glaterol usa,+16154579492,Estados unidos,25.00,0.00,2026-03-09T20:46:28.558Z
+79,Rifas Hermanos Pernía - El Azulejo,679,sold,Orlando moreno la fria,+584247797409,La fria,25.00,0.00,2026-03-10T11:17:15.931Z
+79,Rifas Hermanos Pernía - El Azulejo,680,sold,Sandra Rodríguez,+18328692560,La fría,25.00,0.00,2026-04-07T20:43:13.632Z
+79,Rifas Hermanos Pernía - El Azulejo,681,sold,gavilan sanchez la fria,+584121975947,La fria,25.00,0.00,2026-03-14T01:30:43.769Z
+79,Rifas Hermanos Pernía - El Azulejo,682,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,21.00,0.00,2026-03-19T00:23:01.780Z
+79,Rifas Hermanos Pernía - El Azulejo,683,sold,Dainner montilla Sociedad,+584165768746,Colon,22.50,0.00,2026-03-17T20:08:32.886Z
+79,Rifas Hermanos Pernía - El Azulejo,684,sold,cristian mendez usa,+19126550240,Estados unidos,22.50,0.00,2026-03-10T03:29:51.315Z
+79,Rifas Hermanos Pernía - El Azulejo,685,sold,Joel Araujo,+584247729128,La fría,25.00,0.00,2026-04-12T02:04:24.500Z
+79,Rifas Hermanos Pernía - El Azulejo,686,sold,Osman Gil,+584149796001,La Fría,22.33,0.00,2026-03-28T20:24:58.235Z
+79,Rifas Hermanos Pernía - El Azulejo,687,sold,jhon de pablo Usa,+12109655075,Estados unidos,22.00,0.00,2026-03-13T12:14:09.562Z
+79,Rifas Hermanos Pernía - El Azulejo,688,sold,Karina Arcinieca,+584147247283,La fria,25.00,0.00,2026-03-14T19:36:09.016Z
+79,Rifas Hermanos Pernía - El Azulejo,689,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,690,sold,Saul Ramirez         La Grita,+584247438278,La Grita,22.50,0.00,2026-03-17T02:56:47.170Z
+79,Rifas Hermanos Pernía - El Azulejo,691,sold,Yonaiker Suarez,+19127595784,Estados unidos,25.00,0.00,2026-03-28T23:59:02.688Z
+79,Rifas Hermanos Pernía - El Azulejo,692,sold,Robert Castro       Socopo - Barinas,+584126900254,Barinas,25.00,0.00,2026-03-18T02:07:49.902Z
+79,Rifas Hermanos Pernía - El Azulejo,693,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,22.00,0.00,2026-03-16T13:11:36.441Z
+79,Rifas Hermanos Pernía - El Azulejo,694,sold,Dennys Cardenas guaco,+584242423215,La fria,17.50,0.00,2026-04-11T21:27:57.787Z
+79,Rifas Hermanos Pernía - El Azulejo,695,sold,Belisario Muñoz,+17206201568,Estados Unidos,25.00,0.00,2026-03-15T19:11:09.550Z
+79,Rifas Hermanos Pernía - El Azulejo,696,sold,Simón Moreno,+584247581847,La fria,25.00,0.00,2026-03-20T20:21:23.634Z
+79,Rifas Hermanos Pernía - El Azulejo,697,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,20.00,0.00,2026-04-11T22:20:30.610Z
+79,Rifas Hermanos Pernía - El Azulejo,698,sold,JAVIER Roman usa,+14844751789,Estados Unidos,25.00,0.00,2026-03-24T18:23:44.127Z
+79,Rifas Hermanos Pernía - El Azulejo,700,sold,Pedro Nieto,+15165544157,Estados unidos,22.00,0.00,2026-03-17T12:05:22.351Z
+79,Rifas Hermanos Pernía - El Azulejo,701,sold,Daniel Pineda.    La Grita,+584147414908,La grita,25.00,0.00,2026-03-11T01:14:22.330Z
+79,Rifas Hermanos Pernía - El Azulejo,702,sold,Joel López,+584247715538,La Fría,25.00,0.00,2026-03-29T01:32:18.252Z
+79,Rifas Hermanos Pernía - El Azulejo,703,sold,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,22.00,0.00,2026-03-15T23:31:52.653Z
+79,Rifas Hermanos Pernía - El Azulejo,704,sold,Orlando gomez,+56936206811,Chile,25.00,0.00,2026-03-19T19:58:22.830Z
+79,Rifas Hermanos Pernía - El Azulejo,705,sold,Robert Bettin usa,+14078616053,Estados unidos,25.00,0.00,2026-03-25T21:56:42.288Z
+79,Rifas Hermanos Pernía - El Azulejo,706,sold,Daniela sanchez pajaro usa,+14784422001,Estados unidos,25.00,0.00,2026-03-16T03:11:58.905Z
+79,Rifas Hermanos Pernía - El Azulejo,707,sold,Luis fleming la fria,+18324183244,Ls fria,22.00,0.00,2026-03-21T18:59:54.470Z
+79,Rifas Hermanos Pernía - El Azulejo,708,sold,Guwer Ruedas,+17543497323,Estados Unidos,20.00,0.00,2026-04-08T02:01:40.458Z
+79,Rifas Hermanos Pernía - El Azulejo,709,sold,Yefferson Chacón,+584247452532,Queniquea,22.50,0.00,2026-03-28T17:42:03.684Z
+79,Rifas Hermanos Pernía - El Azulejo,710,sold,Victor Delgado,+584147377105,La fria,25.00,0.00,2026-03-21T17:29:42.551Z
+79,Rifas Hermanos Pernía - El Azulejo,711,sold,Jaymar Ramírez,+34643221261,España,22.30,0.00,2026-03-10T11:34:48.657Z
+79,Rifas Hermanos Pernía - El Azulejo,712,sold,carolina contreras usa,+16297298655,Estados unidos,22.33,0.00,2026-03-14T15:42:40.343Z
+79,Rifas Hermanos Pernía - El Azulejo,713,sold,Yeiker Pernia      Caracas - Usa,+17869398393,Caracas - Usa,25.00,0.00,2026-03-14T22:48:20.967Z
+79,Rifas Hermanos Pernía - El Azulejo,714,sold,Junior Moncada,+584147678826,La Fria,22.50,0.00,2026-03-17T01:48:11.786Z
+79,Rifas Hermanos Pernía - El Azulejo,715,sold,Robert Bettin usa,+14078616053,Estados unidos,22.00,0.00,2026-03-15T19:50:11.945Z
+79,Rifas Hermanos Pernía - El Azulejo,716,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,25.00,0.00,2026-03-15T22:01:59.956Z
+79,Rifas Hermanos Pernía - El Azulejo,717,sold,Marcos Osorio,+573173134587,La Fría,25.00,0.00,2026-04-07T21:07:21.618Z
+79,Rifas Hermanos Pernía - El Azulejo,718,sold,Gustavo Toledo,+584147212636,La Fría,22.50,0.00,2026-03-15T01:17:15.400Z
+79,Rifas Hermanos Pernía - El Azulejo,719,sold,Berlys Mendoza,+16823611968,Estados Unidos,22.50,0.00,2026-03-20T20:30:26.428Z
+79,Rifas Hermanos Pernía - El Azulejo,720,sold,Krisbel Perez 《Usa-La fria 》,+14437354900,Estados unidos,22.00,0.00,2026-03-19T12:23:42.664Z
+79,Rifas Hermanos Pernía - El Azulejo,721,sold,Keismer Contreras,+17372028084,Estados Unidos,22.00,0.00,2026-03-20T19:47:28.301Z
+79,Rifas Hermanos Pernía - El Azulejo,722,sold,Gabriel Sandoval,+12163726045,La Fria,22.50,0.00,2026-03-18T23:41:24.687Z
+79,Rifas Hermanos Pernía - El Azulejo,723,sold,Yony Martinez autoperiquitos,+584247404105,La fria,25.00,0.00,2026-03-17T01:18:21.914Z
+79,Rifas Hermanos Pernía - El Azulejo,724,sold,Anthony Sanchez usa,+19804752209,Estados unidos,22.50,0.00,2026-03-18T18:22:57.610Z
+79,Rifas Hermanos Pernía - El Azulejo,725,sold,Yuglendy Bello,+12819129773,La Fria - Usa,22.00,0.00,2026-03-10T03:02:58.900Z
+79,Rifas Hermanos Pernía - El Azulejo,726,sold,Anderson Chiquito usa,+16154388600,Estados unidos,21.00,0.00,2026-03-20T01:12:08.162Z
+79,Rifas Hermanos Pernía - El Azulejo,727,sold,Yolimar Sanchez hija yadira,+584160777495,La fria,22.50,0.00,2026-03-19T02:21:00.602Z
+79,Rifas Hermanos Pernía - El Azulejo,728,sold,Daniela Hernandez la fria,+584247544215,La fria,20.00,0.00,2026-04-11T16:51:23.133Z
+79,Rifas Hermanos Pernía - El Azulejo,729,sold,Yonaiker Suarez,+19127595784,Estados unidos,22.00,0.00,2026-03-14T13:33:44.875Z
+79,Rifas Hermanos Pernía - El Azulejo,730,sold,Sergio Ramos,+584128629758,San Cristóbal,22.33,0.00,2026-03-14T19:30:54.916Z
+79,Rifas Hermanos Pernía - El Azulejo,731,sold,Zunaida Montilla el guayabo,+584120768182,El guayabo,25.00,0.00,2026-04-09T15:11:35.371Z
+79,Rifas Hermanos Pernía - El Azulejo,732,sold,Leidy Garcia la fria,+584126483474,La fria,25.00,0.00,2026-03-17T17:38:37.956Z
+79,Rifas Hermanos Pernía - El Azulejo,733,sold,Eimar Ayala la fria chile,+56982219811,Chile,25.00,0.00,2026-03-21T22:32:34.702Z
+79,Rifas Hermanos Pernía - El Azulejo,734,sold,Victor Morales,+56931977659,Chile,25.00,0.00,2026-03-17T20:13:29.804Z
+79,Rifas Hermanos Pernía - El Azulejo,735,sold,Joel Moto ya,+584147233081,La fria,25.00,0.00,2026-03-21T17:06:09.609Z
+79,Rifas Hermanos Pernía - El Azulejo,736,sold,Emir Parra     ( La Grita ),+584147162627,La Grita,25.00,0.00,2026-03-15T01:37:56.341Z
+79,Rifas Hermanos Pernía - El Azulejo,737,sold,Sander Velandria,+17083486017,Estados Unidos,22.50,0.00,2026-03-14T15:28:40.932Z
+79,Rifas Hermanos Pernía - El Azulejo,738,sold,Jeiber acevedo Usa,+13465583256,Estados unidos,25.00,0.00,2026-03-21T20:50:00.976Z
+79,Rifas Hermanos Pernía - El Azulejo,739,sold,Karlita Bettin panama,+50762299914,Panama,22.50,0.00,2026-03-20T19:56:42.909Z
+79,Rifas Hermanos Pernía - El Azulejo,740,sold,Enrique medina usa,+14406810853,Estados Unidos,25.00,0.00,2026-03-22T01:07:15.615Z
+79,Rifas Hermanos Pernía - El Azulejo,741,sold,Ronny Valbuena,+14693165890,Estados unidos,25.00,0.00,2026-04-11T18:30:03.566Z
+79,Rifas Hermanos Pernía - El Azulejo,742,sold,Alfonso Carrillo,+584121716672,La fria,25.00,0.00,2026-03-17T18:57:03.787Z
+79,Rifas Hermanos Pernía - El Azulejo,743,sold,gerson contreras alineación,+584247432468,La fria,25.00,0.00,2026-03-15T01:21:28.293Z
+79,Rifas Hermanos Pernía - El Azulejo,744,sold,Lourdes Rivas      Santa Ana ( Numero en sociedad),+584247824140,Santa ana,25.00,0.00,2026-03-17T01:01:39.551Z
+79,Rifas Hermanos Pernía - El Azulejo,745,sold,Jesus Sanchez,+18172984840,Estados Unidos,25.00,0.00,2026-03-21T19:32:03.838Z
+79,Rifas Hermanos Pernía - El Azulejo,746,pending,Gabriela Muñoz,+13802394964,La Fria Usa,22.32,0.01,2026-03-14T19:35:02.664Z
+79,Rifas Hermanos Pernía - El Azulejo,747,sold,Yohana hernandez,+584147554641,La fria,25.00,0.00,2026-03-14T15:47:02.615Z
+79,Rifas Hermanos Pernía - El Azulejo,748,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,22.50,0.00,2026-03-10T12:03:36.629Z
+79,Rifas Hermanos Pernía - El Azulejo,749,sold,Domingo sandoval usa,+12163135810,Estados unidos,22.00,0.00,2026-03-10T02:57:40.425Z
+79,Rifas Hermanos Pernía - El Azulejo,750,sold,Jhoan Perez,+15125918454,Estados Unidos,22.30,0.00,2026-03-20T01:29:41.433Z
+79,Rifas Hermanos Pernía - El Azulejo,751,sold,Erwin Martinez don camaron,+584243228374,La fria,25.00,0.00,2026-04-12T01:58:29.546Z
+79,Rifas Hermanos Pernía - El Azulejo,752,sold,Yorman Duarte,+584247443558,La Fria,25.00,0.00,2026-03-17T20:43:56.677Z
+79,Rifas Hermanos Pernía - El Azulejo,753,sold,Harol Rangel colon,+584163732385,Colon,25.00,0.00,2026-03-09T22:10:02.570Z
+79,Rifas Hermanos Pernía - El Azulejo,754,sold,Miguel Benavides,+19127104280,La Fria - Usa,22.00,0.00,2026-03-29T00:15:50.877Z
+79,Rifas Hermanos Pernía - El Azulejo,755,sold,yuleidy alvernia,+584247031321,La fria,25.00,0.00,2026-03-21T20:22:16.748Z
+79,Rifas Hermanos Pernía - El Azulejo,756,sold,Alberto Alvarado,+584149766905,La fria,20.00,0.00,2026-03-17T01:39:44.977Z
+79,Rifas Hermanos Pernía - El Azulejo,757,sold,Osman Gil,+584149796001,La Fría,22.33,0.00,2026-03-28T20:24:58.235Z
+79,Rifas Hermanos Pernía - El Azulejo,758,pending,Yorvi Zambrano,+584247163958,La Fria,22.32,0.01,2026-03-22T01:02:15.049Z
+79,Rifas Hermanos Pernía - El Azulejo,759,sold,Junior bomba merideña Elis monsalve,+584247304259,La fria,20.00,0.00,2026-04-11T14:57:57.760Z
+79,Rifas Hermanos Pernía - El Azulejo,760,sold,Yei Herrera,+17542319760,Estados Unidos,20.00,0.00,2026-04-10T22:38:48.258Z
+79,Rifas Hermanos Pernía - El Azulejo,761,sold,Norvin Castrillo,+584247623404,La fria,25.00,0.00,2026-03-18T19:21:52.834Z
+79,Rifas Hermanos Pernía - El Azulejo,762,sold,Robert Bettin usa,+14078616053,Estados unidos,22.00,0.00,2026-03-15T19:50:11.945Z
+79,Rifas Hermanos Pernía - El Azulejo,763,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,25.00,0.00,2026-03-11T01:21:54.335Z
+79,Rifas Hermanos Pernía - El Azulejo,764,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,22.50,0.00,2026-04-12T00:21:48.914Z
+79,Rifas Hermanos Pernía - El Azulejo,765,sold,Daiver velazques,+584241951963,Estados unidos,22.50,0.00,2026-03-10T02:08:32.701Z
+79,Rifas Hermanos Pernía - El Azulejo,766,sold,Jaymar Ramírez,+34643221261,España,25.00,0.00,2026-03-26T19:58:32.273Z
+79,Rifas Hermanos Pernía - El Azulejo,767,sold,Jose Medina,+584141771881,La Fría,25.00,0.00,2026-03-16T00:38:29.387Z
+79,Rifas Hermanos Pernía - El Azulejo,768,sold,Bey puerta La fria,+584247538857,La fria,25.00,0.00,2026-03-16T19:05:50.101Z
+79,Rifas Hermanos Pernía - El Azulejo,769,sold,Jesus baraja Mecanico,+584147354430,La fria,22.50,0.00,2026-03-17T14:15:50.866Z
+79,Rifas Hermanos Pernía - El Azulejo,770,sold,Douglas Jaimes,+18179640637,Estados Unidos,22.50,0.00,2026-03-20T20:32:03.007Z
+79,Rifas Hermanos Pernía - El Azulejo,771,sold,Yeiker Colmenarez usa,+13313224845,La fria,22.33,0.00,2026-03-21T15:18:15.671Z
+79,Rifas Hermanos Pernía - El Azulejo,772,sold,Yackelin Fuentes usa,+50761249348,Estados unidos,22.50,0.00,2026-03-16T18:38:26.583Z
+79,Rifas Hermanos Pernía - El Azulejo,773,sold,Diego Morales      ( Chile ),+56978747174,Chile,22.00,0.00,2026-03-21T21:10:38.494Z
+79,Rifas Hermanos Pernía - El Azulejo,774,sold,Elvis Zambrano los seibos,+16783289039,Estados unidos,25.00,0.00,2026-03-17T21:07:21.372Z
+79,Rifas Hermanos Pernía - El Azulejo,775,sold,Crisanyely Prado,+573108139130,La fria,22.30,0.00,2026-03-15T23:36:24.800Z
+79,Rifas Hermanos Pernía - El Azulejo,776,sold,Frederick Alejandro martines usa,+17543272037,Estados unidos,22.33,0.00,2026-03-14T15:59:07.713Z
+79,Rifas Hermanos Pernía - El Azulejo,777,sold,Yei Herrera,+17542319760,Estados Unidos,25.00,0.00,2026-03-21T21:17:50.118Z
+79,Rifas Hermanos Pernía - El Azulejo,778,sold,Jhon Retamoza   ( Machiques Zulia ),+584127957267,Machiques - Zulia,25.00,0.00,2026-03-17T02:58:50.133Z
+79,Rifas Hermanos Pernía - El Azulejo,779,sold,Juan Flores  ( Santa Barbara del Zulia - Usa ),+13464170770,Usa usa,25.00,0.00,2026-04-11T17:48:47.008Z
+79,Rifas Hermanos Pernía - El Azulejo,780,sold,Yoel 5 milazo,+584226438032,La fria,25.00,0.00,2026-03-29T00:27:56.294Z
+79,Rifas Hermanos Pernía - El Azulejo,781,sold,Ismar carrillo pollo,+584125942186,La fria,25.00,0.00,2026-03-15T22:36:46.539Z
+79,Rifas Hermanos Pernía - El Azulejo,782,sold,Yerson Portillo usa,+13476777246,Estados unidos,22.33,0.00,2026-03-19T00:51:21.803Z
+79,Rifas Hermanos Pernía - El Azulejo,783,sold,Angel Ferrebus,+12109297571,La Fria - Usa,25.00,0.00,2026-03-10T11:52:11.494Z
+79,Rifas Hermanos Pernía - El Azulejo,784,sold,Rosmely Fernandez guarico,+584169261349,Guarico,25.00,0.00,2026-03-17T01:10:44.681Z
+79,Rifas Hermanos Pernía - El Azulejo,785,sold,Edgar benavides usa,+18437830868,Estados unidos,25.00,0.00,2026-03-29T00:07:05.456Z
+79,Rifas Hermanos Pernía - El Azulejo,786,sold,Luberlys Salcedo,+584247506501,La Fría,22.50,0.00,2026-03-14T21:16:35.468Z
+79,Rifas Hermanos Pernía - El Azulejo,787,sold,Sleby Caicedo,+584247197601,La fria,25.00,0.00,2026-03-18T02:07:51.746Z
+79,Rifas Hermanos Pernía - El Azulejo,788,sold,Fernanda Manrrique,+584147246639,La fria,25.00,0.00,2026-03-24T19:34:18.837Z
+79,Rifas Hermanos Pernía - El Azulejo,789,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,22.30,0.00,2026-03-20T01:03:15.543Z
+79,Rifas Hermanos Pernía - El Azulejo,790,sold,Andres rincon la fría,+584247665533,La fria,25.00,0.00,2026-03-15T02:27:18.408Z
+79,Rifas Hermanos Pernía - El Azulejo,791,sold,José Buitrago,+14254036252,Estados unidos,22.33,0.00,2026-03-20T19:15:15.655Z
+79,Rifas Hermanos Pernía - El Azulejo,792,pending,Rosbeily Morles usa,+12067421305,Estados unidos,10.00,12.00,2026-03-22T00:22:50.103Z
+79,Rifas Hermanos Pernía - El Azulejo,793,sold,Herly mendoza colon,+584247305708,Colon,25.00,0.00,2026-03-21T23:33:45.063Z
+79,Rifas Hermanos Pernía - El Azulejo,794,sold,Rafael Hernandez,+17348997079,Estados Unidos,25.00,0.00,2026-03-20T16:12:53.637Z
+79,Rifas Hermanos Pernía - El Azulejo,795,sold,jhon de pablo Usa,+12109655075,Estados unidos,22.00,0.00,2026-03-13T12:14:09.562Z
+79,Rifas Hermanos Pernía - El Azulejo,796,sold,omarcito caracas,+584143010693,Caracas,22.50,0.00,2026-03-16T00:41:32.329Z
+79,Rifas Hermanos Pernía - El Azulejo,797,sold,Cristian Leon 5 milazo,+584247010906,La fria,25.00,0.00,2026-03-17T02:22:42.610Z
+79,Rifas Hermanos Pernía - El Azulejo,798,sold,Tomas glaterol delicias,+584141758019,La fria,22.33,0.00,2026-03-21T17:36:12.550Z
+79,Rifas Hermanos Pernía - El Azulejo,801,sold,Guwer Ruedas,+17543497323,Estados Unidos,20.00,0.00,2026-04-08T02:01:40.458Z
+79,Rifas Hermanos Pernía - El Azulejo,802,sold,Jose luis Suarez,+584147493068,La fria,25.00,0.00,2026-03-14T14:39:06.511Z
+79,Rifas Hermanos Pernía - El Azulejo,803,sold,Sandra Rodríguez,+18328692560,La fría,25.00,0.00,2026-04-11T14:59:42.505Z
+79,Rifas Hermanos Pernía - El Azulejo,804,sold,Franklin Alchain repuestos,+584247722153,La fria,22.50,0.00,2026-03-20T01:25:00.763Z
+79,Rifas Hermanos Pernía - El Azulejo,805,sold,victor contreras ls fria,+584247036467,La fria,20.00,0.00,2026-04-07T22:54:20.578Z
+79,Rifas Hermanos Pernía - El Azulejo,806,sold,Deysi Moncada     ( La Grita),+584247829118,La Grita,25.00,0.00,2026-03-11T01:36:14.567Z
+79,Rifas Hermanos Pernía - El Azulejo,807,sold,Robert Bettin usa,+14078616053,Estados unidos,22.50,0.00,2026-03-29T00:13:38.840Z
+79,Rifas Hermanos Pernía - El Azulejo,808,pending,Yudith Zambrano     Acarigua,+584127722258,Acarigua,0.00,22.50,2026-03-27T18:34:47.978Z
+79,Rifas Hermanos Pernía - El Azulejo,809,sold,Chano Briceño,+584247569103,La Fria,25.00,0.00,2026-03-18T03:03:14.994Z
+79,Rifas Hermanos Pernía - El Azulejo,810,sold,Saul Ramirez         La Grita,+584247438278,La Grita,22.50,0.00,2026-03-17T02:56:47.170Z
+79,Rifas Hermanos Pernía - El Azulejo,811,sold,rafael boscan la fria,+584147155644,La fria,25.00,0.00,2026-04-10T20:03:23.256Z
+79,Rifas Hermanos Pernía - El Azulejo,812,sold,carolina contreras usa,+16297298655,Estados unidos,22.00,0.00,2026-03-14T16:55:35.708Z
+79,Rifas Hermanos Pernía - El Azulejo,813,sold,Jean Carlos Ramirez,+584247321597,La Fria,21.00,0.00,2026-04-06T22:28:47.041Z
+79,Rifas Hermanos Pernía - El Azulejo,814,sold,Luis fleming la fria,+18324183244,Ls fria,22.00,0.00,2026-03-21T18:59:54.470Z
+79,Rifas Hermanos Pernía - El Azulejo,815,sold,yuleidy alvernia,+584247031321,La fria,25.00,0.00,2026-03-21T20:22:16.748Z
+79,Rifas Hermanos Pernía - El Azulejo,816,sold,Diego Morales      ( Chile ),+56978747174,Chile,22.00,0.00,2026-03-21T21:10:38.494Z
+79,Rifas Hermanos Pernía - El Azulejo,817,sold,Jhony Perez     ( La Grita ),+584147496829,La Grita,25.00,0.00,2026-03-11T01:24:18.832Z
+79,Rifas Hermanos Pernía - El Azulejo,818,sold,Gustavo Toledo,+584147212636,La Fría,22.50,0.00,2026-03-15T01:17:15.400Z
+79,Rifas Hermanos Pernía - El Azulejo,819,sold,Jakelin vivas usa,+15128798132,Estados unidos,22.30,0.00,2026-03-10T02:34:52.269Z
+79,Rifas Hermanos Pernía - El Azulejo,820,sold,Leonardo Guevara Riaño,+34603752050,España Barcelona,25.00,0.00,2026-03-20T21:03:18.201Z
+79,Rifas Hermanos Pernía - El Azulejo,821,sold,Ender Ramirez españa,+34653590976,España,25.00,0.00,2026-04-10T19:49:04.146Z
+79,Rifas Hermanos Pernía - El Azulejo,822,sold,Luz Saida,+584147591143,La fria,25.00,0.00,2026-03-20T20:35:31.843Z
+79,Rifas Hermanos Pernía - El Azulejo,823,sold,Lucy Rey,+584143796817,La Fría,22.33,0.00,2026-03-14T19:21:56.634Z
+79,Rifas Hermanos Pernía - El Azulejo,824,sold,Jose sanchez La fria,+584149742615,La fria,25.00,0.00,2026-03-17T00:39:22.092Z
+79,Rifas Hermanos Pernía - El Azulejo,825,sold,Yeraldin Vivas usa,+15127122718,Estados unidos,22.33,0.00,2026-03-14T19:01:52.025Z
+79,Rifas Hermanos Pernía - El Azulejo,826,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,25.00,0.00,2026-04-12T00:22:46.637Z
+79,Rifas Hermanos Pernía - El Azulejo,827,sold,Wilmer puentes Maracay,+584141427586,Maracay,25.00,0.00,2026-03-10T11:15:54.899Z
+79,Rifas Hermanos Pernía - El Azulejo,828,sold,Reinaldo Marchan,+14143082362,Estados unidos,22.33,0.00,2026-03-21T15:54:30.052Z
+79,Rifas Hermanos Pernía - El Azulejo,829,sold,Karla Rojas colon,+584143754773,Colon,22.50,0.00,2026-03-16T18:35:40.574Z
+79,Rifas Hermanos Pernía - El Azulejo,830,sold,Francia Bohórquez,+573236235085,La Fría,25.00,0.00,2026-03-19T12:17:51.373Z
+79,Rifas Hermanos Pernía - El Azulejo,831,sold,Miguel Benavides,+19127104280,La Fria - Usa,22.00,0.00,2026-03-29T00:15:50.877Z
+79,Rifas Hermanos Pernía - El Azulejo,832,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,22.00,0.00,2026-03-16T13:11:36.441Z
+79,Rifas Hermanos Pernía - El Azulejo,833,sold,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,san Josecito,25.00,0.00,2026-03-11T02:05:43.425Z
+79,Rifas Hermanos Pernía - El Azulejo,834,sold,Alberto Pablo garcia,+50763762857,Panamá,25.00,0.00,2026-03-17T01:50:07.456Z
+79,Rifas Hermanos Pernía - El Azulejo,835,sold,Yeison naranjo usa,+18542457903,Estados unidos,25.00,0.00,2026-03-18T00:22:29.634Z
+79,Rifas Hermanos Pernía - El Azulejo,836,sold,Antonio Gonzáles,+584247396138,La Fría,22.33,0.00,2026-03-18T19:02:58.475Z
+79,Rifas Hermanos Pernía - El Azulejo,837,sold,Guwer Ruedas,+17543497323,Estados Unidos,22.33,0.00,2026-03-21T22:35:25.739Z
+79,Rifas Hermanos Pernía - El Azulejo,838,sold,Jesus Bello,+584144006106,Sin Dirección,22.50,0.00,2026-03-16T13:17:27.794Z
+79,Rifas Hermanos Pernía - El Azulejo,839,sold,Yeritzon Ramirez (paguer),+584147572198,La fría,21.70,0.00,2026-03-16T15:46:13.157Z
+79,Rifas Hermanos Pernía - El Azulejo,840,sold,Cristian Leon 5 milazo,+584247010906,La fria,22.00,0.00,2026-04-10T20:31:39.038Z
+79,Rifas Hermanos Pernía - El Azulejo,841,sold,Jose molina,+584147335828,Coloncito,25.00,0.00,2026-03-22T01:17:54.223Z
+79,Rifas Hermanos Pernía - El Azulejo,842,sold,Yeimi Toledo,+584147387511,La Fria,22.50,0.00,2026-03-14T00:40:01.738Z
+79,Rifas Hermanos Pernía - El Azulejo,843,sold,Edson romero usa,+16892715875,Estados unidos,22.30,0.00,2026-04-11T23:23:25.657Z
+79,Rifas Hermanos Pernía - El Azulejo,844,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,845,sold,Luis Muro     Maracaibo Edo Zulia  Usa,+14322079194,Maracaibo Edo Zulia,20.00,0.00,2026-04-10T03:05:05.917Z
+79,Rifas Hermanos Pernía - El Azulejo,846,sold,Karol Gonzales chile la fria,+56951855023,Chile,25.00,0.00,2026-03-18T00:32:52.898Z
+79,Rifas Hermanos Pernía - El Azulejo,847,sold,Angel Ferrebus,+12109297571,La Fria - Usa,25.00,0.00,2026-03-10T11:52:11.494Z
+79,Rifas Hermanos Pernía - El Azulejo,848,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,22.33,0.00,2026-03-21T15:59:37.104Z
+79,Rifas Hermanos Pernía - El Azulejo,849,sold,Ruben Moreno,+584161522214,La fria,25.00,0.00,2026-04-09T22:18:14.151Z
+79,Rifas Hermanos Pernía - El Azulejo,850,sold,Nelson Gutierrez   ( Usa ),+13344881263,Usa usa,25.00,0.00,2026-03-21T12:43:44.467Z
+79,Rifas Hermanos Pernía - El Azulejo,851,sold,Gabriel Mujica       La Fria,+584247276204,La fria,22.00,0.00,2026-03-14T22:52:40.259Z
+79,Rifas Hermanos Pernía - El Azulejo,852,sold,Jose Rafael Lopez (Pelon),+56932848548,Chile,22.33,0.00,2026-03-14T20:07:17.036Z
+79,Rifas Hermanos Pernía - El Azulejo,853,sold,Gabriel Mujica       La Fria,+584247276204,La fria,22.00,0.00,2026-03-14T22:52:40.259Z
+79,Rifas Hermanos Pernía - El Azulejo,854,sold,Cesar Caceres poli tachira,+584123870830,La fria,25.00,0.00,2026-03-17T01:46:18.189Z
+79,Rifas Hermanos Pernía - El Azulejo,855,sold,Nelson Roa,+17869147200,Estados Unidos,20.00,0.00,2026-04-06T23:35:52.939Z
+79,Rifas Hermanos Pernía - El Azulejo,856,sold,Belkis vargas la fria matamango,+584243064930,La fria,25.00,0.00,2026-03-17T00:35:23.028Z
+79,Rifas Hermanos Pernía - El Azulejo,857,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,0.00,2026-03-20T00:26:49.466Z
+79,Rifas Hermanos Pernía - El Azulejo,858,sold,Nene Casa madera,+584247631852,La fria,25.00,0.00,2026-03-15T20:52:24.177Z
+79,Rifas Hermanos Pernía - El Azulejo,859,pending,gerson contreras alineación,+584247432468,La fria,0.00,20.00,2026-04-11T20:19:25.978Z
+79,Rifas Hermanos Pernía - El Azulejo,860,sold,Yenis Bettin,+584147577344,La Fría,22.00,0.00,2026-04-10T22:49:24.867Z
+79,Rifas Hermanos Pernía - El Azulejo,861,sold,Guwer Ruedas,+17543497323,Estados Unidos,22.33,0.00,2026-03-21T22:35:25.739Z
+79,Rifas Hermanos Pernía - El Azulejo,862,sold,Mayrenis ramos guarico,+584268497777,Guarico,25.00,0.00,2026-03-17T00:32:00.903Z
+79,Rifas Hermanos Pernía - El Azulejo,863,sold,Yus Orozco colon,+584263729683,Colon,25.00,0.00,2026-03-17T20:03:42.497Z
+79,Rifas Hermanos Pernía - El Azulejo,864,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,865,sold,Yertizon vivas Barbas,+16165896823,Estados unidos,25.00,0.00,2026-03-16T23:22:47.166Z
+79,Rifas Hermanos Pernía - El Azulejo,866,sold,juan Carlos chona,+573212806011,Colombia,25.00,0.00,2026-04-10T16:14:55.222Z
+79,Rifas Hermanos Pernía - El Azulejo,867,sold,jose glaterol usa,+16154579492,Estados unidos,25.00,0.00,2026-03-09T20:46:28.558Z
+79,Rifas Hermanos Pernía - El Azulejo,868,sold,Negro never Usa,+12142811315,Estados Unidos,25.00,0.00,2026-03-16T03:10:22.289Z
+79,Rifas Hermanos Pernía - El Azulejo,869,pending,Nelson Leon.       ( San Cristobal),+584247641133,San Cristobal,0.00,25.00,2026-04-09T23:02:51.470Z
+79,Rifas Hermanos Pernía - El Azulejo,870,sold,Sergio Ramos,+584128629758,San Cristóbal,22.33,0.00,2026-03-14T19:30:54.916Z
+79,Rifas Hermanos Pernía - El Azulejo,871,sold,Cristobal Zambrano,+13609992787,Estados Unidos,22.33,0.00,2026-03-15T20:58:44.171Z
+79,Rifas Hermanos Pernía - El Azulejo,872,sold,Jean Carlos Ramirez,+584247321597,La Fria,21.00,0.00,2026-04-06T22:28:47.041Z
+79,Rifas Hermanos Pernía - El Azulejo,873,sold,Anthony Sanchez usa,+19804752209,Estados unidos,22.50,0.00,2026-03-18T18:22:57.610Z
+79,Rifas Hermanos Pernía - El Azulejo,874,sold,Marian Mendoza colon,+584263740249,Colon,25.00,0.00,2026-03-18T00:40:57.882Z
+79,Rifas Hermanos Pernía - El Azulejo,875,sold,Iris Correa,+573212317214,Colombia,22.50,0.00,2026-04-12T01:57:24.691Z
+79,Rifas Hermanos Pernía - El Azulejo,876,sold,Anthony de luca la fria,+584147387793,La fria,21.25,0.00,2026-03-18T18:36:49.417Z
+79,Rifas Hermanos Pernía - El Azulejo,877,sold,Pedro Nieto,+15165544157,Estados unidos,22.00,0.00,2026-03-17T12:05:22.351Z
+79,Rifas Hermanos Pernía - El Azulejo,878,sold,Yefry Morales,+584265542386,La fría,25.00,0.00,2026-03-16T23:27:19.345Z
+79,Rifas Hermanos Pernía - El Azulejo,879,sold,Yovany fernandez,+584121715327,La fria,22.50,0.00,2026-03-16T20:38:50.519Z
+79,Rifas Hermanos Pernía - El Azulejo,880,pending,Guillermo Rincon sociedad,+584247464568,La fria,0.00,20.00,2026-04-11T18:48:45.073Z
+79,Rifas Hermanos Pernía - El Azulejo,881,sold,Eduin Vera,+17202128806,Estados unidos,25.00,0.00,2026-03-20T20:53:52.635Z
+79,Rifas Hermanos Pernía - El Azulejo,882,sold,Nancy Garcia mama de deivi,+584247067832,La Grita,25.00,0.00,2026-04-10T02:31:29.272Z
+79,Rifas Hermanos Pernía - El Azulejo,883,sold,Tahis marquez esposa de kiko,+584147379540,La fría,25.00,0.00,2026-03-27T20:07:26.376Z
+79,Rifas Hermanos Pernía - El Azulejo,884,sold,Hurlene Rojas          El Nula,+584121581884,El Nula,25.00,0.00,2026-03-14T23:02:05.301Z
+79,Rifas Hermanos Pernía - El Azulejo,885,sold,Wendy Amaya,+573243191324,La Fría,22.50,0.00,2026-03-22T02:09:15.750Z
+79,Rifas Hermanos Pernía - El Azulejo,886,sold,Jesus Bello,+584144006106,Sin Dirección,22.50,0.00,2026-03-16T13:17:27.794Z
+79,Rifas Hermanos Pernía - El Azulejo,887,sold,Henrry Serrano,+18433050408,La Fria - Usa,20.00,0.00,2026-04-09T16:28:22.966Z
+79,Rifas Hermanos Pernía - El Azulejo,888,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,22.00,0.00,2026-03-14T22:57:41.713Z
+79,Rifas Hermanos Pernía - El Azulejo,889,sold,Frederick Alejandro martines usa,+17543272037,Estados unidos,22.33,0.00,2026-03-14T15:59:07.713Z
+79,Rifas Hermanos Pernía - El Azulejo,890,pending,Alex padron la fria,+584141768941,La fria,0.00,22.50,2026-03-17T00:11:55.713Z
+79,Rifas Hermanos Pernía - El Azulejo,891,sold,Angel Ferrebus,+12109297571,La Fria - Usa,25.00,0.00,2026-03-10T11:52:11.494Z
+79,Rifas Hermanos Pernía - El Azulejo,892,sold,Angélica boscan,+584247412268,La fria,25.00,0.00,2026-03-14T14:51:49.507Z
+79,Rifas Hermanos Pernía - El Azulejo,893,sold,Yeritzon Ramirez (paguer),+584147572198,La fría,21.70,0.00,2026-03-16T15:46:13.157Z
+79,Rifas Hermanos Pernía - El Azulejo,894,sold,Andrés Ferrer.   ( Maracaibo ),+584246497280,Maracaibo,25.00,0.00,2026-04-11T17:14:33.561Z
+79,Rifas Hermanos Pernía - El Azulejo,895,sold,Reinaldo Marchan,+14143082362,Estados unidos,22.33,0.00,2026-03-21T15:51:35.312Z
+79,Rifas Hermanos Pernía - El Azulejo,896,sold,Anthony urbina rifero,+584247580573,San cristobal,25.00,0.00,2026-03-24T19:51:01.281Z
+79,Rifas Hermanos Pernía - El Azulejo,897,sold,Gregori Lozano,+584247601747,Colòn,25.00,0.00,2026-03-10T02:25:23.583Z
+79,Rifas Hermanos Pernía - El Azulejo,898,sold,Arturo San cristobal,+584247739588,San cristobal,25.00,0.00,2026-03-28T20:07:08.406Z
+79,Rifas Hermanos Pernía - El Azulejo,899,sold,Leomar guerrero usa,+17373952299,Estados unidos,25.00,0.00,2026-03-15T21:48:21.280Z
+79,Rifas Hermanos Pernía - El Azulejo,901,sold,jesus Duque colombia,+573204326737,Colombia,22.50,0.00,2026-03-17T00:15:11.875Z
+79,Rifas Hermanos Pernía - El Azulejo,902,sold,Junior Moncada,+584147678826,La Fria,22.50,0.00,2026-03-17T01:48:11.786Z
+79,Rifas Hermanos Pernía - El Azulejo,903,sold,Jean Carlos Ramirez,+584247321597,La Fria,21.00,0.00,2026-04-06T22:28:47.041Z
+79,Rifas Hermanos Pernía - El Azulejo,904,sold,Luis Colina     ( Valencia - Usa ),+17209838033,Valencia Usa,25.00,0.00,2026-03-20T17:19:31.919Z
+79,Rifas Hermanos Pernía - El Azulejo,905,sold,Pipa Abasto DyU,+584141201930,La fria,25.00,0.00,2026-03-16T16:29:51.323Z
+79,Rifas Hermanos Pernía - El Azulejo,906,sold,Yen Buitriago,+19803610415,Estados unidos,22.00,0.00,2026-03-20T01:21:15.017Z
+79,Rifas Hermanos Pernía - El Azulejo,907,sold,Jose Rafael Lopez (Pelon),+56932848548,Chile,22.33,0.00,2026-03-14T20:07:17.036Z
+79,Rifas Hermanos Pernía - El Azulejo,908,sold,Ender Ramirez españa,+34653590976,España,25.00,0.00,2026-04-10T19:49:04.146Z
+79,Rifas Hermanos Pernía - El Azulejo,909,sold,Yolanda Sanchez,+584247353314,La fria,25.00,0.00,2026-03-16T23:16:13.522Z
+79,Rifas Hermanos Pernía - El Azulejo,910,sold,Franklin vergel usa,+12162069770,Estados unidos,22.50,0.00,2026-03-10T03:36:12.896Z
+79,Rifas Hermanos Pernía - El Azulejo,911,pending,ROKI GARCIA LA FRIA,+584247662581,La fria,0.00,21.67,2026-03-20T00:36:21.749Z
+79,Rifas Hermanos Pernía - El Azulejo,912,sold,Angel Rosales,+584242197659,La Fría,25.00,0.00,2026-04-10T16:11:41.623Z
+79,Rifas Hermanos Pernía - El Azulejo,913,sold,David Ramirez         La Grita,+584147002584,La Grita,25.00,0.00,2026-03-11T01:19:27.889Z
+79,Rifas Hermanos Pernía - El Azulejo,914,sold,Rafael Molina,+584147484747,La Fría,22.50,0.00,2026-03-10T03:55:09.951Z
+79,Rifas Hermanos Pernía - El Azulejo,915,sold,Eduard sanchez usa,+19843561048,Estados unidos,22.50,0.00,2026-03-10T03:33:49.968Z
+79,Rifas Hermanos Pernía - El Azulejo,916,sold,Jeudany Pernia,+584121560678,Colón,25.00,0.00,2026-03-14T19:39:58.432Z
+79,Rifas Hermanos Pernía - El Azulejo,917,sold,Monica Canquis  colon,+584147260472,Colon,25.00,0.00,2026-03-16T00:20:10.294Z
+79,Rifas Hermanos Pernía - El Azulejo,918,sold,Anderson Rodríguez,+584126436359,La fría,25.00,0.00,2026-03-15T20:47:25.409Z
+79,Rifas Hermanos Pernía - El Azulejo,919,sold,Miguel Benavides,+19127104280,La Fria - Usa,22.00,0.00,2026-03-29T00:15:50.877Z
+79,Rifas Hermanos Pernía - El Azulejo,920,sold,Andres Angulo,+573124762441,Colombia,25.00,0.00,2026-03-16T22:10:28.870Z
+79,Rifas Hermanos Pernía - El Azulejo,921,sold,Yaneth Alvarez    (  Caracas ),+584125014454,Caracas,22.50,0.00,2026-03-17T23:03:23.347Z
+79,Rifas Hermanos Pernía - El Azulejo,922,sold,Brian Buen día,+15083610533,Estados Unidos,22.33,0.00,2026-03-21T17:30:22.001Z
+79,Rifas Hermanos Pernía - El Azulejo,923,sold,Jhoan manuel Chile,+56929969342,Chile,25.00,0.00,2026-03-10T02:51:50.747Z
+79,Rifas Hermanos Pernía - El Azulejo,924,sold,Johan marino la fria,+584143758061,La fria,25.00,0.00,2026-03-15T22:14:49.122Z
+79,Rifas Hermanos Pernía - El Azulejo,925,sold,Yohana Ayala,+584147576344,La Fría,25.00,0.00,2026-03-10T12:05:11.808Z
+79,Rifas Hermanos Pernía - El Azulejo,926,sold,Juan luan,+573123246557,Estados unidos,25.00,0.00,2026-03-16T22:08:31.152Z
+79,Rifas Hermanos Pernía - El Azulejo,927,sold,Karlita Bettin panama,+50762299914,Panama,22.50,0.00,2026-03-20T19:56:42.909Z
+79,Rifas Hermanos Pernía - El Azulejo,928,sold,Ricardo Ramirez,+16159389001,La Fria Usa,22.00,0.00,2026-03-20T20:48:48.180Z
+79,Rifas Hermanos Pernía - El Azulejo,929,sold,Walter Zoto,+584143754078,La fria,25.00,0.00,2026-03-17T12:48:35.047Z
+79,Rifas Hermanos Pernía - El Azulejo,930,sold,Daines Moreno,+56982836762,La Fría Chile,25.00,0.00,2026-03-14T19:56:51.492Z
+79,Rifas Hermanos Pernía - El Azulejo,931,sold,Pablo Mora,+584247840692,La fría,25.00,0.00,2026-03-16T21:57:05.066Z
+79,Rifas Hermanos Pernía - El Azulejo,932,sold,Ricardo Ramirez,+16159389001,La Fria Usa,22.00,0.00,2026-03-20T20:48:48.180Z
+79,Rifas Hermanos Pernía - El Azulejo,933,sold,jonatan castro caracas,+584242629287,Caracas,25.00,0.00,2026-03-27T19:51:19.729Z
+79,Rifas Hermanos Pernía - El Azulejo,934,sold,Nancy rivera sociedad,+584247180680,La fria,22.50,0.00,2026-03-28T22:51:59.371Z
+79,Rifas Hermanos Pernía - El Azulejo,935,sold,Diego Morales      ( Chile ),+56978747174,Chile,22.00,0.00,2026-03-21T21:10:38.494Z
+79,Rifas Hermanos Pernía - El Azulejo,936,sold,Yris Rojas Segnini,+584145926553,La fria,25.00,0.00,2026-03-20T20:28:52.977Z
+79,Rifas Hermanos Pernía - El Azulejo,937,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,938,sold,Yeritzon Ramirez (paguer),+584147572198,La fría,21.70,0.00,2026-03-16T15:46:13.157Z
+79,Rifas Hermanos Pernía - El Azulejo,939,sold,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,22.00,0.00,2026-03-25T03:05:44.680Z
+79,Rifas Hermanos Pernía - El Azulejo,940,sold,Andres Camargo.   ( La Grita ),+584247038899,La Grita,22.50,0.00,2026-03-16T13:26:09.239Z
+79,Rifas Hermanos Pernía - El Azulejo,941,sold,Gabriel Ferreira,+584127391367,Maracay edo Aragua,25.00,0.00,2026-04-12T00:37:01.909Z
+79,Rifas Hermanos Pernía - El Azulejo,942,sold,Eduard Guerrero la fria,+584149773119,La fria,25.00,0.00,2026-03-14T18:36:35.221Z
+79,Rifas Hermanos Pernía - El Azulejo,943,sold,Klisman candelo,+584147431803,La fria,25.00,0.00,2026-03-16T21:14:25.699Z
+79,Rifas Hermanos Pernía - El Azulejo,944,sold,Gustavo Rojas,+584141760197,La Fría,25.00,0.00,2026-03-15T20:54:51.623Z
+79,Rifas Hermanos Pernía - El Azulejo,945,sold,Alicia luna sociedad,+16307768771,Estados unidos,25.00,0.00,2026-04-11T15:02:04.188Z
+79,Rifas Hermanos Pernía - El Azulejo,946,sold,Krisbel Perez 《Usa-La fria 》,+14437354900,Estados unidos,22.00,0.00,2026-03-19T12:23:42.664Z
+79,Rifas Hermanos Pernía - El Azulejo,947,sold,Franyer Contreras,+573142684241,Colombia,25.00,0.00,2026-03-18T20:58:11.635Z
+79,Rifas Hermanos Pernía - El Azulejo,948,sold,Antonio Gonzáles,+584247396138,La Fría,22.33,0.00,2026-03-18T19:02:58.475Z
+79,Rifas Hermanos Pernía - El Azulejo,949,sold,Jose Perez,+584247595721,La Fria,25.00,0.00,2026-03-29T01:53:53.507Z
+79,Rifas Hermanos Pernía - El Azulejo,950,sold,Cesar Hernández,+584247037993,Sin Dirección,25.00,0.00,2026-03-16T13:32:04.876Z
+79,Rifas Hermanos Pernía - El Azulejo,951,sold,Jonatan ortiz usa,+12109318969,Estados unidos,22.00,0.00,2026-03-21T13:54:51.252Z
+79,Rifas Hermanos Pernía - El Azulejo,952,sold,Rosa Santaella,+584121737505,La Fría,25.00,0.00,2026-03-15T20:56:45.923Z
+79,Rifas Hermanos Pernía - El Azulejo,953,sold,Mixaida rincon Colon,+584162777629,Colon,22.50,0.00,2026-03-13T23:27:11.652Z
+79,Rifas Hermanos Pernía - El Azulejo,954,sold,Keismer Contreras,+17372028084,Estados Unidos,22.00,0.00,2026-03-20T19:47:28.301Z
+79,Rifas Hermanos Pernía - El Azulejo,955,sold,Martin Colina.   San Antonio de los Altos - Usa,+13026470880,Usa usa,25.00,0.00,2026-03-11T01:45:34.589Z
+79,Rifas Hermanos Pernía - El Azulejo,956,sold,Eduardo Colmenarez,+584265320111,Colón,20.00,0.00,2026-04-10T18:31:47.333Z
+79,Rifas Hermanos Pernía - El Azulejo,957,sold,Jorge Becerra,+584147268605,La fria,25.00,0.00,2026-03-28T19:25:46.839Z
+79,Rifas Hermanos Pernía - El Azulejo,958,sold,doris rojas usa,+13316005782,Estados unidos,22.33,0.00,2026-03-14T14:18:54.173Z
+79,Rifas Hermanos Pernía - El Azulejo,959,sold,Miguel Benavides,+19127104280,La Fria - Usa,25.00,0.00,2026-04-09T22:08:47.550Z
+79,Rifas Hermanos Pernía - El Azulejo,960,sold,Derwin Lunares,+584145051038,🍓🍓🍓,22.50,0.00,2026-03-09T20:05:29.533Z
+79,Rifas Hermanos Pernía - El Azulejo,961,sold,Kariusma Mora usa,+15125001004,Estados unidos,25.00,0.00,2026-03-18T00:00:04.619Z
+79,Rifas Hermanos Pernía - El Azulejo,962,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,22.00,0.00,2026-03-16T13:11:36.441Z
+79,Rifas Hermanos Pernía - El Azulejo,963,sold,carolina contreras usa,+16297298655,Estados unidos,22.00,0.00,2026-03-14T16:55:35.708Z
+79,Rifas Hermanos Pernía - El Azulejo,964,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.50,0.00,2026-03-25T00:22:49.793Z
+79,Rifas Hermanos Pernía - El Azulejo,965,sold,Daiver velazques,+584241951963,Estados unidos,22.50,0.00,2026-03-10T02:08:32.701Z
+79,Rifas Hermanos Pernía - El Azulejo,966,sold,Juliana Rosales,+584149755198,La fria,22.00,0.00,2026-03-19T22:51:06.596Z
+79,Rifas Hermanos Pernía - El Azulejo,967,sold,Jose Gregorio Escalona      La Fria,+584167332629,La fria,25.00,0.00,2026-03-15T19:55:13.798Z
+79,Rifas Hermanos Pernía - El Azulejo,968,sold,Nestor carrillo,+584128099391,Ls fria,25.00,0.00,2026-03-16T19:11:21.068Z
+79,Rifas Hermanos Pernía - El Azulejo,969,sold,Albany ramirez usa,+12105481181,Estados unidos,22.33,0.00,2026-03-20T01:52:22.548Z
+79,Rifas Hermanos Pernía - El Azulejo,970,sold,Alexander Buseta,+584127914210,La fria,25.00,0.00,2026-03-18T23:04:03.165Z
+79,Rifas Hermanos Pernía - El Azulejo,971,sold,jonatan castro caracas,+584242629287,Caracas,25.00,0.00,2026-03-16T14:40:57.769Z
+79,Rifas Hermanos Pernía - El Azulejo,972,sold,Cristina Peña,+584247077132,La fría,25.00,0.00,2026-03-24T19:32:49.234Z
+79,Rifas Hermanos Pernía - El Azulejo,973,sold,Yonathan Vargas,+584147126622,Chile,25.00,0.00,2026-03-14T19:30:36.790Z
+79,Rifas Hermanos Pernía - El Azulejo,974,sold,Jose Gregorio gollito usa,+13137702072,Estados unidos,25.00,0.00,2026-03-16T23:30:48.648Z
+79,Rifas Hermanos Pernía - El Azulejo,975,sold,Manuel abasto DyU,+584247706745,La fria,25.00,0.00,2026-03-15T22:43:25.093Z
+79,Rifas Hermanos Pernía - El Azulejo,976,sold,Anthony de luca la fria,+584147387793,La fria,21.25,0.00,2026-03-18T18:36:49.417Z
+79,Rifas Hermanos Pernía - El Azulejo,977,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,21.00,0.00,2026-03-19T00:23:01.780Z
+79,Rifas Hermanos Pernía - El Azulejo,978,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,21.00,0.00,2026-03-17T02:01:19.980Z
+79,Rifas Hermanos Pernía - El Azulejo,979,sold,Wilmer Quintero colon aveo,+573234346669,Colon,25.00,0.00,2026-03-20T21:26:14.918Z
+79,Rifas Hermanos Pernía - El Azulejo,980,sold,Deivi Velandria usa,+14073084039,Estados unidos,20.00,0.00,2026-04-10T17:12:54.240Z
+79,Rifas Hermanos Pernía - El Azulejo,981,sold,Jakelin vivas usa,+15128798132,Estados unidos,22.30,0.00,2026-03-10T02:34:52.269Z
+79,Rifas Hermanos Pernía - El Azulejo,982,sold,Jorge Arellano chile,+56934892474,Chile,25.00,0.00,2026-03-16T21:11:25.878Z
+79,Rifas Hermanos Pernía - El Azulejo,983,sold,Yeritzon Ramirez (paguer),+584147572198,La fría,21.70,0.00,2026-03-16T15:46:13.157Z
+79,Rifas Hermanos Pernía - El Azulejo,984,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,25.00,0.00,2026-03-28T14:33:53.299Z
+79,Rifas Hermanos Pernía - El Azulejo,985,sold,Nelson muñoz caracas,+584143049425,Caracas,25.00,0.00,2026-03-17T02:18:36.149Z
+79,Rifas Hermanos Pernía - El Azulejo,986,sold,Jaymar Ramírez,+34643221261,España,25.00,0.00,2026-03-26T23:37:30.050Z
+79,Rifas Hermanos Pernía - El Azulejo,987,sold,Yovany fernandez,+584121715327,La fria,22.50,0.00,2026-03-16T20:38:50.519Z
+79,Rifas Hermanos Pernía - El Azulejo,988,sold,Alvaro Javier la fria,+573112553175,La fria,20.00,0.00,2026-04-09T14:45:02.318Z
+79,Rifas Hermanos Pernía - El Azulejo,989,sold,Jeferson Bonilla,+17202702745,Estados unidos,22.33,0.00,2026-03-14T19:33:37.530Z
+79,Rifas Hermanos Pernía - El Azulejo,990,sold,edwin meza usa,+15129151598,Estados unidos,25.00,0.00,2026-03-16T21:48:58.015Z
+79,Rifas Hermanos Pernía - El Azulejo,991,sold,Joel Vera,+584140367090,La fria,25.00,0.00,2026-03-17T15:30:34.470Z
+79,Rifas Hermanos Pernía - El Azulejo,992,sold,José Buitrago,+14254036252,Estados unidos,22.33,0.00,2026-03-20T19:15:15.655Z
+79,Rifas Hermanos Pernía - El Azulejo,993,sold,Juliana Rosales,+584149755198,La fria,22.00,0.00,2026-03-19T22:51:06.596Z
+79,Rifas Hermanos Pernía - El Azulejo,994,sold,Daniel morles Estados unidos,+14078194864,Estados unidos,25.00,0.00,2026-03-14T00:51:17.400Z
+79,Rifas Hermanos Pernía - El Azulejo,995,sold,Eduardo Velandria,+584149789020,Colón,25.00,0.00,2026-03-22T01:37:32.826Z
+79,Rifas Hermanos Pernía - El Azulejo,996,sold,Yonellys rodriguez Estados unidos,+18035545936,Estados unidos,22.50,0.00,2026-03-13T23:45:47.317Z
+79,Rifas Hermanos Pernía - El Azulejo,997,sold,Rafael Hernandez,+17348997079,Estados Unidos,25.00,0.00,2026-03-20T16:12:53.637Z
+79,Rifas Hermanos Pernía - El Azulejo,998,sold,JERMAN MONSALVE,+15615028040,ESTADOS UNIDOS,25.00,0.00,2026-03-11T00:19:04.395Z
+79,Rifas Hermanos Pernía - El Azulejo,999,sold,Juneifer Mendoza,+584140112658,La fría,21.00,0.00,2026-03-15T02:58:56.867Z

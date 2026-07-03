@@ -1,0 +1,937 @@
+accion,number,prod_status,prod_source,prod_holder,prod_phone,v1_status,v1_paid,v1_due,v1_holder,v1_phone
+SAME,685,RESERVED,import,Nancy forero 1 de mayo,+584247264304,pending,37.5,12.5,Nancy forero 1 de mayo,+584247264304
+SAME,985,RESERVED,import,Nancy forero 1 de mayo,+584247264304,pending,37.5,12.5,Nancy forero 1 de mayo,+584247264304
+SAME,384,RESERVED,import,Yoel 5 milazo,+584226438032,pending,0,50,Yoel 5 milazo,+584226438032
+SAME,780,RESERVED,import,Yoel 5 milazo,+584226438032,pending,0,50,Yoel 5 milazo,+584226438032
+SAME,145,RESERVED,import,Manuel abasto DyU,+584247706745,pending,0,55,Manuel abasto DyU,+584247706745
+SAME,905,RESERVED,import,Pipa Abasto DyU,+584141201930,pending,45,10,Pipa Abasto DyU,+584141201930
+SAME,957,RESERVED,import,Junior Acevedo,+34691691359,pending,35,20,Junior Acevedo,+34691691359
+SAME,257,RESERVED,import,Wilderson Acosta,+584247623996,pending,20,35,Wilderson Acosta,+584247623996
+SAME,309,RESERVED,import,Cristian Aguilar,+584247544438,pending,27,28,Cristian Aguilar,+584247544438
+SAME,149,RESERVED,import,Leo Aguilar     ( La Grita ),+584147423505,pending,35,20,Leo Aguilar     ( La Grita ),+584147423505
+SAME,588,PAID,import,Eimar Alarcon,+584149788908,sold,55,0,Eimar Alarcon,+584149788908
+SAME,709,RESERVED,import,Jonathan Alarcon    ( La Fria ),+584124259555,pending,35,20,Jonathan Alarcon    ( La Fria ),+584124259555
+SAME,20,RESERVED,import,Jose Aldana,+16823309290,pending,35,20,Jose Aldana,+16823309290
+SAME,664,RESERVED,import,Jordan hijo de gollo rifero Alex linowol,+584241737886,pending,30,25,Jordan hijo de gollo rifero Alex linowol,+584241737886
+SAME,637,RESERVED,import,Jordan hijo de gollo rifero Alex linowol,+584241737886,pending,30,25,Jordan hijo de gollo rifero Alex linowol,+584241737886
+SAME,489,RESERVED,import,Felipe alineación,+584247500708,pending,0,55,Felipe alineación,+584247500708
+SAME,435,PAID,import,Yimi Sanchez alineación,+584126692074,sold,55,0,Yimi Sanchez alineación,+584126692074
+SAME,346,RESERVED,import,Alberto Alvarado,+584149766905,pending,20,35,Alberto Alvarado,+584149766905
+SAME,275,PAID,import,Said Alvarado maracucho,+584143644877,sold,50,0,Said Alvarado maracucho,+584143644877
+SAME,351,PAID,import,Said Alvarado maracucho,+584143644877,sold,50,0,Said Alvarado maracucho,+584143644877
+SAME,408,PAID,import,Said Alvarado maracucho,+584143644877,sold,50,0,Said Alvarado maracucho,+584143644877
+SAME,115,RESERVED,import,Yaneth Alvarez    (  Caracas ),+584125014454,pending,0,50,Yaneth Alvarez    (  Caracas ),+584125014454
+SAME,73,RESERVED,import,Yaneth Alvarez    (  Caracas ),+584125014454,pending,0,50,Yaneth Alvarez    (  Caracas ),+584125014454
+SAME,868,RESERVED,import,Reinaldo Alvarez     Usa,+19012398405,pending,35,20,Reinaldo Alvarez     Usa,+19012398405
+SAME,925,RESERVED,import,yuleidy alvernia,+584247031321,pending,0,50,yuleidy alvernia,+584247031321
+SAME,755,RESERVED,import,yuleidy alvernia,+584247031321,pending,0,50,yuleidy alvernia,+584247031321
+SAME,298,RESERVED,import,yuleidy alvernia,+584247031321,pending,0,50,yuleidy alvernia,+584247031321
+SAME,108,RESERVED,import,yuleidy alvernia,+584247031321,pending,0,50,yuleidy alvernia,+584247031321
+SAME,234,RESERVED,import,Wendy Amaya,+573243191324,pending,32.5,17.5,Wendy Amaya,+573243191324
+SAME,885,RESERVED,import,Wendy Amaya,+573243191324,pending,32.5,17.5,Wendy Amaya,+573243191324
+SAME,541,PAID,import,Ledy zambrano amiga,+584145496437,sold,55,0,Ledy zambrano amiga,+584145496437
+SAME,522,RESERVED,import,Yirxy Guarumito amiga Juliana,+584247594925,pending,0,55,Yirxy Guarumito amiga Juliana,+584247594925
+SAME,158,RESERVED,import,Argenis muñoz amigo nilso usa,+14142497817,pending,15,35,Argenis muñoz amigo nilso usa,+14142497817
+SAME,810,RESERVED,import,Argenis muñoz amigo nilso usa,+14142497817,pending,15,35,Argenis muñoz amigo nilso usa,+14142497817
+SAME,714,RESERVED,import,Jose Anaco,+14143409872,pending,35,15,Jose Anaco,+14143409872
+SAME,548,RESERVED,import,Jose Anaco,+14143409872,pending,35,15,Jose Anaco,+14143409872
+SAME,194,RESERVED,import,Jorgue Angarita,+584122913601,pending,15,40,Jorgue Angarita,+584122913601
+SAME,589,RESERVED,import,Amalia Angola.    ( Pensilvania ),+17862163347,pending,0,55,Amalia Angola.    ( Pensilvania ),+17862163347
+SAME,94,RESERVED,import,Andres Angulo,+573124762441,pending,46,9,Andres Angulo,+573124762441
+SAME,445,RESERVED,import,Emily isabel Angulo,+12146077511,pending,35,20,Emily isabel Angulo,+12146077511
+SAME,330,PAID,import,Rigo Berto Angulo Perez   ( Usa ),+18047222077,sold,50,0,Rigo Berto Angulo Perez   ( Usa ),+18047222077
+SAME,230,PAID,import,Rigo Berto Angulo Perez   ( Usa ),+18047222077,sold,50,0,Rigo Berto Angulo Perez   ( Usa ),+18047222077
+SAME,733,PAID,import,Marioly Antolinez   ( La Grita ),+584147296420,sold,55,0,Marioly Antolinez   ( La Grita ),+584147296420
+SAME,482,RESERVED,import,Emileidy Aquino guarico,+584144496362,pending,35,20,Emileidy Aquino guarico,+584144496362
+SAME,539,RESERVED,import,Vanessa Aranguren,+584247514825,pending,36,19,Vanessa Aranguren,+584247514825
+SAME,404,RESERVED,import,Cristian Arciniegas,+584128190917,pending,0,55,Cristian Arciniegas,+584128190917
+SAME,55,RESERVED,import,Libardo Arciniegas,+573223410298,pending,29.2,20.8,Libardo Arciniegas,+573223410298
+SAME,287,RESERVED,import,Libardo Arciniegas,+573223410298,pending,29.2,20.8,Libardo Arciniegas,+573223410298
+SAME,176,RESERVED,import,Alejandro Arellano,+525562185848,pending,35,20,Alejandro Arellano,+525562185848
+SAME,617,RESERVED,import,Jorge Arellano chile,+56934892474,pending,35,20,Jorge Arellano chile,+56934892474
+SAME,852,PAID,import,Luis Arellano        ( Las mesas ),+584167795043,sold,55,0,Luis Arellano        ( Las mesas ),+584167795043
+SAME,484,RESERVED,import,Juana iris argentina,+5491165805763,pending,35,20,Juana iris argentina,+5491165805763
+SAME,860,RESERVED,import,Luis avila,+584147294479,pending,35.5,19.5,Luis avila,+584147294479
+SAME,358,PAID,import,Mahuer Ávila,+584268260801,sold,55,0,Mahuer Ávila,+584268260801
+SAME,693,RESERVED,import,Yohana Ayala,+584147576344,pending,35,20,Yohana Ayala,+584147576344
+SAME,86,RESERVED,import,Kerwin Barajas,+584247651891,pending,35,20,Kerwin Barajas,+584247651891
+SAME,605,RESERVED,import,Kerwin Barajas,+584247651891,pending,35,20,Kerwin Barajas,+584247651891
+SAME,633,RESERVED,import,Marwan Barreto     ( Trujillo - Usa ),+18323726325,pending,0,50,Marwan Barreto     ( Trujillo - Usa ),+18323726325
+SAME,62,RESERVED,import,Marwan Barreto     ( Trujillo - Usa ),+18323726325,pending,0,50,Marwan Barreto     ( Trujillo - Usa ),+18323726325
+SAME,39,RESERVED,import,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,pending,0,55,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837
+SAME,632,PAID,import,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,sold,50,0,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837
+SAME,728,PAID,import,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,sold,50,0,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837
+SAME,224,PAID,import,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,sold,50,0,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837
+SAME,682,PAID,import,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,sold,50,0,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837
+SAME,453,RESERVED,import,Jorge Becerra,+584147268605,pending,47,8,Jorge Becerra,+584147268605
+SAME,555,RESERVED,import,Susana Bedoya,+584262750038,pending,17.5,32.5,Susana Bedoya,+584262750038
+SAME,69,RESERVED,import,Susana Bedoya,+584262750038,pending,22.5,27.5,Susana Bedoya,+584262750038
+SAME,295,RESERVED,import,yuglendy katherine usa,+12819129773,pending,12.5,12.5,Yuglendy Bello,+12819129773
+SAME,572,RESERVED,import,yuglendy katherine usa,+12819129773,pending,12.5,12.5,Yuglendy Bello,+12819129773
+SAME,272,RESERVED,import,yuglendy katherine usa,+12819129773,pending,15,33.5,Yuglendy Bello,+12819129773
+SAME,725,RESERVED,import,yuglendy katherine usa,+12819129773,pending,15,33.5,Yuglendy Bello,+12819129773
+SAME,975,RESERVED,import,yuglendy katherine usa,+12819129773,pending,15,33.5,Yuglendy Bello,+12819129773
+SAME,959,RESERVED,import,Miguel Benavides usa,+19127104280,pending,15,40,Miguel Benavides,+19127104280
+SAME,754,RESERVED,import,Miguel Benavides usa,+19127104280,pending,7.5,42.5,Miguel Benavides,+19127104280
+SAME,831,RESERVED,import,Miguel Benavides usa,+19127104280,pending,7.5,42.5,Miguel Benavides,+19127104280
+SAME,919,RESERVED,import,Miguel Benavides usa,+19127104280,pending,15,35,Miguel Benavides,+19127104280
+SAME,172,RESERVED,import,Miguel Benavides usa,+19127104280,pending,15,35,Miguel Benavides,+19127104280
+SAME,854,RESERVED,import,Andres betancourt       ( Boconó edo Trujillo ),+584247587768,pending,15,40,Andres betancourt       ( Boconó edo Trujillo ),+584247587768
+SAME,886,RESERVED,import,Yenis Bettin,+584147577344,pending,35,20,Yenis Bettin,+584147577344
+SAME,962,RESERVED,import,Ricardo Bolaño      ( Valencia ),+584124447439,pending,15,40,Ricardo Bolaño      ( Valencia ),+584124447439
+SAME,558,RESERVED,import,Cristobal rangel bomba merideña,+584122835064,pending,20,28.3,Cristobal rangel bomba merideña,+584122835064
+SAME,855,RESERVED,import,Cristobal rangel bomba merideña,+584122835064,pending,20,28.3,Cristobal rangel bomba merideña,+584122835064
+SAME,705,RESERVED,import,Cristobal rangel bomba merideña,+584122835064,pending,20,28.3,Cristobal rangel bomba merideña,+584122835064
+SAME,329,RESERVED,import,Jeferson Bonilla,+17202702745,pending,0,50,Jeferson Bonilla,+17202702745
+SAME,667,RESERVED,import,Jeferson Bonilla,+17202702745,pending,0,50,Jeferson Bonilla,+17202702745
+SAME,629,RESERVED,import,Libardo Borjas chile,+56974451688,pending,15,40,Libardo Borjas chile,+56974451688
+SAME,964,PAID,import,Gregorio Borjas    ( San Cristóbal ),+584247113011,sold,50,0,Gregorio Borjas    ( San Cristóbal ),+584247113011
+SAME,471,PAID,import,Gregorio Borjas    ( San Cristóbal ),+584247113011,sold,50,0,Gregorio Borjas    ( San Cristóbal ),+584247113011
+SAME,892,RESERVED,import,Angélica boscan,+584247412268,pending,35,20,Angélica boscan,+584247412268
+SAME,809,RESERVED,import,jose briceño,+584247569103,pending,0,55,Chano Briceño,+584247569103
+SAME,639,RESERVED,import,Lic Begnino Briceño,+584140771666,pending,26.25,23.75,Lic Begnino Briceño,+584140771666
+SAME,369,RESERVED,import,Lic Begnino Briceño,+584140771666,pending,26.25,23.75,Lic Begnino Briceño,+584140771666
+SAME,991,RESERVED,import,Edwin Briceño       ( Trujillo - Chile ),+56999166705,pending,0,55,Edwin Briceño       ( Trujillo - Chile ),+56999166705
+SAME,421,RESERVED,import,Brian Buen día,+15083610533,pending,30,20,Brian Buen día,+15083610533
+SAME,170,RESERVED,import,Brian Buen día,+15083610533,pending,30,20,Brian Buen día,+15083610533
+SAME,922,RESERVED,import,Brian Buen día,+15083610533,pending,30,20,Brian Buen día,+15083610533
+SAME,409,RESERVED,import,Cesar Bueno,+584247608406,pending,40,15,Cesar Bueno,+584247608406
+SAME,992,PAID,import,José Buitrago,+14254036252,sold,55,0,José Buitrago,+14254036252
+SAME,157,RESERVED,import,Yen Buitriago,+19803610415,pending,0,50,Yen Buitriago,+19803610415
+SAME,46,RESERVED,import,Yen Buitriago,+19803610415,pending,0,50,Yen Buitriago,+19803610415
+SAME,397,RESERVED,import,Yen Buitriago,+19803610415,pending,0,50,Yen Buitriago,+19803610415
+SAME,495,RESERVED,import,Yen Buitriago,+19803610415,pending,0,50,Yen Buitriago,+19803610415
+SAME,906,RESERVED,import,Yen Buitriago,+19803610415,pending,0,50,Yen Buitriago,+19803610415
+SAME,27,RESERVED,import,Olga Cabrera,+17432090645,pending,0,50,Olga Cabrera,+17432090645
+SAME,28,RESERVED,import,Olga Cabrera,+17432090645,pending,0,50,Olga Cabrera,+17432090645
+SAME,151,RESERVED,import,Jhon Caicedo Ortiz,+17477447241,pending,35,15,Jhon Caicedo Ortiz,+17477447241
+SAME,107,RESERVED,import,Jhon Caicedo Ortiz,+17477447241,pending,35,15,Jhon Caicedo Ortiz,+17477447241
+SAME,246,PAID,import,Alvey Calderon,+584247046284,sold,55,0,Alvey Calderon,+584247046284
+SAME,138,PAID,import,Maite Calderon,+573145459211,sold,55,0,Maite Calderon,+573145459211
+SAME,376,PAID,import,Maite Calderon,+573145459211,sold,55,0,Maite Calderon,+573145459211
+SAME,297,RESERVED,import,Yohan Calderon     ( Merida ),+584262205529,pending,0,55,Yohan Calderon     ( Merida ),+584262205529
+SAME,325,RESERVED,import,Andres Camargo.   ( La Grita ),+584247038899,pending,15,35,Andres Camargo.   ( La Grita ),+584247038899
+SAME,940,RESERVED,import,Andres Camargo.   ( La Grita ),+584247038899,pending,15,35,Andres Camargo.   ( La Grita ),+584247038899
+SAME,285,RESERVED,import,Leycer Campos       Valera,+584121718924,pending,35,20,Leycer Campos       Valera,+584121718924
+SAME,943,RESERVED,import,Klisman candelo,+584147431803,pending,0,55,Klisman candelo,+584147431803
+SAME,984,RESERVED,import,Paola Cañizales cartagena,+573042344253,pending,0,55,Paola Cañizales cartagena,+573042344253
+SAME,292,RESERVED,import,Nerma cañizales san felix,+584262592242,pending,0,55,Nerma cañizales san felix,+584262592242
+SAME,917,RESERVED,import,Monica Canquis  colon,+584147260472,pending,35,20,Monica Canquis  colon,+584147260472
+SAME,350,RESERVED,import,jonatan castro caracas,+584242629287,pending,20,30,jonatan castro caracas,+584242629287
+SAME,971,PAID,import,jonatan castro caracas,+584242629287,sold,55,0,jonatan castro caracas,+584242629287
+SAME,313,RESERVED,import,omarcito caracas,+584143010693,pending,35,15,omarcito caracas,+584143010693
+SAME,496,RESERVED,import,omarcito caracas,+584143010693,pending,35,15,omarcito caracas,+584143010693
+SAME,146,RESERVED,import,Enrrique Cárdenas,+16822603711,pending,35,15,Enrrique Cárdenas,+16822603711
+SAME,307,RESERVED,import,Enrrique Cárdenas,+16822603711,pending,35,15,Enrrique Cárdenas,+16822603711
+SAME,694,RESERVED,import,Dennys Cardenas guaco,+584242423215,pending,0,55,Dennys Cardenas guaco,+584242423215
+SAME,159,PAID,import,Jesus Cardenas.  La grita,+584165020522,sold,55,0,Jesus Cardenas.  La grita,+584165020522
+SAME,286,PAID,import,Jesus Cardenas.  La grita,+584165020522,sold,55,0,Jesus Cardenas.  La grita,+584165020522
+SAME,118,RESERVED,import,Richard Escalante carlitos,+584247696128,pending,35,20,Richard Escalante carlitos,+584247696128
+SAME,513,RESERVED,import,Karina Carnes,+584147428933,pending,35,15,Karina Carnes,+584147428933
+SAME,212,RESERVED,import,Karina Carnes,+584147428933,pending,35,15,Karina Carnes,+584147428933
+SAME,865,RESERVED,import,Yefri Carrascal,+15126205262,pending,35,15,Yefri Carrascal,+15126205262
+SAME,270,RESERVED,import,Yefri Carrascal,+15126205262,pending,35,15,Yefri Carrascal,+15126205262
+SAME,410,RESERVED,import,Yunior Carrascal,+584149751355,pending,0,50,Yunior Carrascal,+584149751355
+SAME,596,RESERVED,import,Yunior Carrascal,+584149751355,pending,0,50,Yunior Carrascal,+584149751355
+SAME,81,RESERVED,import,Jonaiker Carrascal,+13139524810,pending,0,55,Yonaiker Carrascal,+13139524810
+SAME,274,RESERVED,import,Pinto Carrera 8 la fria,+584247498984,pending,30,25,Pinto Carrera 8 la fria,+584247498984
+SAME,941,RESERVED,import,Yuglendy carrero,+584147348041,pending,0,55,Yuglendy carrero,+584147348041
+SAME,173,RESERVED,import,Jesus Carrero,+584147320285,pending,15,40,Jesus Carrero,+584147320285
+SAME,826,RESERVED,import,ita carrillo,+584147591447,pending,30,20,ita carrillo,+584147591447
+SAME,982,RESERVED,import,ita carrillo,+584147591447,pending,30,20,ita carrillo,+584147591447
+SAME,968,RESERVED,import,Nestor carrillo,+584128099391,pending,15,40,Nestor carrillo,+584128099391
+SAME,722,RESERVED,import,Alfonso Carrillo,+584121716672,pending,35,20,Alfonso Carrillo,+584121716672
+SAME,781,RESERVED,import,Ismar carrillo pollo,+584125942186,pending,40,15,Ismar carrillo pollo,+584125942186
+SAME,527,RESERVED,import,henrry carriso,+584142134025,pending,35,20,henrry carriso,+584142134025
+SAME,546,RESERVED,import,Danni Carvajal,+584147032665,pending,0,55,Danni Carvajal,+584147032665
+SAME,788,RESERVED,import,Jose Rafael Casanova   ( Maracaibo - zulia ),+584126573775,pending,0,55,Jose Rafael Casanova   ( Maracaibo - zulia ),+584126573775
+SAME,601,RESERVED,import,Josue Castiblanco    ( San Cristobal),+584247038169,pending,0,50,Josue Castiblanco    ( San Cristobal),+584247038169
+SAME,942,RESERVED,import,Josue Castiblanco    ( San Cristobal),+584247038169,pending,0,50,Josue Castiblanco    ( San Cristobal),+584247038169
+SAME,901,RESERVED,import,Josue Castiblanco    ( San Cristobal),+584247038169,pending,0,50,Josue Castiblanco    ( San Cristobal),+584247038169
+SAME,61,RESERVED,import,Josue Castiblanco    ( San Cristobal),+584247038169,pending,0,50,Josue Castiblanco    ( San Cristobal),+584247038169
+SAME,488,RESERVED,import,Jorge Luis Castro   San Cristóbal - Chile,+56922179755,pending,15,40,Jorge Luis Castro   San Cristóbal - Chile,+56922179755
+SAME,592,RESERVED,import,Angelica Castro seboruco,+584147513107,pending,40,15,Angelica Castro seboruco,+584147513107
+SAME,92,RESERVED,import,Karelyn chacin usa 092-851,+16097833448,pending,0,50,Karelyn chacin usa 092-851,+16097833448
+SAME,851,RESERVED,import,Karelyn chacin usa 092-851,+16097833448,pending,0,50,Karelyn chacin usa 092-851,+16097833448
+SAME,564,RESERVED,import,Maria chacon,+584247430093,pending,40,15,Maria chacon,+584247430093
+SAME,861,RESERVED,import,Yefferson Chacón,+584247452532,pending,0,50,Yefferson Chacón,+584247452532
+SAME,604,RESERVED,import,Yefferson Chacón,+584247452532,pending,0,50,Yefferson Chacón,+584247452532
+SAME,31,PAID,import,Yefferson Chacón,+584247452532,sold,50,0,Yefferson Chacón,+584247452532
+SAME,221,PAID,import,Yefferson Chacón,+584247452532,sold,50,0,Yefferson Chacón,+584247452532
+SAME,761,RESERVED,import,Freddy chef señas torta,+584147424454,pending,0,55,Freddy chef señas torta,+584147424454
+SAME,923,RESERVED,import,Jhoan manuel Chile,+56929969342,pending,15,40,Jhoan manuel Chile,+56929969342
+SAME,203,RESERVED,import,Anderson Chiquito usa,+16154388600,pending,15,35,Anderson Chiquito usa,+16154388600
+SAME,562,RESERVED,import,Anderson Chiquito usa,+16154388600,pending,15,35,Anderson Chiquito usa,+16154388600
+SAME,759,RESERVED,import,Anderson Chiquito usa,+16154388600,pending,15,35,Anderson Chiquito usa,+16154388600
+SAME,98,RESERVED,import,Anderson Chiquito usa,+16154388600,pending,15,35,Anderson Chiquito usa,+16154388600
+SAME,472,RESERVED,import,Luis colmenares Cliente,+584145321998,pending,0,55,Luis colmenares Cliente,+584145321998
+SAME,994,RESERVED,import,Luis Colina     ( Valencia - Usa ),+17209838033,pending,35,15,Luis Colina     ( Valencia - Usa ),+17209838033
+SAME,8,RESERVED,import,Luis Colina     ( Valencia - Usa ),+17209838033,pending,35,15,Luis Colina     ( Valencia - Usa ),+17209838033
+SAME,53,RESERVED,import,Marino Colmenares   ( La Fria ),+584147385285,pending,40,15,Marino Colmenares   ( La Fria ),+584147385285
+SAME,614,RESERVED,import,Eduardo Colmenarez,+584265320111,pending,27,28,Eduardo Colmenarez,+584265320111
+SAME,324,RESERVED,import,Yeiker Colmenarez usa,+13313224845,pending,0,50,Yeiker Colmenarez usa,+13313224845
+SAME,641,RESERVED,import,Yeiker Colmenarez usa,+13313224845,pending,0,50,Yeiker Colmenarez usa,+13313224845
+SAME,610,RESERVED,import,Rober sanchez Colombia,+573219617546,pending,0,55,Rober sanchez Colombia,+573219617546
+SAME,3,RESERVED,import,Cesar uribe colon,+584247330005,pending,0,55,Cesar uribe colon,+584247330005
+SAME,277,RESERVED,import,Dahir Di domenico colon,+584248562540,pending,30,25,Dahir Di domenico colon,+584248562540
+SAME,498,PAID,import,Gonzalo colon,+584247702278,sold,55,0,Gonzalo colon,+584247702278
+SAME,584,RESERVED,import,Jampier colon,+584122900680,pending,41,14,Jampier colon,+584122900680
+SAME,252,RESERVED,import,Doctora sonia ramirez Colon,+584147040648,pending,35,20,Doctora sonia ramirez Colon,+584147040648
+SAME,196,RESERVED,import,Javier chavez Colon,+584261690378,pending,0,55,Javier chavez Colon,+584261690378
+SAME,17,RESERVED,import,Ever Colón,+573202150251,pending,23,27,Ever Colón,+573202150251
+SAME,387,RESERVED,import,Ever Colón,+573202150251,pending,23,27,Ever Colón,+573202150251
+SAME,11,RESERVED,import,Rokicucuya contreras,+573214381625,pending,16.5,33.5,Rokicucuya contreras,+573214381625
+SAME,135,RESERVED,import,Rokicucuya contreras,+573214381625,pending,16.5,33.5,Rokicucuya contreras,+573214381625
+SAME,838,RESERVED,import,Marisol Contreras,+584147151235,pending,35,20,Marisol Contreras,+584147151235
+SAME,921,PAID,import,Dina Marisol Contreras,+584141752389,sold,55,0,Dina Marisol Contreras,+584141752389
+SAME,406,RESERVED,import,Javier Contreras,+13126509222,pending,35,15,Javier Contreras,+13126509222
+SAME,50,RESERVED,import,Javier Contreras,+13126509222,pending,35,15,Javier Contreras,+13126509222
+SAME,109,RESERVED,import,Jesus Contreras,+56945427238,pending,20,35,Jesus Contreras,+56945427238
+SAME,354,RESERVED,import,Keismer Contreras,+17372028084,pending,31,19,Keismer Contreras,+17372028084
+SAME,345,RESERVED,import,Keismer Contreras,+17372028084,pending,31,19,Keismer Contreras,+17372028084
+SAME,271,RESERVED,import,Keismer Contreras,+17372028084,pending,31,19,Keismer Contreras,+17372028084
+SAME,954,RESERVED,import,Keismer Contreras,+17372028084,pending,31,19,Keismer Contreras,+17372028084
+SAME,721,RESERVED,import,Keismer Contreras,+17372028084,pending,31,19,Keismer Contreras,+17372028084
+SAME,751,RESERVED,import,Viviana Contreras,+584247488706,pending,0,50,Viviana Contreras,+584247488706
+SAME,535,RESERVED,import,Viviana Contreras,+584247488706,pending,0,50,Viviana Contreras,+584247488706
+SAME,743,RESERVED,import,Gerson Contreras,+584247432468,pending,15,35,gerson contreras alineación,+584247432468
+SAME,531,RESERVED,import,Gerson Contreras,+584247432468,pending,15,40,gerson contreras alineación,+584247432468
+SAME,890,RESERVED,import,Marianny Contreras      ( La Grita ),+584247240600,pending,35,20,Marianny Contreras      ( La Grita ),+584247240600
+SAME,284,RESERVED,import,Yunior Contreras  ( Mesa de quintero - Guaraque),+584125878963,pending,0,55,Yunior Contreras  ( Mesa de quintero - Guaraque),+584125878963
+SAME,165,RESERVED,import,Marleny Contreras.  ( Tovar - Merida ),+593983635418,pending,15,35,Marleny Contreras.  ( Tovar - Merida ),+593983635418
+SAME,25,RESERVED,import,Marleny Contreras.  ( Tovar - Merida ),+593983635418,pending,15,35,Marleny Contreras.  ( Tovar - Merida ),+593983635418
+SAME,812,RESERVED,import,carolina contreras usa,+16297298655,pending,0,50,carolina contreras usa,+16297298655
+SAME,525,RESERVED,import,carolina contreras usa,+16297298655,pending,0,50,carolina contreras usa,+16297298655
+SAME,425,RESERVED,import,carolina contreras usa,+16297298655,pending,0,50,carolina contreras usa,+16297298655
+SAME,569,RESERVED,import,Sammy hayles costa rica,+50660047741,pending,40,15,Sammy hayles costa rica,+50660047741
+SAME,182,RESERVED,import,José Cruz,+584162017368,pending,35,20,José Cruz,+584162017368
+SAME,787,RESERVED,import,Daniel ochoa Cuñado miguel,+584247687262,pending,35,20,Daniel ochoa Cuñado miguel,+584247687262
+SAME,420,RESERVED,import,Nelson Da Silva   ( Guacara edo Carabobo ),+584124429330,pending,25,25,Nelson Da Silva   ( Guacara edo Carabobo ),+584124429330
+SAME,24,RESERVED,import,Nelson Da Silva   ( Guacara edo Carabobo ),+584124429330,pending,25,25,Nelson Da Silva   ( Guacara edo Carabobo ),+584124429330
+SAME,339,PAID,import,Marcos davera esposo de mariangel,+584146269262,sold,55,0,Marcos davera esposo de mariangel,+584146269262
+SAME,154,RESERVED,import,Ely De duran,+584147308056,pending,35,20,Ely De duran,+584147308056
+SAME,710,RESERVED,import,Victor Delgado,+584147377105,pending,0,55,Victor Delgado,+584147377105
+SAME,457,RESERVED,import,Tomas glaterol delicias,+584141758019,pending,25,25,Tomas glaterol delicias,+584141758019
+SAME,579,RESERVED,import,Tomas glaterol delicias,+584141758019,pending,25,25,Tomas glaterol delicias,+584141758019
+SAME,887,RESERVED,import,Enida De Rodriguez     ( La Fria ),+584121744543,pending,0,50,Enida De Rodriguez     ( La Fria ),+584121744543
+SAME,290,RESERVED,import,Enida De Rodriguez     ( La Fria ),+584121744543,pending,30,25,Enida De Rodriguez     ( La Fria ),+584121744543
+SAME,509,PAID,import,Jose luis diaz la fria,+584247228026,sold,55,0,Jose luis diaz la fria,+584247228026
+SAME,301,RESERVED,import,Renny Diaz       ( Tucani - USA ),+13316439865,pending,0,55,Renny Diaz       ( Tucani - USA ),+13316439865
+SAME,869,RESERVED,import,Morella Doctora,+584145669025,pending,12.5,42.5,Morella Doctora,+584145669025
+SAME,752,RESERVED,import,Yorman Duarte,+584247443558,pending,40,15,Yorman Duarte,+584247443558
+SAME,35,RESERVED,import,Richard Duarte,+584147339746,pending,26,29,Richard Duarte,+584147339746
+SAME,71,RESERVED,import,Alexis Duarte españa,+34642327043,pending,0,55,Alexis Duarte españa,+34642327043
+SAME,618,RESERVED,import,Gilber Duque,+584146618203,pending,40,15,Gilber Duque,+584146618203
+SAME,712,RESERVED,import,Gladys Duque,+584141774636,pending,36.5,18.5,Gladys Duque,+584141774636
+SAME,120,RESERVED,import,jesus Duque colombia,+573204326737,pending,35,20,jesus Duque colombia,+573204326737
+SAME,736,RESERVED,import,Delia Duque      ( La Grita ),+584149741898,pending,21.5,28.5,Delia Duque      ( La Grita ),+584149741898
+SAME,673,RESERVED,import,Delia Duque      ( La Grita ),+584149741898,pending,21.5,28.5,Delia Duque      ( La Grita ),+584149741898
+SAME,144,RESERVED,import,Daniel Duque     ( San Cristobal ),+584147114420,pending,35,15,Daniel Duque     ( San Cristobal ),+584147114420
+SAME,344,RESERVED,import,Daniel Duque     ( San Cristobal ),+584147114420,pending,35,15,Daniel Duque     ( San Cristobal ),+584147114420
+SAME,336,RESERVED,import,Kleiver duran,+584247018387,pending,15,40,Kleiver duran,+584247018387
+SAME,976,RESERVED,import,Yaney duran,+584247064258,pending,35,20,Yaney duran,+584247064258
+SAME,727,RESERVED,import,Miguel Duran,+584247218713,pending,20,35,Miguel Duran,+584247218713
+SAME,155,RESERVED,import,Milanyela Duran,+584126614644,pending,15,40,Milanyela Duran,+584126614644
+SAME,434,RESERVED,import,Yohandry Duran usa,+17373129184,pending,32,23,Yohandry Duran usa,+17373129184
+SAME,244,RESERVED,import,Jorgue eliecer jaimes,+573042186243,pending,35,20,Jorgue eliecer jaimes,+573042186243
+SAME,497,RESERVED,import,Andrea ramirez el mercado la fria,+584147265354,pending,15,35,Andrea ramirez el mercado la fria,+584147265354
+SAME,281,RESERVED,import,Andrea ramirez el mercado la fria,+584147265354,pending,15,35,Andrea ramirez el mercado la fria,+584147265354
+SAME,419,RESERVED,import,Shaddy shawwarma,+584143760000,pending,15,40,Chadi El Sakaan,+584143760000
+SAME,14,RESERVED,import,Cristian Escalante,+573126594950,pending,35,20,Cristian Escalante,+573126594950
+SAME,606,RESERVED,import,Rosalba Escalante ( San Juan de Colon ),+584265612014,pending,35,20,Rosalba Escalante ( San Juan de Colon ),+584265612014
+SAME,256,RESERVED,import,Yelicza Esposa de Francisco pineda,+584149744206,pending,40,15,Yelicza Esposa de Francisco pineda,+584149744206
+SAME,883,PAID,import,Tahis marquez esposa de kiko,+584147379540,sold,55,0,Tahis marquez esposa de kiko,+584147379540
+SAME,47,PAID,import,Yohana chourio Esposa de roberth,+14078616017,sold,50,0,Yohana chourio Esposa de roberth,+14078616017
+SAME,260,PAID,import,Yohana chourio Esposa de roberth,+14078616017,sold,50,0,Yohana chourio Esposa de roberth,+14078616017
+SAME,640,RESERVED,import,Aida Falcon     ( Barinas ),+584248698539,pending,0,55,Aida Falcon     ( Barinas ),+584248698539
+SAME,437,RESERVED,import,Maria farfan,+56995132154,pending,15,40,Maria farfan,+56995132154
+SAME,790,RESERVED,import,Luis Felipe la grita,+584127900215,pending,35,20,Luis Felipe la grita,+584127900215
+SAME,879,RESERVED,import,Yovany fernandez,+584121715327,pending,35,15,Yovany fernandez,+584121715327
+SAME,987,RESERVED,import,Yovany fernandez,+584121715327,pending,35,15,Yovany fernandez,+584121715327
+SAME,282,RESERVED,import,Yohandri Fernández,+584247308713,pending,15,40,Yohandri Fernández,+584247308713
+SAME,656,PAID,import,Anthony Fernández,+14437354215,sold,50,0,Anthony Fernández,+14437354215
+SAME,152,PAID,import,Anthony Fernández,+14437354215,sold,50,0,Anthony Fernández,+14437354215
+SAME,248,PAID,import,Anthony Fernández,+14437354215,sold,50,0,Anthony Fernández,+14437354215
+SAME,726,PAID,import,Anthony Fernández,+14437354215,sold,50,0,Anthony Fernández,+14437354215
+SAME,423,PAID,import,Orlando Fernández,+584268717439,sold,55,0,Orlando Fernández,+584268717439
+SAME,507,RESERVED,import,Patricia Fernández,+584147471530,pending,35,15,Patricia Fernández,+584147471530
+SAME,521,RESERVED,import,Patricia Fernández,+584147471530,pending,35,15,Patricia Fernández,+584147471530
+SAME,74,RESERVED,import,Angel Ferrebus,+12109297571,pending,43.34,6.66,Angel Ferrebus,+12109297571
+SAME,891,RESERVED,import,Angel Ferrebus,+12109297571,pending,23.33,26.67,Angel Ferrebus,+12109297571
+SAME,783,RESERVED,import,Angel Ferrebus,+12109297571,pending,23.33,26.67,Angel Ferrebus,+12109297571
+SAME,578,RESERVED,import,Gabriel ferrer san Cristóbal,+584247711976,pending,0,55,Gabriel ferrer san Cristóbal,+584247711976
+SAME,846,RESERVED,import,juan carlos Figueroa,+17733007651,pending,15,35,juan carlos Figueroa,+17733007651
+SAME,739,RESERVED,import,juan carlos Figueroa,+17733007651,pending,15,35,juan carlos Figueroa,+17733007651
+SAME,77,RESERVED,import,Maryelis Flores,+13184386409,pending,35,15,Maryelis Flores,+13184386409
+SAME,492,RESERVED,import,Maryelis Flores,+13184386409,pending,35,15,Maryelis Flores,+13184386409
+SAME,380,RESERVED,import,Keberlin florez,+584247001995,pending,35,15,Keberlin florez,+584247001995
+SAME,240,RESERVED,import,Keberlin florez,+584247001995,pending,35,15,Keberlin florez,+584247001995
+SAME,213,PAID,import,Jonnathan Florez,+18432981188,sold,55,0,Jonnathan Florez,+18432981188
+SAME,724,RESERVED,import,Gabriel Fuentes,+584247250922,pending,0,50,Gabriel Fuentes,+584247250922
+SAME,218,RESERVED,import,Gabriel Fuentes,+584247250922,pending,0,50,Gabriel Fuentes,+584247250922
+SAME,718,RESERVED,import,Yackelin Fuentes usa,+50761249348,pending,35,15,Yackelin Fuentes usa,+50761249348
+SAME,23,RESERVED,import,Yackelin Fuentes usa,+50761249348,pending,35,15,Yackelin Fuentes usa,+50761249348
+SAME,105,PAID,import,Armando galvis,+584264222113,sold,55,0,Armando galvis,+584264222113
+SAME,829,RESERVED,import,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,pending,36.66,13.34,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906
+SAME,720,RESERVED,import,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,pending,36.66,13.34,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906
+SAME,650,RESERVED,import,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,pending,36.67,13.33,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906
+SAME,529,RESERVED,import,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,pending,36.67,13.33,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906
+SAME,415,RESERVED,import,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,pending,36.67,13.33,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906
+SAME,229,RESERVED,import,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,pending,36.67,13.33,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906
+SAME,359,RESERVED,import,Yeraldin Garcia,+17745228026,pending,25,25,terapias Garcia,+17745228026
+SAME,661,RESERVED,import,Yeraldin Garcia,+17745228026,pending,25,25,terapias Garcia,+17745228026
+SAME,353,RESERVED,import,Yoni Garcia,+584147567062,pending,20,35,Yoni Garcia,+584147567062
+SAME,280,RESERVED,import,Freddy garcia colon,+584164260340,pending,0,55,Freddy garcia colon,+584164260340
+SAME,706,RESERVED,import,Leidy Garcia la fria,+584126483474,pending,46,9,Leidy Garcia la fria,+584126483474
+SAME,393,PAID,import,Enrique Gasolina,+584247047355,sold,55,0,Enrique Gasolina,+584247047355
+SAME,686,RESERVED,import,Osman gil,+584149796001,pending,15,35,Osman Gil,+584149796001
+SAME,515,RESERVED,import,Osman gil,+584149796001,pending,15,35,Osman Gil,+584149796001
+SAME,757,RESERVED,import,Osman gil,+584149796001,pending,15,35,Osman Gil,+584149796001
+SAME,54,RESERVED,import,Mogollon Gnb,+584147574458,pending,0,55,Mogollon Gnb,+584147574458
+SAME,436,RESERVED,import,Jose Gregorio gollito usa,+13137702072,pending,0,55,Jose Gregorio gollito usa,+13137702072
+SAME,609,RESERVED,import,Orlando gomez,+56936206811,pending,0,55,Orlando gomez,+56936206811
+SAME,784,PAID,import,Gabriela gomez la fria,+584149766726,sold,55,0,Ana Gomez,+584149766726
+SAME,68,RESERVED,import,Julio Gomez     ( Seboruco),+584247854602,pending,0,55,Julio Gomez     ( Seboruco),+584247854602
+SAME,623,RESERVED,import,Antonio Gonzáles,+584247396138,pending,35,15,Antonio Gonzáles,+584247396138
+SAME,836,RESERVED,import,Antonio Gonzáles,+584247396138,pending,35,15,Antonio Gonzáles,+584247396138
+SAME,662,RESERVED,import,Karol Gonzales chile la fria,+56951855023,pending,47,8,Karol Gonzales chile la fria,+56951855023
+SAME,83,PAID,import,Ana visney Gonzales san cristobal,+584247739341,sold,55,0,Ana visney Gonzales san cristobal,+584247739341
+SAME,882,RESERVED,import,Elizabel Gonzalez  ( El venado edo Zulia),+584246808462,pending,0,55,Elizabel Gonzalez  ( El venado edo Zulia),+584246808462
+SAME,928,RESERVED,import,Larre Guanipa     ( Zulia ),+584146322406,pending,0,55,Larre Guanipa     ( Zulia ),+584146322406
+SAME,735,RESERVED,import,Mayrenis ramos guarico,+584268497777,pending,35,20,Mayrenis ramos guarico,+584268497777
+SAME,311,RESERVED,import,Pedro medina guayabo,+584147544973,pending,30,25,Pedro medina guayabo,+584147544973
+SAME,33,RESERVED,import,Carlos Guerra.   ( Rubio - USA ),+17206946038,pending,25,25,Carlos Guerra.   ( Rubio - USA ),+17206946038
+SAME,180,RESERVED,import,Carlos Guerra.   ( Rubio - USA ),+17206946038,pending,25,25,Carlos Guerra.   ( Rubio - USA ),+17206946038
+SAME,771,PAID,import,Yajaira Guerrero,+14146298680,sold,55,0,Yajaira Guerrero,+14146298680
+SAME,830,RESERVED,import,Eduard Guerrero la fria,+584149773119,pending,35,20,Eduard Guerrero la fria,+584149773119
+SAME,178,PAID,import,Franklin Guerrero       ( La Grita ),+584143756485,sold,55,0,Franklin Guerrero       ( La Grita ),+584143756485
+SAME,593,RESERVED,import,Wilmer Guerrero       ( Zea - Merida),+584262253853,pending,0,55,Wilmer Guerrero       ( Zea - Merida),+584262253853
+SAME,820,RESERVED,import,Leonardo Guevara Riaño,+34603752050,pending,31,24,Leonardo Guevara Riaño,+34603752050
+SAME,363,RESERVED,import,Aurimar guillen esposa De Dahir,+584247004164,pending,30,25,Aurimar guillen esposa De Dahir,+584247004164
+SAME,193,RESERVED,import,Neurimar Gutiérrez,+18179642827,pending,25,30,Neurimar Gutiérrez,+18179642827
+SAME,442,PAID,import,Yonny Gutiérrez,+584147286657,sold,55,0,Yonny Gutiérrez,+584147286657
+SAME,843,RESERVED,import,Nelson Gutierrez   ( Usa ),+13344881263,pending,0,55,Nelson Gutierrez   ( Usa ),+13344881263
+SAME,948,RESERVED,import,Alvaro guzman,+56990998845,pending,35,20,Alvaro guzman,+56990998845
+SAME,597,PAID,import,Luis Guzman    ( Tovar ),+584264784073,sold,55,0,Luis Guzman    ( Tovar ),+584264784073
+SAME,648,RESERVED,import,Chepe sanchez gym,+584247422526,pending,0,55,Chepe sanchez gym,+584247422526
+SAME,803,RESERVED,import,Yimi perez hermano de Jonny la fria,+19413234030,pending,35,15,Yimi perez hermano de Jonny la fria,+19413234030
+SAME,876,RESERVED,import,Yimi perez hermano de Jonny la fria,+19413234030,pending,35,15,Yimi perez hermano de Jonny la fria,+19413234030
+SAME,7,RESERVED,import,Nilson acosta hermano de lennys,+14143917058,pending,15,35,Nilson acosta hermano de lennys,+14143917058
+SAME,87,RESERVED,import,Nilson acosta hermano de lennys,+14143917058,pending,15,35,Nilson acosta hermano de lennys,+14143917058
+SAME,551,RESERVED,import,Nilson acosta hermano de lennys,+14143917058,pending,15,35,Nilson acosta hermano de lennys,+14143917058
+SAME,4,RESERVED,import,Nilson acosta hermano de lennys,+14143917058,pending,15,35,Nilson acosta hermano de lennys,+14143917058
+SAME,747,PAID,import,Yohana hernandez,+584147554641,sold,55,0,Yohana hernandez,+584147554641
+SAME,997,RESERVED,import,Rafael Hernandez sociedad,+17348997079,pending,15,40,Rafael Hernandez,+17348997079
+SAME,794,RESERVED,import,Rafael Hernandez sociedad,+17348997079,pending,10,45,Rafael Hernandez,+17348997079
+SAME,785,RESERVED,import,Cesar Hernández,+584247037993,pending,35,20,Cesar Hernández,+584247037993
+SAME,122,RESERVED,import,Jose gregorio gollo calvo,+584247571473,pending,15,40,Joseimy Hernández,+584247571473
+SAME,430,RESERVED,import,Ramom Hernández Carrero,+584247703099,pending,0,50,Ramom Hernández Carrero,+584247703099
+SAME,560,RESERVED,import,Ramom Hernández Carrero,+584247703099,pending,0,50,Ramom Hernández Carrero,+584247703099
+SAME,278,RESERVED,import,Bladimir Hernández  ( Santa Elena de Arenales ),+584247805747,pending,15,40,Bladimir Hernández  ( Santa Elena de Arenales ),+584247805747
+SAME,464,RESERVED,import,emilyer ibarra odontologo,+584226469843,pending,35,15,emilyer ibarra odontologo,+584226469843
+SAME,373,RESERVED,import,emilyer ibarra odontologo,+584226469843,pending,35,15,emilyer ibarra odontologo,+584226469843
+SAME,542,RESERVED,import,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,pending,35,15,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133
+SAME,254,RESERVED,import,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,pending,35,15,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133
+SAME,645,RESERVED,import,Katerine Ivañez,+584147573472,pending,40,15,Katerine Ivañez,+584147573472
+SAME,977,RESERVED,import,Digno izarra,+584121720075,pending,0,55,Digno izarra,+584121720075
+SAME,377,PAID,import,Yeison Jaime colombia,+573003668206,sold,55,0,Yeison Jaime colombia,+573003668206
+SAME,238,RESERVED,import,Eduardo Jaime   Colombia,+573203726305,pending,15,40,Eduardo Jaime   Colombia,+573203726305
+SAME,202,RESERVED,import,Andres Jaimes,+56972040687,pending,35,20,Andres Jaimes,+56972040687
+SAME,646,RESERVED,import,Jeny Jaimes,+573105670868,pending,20,35,Jeny Jaimes,+573105670868
+SAME,416,RESERVED,import,Alvaro Javier la fria,+573112553175,pending,0,55,Alvaro Javier la fria,+573112553175
+SAME,729,RESERVED,import,Carlos jimeno,+584147290794,pending,35,15,Carlos Jimeno,+584147290794
+SAME,816,RESERVED,import,Carlos jimeno,+584147290794,pending,35,15,Carlos Jimeno,+584147290794
+SAME,745,RESERVED,import,Leonor Joya,+17209685102,pending,35,15,Leonor Joya,+17209685102
+SAME,773,RESERVED,import,Leonor Joya,+17209685102,pending,35,15,Leonor Joya,+17209685102
+SAME,233,RESERVED,import,Ana Karina,+584147324069,pending,30,25,Ana Karina,+584147324069
+SAME,576,RESERVED,import,Francisco Kiko,+584147478552,pending,28.5,21.5,Francisco Kiko,+584147478552
+SAME,450,RESERVED,import,Francisco Kiko,+584147478552,pending,28.5,21.5,Francisco Kiko,+584147478552
+SAME,978,RESERVED,import,Francisco Kiko,+584147478552,pending,18.25,31.75,Francisco Kiko,+584147478552
+SAME,183,RESERVED,import,Francisco Kiko,+584147478552,pending,18.25,31.75,Francisco Kiko,+584147478552
+SAME,675,RESERVED,import,naylex labrador,+16098518697,pending,35,15,naylex labrador,+16098518697
+SAME,502,RESERVED,import,naylex labrador,+16098518697,pending,35,15,naylex labrador,+16098518697
+SAME,475,RESERVED,import,Alex padron la fria,+584141768941,pending,0,55,Alex padron la fria,+584141768941
+SAME,113,RESERVED,import,Anthony de luca la fria,+584147387793,pending,35,15,Anthony de luca la fria,+584147387793
+SAME,526,RESERVED,import,Anthony de luca la fria,+584147387793,pending,35,15,Anthony de luca la fria,+584147387793
+SAME,302,RESERVED,import,Eduin velazco la fria,+584247134497,pending,15,40,Eduin velazco la fria,+584247134497
+SAME,444,PAID,import,Ericka rangel la fria,+584247313823,sold,55,0,Ericka rangel la fria,+584247313823
+SAME,426,RESERVED,import,Franyer diaz la fria,+584147380571,pending,40,15,Franyer diaz la fria,+584147380571
+SAME,671,RESERVED,import,gavilan sanchez la fria,+584121975947,pending,0,50,gavilan sanchez la fria,+584121975947
+SAME,681,RESERVED,import,gavilan sanchez la fria,+584121975947,pending,0,50,gavilan sanchez la fria,+584121975947
+SAME,814,RESERVED,import,Luis fleming la fria,+18324183244,pending,35,20,Luis fleming la fria,+18324183244
+SAME,679,RESERVED,import,Orlando moreno la fria,+584247797409,pending,41.5,13.5,Orlando moreno la fria,+584247797409
+SAME,511,RESERVED,import,rafael boscan la fria,+584147155644,pending,30,20,rafael boscan la fria,+584147155644
+SAME,137,RESERVED,import,rafael boscan la fria,+584147155644,pending,30,20,rafael boscan la fria,+584147155644
+SAME,649,RESERVED,import,Ronal niño la fria,+573112216790,pending,35,20,Ronal niño la fria,+573112216790
+SAME,289,RESERVED,import,wesly rodrigues la fria,+584247357640,pending,0,50,wesly rodrigues la fria,+584247357640
+SAME,131,RESERVED,import,wesly rodrigues la fria,+584247357640,pending,0,50,wesly rodrigues la fria,+584247357640
+SAME,399,RESERVED,import,Deisy vivas la fria,+584247177483,pending,0,55,Deisy vivas la fria,+584247177483
+SAME,628,RESERVED,import,Johan marino la fria,+584143758061,pending,0,55,Johan marino la fria,+584143758061
+SAME,312,RESERVED,import,Bey puerta La fria,+584247538857,pending,0,55,Bey puerta La fria,+584247538857
+SAME,112,RESERVED,import,Jose sanchez La fria,+584149742615,pending,29.68,18.62,Jose sanchez La fria,+584149742615
+SAME,547,RESERVED,import,Jose sanchez La fria,+584149742615,pending,29.66,18.64,Jose sanchez La fria,+584149742615
+SAME,824,RESERVED,import,Jose sanchez La fria,+584149742615,pending,29.66,18.64,Jose sanchez La fria,+584149742615
+SAME,523,RESERVED,import,alfonso lizcano La fria,+584247080304,pending,35,15,alfonso lizcano La fria,+584247080304
+SAME,491,RESERVED,import,alfonso lizcano La fria,+584247080304,pending,35,15,alfonso lizcano La fria,+584247080304
+SAME,677,RESERVED,import,Joaquín ruiz gomez La fria,+584247028838,pending,0,55,Joaquín ruiz gomez La fria,+584247028838
+SAME,261,RESERVED,import,Andres rincon la fría,+584247665533,pending,30,25,Andres rincon la fría,+584247665533
+SAME,877,RESERVED,import,Mary Dias la fria casa madera,+584147385566,pending,15,35,Mary Dias la fria casa madera,+584147385566
+SAME,524,RESERVED,import,Mary Dias la fria casa madera,+584147385566,pending,15,35,Mary Dias la fria casa madera,+584147385566
+SAME,370,RESERVED,import,Johander ramirez La fria - chile,+56932679127,pending,35,20,Johander ramirez La fria - chile,+56932679127
+SAME,715,RESERVED,import,Belkis vargas la fria matamango,+584243064930,pending,35,20,Belkis vargas la fria matamango,+584243064930
+SAME,126,RESERVED,import,Darwin valencia la fria-usa,+584247350645,pending,35,15,Darwin valencia la fria-usa,+584247350645
+SAME,288,RESERVED,import,Darwin valencia la fria-usa,+584247350645,pending,35,15,Darwin valencia la fria-usa,+584247350645
+SAME,582,PAID,import,Jhuliana pabón la grita,+584147409707,sold,55,0,Jhuliana pabón la grita,+584147409707
+SAME,638,RESERVED,import,Mirexy mendez La grita,+584147047877,pending,35,20,Mirexy mendez La grita,+584147047877
+SAME,792,PAID,import,Noel sanchez la grita Amigo,+584247179509,sold,50,0,Noel sanchez la grita Amigo,+584247179509
+SAME,979,PAID,import,Noel sanchez la grita Amigo,+584247179509,sold,50,0,Noel sanchez la grita Amigo,+584247179509
+SAME,242,RESERVED,import,Junior Laguado,+584147554601,pending,0,55,Junior Laguado,+584147554601
+SAME,231,RESERVED,import,Aldo Laurano,+584247211003,pending,0,50,Aldo Laurano,+584247211003
+SAME,612,RESERVED,import,Aldo Laurano,+584247211003,pending,0,50,Aldo Laurano,+584247211003
+SAME,842,RESERVED,import,Jscson duque lavado,+584247774298,pending,20,35,Jscson duque lavado,+584247774298
+SAME,782,RESERVED,import,Hercilia Leal     (   Junin ),+584140581902,pending,0,55,Hercilia Leal     (   Junin ),+584140581902
+SAME,840,RESERVED,import,Cristian Leon 5 milazo,+584247010906,pending,52,3,Cristian Leon 5 milazo,+584247010906
+SAME,797,RESERVED,import,Cristian Leon 5 milazo,+584247010906,pending,15,40,Cristian Leon 5 milazo,+584247010906
+SAME,76,RESERVED,import,Jose gregorio Leon gollo,+584247069005,pending,30,25,Jose gregorio Leon gollo,+584247069005
+SAME,338,RESERVED,import,Nelson Leon.       ( San Cristobal),+584247641133,pending,0,55,Nelson Leon.       ( San Cristobal),+584247641133
+SAME,949,RESERVED,import,Karelys Lopez,+584126181455,pending,0,55,Karelys Lopez,+584126181455
+SAME,702,RESERVED,import,Yoel lopez,+584247715538,pending,0,55,Joel López,+584247715538
+SAME,635,RESERVED,import,Angel Lopez.     ( Cabimas zulia),+573216859350,pending,31,24,Angel Lopez.     ( Cabimas zulia),+573216859350
+SAME,907,RESERVED,import,Jose Rafael Lopez (Pelon),+56932848548,pending,35,15,Jose Rafael Lopez (Pelon),+56932848548
+SAME,411,RESERVED,import,Jose Rafael Lopez (Pelon),+56932848548,pending,35,15,Jose Rafael Lopez (Pelon),+56932848548
+SAME,897,RESERVED,import,Gregori Lozano,+584247601747,pending,35,20,Gregori Lozano,+584247601747
+SAME,837,RESERVED,import,Alemys Lozano (Yonathan Castro),+584142725977,pending,35,20,Alemys Lozano (Yonathan Castro),+584142725977
+SAME,850,RESERVED,import,Alemys Lozano (Yonathan Castro),+584142725977,pending,35,15,Alemys Lozano (Yonathan Castro),+584142725977
+SAME,449,RESERVED,import,Alemys Lozano (Yonathan Castro),+584142725977,pending,35,15,Alemys Lozano (Yonathan Castro),+584142725977
+SAME,169,RESERVED,import,victor contreras ls fria,+584247036467,pending,30,20,victor contreras ls fria,+584247036467
+SAME,805,RESERVED,import,victor contreras ls fria,+584247036467,pending,30,20,victor contreras ls fria,+584247036467
+SAME,581,PAID,import,Juan luan,+573123246557,sold,55,0,Juan luan,+573123246557
+SAME,291,PAID,import,Leonardo Lubo costa rica,+50672863076,sold,50,0,Leonardo Lubo costa rica,+50672863076
+SAME,150,PAID,import,Leonardo Lubo costa rica,+50672863076,sold,50,0,Leonardo Lubo costa rica,+50672863076
+SAME,365,RESERVED,import,Lorena Luna,+584247656227,pending,46,9,Lorena Luna,+584247656227
+SAME,0,RESERVED,import,Derwin Lunares,+584145051038,pending,31.67,16.83,Derwin Lunares,+584145051038
+SAME,197,RESERVED,import,Derwin Lunares,+584145051038,pending,31.67,16.83,Derwin Lunares,+584145051038
+SAME,960,RESERVED,import,Derwin Lunares,+584145051038,pending,11.66,36.84,Derwin Lunares,+584145051038
+SAME,926,RESERVED,import,Alicia luna sociedad,+16307768771,pending,0,55,Alicia luna sociedad,+16307768771
+SAME,652,RESERVED,import,Yoselin Machado la fria,+584247744349,pending,0,55,Yoselin Machado la fria,+584247744349
+SAME,41,RESERVED,import,Manuel alfonso ( MAELO) castro,+584247419599,pending,35,20,Manuel alfonso ( MAELO) castro,+584247419599
+SAME,550,PAID,import,Jose Maldonado,+19032520229,sold,55,0,Jose Maldonado,+19032520229
+SAME,32,RESERVED,import,Jesús Malpica,+584147061815,pending,15,35,Jesús Malpica,+584147061815
+SAME,59,RESERVED,import,Jesús Malpica,+584147061815,pending,15,35,Jesús Malpica,+584147061815
+SAME,58,RESERVED,import,Jesús Malpica,+584147061815,pending,15,35,Jesús Malpica,+584147061815
+SAME,44,RESERVED,import,Señora Darcy mama de Carlos parra,+584247332720,pending,15,40,Señora Darcy mama de Carlos parra,+584247332720
+SAME,793,RESERVED,import,Nidia rondón mama de marquitos,+584247649893,pending,25,30,Nidia rondón mama de marquitos,+584247649893
+SAME,143,RESERVED,import,Alcides sandía maracay,+584265306210,pending,15,40,Alcides sandía maracay,+584265306210
+SAME,827,RESERVED,import,Wilmer puentes Maracay,+584141427586,pending,15,40,Wilmer puentes Maracay,+584141427586
+SAME,520,RESERVED,import,Maria Elena Marcano        Maturin,+584249377452,pending,15,40,Maria Elena Marcano        Maturin,+584249377452
+SAME,168,RESERVED,import,Adriana Marcela,+584247748193,pending,0,55,Adriana Marcela,+584247748193
+SAME,828,RESERVED,import,Carlos Marchan,+584121704749,pending,35,20,Carlos Marchan,+584121704749
+SAME,895,PAID,import,Reinaldo Marchan,+14143082362,sold,50,0,Reinaldo Marchan,+14143082362
+SAME,64,PAID,import,Reinaldo Marchan,+14143082362,sold,50,0,Reinaldo Marchan,+14143082362
+SAME,177,RESERVED,import,Amancio Marin,+18172044645,pending,20,30,Amancio Marin,+18172044645
+SAME,916,RESERVED,import,Amancio Marin,+18172044645,pending,20,30,Amancio Marin,+18172044645
+SAME,545,RESERVED,import,Luis Márquez     ( Merida ),+584121705099,pending,0,55,Alejandro Marquez,+584121705099
+SAME,798,RESERVED,import,Walter Marquez  ( San Cristóbal ),+584147262208,pending,0,55,Walter Marquez  ( San Cristóbal ),+584147262208
+SAME,929,RESERVED,import,Israel Marquez.   San Cristóbal,+584122568839,pending,35,20,Israel Marquez.   San Cristóbal,+584122568839
+SAME,452,PAID,import,Yurimar Marquez    ( Tucani - Mérida ),+584263018529,sold,55,0,Yurimar Marquez    ( Tucani - Mérida ),+584263018529
+SAME,210,PAID,import,Daniela martines medina,+584247275019,sold,55,0,Daniela martines medina,+584247275019
+SAME,607,RESERVED,import,Frederick Alejandro martines usa,+17543272037,pending,15,35,Frederick Alejandro martines usa,+17543272037
+SAME,889,RESERVED,import,Frederick Alejandro martines usa,+17543272037,pending,15,35,Frederick Alejandro martines usa,+17543272037
+SAME,315,RESERVED,import,Andrea Martinez,+17208095947,pending,40,10,Andrea Martinez,+17208095947
+SAME,250,RESERVED,import,Andrea Martinez,+17208095947,pending,40,10,Andrea Martinez,+17208095947
+SAME,119,RESERVED,import,Idelmary Martinez,+584121703512,pending,15,40,Idelmary Martinez,+584121703512
+SAME,220,RESERVED,import,Erwin Martinez don camaron,+584243228374,pending,30,25,Erwin Martinez don camaron,+584243228374
+SAME,184,RESERVED,import,Luis Martinez     ( Maracay ),+584128151807,pending,0,55,Luis Martinez     ( Maracay ),+584128151807
+SAME,950,RESERVED,import,Yofran Masias,+584247682369,pending,0,55,Yofran Masias,+584247682369
+SAME,95,RESERVED,import,Mateo Mateo,+584263732804,pending,15,40,Mateo Mateo,+584263732804
+SAME,164,RESERVED,import,Henrry Mavarez zulia,+584122607774,pending,0,55,Henrry Mavarez zulia,+584122607774
+SAME,573,RESERVED,import,Yoander Mazzey     ( Trujillo Monay ),+584147034468,pending,0,55,Yoander Mazzey     ( Trujillo Monay ),+584147034468
+SAME,769,RESERVED,import,Jesus baraja Mecanico,+584147354430,pending,0,55,Jesus baraja Mecanico,+584147354430
+SAME,487,RESERVED,import,Freddy Medina,+13126328062,pending,35,15,Freddy Medina,+13126328062
+SAME,30,RESERVED,import,Freddy Medina,+13126328062,pending,35,15,Freddy Medina,+13126328062
+SAME,128,RESERVED,import,Freddy Medina,+13126328062,pending,35,15,Freddy Medina,+13126328062
+SAME,875,PAID,import,Yoan Medina,+584126577163,sold,55,0,Yoan Medina,+584126577163
+SAME,443,RESERVED,import,Hector medina la fria,+584247450446,pending,35,20,Hector medina la fria,+584247450446
+SAME,266,RESERVED,import,Antonio Medina    ( Maracaibo ),+584126616323,pending,0,55,Antonio Medina    ( Maracaibo ),+584126616323
+SAME,953,PAID,import,Génesis medina usa,+16094368300,sold,55,0,Eduin medina usa,+16094368300
+SAME,658,PAID,import,Génesis medina usa,+16094368300,sold,55,0,Eduin medina usa,+16094368300
+SAME,740,RESERVED,import,Enrique medina usa,+14406810853,pending,35,20,Enrique medina usa,+14406810853
+SAME,811,RESERVED,import,Luis medina     ( Valencia ),+584247359519,pending,0,55,Luis medina     ( Valencia ),+584247359519
+SAME,185,PAID,import,Liliana Mendez,+584247196052,sold,55,0,Liliana Mendez,+584247196052
+SAME,222,RESERVED,import,Pedro Mendez,+584247520503,pending,0,55,Pedro Mendez,+584247520503
+SAME,684,RESERVED,import,cristian mendez usa,+19126550240,pending,0,50,cristian mendez usa,+19126550240
+SAME,974,RESERVED,import,cristian mendez usa,+19126550240,pending,0,50,cristian mendez usa,+19126550240
+SAME,332,RESERVED,import,Yacson mendoza,+584247393236,pending,36,19,Yacson mendoza,+584247393236
+SAME,719,RESERVED,import,Berlys Mendoza,+16823611968,pending,15,35,Berlys Mendoza,+16823611968
+SAME,514,RESERVED,import,Berlys Mendoza,+16823611968,pending,15,35,Berlys Mendoza,+16823611968
+SAME,123,RESERVED,import,Elba Mendoza,+584121749496,pending,35,15,Elba Mendoza,+584121749496
+SAME,334,RESERVED,import,Elba Mendoza,+584121749496,pending,35,15,Elba Mendoza,+584121749496
+SAME,355,RESERVED,import,Jacinto Mendoza,+16157699605,pending,25,25,Jacinto Mendoza,+16157699605
+SAME,881,RESERVED,import,Jacinto Mendoza,+16157699605,pending,25,25,Jacinto Mendoza,+16157699605
+SAME,608,RESERVED,import,José Mendoza,+584247069499,pending,0,55,José Mendoza,+584247069499
+SAME,574,PAID,import,Maira Mendoza,+584147199078,sold,55,0,Maira Mendoza,+584147199078
+SAME,161,PAID,import,Maritza Mendoza,+584247196147,sold,50,0,Maritza Mendoza,+584247196147
+SAME,75,PAID,import,Maritza Mendoza,+584247196147,sold,50,0,Maritza Mendoza,+584247196147
+SAME,486,PAID,import,Maritza Mendoza,+584247196147,sold,50,0,Maritza Mendoza,+584247196147
+SAME,136,PAID,import,Maritza Mendoza,+584247196147,sold,50,0,Maritza Mendoza,+584247196147
+SAME,776,PAID,import,Maritza Mendoza,+584247196147,sold,50,0,Maritza Mendoza,+584247196147
+SAME,163,PAID,import,Maritza Mendoza,+584247196147,sold,50,0,Maritza Mendoza,+584247196147
+SAME,276,RESERVED,import,Herly mendoza colon,+584247305708,pending,0,55,Herly mendoza colon,+584247305708
+SAME,232,RESERVED,import,Ruben Mercado,+584247136016,pending,0,55,Ruben Mercado,+584247136016
+SAME,219,RESERVED,import,Ruben Mercado,+584247136016,pending,46.67,3.33,Ruben Mercado,+584247136016
+SAME,207,RESERVED,import,Ruben Mercado,+584247136016,pending,46.67,3.33,Ruben Mercado,+584247136016
+SAME,322,RESERVED,import,Ruben Mercado,+584247136016,pending,46.66,3.34,Ruben Mercado,+584247136016
+SAME,703,RESERVED,import,Veronica Micel,+584264039347,pending,35,20,Veronica Micel,+584264039347
+SAME,349,RESERVED,import,Eliecer Millan,+584141796609,pending,0,55,Eliecer Millan,+584141796609
+SAME,934,RESERVED,import,Abuela Milver,+584247388451,pending,35,20,Abuela Milver,+584247388451
+SAME,663,RESERVED,import,Deisy Mogollón,+584247037671,pending,33.5,16.5,Deisy Mogollón,+584247037671
+SAME,459,RESERVED,import,Deisy Mogollón,+584247037671,pending,33.5,16.5,Deisy Mogollón,+584247037671
+SAME,841,RESERVED,import,Jose molina,+584147335828,pending,15,40,Jose molina,+584147335828
+SAME,986,RESERVED,import,Milton molina,+584147211459,pending,0,55,Milton molina,+584147211459
+SAME,448,RESERVED,import,Victor molina,+56933670260,pending,35,20,Victor molina,+56933670260
+SAME,10,RESERVED,import,Rafael Molina,+584147484747,pending,15,35,Rafael Molina,+584147484747
+SAME,914,RESERVED,import,Rafael Molina,+584147484747,pending,15,35,Rafael Molina,+584147484747
+SAME,880,RESERVED,import,Dr Alexandra Molina,+584147385295,pending,40,15,Dr Alexandra Molina,+584147385295
+SAME,500,PAID,import,Nelson molina chile,+56941445035,sold,55,0,Nelson molina chile,+56941445035
+SAME,433,PAID,import,Deivis Molina     ( Ejido - Merida ),+584247158354,sold,55,0,Deivis Molina     ( Ejido - Merida ),+584247158354
+SAME,328,RESERVED,import,Miguel Molina       San Cristóbal,+584141757738,pending,15,40,Miguel Molina       San Cristóbal,+584141757738
+SAME,983,RESERVED,import,Junior Moncada,+584147678826,pending,35,15,Junior Moncada,+584147678826
+SAME,474,RESERVED,import,Junior Moncada,+584147678826,pending,35,15,Junior Moncada,+584147678826
+SAME,966,RESERVED,import,Iris Moncada,+584247250796,pending,42,13,Iris Moncada,+584247250796
+SAME,933,RESERVED,import,Deysi Moncada     ( La Grita),+584247829118,pending,35,20,Deysi Moncada     ( La Grita),+584247829118
+SAME,779,RESERVED,import,Andreina Sanchez      La Grita,+584247829118,pending,0,55,Deysi Moncada     ( La Grita),+584247829118
+SAME,460,RESERVED,import,Deysi Moncada     ( La Grita),+584247829118,pending,25,30,Deysi Moncada     ( La Grita),+584247829118
+SAME,806,RESERVED,import,Deysi Moncada     ( La Grita),+584247829118,pending,35,20,Deysi Moncada     ( La Grita),+584247829118
+SAME,82,RESERVED,import,Kleiver Moncada     ( La Grita),+584247366144,pending,0,55,Kleiver Moncada     ( La Grita),+584247366144
+SAME,235,RESERVED,import,Alberto moncada seboruco,+584143756211,pending,35,20,Alberto moncada seboruco,+584143756211
+SAME,78,RESERVED,import,Marina Monsalve,+584265307247,pending,35,20,Marina Monsalve,+584265307247
+SAME,657,RESERVED,import,JERMAN MONSALVE,+15615028040,pending,35,20,JERMAN MONSALVE,+15615028040
+SAME,791,RESERVED,import,Edwin Monsalve   ( Merida ),+573183070316,pending,0,55,Edwin Monsalve   ( Merida ),+573183070316
+SAME,38,PAID,import,Antonino Montero la fria,+584147387335,sold,55,0,Antonino Montero la fria,+584147387335
+SAME,333,RESERVED,import,Engelbet Montiel       (  Maracaibo ),+584127647189,pending,0,55,Engelbet Montiel       (  Maracaibo ),+584127647189
+SAME,731,RESERVED,import,Zunaida Montilla el guayabo,+584120768182,pending,0,55,Zunaida Montilla el guayabo,+584120768182
+SAME,912,RESERVED,import,Herlyn Montilla San felix,+584247767238,pending,15,40,Herlyn Montilla San felix,+584247767238
+SAME,171,RESERVED,import,Izamar Montilva,+584247621314,pending,35,20,Izamar Montilva,+584247621314
+SAME,777,RESERVED,import,Kerlyn Montilva    ( La Grita),+584247452780,pending,35,15,Kerlyn Montilva    ( La Grita),+584247452780
+SAME,716,RESERVED,import,Kerlyn Montilva    ( La Grita),+584247452780,pending,35,15,Kerlyn Montilva    ( La Grita),+584247452780
+SAME,294,RESERVED,import,Eduard montilva mongli,+584125800375,pending,35,20,Eduard montilva mongli,+584125800375
+SAME,931,RESERVED,import,Pablo Mora,+584247840692,pending,0,55,Pablo Mora,+584247840692
+SAME,835,RESERVED,import,Cesar Morales,+584147420854,pending,0,48.33,Cesar Morales,+584147420854
+SAME,508,RESERVED,import,Cesar Morales,+584147420854,pending,0,48.33,Cesar Morales,+584147420854
+SAME,571,RESERVED,import,Cesar Morales,+584147420854,pending,0,48.33,Cesar Morales,+584147420854
+SAME,226,RESERVED,import,Victor Morales,+56931977659,pending,40,15,Victor Morales,+56931977659
+SAME,326,RESERVED,import,Carlos Moran. ( Ojeda edo Zulia - Usa ),+17542613967,pending,0,55,Carlos Moran. ( Ojeda edo Zulia - Usa ),+17542613967
+SAME,961,RESERVED,import,Kariusma Mora usa,+15125001004,pending,0,55,Kariusma Mora usa,+15125001004
+SAME,893,PAID,import,Yenifer moreno,+584247830838,sold,55,0,Yenifer moreno,+584247830838
+SAME,930,RESERVED,import,Daines Moreno,+56982836762,pending,40,15,Daines Moreno,+56982836762
+SAME,303,RESERVED,import,Deynis Moreno  ( La Grita ),+584122901463,pending,15,35,Deynis Moreno  ( La Grita ),+584122901463
+SAME,422,RESERVED,import,Deynis Moreno  ( La Grita ),+584122901463,pending,15,35,Deynis Moreno  ( La Grita ),+584122901463
+SAME,15,RESERVED,import,Rosbeily Morles usa,+12067421305,pending,35,15,Rosbeily Morles usa,+12067421305
+SAME,89,RESERVED,import,Rosbeily Morles usa,+12067421305,pending,35,15,Rosbeily Morles usa,+12067421305
+SAME,553,RESERVED,import,Carlos moto taxi,+584147213985,pending,42,13,Carlos moto taxi,+584147213985
+SAME,815,PAID,import,Orliany Mujica,+584247678563,sold,55,0,Orliany Mujica,+584247678563
+SAME,691,PAID,import,Gabriel Mujica       La Fria,+584247276204,sold,55,0,Gabriel Mujica       La Fria,+584247276204
+SAME,767,RESERVED,import,Gabriela Muñoz,+13802394964,pending,16.66,31.67,Gabriela Muñoz,+13802394964
+SAME,320,RESERVED,import,Gabriela Muñoz,+13802394964,pending,40.17,8.16,Gabriela Muñoz,+13802394964
+SAME,577,RESERVED,import,Gabriela Muñoz,+13802394964,pending,40.17,8.16,Gabriela Muñoz,+13802394964
+SAME,102,RESERVED,import,Juanita Muñoz,+584143797435,pending,15,35,Juanita Muñoz,+584143797435
+SAME,12,RESERVED,import,Juanita Muñoz,+584143797435,pending,15,35,Juanita Muñoz,+584143797435
+SAME,695,RESERVED,import,Belisario Muñoz,+17206201568,pending,0,50,Belisario Muñoz,+17206201568
+SAME,192,RESERVED,import,Belisario Muñoz,+17206201568,pending,0,50,Belisario Muñoz,+17206201568
+SAME,305,RESERVED,import,Wilder Muñoz,+584121768623,pending,15,40,Wilder Muñoz,+584121768623
+SAME,613,PAID,import,Nelson muñoz caracas,+584143049425,sold,50,0,Nelson muñoz caracas,+584143049425
+SAME,911,PAID,import,Nelson muñoz caracas,+584143049425,sold,50,0,Nelson muñoz caracas,+584143049425
+SAME,734,RESERVED,import,Yeison naranjo usa,+18542457903,pending,40,10,Yeison naranjo usa,+18542457903
+SAME,651,RESERVED,import,Yeison naranjo usa,+18542457903,pending,40,10,Yeison naranjo usa,+18542457903
+SAME,206,RESERVED,import,Henrry neira Tata chile,+56998190665,pending,35,20,Henrry neira Tata chile,+56998190665
+SAME,227,RESERVED,import,Pedro Nieto,+15165544157,pending,25,25,Pedro Nieto,+15165544157
+SAME,153,RESERVED,import,Pedro Nieto,+15165544157,pending,25,25,Pedro Nieto,+15165544157
+SAME,611,RESERVED,import,Kilver Niño,+573213814594,pending,35,20,Kilver Niño,+573213814594
+SAME,479,RESERVED,import,Jhon Noriega.     San Cristóbal- Chile,+56937651021,pending,15,40,Jhon Noriega.     San Cristóbal- Chile,+56937651021
+SAME,552,RESERVED,import,Kelianny Novia de gollo,+584168741463,pending,35,20,Kelianny Novia de gollo,+584168741463
+SAME,142,RESERVED,import,Kevin morales novio de yuglendy,+17133679418,pending,35,20,Kevin morales novio de yuglendy,+17133679418
+SAME,467,RESERVED,import,Soriangely ojeda,+56987083985,pending,0,55,Soriangely ojeda,+56987083985
+SAME,485,RESERVED,import,Jose Olivero.   ( Las mesas - usa ),+16082174238,pending,35,20,Jose Olivero.   ( Las mesas - usa ),+16082174238
+SAME,763,RESERVED,import,Jose Olivero.   ( Las mesas - usa ),+16082174238,pending,35,20,Jose Olivero.   ( Las mesas - usa ),+16082174238
+SAME,470,PAID,import,Henrry omaña la grita,+584247739657,sold,55,0,Henrry omaña la grita,+584247739657
+SAME,556,RESERVED,import,Junior Orduz,+584247028907,pending,0,55,Junior Orduz,+584247028907
+SAME,862,PAID,import,bernardo burro orope,+584149754893,sold,50,0,bernardo burro orope,+584149754893
+SAME,537,PAID,import,bernardo burro orope,+584149754893,sold,50,0,bernardo burro orope,+584149754893
+SAME,493,RESERVED,import,Custodio orope,+573150410579,pending,35,20,Custodio orope,+573150410579
+SAME,863,RESERVED,import,Willian ortega,+584247114136,pending,30,25,Willian ortega,+584247114136
+SAME,371,RESERVED,import,Hermés Ortiz     ( Orope ),+584147197792,pending,0,50,Hermés Ortiz     ( Orope ),+584147197792
+SAME,896,RESERVED,import,Hermés Ortiz     ( Orope ),+584147197792,pending,0,50,Hermés Ortiz     ( Orope ),+584147197792
+SAME,543,RESERVED,import,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,pending,35,15,Yonny Ortiz     ( Quito - Ecuador ),+593995566123
+SAME,431,RESERVED,import,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,pending,35,15,Yonny Ortiz     ( Quito - Ecuador ),+593995566123
+SAME,6,RESERVED,import,Isabel ortiz usa,+17047565519,pending,0,55,Isabel ortiz usa,+17047565519
+SAME,412,RESERVED,import,Abel Osorio,+584247443856,pending,27,28,Abel Osorio,+584247443856
+SAME,314,RESERVED,import,Marcos Osorio,+573173134587,pending,28.5,21.5,Marcos Osorio,+573173134587
+SAME,130,RESERVED,import,Marcos Osorio,+573173134587,pending,28.5,21.5,Marcos Osorio,+573173134587
+SAME,392,RESERVED,import,Daniel Osorio   ( Chile ),+56996304168,pending,0,55,Daniel Osorio   ( Chile ),+56996304168
+SAME,697,RESERVED,import,Emiro Osorio   ( Punto Fijo ),+584122997411,pending,0,55,Emiro Osorio   ( Punto Fijo ),+584122997411
+SAME,834,RESERVED,import,Alberto Pablo garcia,+50763762857,pending,0,55,Alberto Pablo garcia,+50763762857
+SAME,237,RESERVED,import,Aureliana Padilla,+584243413677,pending,0,55,Aureliana Padilla,+584243413677
+SAME,429,RESERVED,import,Gerson paeza fria chile,+56957021133,pending,15,40,Gerson paeza fria chile,+56957021133
+SAME,308,RESERVED,import,Jean Carlos palma      ( La Grita ),+584247004792,pending,0,55,Jean Carlos palma      ( La Grita ),+584247004792
+SAME,316,PAID,import,Katty Panchano     La Grita,+584247221696,sold,55,0,Katty Panchano     La Grita,+584247221696
+SAME,477,RESERVED,import,Elis monsalve,+584147505598,pending,0,55,Rodrigo parra papa de Carlos,+584147505598
+SAME,622,RESERVED,import,wilson papiolo,+584247091798,pending,0,50,wilson papiolo,+584247091798
+SAME,208,RESERVED,import,Yeraldin Parada,+573223946408,pending,35,15,Yeraldin Parada,+573223946408
+SAME,458,RESERVED,import,Yeraldin Parada,+573223946408,pending,35,15,Yeraldin Parada,+573223946408
+SAME,631,RESERVED,import,Angelo Parada usa,+19204140344,pending,15,35,Angelo Parada usa,+19204140344
+SAME,16,RESERVED,import,Angelo Parada usa,+19204140344,pending,15,35,Angelo Parada usa,+19204140344
+SAME,566,RESERVED,import,Zaida Parra,+584262700272,pending,35,20,Zaida Parra,+584262700272
+SAME,636,PAID,import,Emir Parra     ( La Grita ),+584147162627,sold,55,0,Emir Parra     ( La Grita ),+584147162627
+SAME,481,RESERVED,import,Rodrigo Parra papa de carlitos,+584266729512,pending,35,20,Rodrigo Parra papa de carlitos,+584266729512
+SAME,199,RESERVED,import,Carlos Parra Super rifas carlos parra,+584143754665,pending,45,5,Carlos Parra Super rifas carlos parra,+584143754665
+SAME,700,RESERVED,import,Carlos Parra Super rifas carlos parra,+584143754665,pending,45,5,Carlos Parra Super rifas carlos parra,+584143754665
+SAME,84,RESERVED,import,Yonni reyes Pasteles,+584147091716,pending,12,43,Yonni reyes Pasteles,+584147091716
+SAME,121,RESERVED,import,Francisco Payares     ( Colombia ),+573005790054,pending,35,20,Francisco Payares     ( Colombia ),+573005790054
+SAME,938,RESERVED,import,Yoli Bohórquez Peliona usa,+15129685484,pending,13.33,34.97,Yoli Bohórquez Peliona usa,+15129685484
+SAME,438,RESERVED,import,Yoli Bohórquez Peliona usa,+15129685484,pending,13.34,34.96,Yoli Bohórquez Peliona usa,+15129685484
+SAME,738,RESERVED,import,Yoli Bohórquez Peliona usa,+15129685484,pending,13.33,34.97,Yoli Bohórquez Peliona usa,+15129685484
+SAME,870,RESERVED,import,Argenis Peña,+584242572391,pending,0,55,Argenis Peña,+584242572391
+SAME,132,RESERVED,import,Cristina Peña,+584247077132,pending,13,42,Cristina Peña,+584247077132
+SAME,300,RESERVED,import,Reny Pereira    ( Bailadores - Merida ),+584247512903,pending,35,20,Reny Pereira    ( Bailadores - Merida ),+584247512903
+SAME,833,PAID,import,Brando Perez,+17372474739,sold,55,0,Brando Perez,+17372474739
+SAME,262,RESERVED,import,Frainy Perez,+584247481755,pending,15,40,Frainy Perez,+584247481755
+SAME,347,RESERVED,import,Jose Perez,+584247595721,pending,40,15,Jose Perez,+584247595721
+SAME,418,RESERVED,import,Yenifer Perez,+16894652656,pending,35,15,Yenifer Perez,+16894652656
+SAME,18,RESERVED,import,Yenifer Perez,+16894652656,pending,35,15,Yenifer Perez,+16894652656
+SAME,209,RESERVED,import,Yony Perez,+584147385318,pending,35,15,Yony Perez,+584147385318
+SAME,402,RESERVED,import,Yony Perez,+584147385318,pending,35,15,Yony Perez,+584147385318
+SAME,540,PAID,import,Alejandro Perez,+584143740584,sold,50,0,Alejandro Perez,+584143740584
+SAME,186,PAID,import,Alejandro Perez,+584143740584,sold,50,0,Alejandro Perez,+584143740584
+SAME,166,RESERVED,import,Dayana perez,+584121769567,pending,0,55,Dayana Perez,+584121769567
+SAME,750,RESERVED,import,Jhoan Perez,+15125918454,pending,0,50,Jhoan Perez,+15125918454
+SAME,80,RESERVED,import,Jhoan Perez,+15125918454,pending,0,50,Jhoan Perez,+15125918454
+SAME,253,RESERVED,import,Jhoan Perez,+15125918454,pending,0,50,Jhoan Perez,+15125918454
+SAME,174,PAID,import,Javier alexis chile,+56921928867,sold,55,0,Javier Pérez,+56921928867
+SAME,217,RESERVED,import,Jhony Perez     ( La Grita ),+584147496829,pending,24,26,Jhony Perez     ( La Grita ),+584147496829
+SAME,817,RESERVED,import,Jhony Perez     ( La Grita ),+584147496829,pending,24,26,Jhony Perez     ( La Grita ),+584147496829
+SAME,99,RESERVED,import,Omar Perez     ( La Grita ),+584147458056,pending,35,20,Omar Perez     ( La Grita ),+584147458056
+SAME,737,RESERVED,import,Jose Gabino Perez      ( Quimbor edo Lara ),+584245905194,pending,35,20,Jose Gabino Perez      ( Quimbor edo Lara ),+584245905194
+SAME,956,RESERVED,import,Esteban Perez    ( San Juan de colon ),+584122909643,pending,0,55,Esteban Perez    ( San Juan de colon ),+584122909643
+SAME,401,RESERVED,import,Franyer Pernia,+584247549479,pending,35,15,Franyer Pernia,+584247549479
+SAME,874,RESERVED,import,Franyer Pernia,+584247549479,pending,35,15,Franyer Pernia,+584247549479
+SAME,723,RESERVED,import,Jeudany Pernia,+584121560678,pending,35,20,Jeudany Pernia,+584121560678
+SAME,141,RESERVED,import,Yeiker Pernia      Caracas - Usa,+17869398393,pending,35,15,Yeiker Pernia      Caracas - Usa,+17869398393
+SAME,713,RESERVED,import,Yeiker Pernia      Caracas - Usa,+17869398393,pending,35,15,Yeiker Pernia      Caracas - Usa,+17869398393
+SAME,398,RESERVED,import,Maria Fernanda Pernia     ( La Grita ),+584247151339,pending,41,14,Maria Fernanda Pernia     ( La Grita ),+584247151339
+SAME,405,RESERVED,import,Andrea Pernia  ( La Grita ),+584247155450,pending,41,14,Andrea Pernia  ( La Grita ),+584247155450
+SAME,804,PAID,import,Alfonso Pernia papa,+584268033286,sold,55,0,Alfonso Pernia papa,+584268033286
+SAME,853,RESERVED,import,Doris Pernia Tia,+584247271817,pending,40,15,Doris Pernia Tia,+584247271817
+SAME,626,RESERVED,import,Youel Piña.    ( Coro - Usa ),+15045710299,pending,0,50,Youel Piña.    ( Coro - Usa ),+15045710299
+SAME,299,RESERVED,import,Youel Piña.    ( Coro - Usa ),+15045710299,pending,0,50,Youel Piña.    ( Coro - Usa ),+15045710299
+SAME,701,PAID,import,Daniel Pineda.    La Grita,+584227414908,sold,55,0,Daniel Pineda.    La Grita,+584227414908
+SAME,361,RESERVED,import,Yuli Pineda las delicias,+584142227715,pending,0,55,Yuli Pineda las delicias,+584142227715
+SAME,849,RESERVED,import,Zoraida Pizzeria,+584247044073,pending,15,40,Zoraida Pizzeria,+584247044073
+SAME,189,RESERVED,import,Javier Porras,+584147388794,pending,36,19,Javier Porras,+584147388794
+SAME,385,RESERVED,import,Yerson Portillo usa,+13476777246,pending,20,35,Yerson Portillo usa,+13476777246
+SAME,319,RESERVED,import,Corina prato,+584247710381,pending,30,25,Corina prato,+584247710381
+SAME,756,RESERVED,import,Gregory Princeso,+584147367045,pending,35,20,Gregory Princeso,+584147367045
+SAME,245,RESERVED,import,Juan Puentes colon,+584263261739,pending,12,43,Juan Puentes colon,+584263261739
+SAME,111,RESERVED,import,Cristofer Pulido    ( Seboruco ),+584247678002,pending,0,55,Cristofer Pulido    ( Seboruco ),+584247678002
+SAME,243,RESERVED,import,Albert Quinceno    ( La Fria - Usa ),+19123381129,pending,0,50,Albert Quinceno    ( La Fria - Usa ),+19123381129
+SAME,801,RESERVED,import,Albert Quinceno    ( La Fria - Usa ),+19123381129,pending,0,50,Albert Quinceno    ( La Fria - Usa ),+19123381129
+SAME,742,RESERVED,import,Carlos Daniel Quintero,+584147424963,pending,35,15,Carlos Daniel Quintero,+584147424963
+SAME,587,RESERVED,import,Carlos Daniel Quintero,+584147424963,pending,35,15,Carlos Daniel Quintero,+584147424963
+SAME,236,RESERVED,import,Charly Quintero,+584147562624,pending,35,20,Charly Quintero,+584147562624
+SAME,866,PAID,import,Moisés Quintero,+584147166779,sold,50,0,Moisés Quintero,+584147166779
+SAME,241,PAID,import,Moisés Quintero,+584147166779,sold,50,0,Moisés Quintero,+584147166779
+SAME,43,RESERVED,import,Ronal Quintero colon,+584247687907,pending,0,55,Ronal Quintero colon,+584247687907
+SAME,391,RESERVED,import,Fabiola Ramirez,+584121711584,pending,0,55,Fabiola Ramirez,+584121711584
+SAME,813,RESERVED,import,Jean carlos ramirez,+584247321597,pending,0,50,Jean Carlos Ramirez,+584247321597
+SAME,586,RESERVED,import,Jean carlos ramirez,+584247321597,pending,0,50,Jean Carlos Ramirez,+584247321597
+SAME,872,RESERVED,import,Jean carlos ramirez,+584247321597,pending,0,50,Jean Carlos Ramirez,+584247321597
+SAME,413,RESERVED,import,Ronet Ramirez,+584147361575,pending,35,15,Ronet Ramirez,+584147361575
+SAME,140,RESERVED,import,Ronet Ramirez,+584147361575,pending,35,15,Ronet Ramirez,+584147361575
+SAME,267,RESERVED,import,Saul Ramírez,+584147220896,pending,0,55,Saul Ramírez,+584147220896
+SAME,269,PAID,import,Tahis Ramírez,+584247554489,sold,55,0,Tahis Ramírez,+584247554489
+SAME,22,RESERVED,import,Ana Karina Ramirez        ( Barinas ),+584145086380,pending,0,55,Ana Karina Ramirez        ( Barinas ),+584145086380
+SAME,924,RESERVED,import,Nelson Ramirez colon,+584163742090,pending,35,20,Nelson Ramirez colon,+584163742090
+SAME,674,RESERVED,import,Gregory ramirez hermano jean carlos,+584147583100,pending,0,55,Gregory ramirez hermano jean carlos,+584147583100
+SAME,160,RESERVED,import,Eduar Ramirez la fria,+584147484945,pending,35,20,Eduar Ramirez la fria,+584147484945
+SAME,913,RESERVED,import,David Ramirez         La Grita,+584147002584,pending,35,20,David Ramirez         La Grita,+584147002584
+SAME,368,RESERVED,import,Luis Ramirez Mosquera      ( Usa ),+17868515173,pending,25,25,Luis Ramirez Mosquera      ( Usa ),+17868515173
+SAME,568,RESERVED,import,Luis Ramirez Mosquera      ( Usa ),+17868515173,pending,25,25,Luis Ramirez Mosquera      ( Usa ),+17868515173
+SAME,818,RESERVED,import,Yeimy Ramirez muebles,+584247060503,pending,26,29,Yeimy Ramirez muebles,+584247060503
+SAME,366,PAID,import,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,sold,50,0,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118
+SAME,845,PAID,import,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,sold,50,0,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118
+SAME,21,PAID,import,Andreina Ramirez usa,+13136080927,sold,50,0,Andreina Ramirez usa,+13136080927
+SAME,903,PAID,import,Andreina Ramirez usa,+13136080927,sold,50,0,Andreina Ramirez usa,+13136080927
+SAME,778,RESERVED,import,Sergio Ramos,+584128629758,pending,0,50,Sergio Ramos,+584128629758
+SAME,91,RESERVED,import,Sergio Ramos,+584128629758,pending,0,50,Sergio Ramos,+584128629758
+SAME,995,PAID,import,Ronal rangel colon,+584149716069,sold,55,0,Ronal rangel colon,+584149716069
+SAME,708,PAID,import,Harol Rangel colon,+584163732385,sold,55,0,Harol Rangel colon,+584163732385
+SAME,110,RESERVED,import,Maria reaño vendedora,+584247843616,pending,0,55,Maria Reaño,+584247843616
+SAME,456,RESERVED,import,Franklin Alchain repuestos,+584247722153,pending,0,50,Franklin Alchain repuestos,+584247722153
+SAME,51,RESERVED,import,Franklin Alchain repuestos,+584247722153,pending,0,50,Franklin Alchain repuestos,+584247722153
+SAME,451,RESERVED,import,Franklin Alchain repuestos,+584247722153,pending,0,50,Franklin Alchain repuestos,+584247722153
+SAME,839,PAID,import,Jhon Retamoza   ( Machiques Zulia ),+584127957267,sold,55,0,Jhon Retamoza   ( Machiques Zulia ),+584127957267
+SAME,594,RESERVED,import,Tahilor rey,+584147098346,pending,15,40,Tahilor rey,+584147098346
+SAME,283,RESERVED,import,Lucy Rey,+584143796817,pending,14.5,35.5,Lucy Rey,+584143796817
+SAME,823,RESERVED,import,Lucy Rey,+584143796817,pending,14.5,35.5,Lucy Rey,+584143796817
+SAME,462,RESERVED,import,Pedro Rey        (La Fria. ),+584147388347,pending,0,55,Pedro Rey,+584147388347
+SAME,337,RESERVED,import,Nelly Rey.          (La grita),+584247072555,pending,40,15,Nelly Rey.          (La grita),+584247072555
+SAME,772,RESERVED,import,Jose Reyna,+584247257785,pending,35,15,Jose Reyna,+584247257785
+SAME,510,RESERVED,import,Jose Reyna,+584247257785,pending,35,15,Jose Reyna,+584247257785
+SAME,341,RESERVED,import,Robinson Rico      Ureña,+584147576728,pending,35,20,Robinson Rico      Ureña,+584147576728
+SAME,680,RESERVED,import,Ernesto Riera         Maracaibo,+584244439100,pending,0,55,Ernesto Riera         Maracaibo,+584244439100
+SAME,133,RESERVED,import,Tina suarez rifera,+584143711379,pending,0,55,Tina suarez rifera,+584143711379
+SAME,946,PAID,import,Anthony urbina rifero,+584247580573,sold,50,0,Anthony urbina rifero,+584247580573
+SAME,732,PAID,import,Anthony urbina rifero,+584247580573,sold,50,0,Anthony urbina rifero,+584247580573
+SAME,698,PAID,import,Anthony urbina rifero,+584247580573,sold,50,0,Anthony urbina rifero,+584247580573
+SAME,536,PAID,import,Anthony urbina rifero,+584247580573,sold,50,0,Anthony urbina rifero,+584247580573
+SAME,273,PAID,import,Anthony urbina rifero,+584247580573,sold,50,0,Anthony urbina rifero,+584247580573
+SAME,259,PAID,import,Anthony urbina rifero,+584247580573,sold,50,0,Anthony urbina rifero,+584247580573
+SAME,530,RESERVED,import,Robert Rincon      ( San Cristobal),+584124202099,pending,0,55,Robert Rincon      ( San Cristobal),+584124202099
+SAME,567,RESERVED,import,Lourdes Rivas      Santa Ana ( Numero en sociedad),+584247824140,pending,20,35,Lourdes Rivas      Santa Ana ( Numero en sociedad),+584247824140
+SAME,29,PAID,import,Sandra Rivera,+584147541423,sold,55,0,Sandra Rivera,+584147541423
+SAME,503,RESERVED,import,Ingrid Rivera        ( Barinas ),+584261702150,pending,50,5,Ingrid Rivera        ( Barinas ),+584261702150
+SAME,659,RESERVED,import,Ivan rivera mendez arauca,+573226423552,pending,28,22,Ivan rivera mendez arauca,+573226423552
+SAME,317,RESERVED,import,Ivan rivera mendez arauca,+573226423552,pending,28,22,Ivan rivera mendez arauca,+573226423552
+SAME,501,RESERVED,import,Nancy rivera sociedad,+584247180680,pending,0,55,Nancy rivera sociedad,+584247180680
+SAME,927,RESERVED,import,Nancy rivera sociedad,+584247180680,pending,0,55,Nancy rivera sociedad,+584247180680
+SAME,395,RESERVED,import,Douglas Roa,+14147913945,pending,35,15,Douglas Roa,+14147913945
+SAME,72,RESERVED,import,Douglas Roa,+14147913945,pending,35,15,Douglas Roa,+14147913945
+SAME,711,RESERVED,import,Nelson Roa,+17869147200,pending,0,48.33,Nelson Roa,+17869147200
+SAME,117,RESERVED,import,Nelson Roa,+17869147200,pending,0,48.33,Nelson Roa,+17869147200
+SAME,100,RESERVED,import,Nelson Roa,+17869147200,pending,0,48.33,Nelson Roa,+17869147200
+SAME,343,RESERVED,import,Alberto Rodríguez,+584247231949,pending,35,20,Alberto Rodríguez,+584247231949
+SAME,97,RESERVED,import,Luis Carlos Rodríguez,+573202083988,pending,35,20,Luis Carlos Rodríguez,+573202083988
+SAME,768,RESERVED,import,Jose Rodriguez        ( Usa ),+16822718786,pending,15,35,Jose Rodriguez        ( Usa ),+16822718786
+SAME,440,RESERVED,import,Jose Rodriguez        ( Usa ),+16822718786,pending,15,35,Jose Rodriguez        ( Usa ),+16822718786
+SAME,181,RESERVED,import,Gustavo Rojas,+584141760197,pending,30,20,Gustavo Rojas,+584141760197
+SAME,944,RESERVED,import,Gustavo Rojas,+584141760197,pending,30,20,Gustavo Rojas,+584141760197
+SAME,93,RESERVED,import,Kenia Rojas,+584247327389,pending,0,55,Kenia Rojas,+584247327389
+SAME,952,RESERVED,import,Nakary Rojas        ( El Vigia ),+584161398883,pending,35,20,Nakary Rojas        ( El Vigia ),+584161398883
+SAME,56,RESERVED,import,Virgina Rojas La Grita,+584147143965,pending,35,20,Virgina Rojas La Grita,+584147143965
+SAME,538,RESERVED,import,Enderson Rojas marantoquito,+584140815791,pending,0,55,Enderson Rojas marantoquito,+584140815791
+SAME,79,RESERVED,import,Juan Rojas          Ojeda edo Zulia,+584140638285,pending,30,25,Juan Rojas          Ojeda edo Zulia,+584140638285
+SAME,378,RESERVED,import,Edixon Rojas    ( Rubio ),+573017413743,pending,35,20,Edixon Rojas    ( Rubio ),+573017413743
+SAME,936,RESERVED,import,Yris Rojas Segnini,+584145926553,pending,35,20,Yris Rojas Segnini,+584145926553
+SAME,67,PAID,import,doris rojas usa,+13316005782,sold,48.3,0,doris rojas usa,+13316005782
+SAME,958,PAID,import,doris rojas usa,+13316005782,sold,48.3,0,doris rojas usa,+13316005782
+SAME,191,PAID,import,doris rojas usa,+13316005782,sold,48.3,0,doris rojas usa,+13316005782
+SAME,201,RESERVED,import,Karina Rojas usa,+15128451679,pending,15,35,Karina Rojas usa,+15128451679
+SAME,591,RESERVED,import,Karina Rojas usa,+15128451679,pending,15,35,Karina Rojas usa,+15128451679
+SAME,644,RESERVED,import,Yorman romero,+13232446886,pending,40,15,Yorman romero,+13232446886
+SAME,407,RESERVED,import,Yackelin Romero,+573138163228,pending,36,19,Yackelin Romero,+573138163228
+SAME,446,RESERVED,import,Edson romero usa,+16892715875,pending,0,50,Edson romero usa,+16892715875
+SAME,603,RESERVED,import,Edson romero usa,+16892715875,pending,0,50,Edson romero usa,+16892715875
+SAME,263,RESERVED,import,Marcos Rondon,+584147542926,pending,27,23,Marcos Rondon,+584147542926
+SAME,463,RESERVED,import,Marcos Rondon,+584147542926,pending,27,23,Marcos Rondon,+584147542926
+SAME,528,RESERVED,import,Angel Rosales,+584242197659,pending,28.5,21.5,Angel Rosales,+584242197659
+SAME,125,RESERVED,import,Angel Rosales,+584242197659,pending,28.5,21.5,Angel Rosales,+584242197659
+SAME,996,PAID,import,Juliana Rosales,+584149755198,sold,55,0,Juliana Rosales,+584149755198
+SAME,993,PAID,import,Juliana Rosales,+584149755198,sold,55,0,Juliana Rosales,+584149755198
+SAME,473,RESERVED,import,Moises rosales colon,+584149796085,pending,0,55,Moises rosales colon,+584149796085
+SAME,704,RESERVED,import,lisbet rosales rosales,+584247714133,pending,0,50,lisbet rosales rosales,+584247714133
+SAME,465,RESERVED,import,lisbet rosales rosales,+584247714133,pending,0,50,lisbet rosales rosales,+584247714133
+SAME,602,RESERVED,import,Nelson rosales usa,+14147796920,pending,35,20,Nelson rosales usa,+14147796920
+SAME,439,RESERVED,import,Guwer Ruedas,+17543497323,pending,35,15,Guwer Ruedas,+17543497323
+SAME,381,RESERVED,import,Guwer Ruedas,+17543497323,pending,35,15,Guwer Ruedas,+17543497323
+SAME,554,RESERVED,import,Sandra Saavedra   ( San Cristobal ),+584146987944,pending,0,55,Sandra Saavedra   ( San Cristobal ),+584146987944
+SAME,595,PAID,import,Donny Salas     ( Valencia- Usa ),+16786518734,sold,50,0,Donny Salas     ( Valencia- Usa ),+16786518734
+SAME,967,PAID,import,Donny Salas     ( Valencia- Usa ),+16786518734,sold,50,0,Donny Salas     ( Valencia- Usa ),+16786518734
+SAME,65,RESERVED,import,Omar Salazar  locho,+584247237314,pending,0,55,Omar Salazar  locho,+584247237314
+SAME,884,RESERVED,import,Ignacio salcedo.     (Maracay),+584127568288,pending,0,55,Ignacio salcedo.     (Maracay),+584127568288
+SAME,570,PAID,import,Omar Saldivia     ( Barquisimeto ),+584145232883,sold,55,0,Omar Saldivia     ( Barquisimeto ),+584145232883
+SAME,205,RESERVED,import,Jesus Sanchez,+18172984840,pending,35,15,Jesus Sanchez,+18172984840
+SAME,762,RESERVED,import,Jesus Sanchez,+18172984840,pending,35,15,Jesus Sanchez,+18172984840
+SAME,909,RESERVED,import,Yolanda Sanchez,+584247353314,pending,0,55,Yolanda Sanchez,+584247353314
+SAME,5,PAID,import,Eduin Sánchez,+18439411093,sold,55,0,Eduin Sánchez,+18439411093
+SAME,918,PAID,import,Estefania Sánchez,+18543457863,sold,55,0,Estefania Sánchez,+18543457863
+SAME,832,RESERVED,import,Yaneth Sánchez,+584143762125,pending,35,20,Yaneth Sánchez,+584143762125
+SAME,34,RESERVED,import,Engolbert jose sanchez       (Chile),+56942725378,pending,32,23,Engolbert jose sanchez       (Chile),+56942725378
+SAME,424,RESERVED,import,Angel Sanchez        ( Coloncito),+584243138031,pending,37,18,Angel Sanchez        ( Coloncito),+584243138031
+SAME,707,RESERVED,import,Gabriel Sanchez  La Grita - Chile,+56927682736,pending,15,40,Gabriel Sanchez  La Grita - Chile,+56927682736
+SAME,935,PAID,import,Ciro sanchez san cristobal,+573102037542,sold,55,0,Ciro sanchez san cristobal,+573102037542
+SAME,894,PAID,import,Juan Sanchez     ( San Cristobal ),+584264730476,sold,55,0,Juan Sanchez     ( San Cristobal ),+584264730476
+SAME,753,RESERVED,import,Anthony Sanchez usa,+19804752209,pending,15,40,Anthony Sanchez usa,+19804752209
+SAME,696,RESERVED,import,Gabriel Sandoval,+12163726045,pending,35,15,Gabriel Sandoval,+12163726045
+SAME,847,RESERVED,import,Gabriel Sandoval,+12163726045,pending,35,15,Gabriel Sandoval,+12163726045
+SAME,228,RESERVED,import,Diana Sandrea,+584147428052,pending,0,55,Diana Sandrea,+584147428052
+SAME,821,RESERVED,import,Mirian Santander,+573239018602,pending,15,40,Mirian Santander,+573239018602
+SAME,796,RESERVED,import,Ronald Santiago    ( Barinas ),+584149527211,pending,35,20,Ronald Santiago    ( Barinas ),+584149527211
+SAME,57,RESERVED,import,Andres contreras seboruco,+584247459899,pending,0,55,Andres contreras seboruco,+584247459899
+SAME,483,RESERVED,import,Corredor sediel,+584147019864,pending,0,55,Corredor sediel,+584147019864
+SAME,904,PAID,import,Angel Seijas    ( Tumeremo - Bolivar ),+584162099834,sold,55,0,Angel Seijas    ( Tumeremo - Bolivar ),+584162099834
+SAME,331,RESERVED,import,Henrry serrano Usa,+18433050408,pending,15,35,Henrry Serrano,+18433050408
+SAME,26,RESERVED,import,Henrry serrano Usa,+18433050408,pending,15,35,Henrry Serrano,+18433050408
+SAME,60,RESERVED,import,Wilmer Sierra,+14802426389,pending,0,55,Wilmer Sierra,+14802426389
+SAME,251,RESERVED,import,Jimmy Silva,+584161724113,pending,35,20,Jimmy Silva,+584161724113
+SAME,215,RESERVED,import,Anyerson arévalo sociedad,+584247602556,pending,10,15,Anyerson arévalo sociedad,+584247602556
+SAME,167,RESERVED,import,Anyerson arévalo sociedad,+584247602556,pending,10,15,Anyerson arévalo sociedad,+584247602556
+SAME,848,RESERVED,import,Anyerson arévalo sociedad,+584247602556,pending,10,15,Anyerson arévalo sociedad,+584247602556
+SAME,147,RESERVED,import,Anyerson arévalo sociedad,+584247602556,pending,30,20,Anyerson arévalo sociedad,+584247602556
+SAME,348,RESERVED,import,Anyerson arévalo sociedad,+584247602556,pending,30,20,Anyerson arévalo sociedad,+584247602556
+SAME,643,RESERVED,import,Javier delgado sociedad,+584265730047,pending,0,55,Javier delgado sociedad,+584265730047
+SAME,898,RESERVED,import,Dainner montilla Sociedad,+584165768746,pending,15,40,Dainner montilla Sociedad,+584165768746
+SAME,683,PAID,import,Dainner montilla Sociedad,+584165768746,sold,55,0,Dainner montilla Sociedad,+584165768746
+SAME,989,RESERVED,import,Johan frenos Sociedad,+584247235032,pending,0,55,Johan frenos Sociedad,+584247235032
+SAME,63,RESERVED,import,Pablo reyes Sociedad,+584146536253,pending,0,28,Pablo reyes Sociedad,+584146536253
+SAME,858,PAID,import,Señora amanda chourio Sociedad,+14078616052,sold,55,0,Señora amanda chourio Sociedad,+14078616052
+SAME,585,PAID,import,Señora amanda chourio Sociedad,+14078616052,sold,55,0,Señora amanda chourio Sociedad,+14078616052
+SAME,323,PAID,import,Señora amanda chourio Sociedad,+14078616052,sold,50,0,Señora amanda chourio Sociedad,+14078616052
+SAME,318,PAID,import,Señora amanda chourio Sociedad,+14078616052,sold,50,0,Señora amanda chourio Sociedad,+14078616052
+SAME,279,PAID,import,Señora amanda chourio Sociedad,+14078616052,sold,50,0,Señora amanda chourio Sociedad,+14078616052
+SAME,85,PAID,import,Señora amanda chourio Sociedad,+14078616052,sold,50,0,Señora amanda chourio Sociedad,+14078616052
+SAME,920,RESERVED,import,Yenifer Soto,+17375291807,pending,20,35,Yenifer Soto,+17375291807
+SAME,223,RESERVED,import,Daniela Suarez,+584167270923,pending,20,35,Daniela Suarez,+584167270923
+SAME,427,RESERVED,import,Roman Suarez,+584147017900,pending,15,40,Roman Suarez,+584147017900
+SAME,625,RESERVED,import,Antony Sua  ( San Cristobal ),+584143719578,pending,35,20,Antony Sua  ( San Cristobal ),+584143719578
+SAME,258,RESERVED,import,Yorwin Suescun,+584247474246,pending,40,15,Yorwin Suescun,+584247474246
+SAME,741,RESERVED,import,Alexander Sulbaran,+584141766840,pending,12.5,42.5,Alexander Sulbaran,+584141766840
+SAME,980,PAID,import,Miguel Tapias,+13316279808,sold,50,0,Miguel Tapias,+13316279808
+SAME,494,PAID,import,Miguel Tapias,+13316279808,sold,50,0,Miguel Tapias,+13316279808
+SAME,364,RESERVED,import,Henry Tarazona    ( La Fria ),+584147206236,pending,0,50,Henry Tarazona    ( La Fria ),+584147206236
+SAME,672,RESERVED,import,Henry Tarazona    ( La Fria ),+584147206236,pending,0,50,Henry Tarazona    ( La Fria ),+584147206236
+SAME,45,RESERVED,import,Darwin Tariba,+584147315791,pending,35,15,Darwin Tariba,+584147315791
+SAME,104,RESERVED,import,Darwin Tariba,+584147315791,pending,35,15,Darwin Tariba,+584147315791
+SAME,455,RESERVED,import,Luis ramirez termoeléctrica,+584147229058,pending,35,20,Luis ramirez termoeléctrica,+584147229058
+SAME,786,RESERVED,import,Gustavo Toledo,+584147212636,pending,30,20,Gustavo Toledo,+584147212636
+SAME,198,RESERVED,import,Gustavo Toledo,+584147212636,pending,30,20,Gustavo Toledo,+584147212636
+SAME,389,RESERVED,import,Yuly Toledo,+573156241692,pending,40,15,Yuly Toledo,+573156241692
+SAME,856,RESERVED,import,Chepa Toledo,+584149716434,pending,17.5,37.5,Chepa Toledo,+584149716434
+SAME,139,RESERVED,import,Gerardo Toledo,+56947525688,pending,33,15.33,Gerardo Toledo,+56947525688
+SAME,388,RESERVED,import,Gerardo Toledo,+56947525688,pending,33,15.33,Gerardo Toledo,+56947525688
+SAME,304,RESERVED,import,Gerardo Toledo,+56947525688,pending,33,15.33,Gerardo Toledo,+56947525688
+SAME,454,PAID,import,Johani Toledo familia,+584147191457,sold,55,0,Yovani Toledo,+584147191457
+SAME,504,PAID,import,Luis Alberto Torres Betancourt.  ( San Antonio ),+584164736539,sold,55,0,Luis Alberto Torres Betancourt.  ( San Antonio ),+584164736539
+SAME,116,RESERVED,import,Jose Rafael Tortosa       La Grita - Usa,+14193153960,pending,15,40,Jose Rafael Tortosa       La Grita - Usa,+14193153960
+SAME,175,RESERVED,import,Jose Rafael Tortosa  ( La Grita - Usa ),+584121741766,pending,40,15,Jose Rafael Tortosa  ( La Grita - Usa ),+584121741766
+SAME,902,RESERVED,import,Franklin Truma colon,+584146560186,pending,0,55,Franklin Truma colon,+584146560186
+SAME,360,RESERVED,import,Teresa Urdaneta,+584247527335,pending,15,40,Teresa Urdaneta,+584247527335
+SAME,179,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,200,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,764,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,857,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,357,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,689,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,512,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,190,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,390,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,36,RESERVED,import,Gabriel Urdaneta,+12109055904,pending,21,29,Gabriel Urdaneta,+12109055904
+SAME,187,RESERVED,import,María Ureña,+584147041071,pending,0,55,María Ureña,+584147041071
+SAME,403,RESERVED,import,Egle Uribe,+584247023104,pending,52,3,Egle Uribe,+584247023104
+SAME,48,RESERVED,import,Gerson Aurelio Uribe     ( San Juan de Colon ),+584241180267,pending,0,55,Gerson Aurelio Uribe     ( San Juan de Colon ),+584241180267
+SAME,669,PAID,import,Saira urquijo,+584147580500,sold,55,0,Saira urquijo,+584147580500
+SAME,749,RESERVED,import,Domingo sandoval usa,+12163135810,pending,12.5,37.5,Domingo sandoval usa,+12163135810
+SAME,162,RESERVED,import,Domingo sandoval usa,+12163135810,pending,12.5,37.5,Domingo sandoval usa,+12163135810
+SAME,432,RESERVED,import,Domingo sandoval usa,+12163135810,pending,12.5,37.5,Domingo sandoval usa,+12163135810
+SAME,575,RESERVED,import,Domingo sandoval usa,+12163135810,pending,12.5,37.5,Domingo sandoval usa,+12163135810
+SAME,561,RESERVED,import,Edgar benavides usa,+18437830868,pending,35,15,Edgar benavides usa,+18437830868
+SAME,124,RESERVED,import,Edgar benavides usa,+18437830868,pending,35,15,Edgar benavides usa,+18437830868
+SAME,915,RESERVED,import,Eduard sanches Sociedad,+19843561048,pending,15,35,Eduard sanchez usa,+19843561048
+SAME,517,RESERVED,import,Eduard sanches Sociedad,+19843561048,pending,15,35,Eduard sanchez usa,+19843561048
+SAME,441,RESERVED,import,Eduard sanches Sociedad,+19843561048,pending,10,45,Eduard sanchez usa,+19843561048
+SAME,990,RESERVED,import,edwin meza usa,+15129151598,pending,0,50,edwin meza usa,+15129151598
+SAME,627,RESERVED,import,edwin meza usa,+15129151598,pending,0,50,edwin meza usa,+15129151598
+SAME,981,RESERVED,import,Jakelin vivas usa,+15128798132,pending,35,15,Jakelin vivas usa,+15128798132
+SAME,819,RESERVED,import,Jakelin vivas usa,+15128798132,pending,35,15,Jakelin vivas usa,+15128798132
+SAME,296,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,937,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,864,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,516,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,461,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,951,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,249,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,216,RESERVED,import,Jonatan ortiz usa,+12109318969,pending,0,48,Jonatan ortiz usa,+12109318969
+SAME,476,RESERVED,import,Jose fleming usa,+16823647880,pending,0,50,Jose fleming usa,+16823647880
+SAME,947,RESERVED,import,Jose fleming usa,+16823647880,pending,0,50,Jose fleming usa,+16823647880
+SAME,867,RESERVED,import,jose glaterol usa,+16154579492,pending,25,25,jose glaterol usa,+16154579492
+SAME,678,RESERVED,import,jose glaterol usa,+16154579492,pending,25,25,jose glaterol usa,+16154579492
+SAME,899,RESERVED,import,Leomar guerrero usa,+17373952299,pending,0,55,Leomar guerrero usa,+17373952299
+SAME,998,RESERVED,import,Leomar guerrero usa,+17373952299,pending,0,55,Leomar guerrero usa,+17373952299
+SAME,676,RESERVED,import,wilver amaya usa,+14249448823,pending,0,50,wilver amaya usa,+14249448823
+SAME,101,RESERVED,import,wilver amaya usa,+14249448823,pending,0,50,wilver amaya usa,+14249448823
+SAME,969,RESERVED,import,Albany ramirez usa,+12105481181,pending,35,15,Albany ramirez usa,+12105481181
+SAME,103,RESERVED,import,Albany ramirez usa,+12105481181,pending,35,15,Albany ramirez usa,+12105481181
+SAME,310,RESERVED,import,Albany ramirez usa,+12105481181,pending,35,15,Albany ramirez usa,+12105481181
+SAME,630,PAID,import,Breiner villamizar usa,+18435406159,sold,50,0,Breiner villamizar usa,+18435406159
+SAME,533,PAID,import,Breiner villamizar usa,+18435406159,sold,50,0,Breiner villamizar usa,+18435406159
+SAME,19,PAID,import,lisdey ruedas esposa de ferrebus usa,+12109842388,sold,50,0,lisdey ruedas esposa de ferrebus usa,+12109842388
+SAME,789,PAID,import,lisdey ruedas esposa de ferrebus usa,+12109842388,sold,50,0,lisdey ruedas esposa de ferrebus usa,+12109842388
+SAME,352,PAID,import,lisdey ruedas esposa de ferrebus usa,+12109842388,sold,50,0,lisdey ruedas esposa de ferrebus usa,+12109842388
+SAME,367,RESERVED,import,Dario Usa,+16784990901,pending,0,50,Dario Usa,+16784990901
+SAME,621,RESERVED,import,Dario Usa,+16784990901,pending,0,50,Dario Usa,+16784990901
+SAME,327,RESERVED,import,Germary aranguren Usa,+13124509506,pending,35,15,Germary aranguren Usa,+13124509506
+SAME,13,RESERVED,import,Germary aranguren Usa,+13124509506,pending,35,15,Germary aranguren Usa,+13124509506
+SAME,114,RESERVED,import,Germary aranguren Usa,+13124509506,pending,35,15,Germary aranguren Usa,+13124509506
+SAME,534,RESERVED,import,jhon de pablo Usa,+12109655075,pending,36,12,jhon de pablo Usa,+12109655075
+SAME,795,RESERVED,import,jhon de pablo Usa,+12109655075,pending,36,12,jhon de pablo Usa,+12109655075
+SAME,687,RESERVED,import,jhon de pablo Usa,+12109655075,pending,36,12,jhon de pablo Usa,+12109655075
+SAME,127,RESERVED,import,jhon de pablo Usa,+12109655075,pending,36,12,jhon de pablo Usa,+12109655075
+SAME,42,RESERVED,import,jhon de pablo Usa,+12109655075,pending,36,12,jhon de pablo Usa,+12109655075
+SAME,505,RESERVED,import,Negro never Usa,+12142811315,pending,35,20,Negro never Usa,+12142811315
+SAME,134,RESERVED,import,Yefry Quinceno Usa-la fria,+14328184348,pending,35,13.3,Yefry Quinceno Usa-la fria,+14328184348
+SAME,616,RESERVED,import,Yefry Quinceno Usa-la fria,+14328184348,pending,35,13.3,Yefry Quinceno Usa-la fria,+14328184348
+SAME,748,RESERVED,import,Yefry Quinceno Usa-la fria,+14328184348,pending,35,13.3,Yefry Quinceno Usa-la fria,+14328184348
+SAME,37,RESERVED,import,Henrry uzcategui,+584247765112,pending,31.5,23.5,Henrry uzcategui,+584247765112
+SAME,379,RESERVED,import,Alexander Uzcátegui,+17373349944,pending,35,20,Alexander Uzcátegui,+17373349944
+SAME,362,RESERVED,import,Jhoan vaca,+584147388551,pending,0,55,Jhoan vaca,+584147388551
+SAME,620,PAID,import,Diana Valbuena,+573228230571,sold,55,0,Diana Valbuena,+573228230571
+SAME,335,RESERVED,import,Gustavo valdes,+584149772920,pending,15,40,Gustavo valdes,+584149772920
+SAME,188,RESERVED,import,Willian Valencia,+584147387580,pending,35,15,Willian Valencia,+584147387580
+SAME,615,RESERVED,import,Willian Valencia,+584147387580,pending,35,15,Willian Valencia,+584147387580
+SAME,214,RESERVED,import,Saul varela,+584147135237,pending,0,55,Saul varela,+584147135237
+SAME,624,RESERVED,import,Leonardo Vargas,+584247631600,pending,35,20,Leonardo Vargas,+584247631600
+SAME,544,RESERVED,import,Cesar Vargas    Barcelona,+573122355359,pending,30,25,Cesar Vargas    Barcelona,+573122355359
+SAME,447,RESERVED,import,Raul Vargas    ( Tucani - Merida ),+584261897811,pending,0,50,Raul Vargas    ( Tucani - Merida ),+584261897811
+SAME,653,RESERVED,import,Raul Vargas    ( Tucani - Merida ),+584261897811,pending,0,50,Raul Vargas    ( Tucani - Merida ),+584261897811
+SAME,306,RESERVED,import,yesica Vargas usa,+14257665142,pending,30,20,yesica Vargas usa,+14257665142
+SAME,293,RESERVED,import,yesica Vargas usa,+14257665142,pending,30,20,yesica Vargas usa,+14257665142
+SAME,49,RESERVED,import,Sami lopez vecino,+573108029764,pending,20,35,Sami lopez vecino,+573108029764
+SAME,730,RESERVED,import,Joselin varela vecino,+584121718849,pending,0,55,Joselin varela vecino,+584121718849
+SAME,642,RESERVED,import,Enyelber baez vecino sociedad,+584147267764,pending,7.5,47.5,Enyelber baez vecino sociedad,+584147267764
+SAME,518,RESERVED,import,Sander Velandria,+17083486017,pending,30,20,Sander Velandria,+17083486017
+SAME,239,RESERVED,import,Sander Velandria,+17083486017,pending,30,20,Sander Velandria,+17083486017
+SAME,932,RESERVED,import,Sander Velandria,+17083486017,pending,30,20,Sander Velandria,+17083486017
+SAME,519,RESERVED,import,Sander Velandria,+17083486017,pending,30,20,Sander Velandria,+17083486017
+SAME,396,PAID,import,Deivi Velandria usa,+14073084039,sold,55,0,Deivi Velandria usa,+14073084039
+SAME,247,RESERVED,import,Jonnathan Velasquez,+525653399283,pending,35,15,Jonnathan Velasquez,+525653399283
+SAME,88,RESERVED,import,Jonnathan Velasquez,+525653399283,pending,35,15,Jonnathan Velasquez,+525653399283
+SAME,765,PAID,import,Daiver velazques,+584241951963,sold,50,0,Daiver velazques,+584241951963
+SAME,965,PAID,import,Daiver velazques,+584241951963,sold,50,0,Daiver velazques,+584241951963
+SAME,417,PAID,import,Daiver velazques,+584241951963,sold,50,0,Daiver velazques,+584241951963
+SAME,557,RESERVED,import,Margiory Vera         La Grita,+584147223133,pending,35,20,Margiory Vera         La Grita,+584147223133
+SAME,469,RESERVED,import,Yorman vergara,+584247567782,pending,40,15,Yorman vergara,+584247567782
+SAME,356,RESERVED,import,Heidy Vergel,+13309621518,pending,35,20,Heidy Vergel,+13309621518
+SAME,321,RESERVED,import,Franklin vergel usa,+12162069770,pending,0,49,Franklin vergel usa,+12162069770
+SAME,565,RESERVED,import,Franklin vergel usa,+12162069770,pending,0,49,Franklin vergel usa,+12162069770
+SAME,910,RESERVED,import,Franklin vergel usa,+12162069770,pending,0,49,Franklin vergel usa,+12162069770
+SAME,195,RESERVED,import,Daniel Vigia,+584145310435,pending,15,40,Daniel Vigia,+584145310435
+SAME,822,RESERVED,import,Angelica Villamizar,+584247268859,pending,35,20,Angelica Villamizar,+584247268859
+SAME,970,RESERVED,import,Edixon Villamizar     ( Barinas ),+584145288325,pending,40,15,Edixon Villamizar     ( Barinas ),+584145288325
+SAME,9,RESERVED,import,Mario Villamizar     ( Barinitas ),+584247579900,pending,0,55,Mario Villamizar     ( Barinitas ),+584247579900
+SAME,211,RESERVED,import,Yuliana Villasmil,+584247750975,pending,15,40,Yuliana Villasmil,+584247750975
+SAME,598,RESERVED,import,Selenni Villegas,+584147157903,pending,35,20,Selenni Villegas,+584147157903
+SAME,264,RESERVED,import,Reimar Villegas la fria,+584247743235,pending,36,19,Reimar Villegas la fria,+584247743235
+SAME,255,PAID,import,Ciro Vivas,+584147031427,sold,50,0,Ciro Vivas,+584147031427
+SAME,506,PAID,import,Ciro Vivas,+584147031427,sold,50,0,Ciro Vivas,+584147031427
+SAME,825,RESERVED,import,Yeraldin Vivas usa,+15127122718,pending,15,33,Yeraldin Vivas usa,+15127122718
+SAME,468,RESERVED,import,Yeraldin Vivas usa,+15127122718,pending,15,33,Yeraldin Vivas usa,+15127122718
+SAME,383,RESERVED,import,Yeraldin Vivas usa,+15127122718,pending,15,33,Yeraldin Vivas usa,+15127122718
+SAME,963,RESERVED,import,Luz valero y esposo Colon,+584168701674,pending,0,55,Luz valero y esposo Colon,+584168701674
+SAME,129,PAID,import,Delcy zambrano,+584247100514,sold,55,0,Delcy zambrano,+584247100514
+SAME,802,PAID,import,Audilio usa Zambrano,+12197271736,sold,55,0,Audilio usa Zambrano,+12197271736
+SAME,204,RESERVED,import,Cristobal Zambrano,+13609992787,pending,35,15,Cristobal Zambrano,+13609992787
+SAME,386,RESERVED,import,Cristobal Zambrano,+13609992787,pending,35,15,Cristobal Zambrano,+13609992787
+SAME,654,RESERVED,import,Eduardo Zambrano,+584247392707,pending,35,15,Eduardo Zambrano,+584247392707
+SAME,156,RESERVED,import,Eduardo Zambrano,+584247392707,pending,35,15,Eduardo Zambrano,+584247392707
+SAME,746,PAID,import,Jhoel Zambrano,+584147095429,sold,55,0,Jhoel Zambrano,+584147095429
+SAME,647,RESERVED,import,Rogelio Zambrano,+584125237974,pending,0,55,Rogelio Zambrano,+584125237974
+SAME,760,RESERVED,import,Alberth Zambrano,+584247527323,pending,15,40,Alberth Zambrano,+584247527323
+SAME,583,RESERVED,import,Eiver Zambrano,+14705365326,pending,35,20,Eiver Zambrano,+14705365326
+SAME,374,RESERVED,import,Yorvi Zambrano,+584247163958,pending,39.5,10.5,Yorvi Zambrano,+584247163958
+SAME,744,RESERVED,import,Yorvi Zambrano,+584247163958,pending,39.5,10.5,Yorvi Zambrano,+584247163958
+SAME,478,RESERVED,import,Yorvi Zambrano,+584247163958,pending,39.5,10.5,Yorvi Zambrano,+584247163958
+SAME,758,RESERVED,import,Yorvi Zambrano,+584247163958,pending,39.5,10.5,Yorvi Zambrano,+584247163958
+SAME,265,RESERVED,import,Ramon Zambrano       Barinas,+584123497717,pending,35,20,Ramon Zambrano       Barinas,+584123497717
+SAME,775,RESERVED,import,Ender Zambrano   (  La Grita ),+584247607775,pending,35,20,Ender Zambrano   (  La Grita ),+584247607775
+SAME,619,RESERVED,import,Yender Zambrano  ( San Cristóbal),+584247587803,pending,15,40,Yender Zambrano  ( San Cristóbal),+584247587803
+SAME,428,PAID,import,Henry Zambrano      ( Seboruco- Usa ),+16297291701,sold,50,0,Henry Zambrano      ( Seboruco- Usa ),+16297291701
+SAME,690,PAID,import,Henry Zambrano      ( Seboruco- Usa ),+16297291701,sold,50,0,Henry Zambrano      ( Seboruco- Usa ),+16297291701
+SAME,549,RESERVED,import,Nesler zanbrano españa,+34667257390,pending,0,55,Nesler zanbrano españa,+34667257390

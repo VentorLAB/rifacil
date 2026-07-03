@@ -1,0 +1,27 @@
+[host] ep-billowing-bread-at8n3cdj-pooler.c-9.us-east-1.aws.neon.tech  |  modo: DRY RUN (no escribe)
+[export] C:\dev\rifacil\migracion-riffas-info\export-all.json
+[rifa] El Dubai id=cmqh43bxj0001xm2teh6gdnel total=1000 status=ACTIVE
+[v1] números ocupados en El Dubai: 936
+[prod] filas RaffleNumber: 1000
+
+💾 BACKUP read-only escrito: C:\dev\rifacil\migracion-riffas-info\backup-eldubai-2026-06-23T04-05-19-725Z.json
+   RaffleNumber=1000  Sale=906  Payment=633  Contact=472
+
+[prod] ocupados=906  histograma source: { 'source=import': 906 }
+
+── DRY-RUN: reporte por número ──
+  CREATE  (prod AVAILABLE → v1 ocupado, se llena)      : 30
+  UPDATE  (import viejo difiere de v1, se reconcilia)  : 414
+  SAME    (import viejo ya == v1, no se toca)          : 492
+  FREE    (import viejo ocupado, v1 libre → liberar)   : 0
+  PROTEGIDOS (venta NUEVA, NO se pisa)                 : 0
+     ├─ conflicto (v1 lo quiere, venta nueva lo tiene) : 0
+     └─ keep (v1 libre, venta nueva lo tiene)          : 0
+  ANOMALÍA (v1 ocupado sin fila en prod)               : 0
+
+── PROTEGIDOS: ninguno (no hay ventas nuevas en El Dubai todavía) ──
+
+📄 Detalle por número (todas las acciones): C:\dev\rifacil\migracion-riffas-info\dryrun-eldubai-2026-06-23T04-05-19-725Z.csv
+
+(DRY RUN) No se escribió NADA en la DB. Revisá el reporte y el CSV.
+Para aplicar: APPLY=1 con la MISMA DATABASE_URL/DIRECT_URL de prod.

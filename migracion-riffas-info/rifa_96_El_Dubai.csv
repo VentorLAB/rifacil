@@ -1,0 +1,937 @@
+raffleId,raffleName,number,status,client,phone,address,paid_usd,due_usd,reservedDate
+96,El Dubai,0,pending,Derwin Lunares,+584145051038,🍓🍓🍓,31.67,16.83,2026-05-21T20:36:12.914Z
+96,El Dubai,3,pending,Cesar uribe colon,+584247330005,Colon,0.00,55.00,2026-05-30T01:04:14.875Z
+96,El Dubai,4,pending,Nilson acosta hermano de lennys,+14143917058,Estados unidos,15.00,35.00,2026-05-29T00:27:41.947Z
+96,El Dubai,5,sold,Eduin Sánchez,+18439411093,Estados unidos,55.00,0.00,2026-06-21T01:32:14.892Z
+96,El Dubai,6,pending,Isabel ortiz usa,+17047565519,Estados unidos,0.00,55.00,2026-05-28T23:27:35.242Z
+96,El Dubai,7,pending,Nilson acosta hermano de lennys,+14143917058,Estados unidos,15.00,35.00,2026-05-29T00:27:41.947Z
+96,El Dubai,8,pending,Luis Colina     ( Valencia - Usa ),+17209838033,Valencia Usa,35.00,15.00,2026-05-28T03:33:36.298Z
+96,El Dubai,9,pending,Mario Villamizar     ( Barinitas ),+584247579900,Barinitas,0.00,55.00,2026-06-04T21:49:01.827Z
+96,El Dubai,10,pending,Rafael Molina,+584147484747,La Fría,15.00,35.00,2026-05-28T23:16:20.520Z
+96,El Dubai,11,pending,Rokicucuya contreras,+573214381625,cucuta,16.50,33.50,2026-06-02T22:50:53.707Z
+96,El Dubai,12,pending,Juanita Muñoz,+584143797435,La fria,15.00,35.00,2026-05-28T23:19:02.154Z
+96,El Dubai,13,pending,Germary aranguren Usa,+13124509506,Estados unidpa,35.00,15.00,2026-05-28T23:20:21.934Z
+96,El Dubai,14,pending,Cristian Escalante,+573126594950,La Fria,35.00,20.00,2026-05-28T23:22:11.181Z
+96,El Dubai,15,pending,Rosbeily Morles usa,+12067421305,Estados unidos,35.00,15.00,2026-06-18T21:11:15.619Z
+96,El Dubai,16,pending,Angelo Parada usa,+19204140344,Estados unidos,15.00,35.00,2026-05-28T23:25:21.442Z
+96,El Dubai,17,pending,Ever Colón,+573202150251,Colón,23.00,27.00,2026-05-28T23:28:13.475Z
+96,El Dubai,18,pending,Yenifer Perez,+16894652656,La Fria - Usa,35.00,15.00,2026-05-28T23:29:22.013Z
+96,El Dubai,19,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,50.00,0.00,2026-05-28T23:33:56.040Z
+96,El Dubai,20,pending,Jose Aldana,+16823309290,Estados Unidos,35.00,20.00,2026-05-27T16:02:37.721Z
+96,El Dubai,21,sold,Andreina Ramirez usa,+13136080927,Estados unidos,50.00,0.00,2026-05-28T23:35:28.344Z
+96,El Dubai,22,pending,Ana Karina Ramirez        ( Barinas ),+584145086380,Barinas,0.00,55.00,2026-06-12T03:22:21.605Z
+96,El Dubai,23,pending,Yackelin Fuentes usa,+50761249348,Estados unidos,35.00,15.00,2026-05-28T23:37:14.547Z
+96,El Dubai,24,pending,Nelson Da Silva   ( Guacara edo Carabobo ),+584124429330,Guacaraca edo Carabobo,25.00,25.00,2026-05-26T00:59:29.944Z
+96,El Dubai,25,pending,Marleny Contreras.  ( Tovar - Merida ),+593983635418,Tovar merida,15.00,35.00,2026-06-05T16:45:00.127Z
+96,El Dubai,26,pending,Henrry Serrano,+18433050408,La Fria - Usa,15.00,35.00,2026-05-28T23:38:39.887Z
+96,El Dubai,27,pending,Olga Cabrera,+17432090645,Colón,0.00,50.00,2026-05-25T02:07:00.303Z
+96,El Dubai,28,pending,Olga Cabrera,+17432090645,Colón,0.00,50.00,2026-05-25T02:07:00.303Z
+96,El Dubai,29,sold,Sandra Rivera,+584147541423,La fria,55.00,0.00,2026-05-28T23:39:44.986Z
+96,El Dubai,30,pending,Freddy Medina,+13126328062,Estados unidos,35.00,15.00,2026-05-28T23:43:04.017Z
+96,El Dubai,31,sold,Yefferson Chacón,+584247452532,Queniquea,50.00,0.00,2026-05-28T23:46:15.008Z
+96,El Dubai,32,pending,Jesús Malpica,+584147061815,Barinas,15.00,35.00,2026-05-30T16:21:04.145Z
+96,El Dubai,33,pending,Carlos Guerra.   ( Rubio - USA ),+17206946038,Rubio usa,25.00,25.00,2026-05-26T22:29:11.060Z
+96,El Dubai,34,pending,Engolbert jose sanchez       (Chile),+56942725378,Chile,32.00,23.00,2026-06-13T23:20:38.116Z
+96,El Dubai,35,pending,Richard Duarte,+584147339746,La fría,26.00,29.00,2026-05-28T23:48:14.518Z
+96,El Dubai,36,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,37,pending,Henrry uzcategui,+584247765112,La fría,31.50,23.50,2026-06-02T22:27:47.061Z
+96,El Dubai,38,sold,Antonino Montero la fria,+584147387335,La fría,55.00,0.00,2026-05-28T23:54:23.970Z
+96,El Dubai,39,pending,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,0.00,55.00,2026-06-09T21:46:24.921Z
+96,El Dubai,41,pending,Manuel alfonso ( MAELO) castro,+584247419599,La fria,35.00,20.00,2026-05-28T23:55:57.574Z
+96,El Dubai,42,pending,jhon de pablo Usa,+12109655075,Estados unidos,36.00,12.00,2026-05-23T14:49:45.347Z
+96,El Dubai,43,pending,Ronal Quintero colon,+584247687907,Colon,0.00,55.00,2026-06-17T19:21:50.961Z
+96,El Dubai,44,pending,Señora Darcy mama de Carlos parra,+584247332720,La fria,15.00,40.00,2026-06-03T12:27:00.732Z
+96,El Dubai,45,pending,Darwin Tariba,+584147315791,La Fría,35.00,15.00,2026-05-28T23:58:12.070Z
+96,El Dubai,46,pending,Yen Buitriago,+19803610415,Estados unidos,0.00,50.00,2026-05-29T00:00:29.134Z
+96,El Dubai,47,sold,Yohana chourio Esposa de roberth,+14078616017,Estados unidos,50.00,0.00,2026-06-13T19:45:03.657Z
+96,El Dubai,48,pending,Gerson Aurelio Uribe     ( San Juan de Colon ),+584241180267,San juan de Colon,0.00,55.00,2026-05-29T02:28:16.971Z
+96,El Dubai,49,pending,Sami lopez vecino,+573108029764,La fria,20.00,35.00,2026-05-29T19:30:36.753Z
+96,El Dubai,50,pending,Javier Contreras,+13126509222,La Fria,35.00,15.00,2026-05-29T00:02:04.905Z
+96,El Dubai,51,pending,Franklin Alchain repuestos,+584247722153,La fria,0.00,50.00,2026-05-21T20:02:52.245Z
+96,El Dubai,53,pending,Marino Colmenares   ( La Fria ),+584147385285,La fría,40.00,15.00,2026-06-03T12:22:20.298Z
+96,El Dubai,54,pending,Mogollon Gnb,+584147574458,La fria,0.00,55.00,2026-05-29T00:03:50.763Z
+96,El Dubai,55,pending,Libardo Arciniegas,+573223410298,Colombia,29.20,20.80,2026-05-29T00:06:22.831Z
+96,El Dubai,56,pending,Virgina Rojas La Grita,+584147143965,La Grita,35.00,20.00,2026-05-23T16:56:23.384Z
+96,El Dubai,57,pending,Andres contreras seboruco,+584247459899,Seboruco,0.00,55.00,2026-05-29T22:01:58.520Z
+96,El Dubai,58,pending,Jesús Malpica,+584147061815,Barinas,15.00,35.00,2026-05-30T16:21:04.145Z
+96,El Dubai,59,pending,Jesús Malpica,+584147061815,Barinas,15.00,35.00,2026-05-30T16:21:04.145Z
+96,El Dubai,60,pending,Wilmer Sierra,+14802426389,Estados Unidos,0.00,55.00,2026-05-26T21:58:24.996Z
+96,El Dubai,61,pending,Josue Castiblanco    ( San Cristobal),+584247038169,San Cristobal,0.00,50.00,2026-05-28T17:58:25.300Z
+96,El Dubai,62,pending,Marwan Barreto     ( Trujillo - Usa ),+18323726325,Trujillo usa,0.00,50.00,2026-06-04T14:47:41.977Z
+96,El Dubai,63,pending,Pablo reyes Sociedad,+584146536253,La fria,0.00,28.00,2026-06-20T18:09:12.307Z
+96,El Dubai,64,sold,Reinaldo Marchan,+14143082362,Estados unidos,50.00,0.00,2026-05-29T00:07:40.210Z
+96,El Dubai,65,pending,Omar Salazar  locho,+584247237314,La fria,0.00,55.00,2026-05-29T01:45:35.903Z
+96,El Dubai,67,sold,doris rojas usa,+13316005782,Estados unidos,48.30,0.00,2026-05-22T03:00:22.725Z
+96,El Dubai,68,pending,Julio Gomez     ( Seboruco),+584247854602,Seboruco,0.00,55.00,2026-06-20T16:45:44.808Z
+96,El Dubai,69,pending,Susana Bedoya,+584262750038,La fria,22.50,27.50,2026-06-13T22:27:47.918Z
+96,El Dubai,71,pending,Alexis Duarte españa,+34642327043,España,0.00,55.00,2026-05-29T00:10:55.590Z
+96,El Dubai,72,pending,Douglas Roa,+14147913945,La Fria - Usa,35.00,15.00,2026-05-26T19:18:12.290Z
+96,El Dubai,73,pending,Yaneth Alvarez    (  Caracas ),+584125014454,Caracas,0.00,50.00,2026-05-28T14:28:56.907Z
+96,El Dubai,74,pending,Angel Ferrebus,+12109297571,La Fria - Usa,43.34,6.66,2026-05-29T00:14:14.461Z
+96,El Dubai,75,sold,Maritza Mendoza,+584247196147,San Cristóbal Táchira,50.00,0.00,2026-05-31T16:43:59.945Z
+96,El Dubai,76,pending,Jose gregorio Leon gollo,+584247069005,La fria,30.00,25.00,2026-05-29T00:15:47.063Z
+96,El Dubai,77,pending,Maryelis Flores,+13184386409,Estados Unidos,35.00,15.00,2026-06-05T14:01:41.013Z
+96,El Dubai,78,pending,Marina Monsalve,+584265307247,La fria,35.00,20.00,2026-05-29T00:17:00.193Z
+96,El Dubai,79,pending,Juan Rojas          Ojeda edo Zulia,+584140638285,Ojeda edo Zulia,30.00,25.00,2026-05-26T19:20:50.368Z
+96,El Dubai,80,pending,Jhoan Perez,+15125918454,Estados Unidos,0.00,50.00,2026-05-29T00:22:39.306Z
+96,El Dubai,81,pending,Yonaiker Carrascal,+13139524810,Estados unidos,0.00,55.00,2026-05-29T00:24:14.201Z
+96,El Dubai,82,pending,Kleiver Moncada     ( La Grita),+584247366144,La Grita,0.00,55.00,2026-06-03T03:33:16.632Z
+96,El Dubai,83,sold,Ana visney Gonzales san cristobal,+584247739341,San cristobal,55.00,0.00,2026-06-20T15:41:55.721Z
+96,El Dubai,84,pending,Yonni reyes Pasteles,+584147091716,La fria,12.00,43.00,2026-05-29T00:28:08.337Z
+96,El Dubai,85,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,50.00,0.00,2026-05-27T21:18:25.705Z
+96,El Dubai,86,pending,Kerwin Barajas,+584247651891,La fria,35.00,20.00,2026-06-06T02:55:29.063Z
+96,El Dubai,87,pending,Nilson acosta hermano de lennys,+14143917058,Estados unidos,15.00,35.00,2026-05-29T00:27:41.947Z
+96,El Dubai,88,pending,Jonnathan Velasquez,+525653399283,La Fría,35.00,15.00,2026-05-23T18:04:17.555Z
+96,El Dubai,89,pending,Rosbeily Morles usa,+12067421305,Estados unidos,35.00,15.00,2026-06-18T21:11:15.619Z
+96,El Dubai,91,pending,Sergio Ramos,+584128629758,San Cristóbal,0.00,50.00,2026-05-23T17:55:43.948Z
+96,El Dubai,92,pending,Karelyn chacin usa 092-851,+16097833448,Estados unidos,0.00,50.00,2026-06-06T19:48:41.864Z
+96,El Dubai,93,pending,Kenia Rojas,+584247327389,La fria,0.00,55.00,2026-06-20T15:20:10.980Z
+96,El Dubai,94,pending,Andres Angulo,+573124762441,Colombia,46.00,9.00,2026-05-29T00:29:13.680Z
+96,El Dubai,95,pending,Mateo Mateo,+584263732804,El vigía Edo Mérida,15.00,40.00,2026-05-26T18:51:45.334Z
+96,El Dubai,97,pending,Luis Carlos Rodríguez,+573202083988,La fría,35.00,20.00,2026-06-20T18:17:00.226Z
+96,El Dubai,98,pending,Anderson Chiquito usa,+16154388600,Estados unidos,15.00,35.00,2026-05-29T00:30:37.769Z
+96,El Dubai,99,pending,Omar Perez     ( La Grita ),+584147458056,La Grita,35.00,20.00,2026-05-29T02:46:15.866Z
+96,El Dubai,100,pending,Nelson Roa,+17869147200,Estados Unidos,0.00,48.33,2026-06-10T17:45:58.706Z
+96,El Dubai,101,pending,wilver amaya usa,+14249448823,Estados unidos,0.00,50.00,2026-06-03T01:45:28.829Z
+96,El Dubai,102,pending,Juanita Muñoz,+584143797435,La fria,15.00,35.00,2026-05-28T23:19:02.154Z
+96,El Dubai,103,pending,Albany ramirez usa,+12105481181,Estados unidos,35.00,15.00,2026-05-29T19:08:46.430Z
+96,El Dubai,104,pending,Darwin Tariba,+584147315791,La Fría,35.00,15.00,2026-05-28T23:58:12.070Z
+96,El Dubai,105,sold,Armando galvis,+584264222113,La fria,55.00,0.00,2026-06-04T19:04:21.466Z
+96,El Dubai,107,pending,Jhon Caicedo Ortiz,+17477447241,Estados Unidos,35.00,15.00,2026-06-14T01:32:51.707Z
+96,El Dubai,108,pending,yuleidy alvernia,+584247031321,La fria,0.00,50.00,2026-05-29T19:11:02.507Z
+96,El Dubai,109,pending,Jesus Contreras,+56945427238,La fria,20.00,35.00,2026-05-29T19:11:54.358Z
+96,El Dubai,110,pending,Maria Reaño,+584247843616,La fria,0.00,55.00,2026-05-29T19:12:44.846Z
+96,El Dubai,111,pending,Cristofer Pulido    ( Seboruco ),+584247678002,Seboruco,0.00,55.00,2026-05-30T01:02:34.788Z
+96,El Dubai,112,pending,Jose sanchez La fria,+584149742615,La fria,29.68,18.62,2026-05-29T19:19:02.207Z
+96,El Dubai,113,pending,Anthony de luca la fria,+584147387793,La fria,35.00,15.00,2026-05-29T19:20:13.281Z
+96,El Dubai,114,pending,Germary aranguren Usa,+13124509506,Estados unidpa,35.00,15.00,2026-05-28T23:20:21.934Z
+96,El Dubai,115,pending,Yaneth Alvarez    (  Caracas ),+584125014454,Caracas,0.00,50.00,2026-05-28T14:28:56.907Z
+96,El Dubai,116,pending,Jose Rafael Tortosa       La Grita - Usa,+14193153960,La Grita,15.00,40.00,2026-05-26T01:09:39.137Z
+96,El Dubai,117,pending,Nelson Roa,+17869147200,Estados Unidos,0.00,48.33,2026-06-10T17:45:58.706Z
+96,El Dubai,118,pending,Richard Escalante carlitos,+584247696128,La fria,35.00,20.00,2026-05-28T03:00:12.297Z
+96,El Dubai,119,pending,Idelmary Martinez,+584121703512,La Fría,15.00,40.00,2026-05-23T18:07:08.226Z
+96,El Dubai,120,pending,jesus Duque colombia,+573204326737,Colombia,35.00,20.00,2026-06-08T22:47:47.946Z
+96,El Dubai,121,pending,Francisco Payares     ( Colombia ),+573005790054,Colombia,35.00,20.00,2026-05-23T16:22:57.976Z
+96,El Dubai,122,pending,Joseimy Hernández,+584247571473,L fría usa,15.00,40.00,2026-05-29T19:23:26.146Z
+96,El Dubai,123,pending,Elba Mendoza,+584121749496,La Fría,35.00,15.00,2026-05-23T18:15:43.720Z
+96,El Dubai,124,pending,Edgar benavides usa,+18437830868,Estados unidos,35.00,15.00,2026-05-29T19:27:24.012Z
+96,El Dubai,125,pending,Angel Rosales,+584242197659,La Fría,28.50,21.50,2026-05-23T18:18:27.838Z
+96,El Dubai,126,pending,Darwin valencia la fria-usa,+584247350645,Estados unidos,35.00,15.00,2026-05-30T00:56:09.197Z
+96,El Dubai,127,pending,jhon de pablo Usa,+12109655075,Estados unidos,36.00,12.00,2026-05-23T14:49:45.347Z
+96,El Dubai,128,pending,Freddy Medina,+13126328062,Estados unidos,35.00,15.00,2026-05-28T23:43:04.017Z
+96,El Dubai,129,sold,Delcy zambrano,+584247100514,La fria,55.00,0.00,2026-05-29T19:28:56.719Z
+96,El Dubai,130,pending,Marcos Osorio,+573173134587,La Fría,28.50,21.50,2026-05-29T22:08:46.878Z
+96,El Dubai,131,pending,wesly rodrigues la fria,+584247357640,La fria,0.00,50.00,2026-05-29T22:10:32.409Z
+96,El Dubai,132,pending,Cristina Peña,+584247077132,La fría,13.00,42.00,2026-06-13T17:54:05.615Z
+96,El Dubai,133,pending,Tina suarez rifera,+584143711379,La fria,0.00,55.00,2026-05-29T22:12:03.415Z
+96,El Dubai,134,pending,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,35.00,13.30,2026-05-29T22:13:33.306Z
+96,El Dubai,135,pending,Rokicucuya contreras,+573214381625,cucuta,16.50,33.50,2026-06-02T22:50:53.707Z
+96,El Dubai,136,sold,Maritza Mendoza,+584247196147,San Cristóbal Táchira,50.00,0.00,2026-05-30T19:00:14.795Z
+96,El Dubai,137,pending,rafael boscan la fria,+584147155644,La fria,30.00,20.00,2026-05-30T16:22:06.286Z
+96,El Dubai,138,sold,Maite Calderon,+573145459211,La fria,55.00,0.00,2026-06-21T00:33:33.675Z
+96,El Dubai,139,pending,Gerardo Toledo,+56947525688,Chile,33.00,15.33,2026-05-23T18:01:26.063Z
+96,El Dubai,140,pending,Ronet Ramirez,+584147361575,La Fria,35.00,15.00,2026-05-26T19:15:35.677Z
+96,El Dubai,141,pending,Yeiker Pernia      Caracas - Usa,+17869398393,Caracas - Usa,35.00,15.00,2026-05-22T03:29:19.093Z
+96,El Dubai,142,pending,Kevin morales novio de yuglendy,+17133679418,Estados unidos,35.00,20.00,2026-05-22T02:41:19.770Z
+96,El Dubai,143,pending,Alcides sandía maracay,+584265306210,Maracay,15.00,40.00,2026-05-29T22:16:21.052Z
+96,El Dubai,144,pending,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,35.00,15.00,2026-06-13T17:52:22.045Z
+96,El Dubai,145,pending,Manuel abasto DyU,+584247706745,La fria,0.00,55.00,2026-05-29T22:17:38.372Z
+96,El Dubai,146,pending,Enrrique Cárdenas,+16822603711,Estados unidos,35.00,15.00,2026-05-26T21:19:33.493Z
+96,El Dubai,147,pending,Anyerson arévalo sociedad,+584247602556,Estados unidos,30.00,20.00,2026-05-29T22:20:41.901Z
+96,El Dubai,149,pending,Leo Aguilar     ( La Grita ),+584147423505,La Grita,35.00,20.00,2026-05-29T14:34:17.117Z
+96,El Dubai,150,sold,Leonardo Lubo costa rica,+50672863076,Costa rica,50.00,0.00,2026-05-30T18:33:43.027Z
+96,El Dubai,151,pending,Jhon Caicedo Ortiz,+17477447241,Estados Unidos,35.00,15.00,2026-06-14T01:32:51.707Z
+96,El Dubai,152,sold,Anthony Fernández,+14437354215,Estados unidos,50.00,0.00,2026-05-24T17:32:09.421Z
+96,El Dubai,153,pending,Pedro Nieto,+15165544157,Estados unidos,25.00,25.00,2026-05-30T15:47:19.081Z
+96,El Dubai,154,pending,Ely De duran,+584147308056,La fria,35.00,20.00,2026-05-25T21:05:48.801Z
+96,El Dubai,155,pending,Milanyela Duran,+584126614644,la fria,15.00,40.00,2026-06-02T16:28:41.710Z
+96,El Dubai,156,pending,Eduardo Zambrano,+584247392707,La Fría,35.00,15.00,2026-05-30T16:10:59.670Z
+96,El Dubai,157,pending,Yen Buitriago,+19803610415,Estados unidos,0.00,50.00,2026-05-29T00:00:29.134Z
+96,El Dubai,158,pending,Argenis muñoz amigo nilso usa,+14142497817,estados unidos,15.00,35.00,2026-05-30T00:02:51.818Z
+96,El Dubai,159,sold,Jesus Cardenas.  La grita,+584165020522,La Grita,55.00,0.00,2026-05-24T23:41:11.522Z
+96,El Dubai,160,pending,Eduar Ramirez la fria,+584147484945,La fria,35.00,20.00,2026-06-02T16:31:09.752Z
+96,El Dubai,161,sold,Maritza Mendoza,+584247196147,San Cristóbal Táchira,50.00,0.00,2026-06-06T19:41:48.692Z
+96,El Dubai,162,pending,Domingo sandoval usa,+12163135810,Estados unidos,12.50,37.50,2026-06-02T16:33:36.093Z
+96,El Dubai,163,sold,Maritza Mendoza,+584247196147,San Cristóbal Táchira,50.00,0.00,2026-05-30T19:00:14.795Z
+96,El Dubai,164,pending,Henrry Mavarez zulia,+584122607774,Venezuela,0.00,55.00,2026-06-13T01:48:21.223Z
+96,El Dubai,165,pending,Marleny Contreras.  ( Tovar - Merida ),+593983635418,Tovar merida,15.00,35.00,2026-06-05T16:45:00.127Z
+96,El Dubai,166,pending,Dayana Perez,+584121769567,La Fria,0.00,55.00,2026-06-02T16:42:15.765Z
+96,El Dubai,167,pending,Anyerson arévalo sociedad,+584247602556,Estados unidos,10.00,15.00,2026-05-29T22:22:03.077Z
+96,El Dubai,168,pending,Adriana Marcela,+584247748193,La Fria,0.00,55.00,2026-05-30T16:15:25.383Z
+96,El Dubai,169,pending,victor contreras ls fria,+584247036467,La fria,30.00,20.00,2026-06-02T16:46:36.257Z
+96,El Dubai,170,pending,Brian Buen día,+15083610533,Estados Unidos,30.00,20.00,2026-06-13T20:06:39.673Z
+96,El Dubai,171,pending,Izamar Montilva,+584247621314,La Grita,35.00,20.00,2026-05-30T16:18:23.320Z
+96,El Dubai,172,pending,Miguel Benavides,+19127104280,La Fria - Usa,15.00,35.00,2026-06-02T17:22:25.012Z
+96,El Dubai,173,pending,Jesus Carrero,+584147320285,La fría,15.00,40.00,2026-06-06T16:06:16.803Z
+96,El Dubai,174,sold,Javier Pérez,+56921928867,La Fria chile,55.00,0.00,2026-06-02T17:27:39.238Z
+96,El Dubai,175,pending,Jose Rafael Tortosa  ( La Grita - Usa ),+584121741766,La grita,40.00,15.00,2026-05-26T01:02:49.621Z
+96,El Dubai,176,pending,Alejandro Arellano,+525562185848,La Grita,35.00,20.00,2026-05-30T16:21:12.640Z
+96,El Dubai,177,pending,Amancio Marin,+18172044645,La Fria - Usa,20.00,30.00,2026-05-30T16:22:40.750Z
+96,El Dubai,178,sold,Franklin Guerrero       ( La Grita ),+584143756485,La Grita,55.00,0.00,2026-05-26T02:04:15.909Z
+96,El Dubai,179,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,180,pending,Carlos Guerra.   ( Rubio - USA ),+17206946038,Rubio usa,25.00,25.00,2026-05-26T22:29:11.060Z
+96,El Dubai,181,pending,Gustavo Rojas,+584141760197,La Fría,30.00,20.00,2026-05-23T17:57:10.705Z
+96,El Dubai,182,pending,José Cruz,+584162017368,La Fría,35.00,20.00,2026-05-23T17:51:32.121Z
+96,El Dubai,183,pending,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,18.25,31.75,2026-05-30T16:25:53.428Z
+96,El Dubai,184,pending,Luis Martinez     ( Maracay ),+584128151807,Maracay,0.00,55.00,2026-05-26T20:41:36.347Z
+96,El Dubai,185,sold,Liliana Mendez,+584247196052,La fría,55.00,0.00,2026-05-30T16:37:55.120Z
+96,El Dubai,186,sold,Alejandro Perez,+584143740584,La Fría,50.00,0.00,2026-05-30T16:31:45.672Z
+96,El Dubai,187,pending,María Ureña,+584147041071,La Fría,0.00,55.00,2026-05-26T02:43:59.625Z
+96,El Dubai,188,pending,Willian Valencia,+584147387580,La Fría,35.00,15.00,2026-05-30T16:33:22.069Z
+96,El Dubai,189,pending,Javier Porras,+584147388794,La Fria,36.00,19.00,2026-06-02T17:28:43.508Z
+96,El Dubai,190,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,191,sold,doris rojas usa,+13316005782,Estados unidos,48.30,0.00,2026-05-22T03:00:22.725Z
+96,El Dubai,192,pending,Belisario Muñoz,+17206201568,Estados Unidos,0.00,50.00,2026-05-30T16:48:36.740Z
+96,El Dubai,193,pending,Neurimar Gutiérrez,+18179642827,Estados unidos,25.00,30.00,2026-05-26T20:20:54.208Z
+96,El Dubai,194,pending,Jorgue Angarita,+584122913601,La Fria,15.00,40.00,2026-05-30T16:49:48.179Z
+96,El Dubai,195,pending,Daniel Vigia,+584145310435,el vigía,15.00,40.00,2026-05-30T16:51:00.968Z
+96,El Dubai,196,pending,Javier chavez Colon,+584261690378,Colon,0.00,55.00,2026-05-30T01:01:17.112Z
+96,El Dubai,197,pending,Derwin Lunares,+584145051038,🍓🍓🍓,31.67,16.83,2026-05-21T20:36:12.914Z
+96,El Dubai,198,pending,Gustavo Toledo,+584147212636,La Fría,30.00,20.00,2026-06-13T16:53:42.191Z
+96,El Dubai,199,pending,Carlos Parra Super rifas carlos parra,+584143754665,La fria,45.00,5.00,2026-06-16T21:16:32.380Z
+96,El Dubai,200,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,201,pending,Karina Rojas usa,+15128451679,Estados unidos,15.00,35.00,2026-06-07T01:12:35.529Z
+96,El Dubai,202,pending,Andres Jaimes,+56972040687,Chile,35.00,20.00,2026-05-30T16:52:33.834Z
+96,El Dubai,203,pending,Anderson Chiquito usa,+16154388600,Estados unidos,15.00,35.00,2026-05-29T00:30:37.769Z
+96,El Dubai,204,pending,Cristobal Zambrano,+13609992787,Estados Unidos,35.00,15.00,2026-05-30T16:54:35.867Z
+96,El Dubai,205,pending,Jesus Sanchez,+18172984840,Estados Unidos,35.00,15.00,2026-05-30T16:57:13.919Z
+96,El Dubai,206,pending,Henrry neira Tata chile,+56998190665,Chile,35.00,20.00,2026-05-26T03:06:39.140Z
+96,El Dubai,207,pending,Ruben Mercado,+584247136016,La Fría,46.67,3.33,2026-05-23T17:40:34.304Z
+96,El Dubai,208,pending,Yeraldin Parada,+573223946408,Colombia,35.00,15.00,2026-06-06T16:10:10.641Z
+96,El Dubai,209,pending,Yony Perez,+584147385318,La Fría Ronet,35.00,15.00,2026-05-26T21:26:03.026Z
+96,El Dubai,210,sold,Daniela martines medina,+584247275019,La fria,55.00,0.00,2026-05-25T21:44:56.479Z
+96,El Dubai,211,pending,Yuliana Villasmil,+584247750975,La Fria,15.00,40.00,2026-05-30T17:03:54.618Z
+96,El Dubai,212,pending,Karina Carnes,+584147428933,La Fría,35.00,15.00,2026-05-30T17:05:17.070Z
+96,El Dubai,213,sold,Jonnathan Florez,+18432981188,Estados unidos,55.00,0.00,2026-05-30T17:06:21.995Z
+96,El Dubai,214,pending,Saul varela,+584147135237,La grita,0.00,55.00,2026-06-02T17:32:44.608Z
+96,El Dubai,215,pending,Anyerson arévalo sociedad,+584247602556,Estados unidos,10.00,15.00,2026-05-29T22:22:03.077Z
+96,El Dubai,216,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,217,pending,Jhony Perez     ( La Grita ),+584147496829,La Grita,24.00,26.00,2026-05-22T03:42:00.581Z
+96,El Dubai,218,pending,Gabriel Fuentes,+584247250922,La Fría,0.00,50.00,2026-05-23T18:08:55.962Z
+96,El Dubai,219,pending,Ruben Mercado,+584247136016,La Fría,46.67,3.33,2026-05-23T17:40:34.304Z
+96,El Dubai,220,pending,Erwin Martinez don camaron,+584243228374,La fria,30.00,25.00,2026-06-21T02:01:31.920Z
+96,El Dubai,221,sold,Yefferson Chacón,+584247452532,Queniquea,50.00,0.00,2026-05-28T23:46:15.008Z
+96,El Dubai,222,pending,Pedro Mendez,+584247520503,La Fría,0.00,55.00,2026-06-08T15:48:27.834Z
+96,El Dubai,223,pending,Daniela Suarez,+584167270923,Colón,20.00,35.00,2026-05-30T17:09:43.796Z
+96,El Dubai,224,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,50.00,0.00,2026-05-22T03:48:06.845Z
+96,El Dubai,226,pending,Victor Morales,+56931977659,Chile,40.00,15.00,2026-05-30T17:11:08.921Z
+96,El Dubai,227,pending,Pedro Nieto,+15165544157,Estados unidos,25.00,25.00,2026-05-30T15:47:19.081Z
+96,El Dubai,228,pending,Diana Sandrea,+584147428052,La fría,0.00,55.00,2026-05-30T17:12:55.607Z
+96,El Dubai,229,pending,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,36.67,13.33,2026-05-23T14:48:49.946Z
+96,El Dubai,230,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,50.00,0.00,2026-05-26T01:20:04.330Z
+96,El Dubai,231,pending,Aldo Laurano,+584247211003,La Fría,0.00,50.00,2026-05-30T17:15:30.865Z
+96,El Dubai,232,pending,Ruben Mercado,+584247136016,La Fría,0.00,55.00,2026-05-27T16:06:00.156Z
+96,El Dubai,233,pending,Ana Karina,+584147324069,San cristobal,30.00,25.00,2026-05-30T17:24:59.790Z
+96,El Dubai,234,pending,Wendy Amaya,+573243191324,La Fría,32.50,17.50,2026-05-30T17:28:21.045Z
+96,El Dubai,235,pending,Alberto moncada seboruco,+584143756211,Seboruco,35.00,20.00,2026-05-22T02:45:18.516Z
+96,El Dubai,236,pending,Charly Quintero,+584147562624,La Fría,35.00,20.00,2026-05-30T17:48:15.664Z
+96,El Dubai,237,pending,Aureliana Padilla,+584243413677,Coloncito,0.00,55.00,2026-05-30T17:31:25.307Z
+96,El Dubai,238,pending,Eduardo Jaime   Colombia,+573203726305,Colombia,15.00,40.00,2026-05-25T21:55:33.184Z
+96,El Dubai,239,pending,Sander Velandria,+17083486017,Estados Unidos,30.00,20.00,2026-05-30T17:34:34.239Z
+96,El Dubai,240,pending,Keberlin florez,+584247001995,La fria,35.00,15.00,2026-05-28T20:39:54.353Z
+96,El Dubai,241,sold,Moisés Quintero,+584147166779,La Fría,50.00,0.00,2026-05-27T16:28:02.124Z
+96,El Dubai,242,pending,Junior Laguado,+584147554601,La fría,0.00,55.00,2026-05-30T17:35:51.261Z
+96,El Dubai,243,pending,Albert Quinceno    ( La Fria - Usa ),+19123381129,La fria usa,0.00,50.00,2026-05-26T04:01:05.964Z
+96,El Dubai,244,pending,Jorgue eliecer jaimes,+573042186243,Colombia,35.00,20.00,2026-06-09T16:23:06.477Z
+96,El Dubai,245,pending,Juan Puentes colon,+584263261739,Colon,12.00,43.00,2026-05-26T20:21:19.562Z
+96,El Dubai,246,sold,Alvey Calderon,+584247046284,La fria,55.00,0.00,2026-05-30T17:37:12.354Z
+96,El Dubai,247,pending,Jonnathan Velasquez,+525653399283,La Fría,35.00,15.00,2026-05-23T18:04:17.555Z
+96,El Dubai,248,sold,Anthony Fernández,+14437354215,Estados unidos,50.00,0.00,2026-05-24T17:32:09.421Z
+96,El Dubai,249,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,250,pending,Andrea Martinez,+17208095947,La Fría,40.00,10.00,2026-05-30T17:39:44.648Z
+96,El Dubai,251,pending,Jimmy Silva,+584161724113,La fria,35.00,20.00,2026-05-23T18:22:07.143Z
+96,El Dubai,252,pending,Doctora sonia ramirez Colon,+584147040648,Colon,35.00,20.00,2026-05-28T20:55:42.884Z
+96,El Dubai,253,pending,Jhoan Perez,+15125918454,Estados Unidos,0.00,50.00,2026-05-29T00:22:39.306Z
+96,El Dubai,254,pending,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,35.00,15.00,2026-05-23T14:26:11.821Z
+96,El Dubai,255,sold,Ciro Vivas,+584147031427,"Bailadores estado Mérida, Venezuela",50.00,0.00,2026-05-30T17:44:14.754Z
+96,El Dubai,256,pending,Yelicza Esposa de Francisco pineda,+584149744206,La fria,40.00,15.00,2026-06-02T18:00:09.468Z
+96,El Dubai,257,pending,Wilderson Acosta,+584247623996,La fria,20.00,35.00,2026-05-30T17:51:23.168Z
+96,El Dubai,258,pending,Yorwin Suescun,+584247474246,La fría,40.00,15.00,2026-05-30T17:53:32.354Z
+96,El Dubai,259,sold,Anthony urbina rifero,+584247580573,San cristobal,50.00,0.00,2026-05-27T19:33:13.008Z
+96,El Dubai,260,sold,Yohana chourio Esposa de roberth,+14078616017,Estados unidos,50.00,0.00,2026-06-13T19:45:03.657Z
+96,El Dubai,261,pending,Andres rincon la fría,+584247665533,La fria,30.00,25.00,2026-06-02T18:01:28.440Z
+96,El Dubai,262,pending,Frainy Perez,+584247481755,La fría,15.00,40.00,2026-05-30T17:56:25.941Z
+96,El Dubai,263,pending,Marcos Rondon,+584147542926,La fría,27.00,23.00,2026-05-30T17:58:27.183Z
+96,El Dubai,264,pending,Reimar Villegas la fria,+584247743235,La fria,36.00,19.00,2026-05-26T02:01:10.301Z
+96,El Dubai,265,pending,Ramon Zambrano       Barinas,+584123497717,Barinas,35.00,20.00,2026-06-05T18:48:48.394Z
+96,El Dubai,266,pending,Antonio Medina    ( Maracaibo ),+584126616323,Maracaibo,0.00,55.00,2026-05-26T19:26:27.801Z
+96,El Dubai,267,pending,Saul Ramírez,+584147220896,La Moruzca,0.00,55.00,2026-05-30T18:03:21.585Z
+96,El Dubai,269,sold,Tahis Ramírez,+584247554489,La fría,55.00,0.00,2026-06-06T19:29:36.614Z
+96,El Dubai,270,pending,Yefri Carrascal,+15126205262,Estados Unidos,35.00,15.00,2026-05-29T17:58:19.931Z
+96,El Dubai,271,pending,Keismer Contreras,+17372028084,Estados Unidos,31.00,19.00,2026-05-30T18:10:08.222Z
+96,El Dubai,272,pending,Yuglendy Bello,+12819129773,La Fria - Usa,15.00,33.50,2026-05-22T02:49:29.688Z
+96,El Dubai,273,sold,Anthony urbina rifero,+584247580573,San cristobal,50.00,0.00,2026-05-27T19:33:13.008Z
+96,El Dubai,274,pending,Pinto Carrera 8 la fria,+584247498984,La fria,30.00,25.00,2026-05-30T18:12:23.475Z
+96,El Dubai,275,sold,Said Alvarado maracucho,+584143644877,La fria,50.00,0.00,2026-05-30T18:22:20.790Z
+96,El Dubai,276,pending,Herly mendoza colon,+584247305708,Colon,0.00,55.00,2026-06-02T18:12:11.028Z
+96,El Dubai,277,pending,Dahir Di domenico colon,+584248562540,Colon,30.00,25.00,2026-05-27T13:43:21.077Z
+96,El Dubai,278,pending,Bladimir Hernández  ( Santa Elena de Arenales ),+584247805747,Santa Elena de Arenales,15.00,40.00,2026-06-05T00:31:12.506Z
+96,El Dubai,279,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,50.00,0.00,2026-05-27T21:18:25.705Z
+96,El Dubai,280,pending,Freddy garcia colon,+584164260340,Colon,0.00,55.00,2026-06-02T18:12:56.770Z
+96,El Dubai,281,pending,Andrea ramirez el mercado la fria,+584147265354,La fria,15.00,35.00,2026-05-29T00:32:04.873Z
+96,El Dubai,282,pending,Yohandri Fernández,+584247308713,La fría,15.00,40.00,2026-05-30T18:31:43.154Z
+96,El Dubai,283,pending,Lucy Rey,+584143796817,La Fría,14.50,35.50,2026-05-23T18:05:59.389Z
+96,El Dubai,284,pending,Yunior Contreras  ( Mesa de quintero - Guaraque),+584125878963,mesa de Quintero Guaraque - Merida,0.00,55.00,2026-06-04T18:49:27.446Z
+96,El Dubai,285,pending,Leycer Campos       Valera,+584121718924,Valera,35.00,20.00,2026-05-22T03:25:01.771Z
+96,El Dubai,286,sold,Jesus Cardenas.  La grita,+584165020522,La Grita,55.00,0.00,2026-05-23T14:03:42.646Z
+96,El Dubai,287,pending,Libardo Arciniegas,+573223410298,Colombia,29.20,20.80,2026-05-29T00:06:22.831Z
+96,El Dubai,288,pending,Darwin valencia la fria-usa,+584247350645,Estados unidos,35.00,15.00,2026-05-30T00:56:09.197Z
+96,El Dubai,289,pending,wesly rodrigues la fria,+584247357640,La fria,0.00,50.00,2026-05-29T22:10:32.409Z
+96,El Dubai,290,pending,Enida De Rodriguez     ( La Fria ),+584121744543,La fria,30.00,25.00,2026-06-14T16:13:35.029Z
+96,El Dubai,291,sold,Leonardo Lubo costa rica,+50672863076,Costa rica,50.00,0.00,2026-05-30T18:33:43.027Z
+96,El Dubai,292,pending,Nerma cañizales san felix,+584262592242,La friq,0.00,55.00,2026-05-21T16:33:35.812Z
+96,El Dubai,293,pending,yesica Vargas usa,+14257665142,Estados unidoa,30.00,20.00,2026-06-02T18:15:44.592Z
+96,El Dubai,294,pending,Eduard montilva mongli,+584125800375,La grita,35.00,20.00,2026-06-02T22:47:42.579Z
+96,El Dubai,295,pending,Yuglendy Bello,+12819129773,La Fria - Usa,12.50,12.50,2026-05-22T02:51:04.362Z
+96,El Dubai,296,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,297,pending,Yohan Calderon     ( Merida ),+584262205529,Merida,0.00,55.00,2026-06-03T20:37:42.139Z
+96,El Dubai,298,pending,yuleidy alvernia,+584247031321,La fria,0.00,50.00,2026-05-29T19:11:02.507Z
+96,El Dubai,299,pending,Youel Piña.    ( Coro - Usa ),+15045710299,Coro usa,0.00,50.00,2026-06-10T03:32:58.154Z
+96,El Dubai,300,pending,Reny Pereira    ( Bailadores - Merida ),+584247512903,Bailadores merida,35.00,20.00,2026-06-05T14:08:31.780Z
+96,El Dubai,301,pending,Renny Diaz       ( Tucani - USA ),+13316439865,Tucani- merida,0.00,55.00,2026-06-12T15:11:06.986Z
+96,El Dubai,302,pending,Eduin velazco la fria,+584247134497,La fria,15.00,40.00,2026-06-02T18:22:55.763Z
+96,El Dubai,303,pending,Deynis Moreno  ( La Grita ),+584122901463,La grita,15.00,35.00,2026-05-26T01:15:05.673Z
+96,El Dubai,304,pending,Gerardo Toledo,+56947525688,Chile,33.00,15.33,2026-05-23T18:01:26.063Z
+96,El Dubai,305,pending,Wilder Muñoz,+584121768623,La fría,15.00,40.00,2026-05-30T18:37:21.420Z
+96,El Dubai,306,pending,yesica Vargas usa,+14257665142,Estados unidoa,30.00,20.00,2026-06-02T18:15:44.592Z
+96,El Dubai,307,pending,Enrrique Cárdenas,+16822603711,Estados unidos,35.00,15.00,2026-05-26T21:19:33.493Z
+96,El Dubai,308,pending,Jean Carlos palma      ( La Grita ),+584247004792,La Grita,0.00,55.00,2026-05-25T17:01:45.127Z
+96,El Dubai,309,pending,Cristian Aguilar,+584247544438,Seboruco,27.00,28.00,2026-05-30T18:39:55.918Z
+96,El Dubai,310,pending,Albany ramirez usa,+12105481181,Estados unidos,35.00,15.00,2026-05-29T19:08:46.430Z
+96,El Dubai,311,pending,Pedro medina guayabo,+584147544973,El guayabo,30.00,25.00,2026-06-02T18:26:34.518Z
+96,El Dubai,312,pending,Bey puerta La fria,+584247538857,La fria,0.00,55.00,2026-05-30T18:41:34.912Z
+96,El Dubai,313,pending,omarcito caracas,+584143010693,Caracas,35.00,15.00,2026-06-02T18:30:38.917Z
+96,El Dubai,314,pending,Marcos Osorio,+573173134587,La Fría,28.50,21.50,2026-05-29T22:08:46.878Z
+96,El Dubai,315,pending,Andrea Martinez,+17208095947,La Fría,40.00,10.00,2026-05-30T17:39:44.648Z
+96,El Dubai,316,sold,Katty Panchano     La Grita,+584247221696,La Grita,55.00,0.00,2026-05-23T14:44:58.571Z
+96,El Dubai,317,pending,Ivan rivera mendez arauca,+573226423552,Arauca,28.00,22.00,2026-06-02T18:33:07.083Z
+96,El Dubai,318,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,50.00,0.00,2026-05-30T18:44:43.310Z
+96,El Dubai,319,pending,Corina prato,+584247710381,Ls fria,30.00,25.00,2026-06-04T19:53:44.421Z
+96,El Dubai,320,pending,Gabriela Muñoz,+13802394964,La Fria Usa,40.17,8.16,2026-05-23T18:29:25.057Z
+96,El Dubai,321,pending,Franklin vergel usa,+12162069770,Estados unidos,0.00,49.00,2026-05-21T20:56:49.271Z
+96,El Dubai,322,pending,Ruben Mercado,+584247136016,La Fría,46.66,3.34,2026-05-23T17:40:34.304Z
+96,El Dubai,323,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,50.00,0.00,2026-05-30T18:44:43.310Z
+96,El Dubai,324,pending,Yeiker Colmenarez usa,+13313224845,La fria,0.00,50.00,2026-05-30T18:46:33.247Z
+96,El Dubai,325,pending,Andres Camargo.   ( La Grita ),+584247038899,La Grita,15.00,35.00,2026-06-09T21:27:19.837Z
+96,El Dubai,326,pending,Carlos Moran. ( Ojeda edo Zulia - Usa ),+17542613967,Ojeda edo Zulia,0.00,55.00,2026-05-26T18:02:17.195Z
+96,El Dubai,327,pending,Germary aranguren Usa,+13124509506,Estados unidpa,35.00,15.00,2026-05-28T23:20:21.934Z
+96,El Dubai,328,pending,Miguel Molina       San Cristóbal,+584141757738,San Cristobal,15.00,40.00,2026-05-26T01:11:56.499Z
+96,El Dubai,329,pending,Jeferson Bonilla,+17202702745,Estados unidos,0.00,50.00,2026-05-23T18:32:58.475Z
+96,El Dubai,330,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,50.00,0.00,2026-05-26T01:20:04.330Z
+96,El Dubai,331,pending,Henrry Serrano,+18433050408,La Fria - Usa,15.00,35.00,2026-05-28T23:38:39.887Z
+96,El Dubai,332,pending,Yacson mendoza,+584247393236,La fria,36.00,19.00,2026-06-07T00:52:55.974Z
+96,El Dubai,333,pending,Engelbet Montiel       (  Maracaibo ),+584127647189,Maracaibo,0.00,55.00,2026-05-26T23:48:01.401Z
+96,El Dubai,334,pending,Elba Mendoza,+584121749496,La Fría,35.00,15.00,2026-05-23T18:15:43.720Z
+96,El Dubai,335,pending,Gustavo valdes,+584149772920,La fria,15.00,40.00,2026-06-02T18:34:10.685Z
+96,El Dubai,336,pending,Kleiver duran,+584247018387,La fria,15.00,40.00,2026-06-02T18:34:53.960Z
+96,El Dubai,337,pending,Nelly Rey.          (La grita),+584247072555,La grita,40.00,15.00,2026-06-13T18:51:40.656Z
+96,El Dubai,338,pending,Nelson Leon.       ( San Cristobal),+584247641133,San Cristobal,0.00,55.00,2026-05-29T02:36:22.031Z
+96,El Dubai,339,sold,Marcos davera esposo de mariangel,+584146269262,San cristobal,55.00,0.00,2026-06-11T01:17:53.934Z
+96,El Dubai,341,pending,Robinson Rico      Ureña,+584147576728,Ureña,35.00,20.00,2026-05-29T02:49:06.404Z
+96,El Dubai,343,pending,Alberto Rodríguez,+584247231949,La grita,35.00,20.00,2026-05-30T18:49:40.767Z
+96,El Dubai,344,pending,Daniel Duque     ( San Cristobal ),+584147114420,San Cristobal,35.00,15.00,2026-06-13T17:52:22.045Z
+96,El Dubai,345,pending,Keismer Contreras,+17372028084,Estados Unidos,31.00,19.00,2026-05-30T18:10:08.222Z
+96,El Dubai,346,pending,Alberto Alvarado,+584149766905,La fria,20.00,35.00,2026-05-30T18:51:18.776Z
+96,El Dubai,347,pending,Jose Perez,+584247595721,La Fria,40.00,15.00,2026-05-30T18:52:26.205Z
+96,El Dubai,348,pending,Anyerson arévalo sociedad,+584247602556,Estados unidos,30.00,20.00,2026-05-29T22:20:41.901Z
+96,El Dubai,349,pending,Eliecer Millan,+584141796609,Estados Unidos,0.00,55.00,2026-06-01T19:50:20.707Z
+96,El Dubai,350,pending,jonatan castro caracas,+584242629287,Caracas,20.00,30.00,2026-06-04T02:12:31.467Z
+96,El Dubai,351,sold,Said Alvarado maracucho,+584143644877,La fria,50.00,0.00,2026-05-30T18:22:20.790Z
+96,El Dubai,352,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,50.00,0.00,2026-05-28T23:33:56.040Z
+96,El Dubai,353,pending,Yoni Garcia,+584147567062,La fria,20.00,35.00,2026-06-06T23:29:24.739Z
+96,El Dubai,354,pending,Keismer Contreras,+17372028084,Estados Unidos,31.00,19.00,2026-05-30T18:10:08.222Z
+96,El Dubai,355,pending,Jacinto Mendoza,+16157699605,Estados unidos,25.00,25.00,2026-06-17T20:44:39.410Z
+96,El Dubai,356,pending,Heidy Vergel,+13309621518,Estados unidos,35.00,20.00,2026-06-02T16:31:11.050Z
+96,El Dubai,357,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,358,sold,Mahuer Ávila,+584268260801,La fría,55.00,0.00,2026-06-02T16:32:03.529Z
+96,El Dubai,359,pending,terapias Garcia,+17745228026,Estados unidos,25.00,25.00,2026-05-23T13:23:32.587Z
+96,El Dubai,360,pending,Teresa Urdaneta,+584247527335,Colon,15.00,40.00,2026-06-02T16:34:39.503Z
+96,El Dubai,361,pending,Yuli Pineda las delicias,+584142227715,La fria,0.00,55.00,2026-06-02T16:35:55.840Z
+96,El Dubai,362,pending,Jhoan vaca,+584147388551,La fria,0.00,55.00,2026-06-05T02:08:42.427Z
+96,El Dubai,363,pending,Aurimar guillen esposa De Dahir,+584247004164,Colon,30.00,25.00,2026-05-27T13:44:28.264Z
+96,El Dubai,364,pending,Henry Tarazona    ( La Fria ),+584147206236,La Fria,0.00,50.00,2026-06-02T01:31:35.735Z
+96,El Dubai,365,pending,Lorena Luna,+584247656227,La fría,46.00,9.00,2026-05-30T17:10:18.417Z
+96,El Dubai,366,sold,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,san Josecito,50.00,0.00,2026-05-26T01:39:18.131Z
+96,El Dubai,367,pending,Dario Usa,+16784990901,Estados unidos,0.00,50.00,2026-06-02T16:37:43.693Z
+96,El Dubai,368,pending,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,25.00,25.00,2026-05-29T02:31:46.881Z
+96,El Dubai,369,pending,Lic Begnino Briceño,+584140771666,La fría,26.25,23.75,2026-06-05T19:22:34.903Z
+96,El Dubai,370,pending,Johander ramirez La fria - chile,+56932679127,Chile,35.00,20.00,2026-06-02T16:39:14.109Z
+96,El Dubai,371,pending,Hermés Ortiz     ( Orope ),+584147197792,Orope,0.00,50.00,2026-06-06T01:16:37.519Z
+96,El Dubai,373,pending,emilyer ibarra odontologo,+584226469843,La fria,35.00,15.00,2026-06-03T01:43:32.863Z
+96,El Dubai,374,pending,Yorvi Zambrano,+584247163958,La Fria,39.50,10.50,2026-06-02T16:40:48.808Z
+96,El Dubai,376,sold,Maite Calderon,+573145459211,La fria,55.00,0.00,2026-06-02T16:41:39.452Z
+96,El Dubai,377,sold,Yeison Jaime colombia,+573003668206,Colombia,55.00,0.00,2026-06-09T02:57:53.073Z
+96,El Dubai,378,pending,Edixon Rojas    ( Rubio ),+573017413743,Rubio,35.00,20.00,2026-05-25T21:43:09.312Z
+96,El Dubai,379,pending,Alexander Uzcátegui,+17373349944,Estados unidos,35.00,20.00,2026-06-02T16:42:43.367Z
+96,El Dubai,380,pending,Keberlin florez,+584247001995,La fria,35.00,15.00,2026-05-28T20:39:54.353Z
+96,El Dubai,381,pending,Guwer Ruedas,+17543497323,Estados Unidos,35.00,15.00,2026-06-02T16:46:37.402Z
+96,El Dubai,383,pending,Yeraldin Vivas usa,+15127122718,Estados unidos,15.00,33.00,2026-05-23T13:18:40.827Z
+96,El Dubai,384,pending,Yoel 5 milazo,+584226438032,La fria,0.00,50.00,2026-06-02T16:48:26.624Z
+96,El Dubai,385,pending,Yerson Portillo usa,+13476777246,Estados unidos,20.00,35.00,2026-06-02T16:49:39.754Z
+96,El Dubai,386,pending,Cristobal Zambrano,+13609992787,Estados Unidos,35.00,15.00,2026-05-30T16:54:35.867Z
+96,El Dubai,387,pending,Ever Colón,+573202150251,Colón,23.00,27.00,2026-05-28T23:28:13.475Z
+96,El Dubai,388,pending,Gerardo Toledo,+56947525688,Chile,33.00,15.33,2026-05-23T18:01:26.063Z
+96,El Dubai,389,pending,Yuly Toledo,+573156241692,La Fría,40.00,15.00,2026-05-27T17:54:30.801Z
+96,El Dubai,390,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,391,pending,Fabiola Ramirez,+584121711584,La fría,0.00,55.00,2026-06-02T16:52:04.144Z
+96,El Dubai,392,pending,Daniel Osorio   ( Chile ),+56996304168,Chile,0.00,55.00,2026-06-06T01:09:11.662Z
+96,El Dubai,393,sold,Enrique Gasolina,+584247047355,La fria,55.00,0.00,2026-05-26T21:41:33.518Z
+96,El Dubai,395,pending,Douglas Roa,+14147913945,La Fria - Usa,35.00,15.00,2026-05-26T19:18:12.290Z
+96,El Dubai,396,sold,Deivi Velandria usa,+14073084039,Estados unidos,55.00,0.00,2026-06-02T16:53:56.273Z
+96,El Dubai,397,pending,Yen Buitriago,+19803610415,Estados unidos,0.00,50.00,2026-05-29T00:00:29.134Z
+96,El Dubai,398,pending,Maria Fernanda Pernia     ( La Grita ),+584247151339,La Grita,41.00,14.00,2026-05-26T20:45:26.460Z
+96,El Dubai,399,pending,Deisy vivas la fria,+584247177483,La fria,0.00,55.00,2026-05-28T02:50:56.424Z
+96,El Dubai,401,pending,Franyer Pernia,+584247549479,La fría,35.00,15.00,2026-06-02T16:56:48.846Z
+96,El Dubai,402,pending,Yony Perez,+584147385318,La Fría Ronet,35.00,15.00,2026-05-26T21:26:03.026Z
+96,El Dubai,403,pending,Egle Uribe,+584247023104,La fría,52.00,3.00,2026-06-02T16:58:02.834Z
+96,El Dubai,404,pending,Cristian Arciniegas,+584128190917,La Fria,0.00,55.00,2026-06-02T17:00:35.223Z
+96,El Dubai,405,pending,Andrea Pernia  ( La Grita ),+584247155450,La Grita,41.00,14.00,2026-05-25T21:35:28.543Z
+96,El Dubai,406,pending,Javier Contreras,+13126509222,La Fria,35.00,15.00,2026-05-29T00:02:04.905Z
+96,El Dubai,407,pending,Yackelin Romero,+573138163228,Colombia,36.00,19.00,2026-06-02T17:01:57.795Z
+96,El Dubai,408,sold,Said Alvarado maracucho,+584143644877,La fria,50.00,0.00,2026-05-30T18:22:20.790Z
+96,El Dubai,409,pending,Cesar Bueno,+584247608406,La Fría,40.00,15.00,2026-06-05T19:23:29.170Z
+96,El Dubai,410,pending,Yunior Carrascal,+584149751355,La Fría,0.00,50.00,2026-06-02T17:03:55.606Z
+96,El Dubai,411,pending,Jose Rafael Lopez (Pelon),+56932848548,Chile,35.00,15.00,2026-06-02T17:05:56.447Z
+96,El Dubai,412,pending,Abel Osorio,+584247443856,La fría,27.00,28.00,2026-06-02T17:07:10.412Z
+96,El Dubai,413,pending,Ronet Ramirez,+584147361575,La Fria,35.00,15.00,2026-05-26T19:15:35.677Z
+96,El Dubai,415,pending,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,36.67,13.33,2026-05-23T14:48:49.946Z
+96,El Dubai,416,pending,Alvaro Javier la fria,+573112553175,La fria,0.00,55.00,2026-06-02T18:38:37.922Z
+96,El Dubai,417,sold,Daiver velazques,+584241951963,Estados unidos,50.00,0.00,2026-06-02T18:40:08.449Z
+96,El Dubai,418,pending,Yenifer Perez,+16894652656,La Fria - Usa,35.00,15.00,2026-05-28T23:29:22.013Z
+96,El Dubai,419,pending,Chadi El Sakaan,+584143760000,La Fria,15.00,40.00,2026-06-02T21:29:34.777Z
+96,El Dubai,420,pending,Nelson Da Silva   ( Guacara edo Carabobo ),+584124429330,Guacaraca edo Carabobo,25.00,25.00,2026-05-26T00:59:29.944Z
+96,El Dubai,421,pending,Brian Buen día,+15083610533,Estados Unidos,30.00,20.00,2026-06-13T20:06:39.673Z
+96,El Dubai,422,pending,Deynis Moreno  ( La Grita ),+584122901463,La grita,15.00,35.00,2026-05-26T01:15:05.673Z
+96,El Dubai,423,sold,Orlando Fernández,+584268717439,La Fria,55.00,0.00,2026-05-27T15:44:17.016Z
+96,El Dubai,424,pending,Angel Sanchez        ( Coloncito),+584243138031,Coloncito,37.00,18.00,2026-05-26T19:29:14.865Z
+96,El Dubai,425,pending,carolina contreras usa,+16297298655,Estados unidos,0.00,50.00,2026-06-02T21:45:25.377Z
+96,El Dubai,426,pending,Franyer diaz la fria,+584147380571,La fría,40.00,15.00,2026-06-02T21:47:18.297Z
+96,El Dubai,427,pending,Roman Suarez,+584147017900,La Fria,15.00,40.00,2026-06-02T21:48:00.950Z
+96,El Dubai,428,sold,Henry Zambrano      ( Seboruco- Usa ),+16297291701,Seboruco usa,50.00,0.00,2026-05-28T03:22:07.009Z
+96,El Dubai,429,pending,Gerson paeza fria chile,+56957021133,Chile,15.00,40.00,2026-06-02T21:49:18.421Z
+96,El Dubai,430,pending,Ramom Hernández Carrero,+584247703099,La fría Táchira,0.00,50.00,2026-06-17T20:35:26.345Z
+96,El Dubai,431,pending,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,Quito Ecuador,35.00,15.00,2026-05-22T03:36:18.917Z
+96,El Dubai,432,pending,Domingo sandoval usa,+12163135810,Estados unidos,12.50,37.50,2026-06-02T16:33:36.093Z
+96,El Dubai,433,sold,Deivis Molina     ( Ejido - Merida ),+584247158354,Ejido merida,55.00,0.00,2026-06-12T02:24:21.103Z
+96,El Dubai,434,pending,Yohandry Duran usa,+17373129184,Estados unidos,32.00,23.00,2026-06-02T21:25:00.785Z
+96,El Dubai,435,sold,Yimi Sanchez alineación,+584126692074,La fria,55.00,0.00,2026-05-29T14:17:46.406Z
+96,El Dubai,436,pending,Jose Gregorio gollito usa,+13137702072,Estados unidos,0.00,55.00,2026-06-02T21:50:59.544Z
+96,El Dubai,437,pending,Maria farfan,+56995132154,Chile,15.00,40.00,2026-06-02T21:52:10.765Z
+96,El Dubai,438,pending,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,13.34,34.96,2026-05-29T12:29:30.617Z
+96,El Dubai,439,pending,Guwer Ruedas,+17543497323,Estados Unidos,35.00,15.00,2026-06-02T16:46:37.402Z
+96,El Dubai,440,pending,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,15.00,35.00,2026-05-25T21:50:48.550Z
+96,El Dubai,441,pending,Eduard sanchez usa,+19843561048,Estados unidos,10.00,45.00,2026-06-02T21:53:46.822Z
+96,El Dubai,442,sold,Yonny Gutiérrez,+584147286657,La Fria,55.00,0.00,2026-06-02T21:56:58.641Z
+96,El Dubai,443,pending,Hector medina la fria,+584247450446,La fria,35.00,20.00,2026-06-02T21:57:50.468Z
+96,El Dubai,444,sold,Ericka rangel la fria,+584247313823,La fria,55.00,0.00,2026-06-02T21:42:51.835Z
+96,El Dubai,445,pending,Emily isabel Angulo,+12146077511,Estados unidos,35.00,20.00,2026-06-17T13:31:46.445Z
+96,El Dubai,446,pending,Edson romero usa,+16892715875,Estados unidos,0.00,50.00,2026-06-02T22:00:06.700Z
+96,El Dubai,447,pending,Raul Vargas    ( Tucani - Merida ),+584261897811,Tucani merida,0.00,50.00,2026-05-26T17:57:36.739Z
+96,El Dubai,448,pending,Victor molina,+56933670260,Chile,35.00,20.00,2026-06-02T22:01:08.489Z
+96,El Dubai,449,pending,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,35.00,15.00,2026-05-25T16:09:42.398Z
+96,El Dubai,450,pending,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,28.50,21.50,2026-05-30T16:28:06.051Z
+96,El Dubai,451,pending,Franklin Alchain repuestos,+584247722153,La fria,0.00,50.00,2026-05-21T20:02:52.245Z
+96,El Dubai,452,sold,Yurimar Marquez    ( Tucani - Mérida ),+584263018529,Tucani- merida,55.00,0.00,2026-06-09T12:49:51.306Z
+96,El Dubai,453,pending,Jorge Becerra,+584147268605,La fria,47.00,8.00,2026-05-30T00:59:31.119Z
+96,El Dubai,454,sold,Yovani Toledo,+584147191457,La fría,55.00,0.00,2026-06-02T22:06:40.036Z
+96,El Dubai,455,pending,Luis ramirez termoeléctrica,+584147229058,La fria,35.00,20.00,2026-05-30T16:18:10.814Z
+96,El Dubai,456,pending,Franklin Alchain repuestos,+584247722153,La fria,0.00,50.00,2026-05-21T20:02:52.245Z
+96,El Dubai,457,pending,Tomas glaterol delicias,+584141758019,La fria,25.00,25.00,2026-06-02T22:09:42.126Z
+96,El Dubai,458,pending,Yeraldin Parada,+573223946408,Colombia,35.00,15.00,2026-06-06T16:10:10.641Z
+96,El Dubai,459,pending,Deisy Mogollón,+584247037671,La Fría,33.50,16.50,2026-05-26T19:27:34.000Z
+96,El Dubai,460,pending,Deysi Moncada     ( La Grita),+584247829118,La Grita,25.00,30.00,2026-05-27T15:52:44.071Z
+96,El Dubai,461,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,462,pending,Pedro Rey,+584147388347,La Fria,0.00,55.00,2026-06-05T02:01:52.115Z
+96,El Dubai,463,pending,Marcos Rondon,+584147542926,La fría,27.00,23.00,2026-05-30T17:58:27.183Z
+96,El Dubai,464,pending,emilyer ibarra odontologo,+584226469843,La fria,35.00,15.00,2026-06-03T01:43:32.863Z
+96,El Dubai,465,pending,lisbet rosales rosales,+584247714133,La fria,0.00,50.00,2026-06-02T22:20:07.677Z
+96,El Dubai,467,pending,Soriangely ojeda,+56987083985,Chile,0.00,55.00,2026-05-23T16:11:54.923Z
+96,El Dubai,468,pending,Yeraldin Vivas usa,+15127122718,Estados unidos,15.00,33.00,2026-05-23T13:18:40.827Z
+96,El Dubai,469,pending,Yorman vergara,+584247567782,La fria,40.00,15.00,2026-06-02T22:23:34.345Z
+96,El Dubai,470,sold,Henrry omaña la grita,+584247739657,La grita,55.00,0.00,2026-06-07T00:59:16.173Z
+96,El Dubai,471,sold,Gregorio Borjas    ( San Cristóbal ),+584247113011,San Cristobal,50.00,0.00,2026-06-05T00:12:15.701Z
+96,El Dubai,472,pending,Luis colmenares Cliente,+584145321998,El vigia,0.00,55.00,2026-06-02T22:33:00.921Z
+96,El Dubai,473,pending,Moises rosales colon,+584149796085,Colon,0.00,55.00,2026-05-26T20:39:05.326Z
+96,El Dubai,474,pending,Junior Moncada,+584147678826,La Fria,35.00,15.00,2026-06-02T22:35:05.995Z
+96,El Dubai,475,pending,Alex padron la fria,+584141768941,La fria,0.00,55.00,2026-06-04T17:13:50.125Z
+96,El Dubai,476,pending,Jose fleming usa,+16823647880,Estados unidos,0.00,50.00,2026-06-02T22:40:26.065Z
+96,El Dubai,477,pending,Rodrigo parra papa de Carlos,+584147505598,La fria,0.00,55.00,2026-06-02T22:41:10.741Z
+96,El Dubai,478,pending,Yorvi Zambrano,+584247163958,La Fria,39.50,10.50,2026-06-02T16:40:48.808Z
+96,El Dubai,479,pending,Jhon Noriega.     San Cristóbal- Chile,+56937651021,San Cristobal,15.00,40.00,2026-05-23T14:32:54.511Z
+96,El Dubai,481,pending,Rodrigo Parra papa de carlitos,+584266729512,La fria,35.00,20.00,2026-06-02T22:43:52.121Z
+96,El Dubai,482,pending,Emileidy Aquino guarico,+584144496362,Guarico,35.00,20.00,2026-05-28T02:50:06.582Z
+96,El Dubai,483,pending,Corredor sediel,+584147019864,San cristobal,0.00,55.00,2026-06-02T22:45:58.895Z
+96,El Dubai,484,pending,Juana iris argentina,+5491165805763,Argentina,35.00,20.00,2026-06-03T01:51:16.105Z
+96,El Dubai,485,pending,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,35.00,20.00,2026-05-23T14:19:21.181Z
+96,El Dubai,486,sold,Maritza Mendoza,+584247196147,San Cristóbal Táchira,50.00,0.00,2026-05-31T16:43:59.945Z
+96,El Dubai,487,pending,Freddy Medina,+13126328062,Estados unidos,35.00,15.00,2026-05-28T23:43:04.017Z
+96,El Dubai,488,pending,Jorge Luis Castro   San Cristóbal - Chile,+56922179755,San Cristobal chile,15.00,40.00,2026-05-30T00:59:55.016Z
+96,El Dubai,489,pending,Felipe alineación,+584247500708,La fria,0.00,55.00,2026-06-03T01:52:11.344Z
+96,El Dubai,491,pending,alfonso lizcano La fria,+584247080304,La fria,35.00,15.00,2026-05-30T19:30:00.023Z
+96,El Dubai,492,pending,Maryelis Flores,+13184386409,Estados Unidos,35.00,15.00,2026-06-05T14:01:41.013Z
+96,El Dubai,493,pending,Custodio orope,+573150410579,La fria,35.00,20.00,2026-06-03T01:53:42.860Z
+96,El Dubai,494,sold,Miguel Tapias,+13316279808,Estados Unidos,50.00,0.00,2026-06-20T20:49:49.844Z
+96,El Dubai,495,pending,Yen Buitriago,+19803610415,Estados unidos,0.00,50.00,2026-05-29T00:00:29.134Z
+96,El Dubai,496,pending,omarcito caracas,+584143010693,Caracas,35.00,15.00,2026-06-02T18:30:38.917Z
+96,El Dubai,497,pending,Andrea ramirez el mercado la fria,+584147265354,La fria,15.00,35.00,2026-05-29T00:32:04.873Z
+96,El Dubai,498,sold,Gonzalo colon,+584247702278,Colon,55.00,0.00,2026-05-28T16:47:19.131Z
+96,El Dubai,500,sold,Nelson molina chile,+56941445035,Chile,55.00,0.00,2026-06-03T01:58:07.447Z
+96,El Dubai,501,pending,Nancy rivera sociedad,+584247180680,La fria,0.00,55.00,2026-06-03T02:05:06.247Z
+96,El Dubai,502,pending,naylex labrador,+16098518697,Estados unidos,35.00,15.00,2026-06-04T19:56:40.028Z
+96,El Dubai,503,pending,Ingrid Rivera        ( Barinas ),+584261702150,Barinas,50.00,5.00,2026-06-03T23:52:13.482Z
+96,El Dubai,504,sold,Luis Alberto Torres Betancourt.  ( San Antonio ),+584164736539,San Antonio del Táchira,55.00,0.00,2026-06-06T20:59:42.250Z
+96,El Dubai,505,pending,Negro never Usa,+12142811315,Estados Unidos,35.00,20.00,2026-05-23T13:53:07.134Z
+96,El Dubai,506,sold,Ciro Vivas,+584147031427,"Bailadores estado Mérida, Venezuela",50.00,0.00,2026-05-30T17:44:14.754Z
+96,El Dubai,507,pending,Patricia Fernández,+584147471530,España,35.00,15.00,2026-06-13T20:29:35.974Z
+96,El Dubai,508,pending,Cesar Morales,+584147420854,La Fría,0.00,48.33,2026-05-23T18:24:11.615Z
+96,El Dubai,509,sold,Jose luis diaz la fria,+584247228026,La fria,55.00,0.00,2026-05-30T18:26:23.767Z
+96,El Dubai,510,pending,Jose Reyna,+584247257785,La Fría,35.00,15.00,2026-06-03T02:01:37.770Z
+96,El Dubai,511,pending,rafael boscan la fria,+584147155644,La fria,30.00,20.00,2026-05-30T16:22:06.286Z
+96,El Dubai,512,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,513,pending,Karina Carnes,+584147428933,La Fría,35.00,15.00,2026-05-30T17:05:17.070Z
+96,El Dubai,514,pending,Berlys Mendoza,+16823611968,Estados Unidos,15.00,35.00,2026-06-13T12:57:08.142Z
+96,El Dubai,515,pending,Osman Gil,+584149796001,La Fría,15.00,35.00,2026-06-03T02:06:17.931Z
+96,El Dubai,516,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,517,pending,Eduard sanchez usa,+19843561048,Estados unidos,15.00,35.00,2026-06-02T21:55:37.316Z
+96,El Dubai,518,pending,Sander Velandria,+17083486017,Estados Unidos,30.00,20.00,2026-05-30T17:34:34.239Z
+96,El Dubai,519,pending,Sander Velandria,+17083486017,Estados Unidos,30.00,20.00,2026-05-30T17:34:34.239Z
+96,El Dubai,520,pending,Maria Elena Marcano        Maturin,+584249377452,Maturin,15.00,40.00,2026-05-25T22:31:33.244Z
+96,El Dubai,521,pending,Patricia Fernández,+584147471530,España,35.00,15.00,2026-06-13T20:29:35.974Z
+96,El Dubai,522,pending,Yirxy Guarumito amiga Juliana,+584247594925,La fria,0.00,55.00,2026-05-29T01:21:49.607Z
+96,El Dubai,523,pending,alfonso lizcano La fria,+584247080304,La fria,35.00,15.00,2026-05-30T19:30:00.023Z
+96,El Dubai,524,pending,Mary Dias la fria casa madera,+584147385566,La fria,15.00,35.00,2026-05-29T22:01:09.874Z
+96,El Dubai,525,pending,carolina contreras usa,+16297298655,Estados unidos,0.00,50.00,2026-06-02T21:45:25.377Z
+96,El Dubai,526,pending,Anthony de luca la fria,+584147387793,La fria,35.00,15.00,2026-05-29T19:20:13.281Z
+96,El Dubai,527,pending,henrry carriso,+584142134025,Colon,35.00,20.00,2026-06-03T02:07:43.191Z
+96,El Dubai,528,pending,Angel Rosales,+584242197659,La Fría,28.50,21.50,2026-05-23T18:18:27.838Z
+96,El Dubai,529,pending,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,36.67,13.33,2026-05-23T14:48:49.946Z
+96,El Dubai,530,pending,Robert Rincon      ( San Cristobal),+584124202099,San Cristobal,0.00,55.00,2026-05-26T20:25:44.224Z
+96,El Dubai,531,pending,gerson contreras alineación,+584247432468,La fria,15.00,40.00,2026-05-30T17:50:14.506Z
+96,El Dubai,533,sold,Breiner villamizar usa,+18435406159,Estados unidos,50.00,0.00,2026-05-29T03:09:45.840Z
+96,El Dubai,534,pending,jhon de pablo Usa,+12109655075,Estados unidos,36.00,12.00,2026-05-23T14:49:45.347Z
+96,El Dubai,535,pending,Viviana Contreras,+584247488706,La Fría,0.00,50.00,2026-06-03T02:09:13.125Z
+96,El Dubai,536,sold,Anthony urbina rifero,+584247580573,San cristobal,50.00,0.00,2026-05-27T19:33:13.008Z
+96,El Dubai,537,sold,bernardo burro orope,+584149754893,La fria,50.00,0.00,2026-06-03T02:09:57.691Z
+96,El Dubai,538,pending,Enderson Rojas marantoquito,+584140815791,La fria,0.00,55.00,2026-06-03T02:10:47.261Z
+96,El Dubai,539,pending,Vanessa Aranguren,+584247514825,La fria,36.00,19.00,2026-05-24T20:26:51.037Z
+96,El Dubai,540,sold,Alejandro Perez,+584143740584,La Fría,50.00,0.00,2026-05-30T16:31:45.672Z
+96,El Dubai,541,sold,Ledy zambrano amiga,+584145496437,La fria,55.00,0.00,2026-05-29T00:19:48.880Z
+96,El Dubai,542,pending,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,35.00,15.00,2026-05-23T14:26:11.821Z
+96,El Dubai,543,pending,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,Quito Ecuador,35.00,15.00,2026-05-22T03:36:18.917Z
+96,El Dubai,544,pending,Cesar Vargas    Barcelona,+573122355359,Barcelona Colombia,30.00,25.00,2026-06-03T12:09:03.253Z
+96,El Dubai,545,pending,Alejandro Marquez,+584121705099,Merida Edo Merida,0.00,55.00,2026-06-04T00:56:22.437Z
+96,El Dubai,546,pending,Danni Carvajal,+584147032665,La Fría,0.00,55.00,2026-05-23T18:20:45.402Z
+96,El Dubai,547,pending,Jose sanchez La fria,+584149742615,La fria,29.66,18.64,2026-05-29T19:19:02.207Z
+96,El Dubai,548,pending,Jose Anaco,+14143409872,La Fria Usa,35.00,15.00,2026-05-26T18:34:48.377Z
+96,El Dubai,549,pending,Nesler zanbrano españa,+34667257390,españa,0.00,55.00,2026-06-03T02:12:29.462Z
+96,El Dubai,550,sold,Jose Maldonado,+19032520229,Estados unidos,55.00,0.00,2026-06-13T20:54:28.955Z
+96,El Dubai,551,pending,Nilson acosta hermano de lennys,+14143917058,Estados unidos,15.00,35.00,2026-05-29T00:27:41.947Z
+96,El Dubai,552,pending,Kelianny Novia de gollo,+584168741463,La fria,35.00,20.00,2026-06-03T02:12:46.184Z
+96,El Dubai,553,pending,Carlos moto taxi,+584147213985,La fria,42.00,13.00,2026-06-03T02:14:11.634Z
+96,El Dubai,554,pending,Sandra Saavedra   ( San Cristobal ),+584146987944,San Cristobal,0.00,55.00,2026-05-29T14:19:11.626Z
+96,El Dubai,555,pending,Susana Bedoya,+584262750038,La fria,17.50,32.50,2026-06-13T22:27:47.918Z
+96,El Dubai,556,pending,Junior Orduz,+584247028907,San cristobal,0.00,55.00,2026-06-03T02:14:54.071Z
+96,El Dubai,557,pending,Margiory Vera         La Grita,+584147223133,La Grita,35.00,20.00,2026-05-26T01:30:39.817Z
+96,El Dubai,558,pending,Cristobal rangel bomba merideña,+584122835064,La fría,20.00,28.30,2026-06-02T23:21:15.818Z
+96,El Dubai,560,pending,Ramom Hernández Carrero,+584247703099,La fría Táchira,0.00,50.00,2026-06-17T20:35:26.345Z
+96,El Dubai,561,pending,Edgar benavides usa,+18437830868,Estados unidos,35.00,15.00,2026-05-29T19:27:24.012Z
+96,El Dubai,562,pending,Anderson Chiquito usa,+16154388600,Estados unidos,15.00,35.00,2026-05-29T00:30:37.769Z
+96,El Dubai,564,pending,Maria chacon,+584247430093,La fria,40.00,15.00,2026-06-03T02:15:23.593Z
+96,El Dubai,565,pending,Franklin vergel usa,+12162069770,Estados unidos,0.00,49.00,2026-05-21T20:56:49.271Z
+96,El Dubai,566,pending,Zaida Parra,+584262700272,La fria,35.00,20.00,2026-06-14T01:24:25.086Z
+96,El Dubai,567,pending,Lourdes Rivas      Santa Ana ( Numero en sociedad),+584247824140,Santa ana,20.00,35.00,2026-05-29T14:16:49.125Z
+96,El Dubai,568,pending,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,25.00,25.00,2026-05-29T02:31:46.881Z
+96,El Dubai,569,pending,Sammy hayles costa rica,+50660047741,Costa rica,40.00,15.00,2026-06-03T02:17:03.057Z
+96,El Dubai,570,sold,Omar Saldivia     ( Barquisimeto ),+584145232883,Barquisimeto,55.00,0.00,2026-06-06T13:33:11.905Z
+96,El Dubai,571,pending,Cesar Morales,+584147420854,La Fría,0.00,48.33,2026-05-23T18:24:11.615Z
+96,El Dubai,572,pending,Yuglendy Bello,+12819129773,La Fria - Usa,12.50,12.50,2026-05-22T02:51:04.362Z
+96,El Dubai,573,pending,Yoander Mazzey     ( Trujillo Monay ),+584147034468,Trujillo,0.00,55.00,2026-06-03T20:35:01.436Z
+96,El Dubai,574,sold,Maira Mendoza,+584147199078,La fria,55.00,0.00,2026-06-13T20:59:25.090Z
+96,El Dubai,575,pending,Domingo sandoval usa,+12163135810,Estados unidos,12.50,37.50,2026-06-02T16:33:36.093Z
+96,El Dubai,576,pending,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,28.50,21.50,2026-05-30T16:28:06.051Z
+96,El Dubai,577,pending,Gabriela Muñoz,+13802394964,La Fria Usa,40.17,8.16,2026-05-23T18:29:25.057Z
+96,El Dubai,578,pending,Gabriel ferrer san Cristóbal,+584247711976,San cristobal,0.00,55.00,2026-06-03T02:18:09.790Z
+96,El Dubai,579,pending,Tomas glaterol delicias,+584141758019,La fria,25.00,25.00,2026-06-02T22:09:42.126Z
+96,El Dubai,581,sold,Juan luan,+573123246557,Estados unidos,55.00,0.00,2026-06-03T02:20:58.391Z
+96,El Dubai,582,sold,Jhuliana pabón la grita,+584147409707,La grita,55.00,0.00,2026-05-29T21:13:57.894Z
+96,El Dubai,583,pending,Eiver Zambrano,+14705365326,Estados unidos,35.00,20.00,2026-06-03T02:21:35.519Z
+96,El Dubai,584,pending,Jampier colon,+584122900680,Colon,41.00,14.00,2026-06-03T02:22:20.399Z
+96,El Dubai,585,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,55.00,0.00,2026-06-18T18:55:38.728Z
+96,El Dubai,586,pending,Jean Carlos Ramirez,+584247321597,La Fria,0.00,50.00,2026-06-03T02:26:25.875Z
+96,El Dubai,587,pending,Carlos Daniel Quintero,+584147424963,San Cristóbal,35.00,15.00,2026-05-26T19:20:53.004Z
+96,El Dubai,588,sold,Eimar Alarcon,+584149788908,La Fria,55.00,0.00,2026-06-03T02:26:37.062Z
+96,El Dubai,589,pending,Amalia Angola.    ( Pensilvania ),+17862163347,Pensilvania,0.00,55.00,2026-06-18T22:04:49.985Z
+96,El Dubai,591,pending,Karina Rojas usa,+15128451679,Estados unidos,15.00,35.00,2026-06-07T01:12:35.529Z
+96,El Dubai,592,pending,Angelica Castro seboruco,+584147513107,Seboruco,40.00,15.00,2026-06-05T02:10:37.377Z
+96,El Dubai,593,pending,Wilmer Guerrero       ( Zea - Merida),+584262253853,Zea tovar,0.00,55.00,2026-06-11T17:08:49.481Z
+96,El Dubai,594,pending,Tahilor rey,+584147098346,La fria,15.00,40.00,2026-06-03T02:27:42.478Z
+96,El Dubai,595,sold,Donny Salas     ( Valencia- Usa ),+16786518734,Valencia usa,50.00,0.00,2026-05-28T14:39:02.013Z
+96,El Dubai,596,pending,Yunior Carrascal,+584149751355,La Fría,0.00,50.00,2026-06-02T17:03:55.606Z
+96,El Dubai,597,sold,Luis Guzman    ( Tovar ),+584264784073,Tovar,55.00,0.00,2026-06-06T03:01:48.534Z
+96,El Dubai,598,pending,Selenni Villegas,+584147157903,La fria,35.00,20.00,2026-06-03T02:28:43.431Z
+96,El Dubai,601,pending,Josue Castiblanco    ( San Cristobal),+584247038169,San Cristobal,0.00,50.00,2026-05-28T17:58:25.300Z
+96,El Dubai,602,pending,Nelson rosales usa,+14147796920,Estados unidos,35.00,20.00,2026-06-03T02:29:44.200Z
+96,El Dubai,603,pending,Edson romero usa,+16892715875,Estados unidos,0.00,50.00,2026-06-02T22:00:06.700Z
+96,El Dubai,604,pending,Yefferson Chacón,+584247452532,Queniquea,0.00,50.00,2026-06-19T00:02:53.104Z
+96,El Dubai,605,pending,Kerwin Barajas,+584247651891,La fria,35.00,20.00,2026-06-03T02:29:59.324Z
+96,El Dubai,606,pending,Rosalba Escalante ( San Juan de Colon ),+584265612014,San juan de Colon,35.00,20.00,2026-05-26T01:33:37.528Z
+96,El Dubai,607,pending,Frederick Alejandro martines usa,+17543272037,Estados unidos,15.00,35.00,2026-06-03T02:31:12.568Z
+96,El Dubai,608,pending,José Mendoza,+584247069499,La Fría,0.00,55.00,2026-05-26T21:45:00.423Z
+96,El Dubai,609,pending,Orlando gomez,+56936206811,Chile,0.00,55.00,2026-06-03T02:33:16.464Z
+96,El Dubai,610,pending,Rober sanchez Colombia,+573219617546,Colombia,0.00,55.00,2026-06-03T02:34:54.545Z
+96,El Dubai,611,pending,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,35.00,20.00,2026-06-03T02:36:37.365Z
+96,El Dubai,612,pending,Aldo Laurano,+584247211003,La Fría,0.00,50.00,2026-05-30T17:15:30.865Z
+96,El Dubai,613,sold,Nelson muñoz caracas,+584143049425,Caracas,50.00,0.00,2026-06-03T02:37:48.117Z
+96,El Dubai,614,pending,Eduardo Colmenarez,+584265320111,Colón,27.00,28.00,2026-06-03T02:33:56.921Z
+96,El Dubai,615,pending,Willian Valencia,+584147387580,La Fría,35.00,15.00,2026-05-30T16:33:22.069Z
+96,El Dubai,616,pending,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,35.00,13.30,2026-05-29T22:13:33.306Z
+96,El Dubai,617,pending,Jorge Arellano chile,+56934892474,Chile,35.00,20.00,2026-06-03T02:38:43.153Z
+96,El Dubai,618,pending,Gilber Duque,+584146618203,La Fría,40.00,15.00,2026-06-05T20:12:56.395Z
+96,El Dubai,619,pending,Yender Zambrano  ( San Cristóbal),+584247587803,San Cristobal,15.00,40.00,2026-05-23T14:53:57.257Z
+96,El Dubai,620,sold,Diana Valbuena,+573228230571,Colombia,55.00,0.00,2026-06-03T02:37:46.569Z
+96,El Dubai,621,pending,Dario Usa,+16784990901,Estados unidos,0.00,50.00,2026-06-02T16:37:43.693Z
+96,El Dubai,622,pending,wilson papiolo,+584247091798,La fria,0.00,50.00,2026-05-29T22:14:44.342Z
+96,El Dubai,623,pending,Antonio Gonzáles,+584247396138,La Fría,35.00,15.00,2026-06-03T02:40:22.058Z
+96,El Dubai,624,pending,Leonardo Vargas,+584247631600,La fria,35.00,20.00,2026-06-03T02:41:31.981Z
+96,El Dubai,625,pending,Antony Sua  ( San Cristobal ),+584143719578,San Cristobal,35.00,20.00,2026-05-26T17:00:01.906Z
+96,El Dubai,626,pending,Youel Piña.    ( Coro - Usa ),+15045710299,Coro usa,0.00,50.00,2026-06-10T03:32:58.154Z
+96,El Dubai,627,pending,edwin meza usa,+15129151598,Estados unidos,0.00,50.00,2026-05-28T21:32:56.689Z
+96,El Dubai,628,pending,Johan marino la fria,+584143758061,La fria,0.00,55.00,2026-05-26T02:02:56.757Z
+96,El Dubai,629,pending,Libardo Borjas chile,+56974451688,Chile,15.00,40.00,2026-06-03T02:43:08.279Z
+96,El Dubai,630,sold,Breiner villamizar usa,+18435406159,Estados unidos,50.00,0.00,2026-05-29T03:09:45.840Z
+96,El Dubai,631,pending,Angelo Parada usa,+19204140344,Estados unidos,15.00,35.00,2026-05-28T23:25:21.442Z
+96,El Dubai,632,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,50.00,0.00,2026-05-22T03:48:06.845Z
+96,El Dubai,633,pending,Marwan Barreto     ( Trujillo - Usa ),+18323726325,Trujillo usa,0.00,50.00,2026-06-04T14:47:41.977Z
+96,El Dubai,635,pending,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,31.00,24.00,2026-05-28T16:28:33.617Z
+96,El Dubai,636,sold,Emir Parra     ( La Grita ),+584147162627,La Grita,55.00,0.00,2026-05-23T14:06:30.098Z
+96,El Dubai,637,pending,Jordan hijo de gollo rifero Alex linowol,+584241737886,La fria,30.00,25.00,2026-06-03T02:44:50.001Z
+96,El Dubai,638,pending,Mirexy mendez La grita,+584147047877,La grita,35.00,20.00,2026-06-03T02:46:14.402Z
+96,El Dubai,639,pending,Lic Begnino Briceño,+584140771666,La fría,26.25,23.75,2026-06-05T19:22:34.903Z
+96,El Dubai,640,pending,Aida Falcon     ( Barinas ),+584248698539,Barinas,0.00,55.00,2026-06-06T13:52:05.436Z
+96,El Dubai,641,pending,Yeiker Colmenarez usa,+13313224845,La fria,0.00,50.00,2026-05-30T18:46:33.247Z
+96,El Dubai,642,pending,Enyelber baez vecino sociedad,+584147267764,La fria,7.50,47.50,2026-06-03T19:57:01.054Z
+96,El Dubai,643,pending,Javier delgado sociedad,+584265730047,La fria,0.00,55.00,2026-06-03T19:57:56.067Z
+96,El Dubai,644,pending,Yorman romero,+13232446886,Estados unidos,40.00,15.00,2026-06-02T21:36:53.384Z
+96,El Dubai,645,pending,Katerine Ivañez,+584147573472,La Fría,40.00,15.00,2026-06-03T20:00:27.940Z
+96,El Dubai,646,pending,Jeny Jaimes,+573105670868,La Fría,20.00,35.00,2026-05-29T02:41:52.866Z
+96,El Dubai,647,pending,Rogelio Zambrano,+584125237974,La fria,0.00,55.00,2026-06-03T19:59:02.079Z
+96,El Dubai,648,pending,Chepe sanchez gym,+584247422526,La fria,0.00,55.00,2026-06-03T20:00:28.172Z
+96,El Dubai,649,pending,Ronal niño la fria,+573112216790,La fria,35.00,20.00,2026-06-03T20:01:45.986Z
+96,El Dubai,650,pending,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,36.67,13.33,2026-05-23T14:48:49.946Z
+96,El Dubai,651,pending,Yeison naranjo usa,+18542457903,Estados unidos,40.00,10.00,2026-06-03T20:03:28.741Z
+96,El Dubai,652,pending,Yoselin Machado la fria,+584247744349,La fría,0.00,55.00,2026-06-03T20:04:04.478Z
+96,El Dubai,653,pending,Raul Vargas    ( Tucani - Merida ),+584261897811,Tucani merida,0.00,50.00,2026-05-26T17:57:36.739Z
+96,El Dubai,654,pending,Eduardo Zambrano,+584247392707,La Fría,35.00,15.00,2026-05-30T16:10:59.670Z
+96,El Dubai,656,sold,Anthony Fernández,+14437354215,Estados unidos,50.00,0.00,2026-05-24T17:32:09.421Z
+96,El Dubai,657,pending,JERMAN MONSALVE,+15615028040,ESTADOS UNIDOS,35.00,20.00,2026-05-27T23:10:10.109Z
+96,El Dubai,658,sold,Eduin medina usa,+16094368300,Estados Unidos,55.00,0.00,2026-06-05T23:35:14.460Z
+96,El Dubai,659,pending,Ivan rivera mendez arauca,+573226423552,Arauca,28.00,22.00,2026-06-02T18:33:07.083Z
+96,El Dubai,661,pending,terapias Garcia,+17745228026,Estados unidos,25.00,25.00,2026-05-23T13:23:32.587Z
+96,El Dubai,662,pending,Karol Gonzales chile la fria,+56951855023,Chile,47.00,8.00,2026-05-30T16:26:19.041Z
+96,El Dubai,663,pending,Deisy Mogollón,+584247037671,La Fría,33.50,16.50,2026-05-26T19:27:34.000Z
+96,El Dubai,664,pending,Jordan hijo de gollo rifero Alex linowol,+584241737886,La fria,30.00,25.00,2026-06-20T16:47:13.646Z
+96,El Dubai,667,pending,Jeferson Bonilla,+17202702745,Estados unidos,0.00,50.00,2026-05-23T18:32:58.475Z
+96,El Dubai,669,sold,Saira urquijo,+584147580500,El vigia,55.00,0.00,2026-06-03T20:16:09.598Z
+96,El Dubai,671,pending,gavilan sanchez la fria,+584121975947,La fria,0.00,50.00,2026-06-04T00:09:55.960Z
+96,El Dubai,672,pending,Henry Tarazona    ( La Fria ),+584147206236,La Fria,0.00,50.00,2026-06-02T01:31:35.735Z
+96,El Dubai,673,pending,Delia Duque      ( La Grita ),+584149741898,La Grita,21.50,28.50,2026-05-26T01:28:41.982Z
+96,El Dubai,674,pending,Gregory ramirez hermano jean carlos,+584147583100,La fria,0.00,55.00,2026-05-29T01:24:14.076Z
+96,El Dubai,675,pending,naylex labrador,+16098518697,Estados unidos,35.00,15.00,2026-06-04T19:56:40.028Z
+96,El Dubai,676,pending,wilver amaya usa,+14249448823,Estados unidos,0.00,50.00,2026-06-03T01:45:28.829Z
+96,El Dubai,677,pending,Joaquín ruiz gomez La fria,+584247028838,la fria,0.00,55.00,2026-06-05T20:40:29.614Z
+96,El Dubai,678,pending,jose glaterol usa,+16154579492,Estados unidos,25.00,25.00,2026-06-04T01:18:15.541Z
+96,El Dubai,679,pending,Orlando moreno la fria,+584247797409,La fria,41.50,13.50,2026-05-30T15:51:10.967Z
+96,El Dubai,680,pending,Ernesto Riera         Maracaibo,+584244439100,Maracaibo,0.00,55.00,2026-05-28T14:05:36.677Z
+96,El Dubai,681,pending,gavilan sanchez la fria,+584121975947,La fria,0.00,50.00,2026-06-04T00:09:55.960Z
+96,El Dubai,682,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,50.00,0.00,2026-05-22T03:48:06.845Z
+96,El Dubai,683,sold,Dainner montilla Sociedad,+584165768746,Colon,55.00,0.00,2026-06-04T00:10:58.232Z
+96,El Dubai,684,pending,cristian mendez usa,+19126550240,Estados unidos,0.00,50.00,2026-06-04T00:12:29.753Z
+96,El Dubai,685,pending,Nancy forero 1 de mayo,+584247264304,La fria,37.50,12.50,2026-05-30T14:29:42.451Z
+96,El Dubai,686,pending,Osman Gil,+584149796001,La Fría,15.00,35.00,2026-06-03T02:06:17.931Z
+96,El Dubai,687,pending,jhon de pablo Usa,+12109655075,Estados unidos,36.00,12.00,2026-05-23T14:49:45.347Z
+96,El Dubai,689,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,690,sold,Henry Zambrano      ( Seboruco- Usa ),+16297291701,Seboruco usa,50.00,0.00,2026-05-28T03:22:07.009Z
+96,El Dubai,691,sold,Gabriel Mujica       La Fria,+584247276204,La fria,55.00,0.00,2026-05-26T22:48:17.361Z
+96,El Dubai,693,pending,Yohana Ayala,+584147576344,La Fría,35.00,20.00,2026-06-04T00:13:51.846Z
+96,El Dubai,694,pending,Dennys Cardenas guaco,+584242423215,La fria,0.00,55.00,2026-06-04T00:12:53.622Z
+96,El Dubai,695,pending,Belisario Muñoz,+17206201568,Estados Unidos,0.00,50.00,2026-05-30T16:48:36.740Z
+96,El Dubai,696,pending,Gabriel Sandoval,+12163726045,La Fria,35.00,15.00,2026-05-22T01:50:55.325Z
+96,El Dubai,697,pending,Emiro Osorio   ( Punto Fijo ),+584122997411,Punto fijo,0.00,55.00,2026-05-27T22:50:21.365Z
+96,El Dubai,698,sold,Anthony urbina rifero,+584247580573,San cristobal,50.00,0.00,2026-05-27T19:33:13.008Z
+96,El Dubai,700,pending,Carlos Parra Super rifas carlos parra,+584143754665,La fria,45.00,5.00,2026-06-16T21:16:32.380Z
+96,El Dubai,701,sold,Daniel Pineda.    La Grita,+584227414908,La Grita,55.00,0.00,2026-05-25T22:41:03.382Z
+96,El Dubai,702,pending,Joel López,+584247715538,La Fría,0.00,55.00,2026-06-04T00:22:22.213Z
+96,El Dubai,703,pending,Veronica Micel,+584264039347,Sin Dirección,35.00,20.00,2026-05-28T16:26:26.438Z
+96,El Dubai,704,pending,lisbet rosales rosales,+584247714133,La fria,0.00,50.00,2026-06-02T22:20:07.677Z
+96,El Dubai,705,pending,Cristobal rangel bomba merideña,+584122835064,La fría,20.00,28.30,2026-06-02T23:21:15.818Z
+96,El Dubai,706,pending,Leidy Garcia la fria,+584126483474,La fria,46.00,9.00,2026-06-04T00:16:39.133Z
+96,El Dubai,707,pending,Gabriel Sanchez  La Grita - Chile,+56927682736,La Grita,15.00,40.00,2026-05-27T22:48:04.527Z
+96,El Dubai,708,sold,Harol Rangel colon,+584163732385,Colon,55.00,0.00,2026-06-04T00:17:32.796Z
+96,El Dubai,709,pending,Jonathan Alarcon    ( La Fria ),+584124259555,La Fria,35.00,20.00,2026-06-03T18:34:47.622Z
+96,El Dubai,710,pending,Victor Delgado,+584147377105,La fria,0.00,55.00,2026-06-04T00:19:51.747Z
+96,El Dubai,711,pending,Nelson Roa,+17869147200,Estados Unidos,0.00,48.33,2026-06-10T17:45:58.706Z
+96,El Dubai,712,pending,Gladys Duque,+584141774636,Los Cedros,36.50,18.50,2026-06-04T00:21:05.196Z
+96,El Dubai,713,pending,Yeiker Pernia      Caracas - Usa,+17869398393,Caracas - Usa,35.00,15.00,2026-05-22T03:29:19.093Z
+96,El Dubai,714,pending,Jose Anaco,+14143409872,La Fria Usa,35.00,15.00,2026-05-26T18:34:48.377Z
+96,El Dubai,715,pending,Belkis vargas la fria matamango,+584243064930,La fria,35.00,20.00,2026-05-25T16:19:18.052Z
+96,El Dubai,716,pending,Kerlyn Montilva    ( La Grita),+584247452780,La Grita,35.00,15.00,2026-06-05T15:58:35.336Z
+96,El Dubai,718,pending,Yackelin Fuentes usa,+50761249348,Estados unidos,35.00,15.00,2026-05-28T23:37:14.547Z
+96,El Dubai,719,pending,Berlys Mendoza,+16823611968,Estados Unidos,15.00,35.00,2026-06-13T12:57:08.142Z
+96,El Dubai,720,pending,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,36.66,13.34,2026-05-23T14:48:49.946Z
+96,El Dubai,721,pending,Keismer Contreras,+17372028084,Estados Unidos,31.00,19.00,2026-05-30T18:10:08.222Z
+96,El Dubai,722,pending,Alfonso Carrillo,+584121716672,La fria,35.00,20.00,2026-06-04T00:25:43.247Z
+96,El Dubai,723,pending,Jeudany Pernia,+584121560678,Colón,35.00,20.00,2026-05-26T21:57:16.401Z
+96,El Dubai,724,pending,Gabriel Fuentes,+584247250922,La Fría,0.00,50.00,2026-05-23T18:08:55.962Z
+96,El Dubai,725,pending,Yuglendy Bello,+12819129773,La Fria - Usa,15.00,33.50,2026-05-22T02:49:29.688Z
+96,El Dubai,726,sold,Anthony Fernández,+14437354215,Estados unidos,50.00,0.00,2026-05-24T17:32:09.421Z
+96,El Dubai,727,pending,Miguel Duran,+584247218713,La fria,20.00,35.00,2026-06-01T19:17:54.404Z
+96,El Dubai,728,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,50.00,0.00,2026-05-22T03:48:06.845Z
+96,El Dubai,729,pending,Carlos Jimeno,+584147290794,La fria,35.00,15.00,2026-06-04T00:27:49.000Z
+96,El Dubai,730,pending,Joselin varela vecino,+584121718849,La fria,0.00,55.00,2026-06-02T13:54:10.205Z
+96,El Dubai,731,pending,Zunaida Montilla el guayabo,+584120768182,El guayabo,0.00,55.00,2026-06-04T00:26:55.783Z
+96,El Dubai,732,sold,Anthony urbina rifero,+584247580573,San cristobal,50.00,0.00,2026-05-27T19:33:13.008Z
+96,El Dubai,733,sold,Marioly Antolinez   ( La Grita ),+584147296420,La Grita,55.00,0.00,2026-06-06T19:18:24.158Z
+96,El Dubai,734,pending,Yeison naranjo usa,+18542457903,Estados unidos,40.00,10.00,2026-06-03T20:03:28.741Z
+96,El Dubai,735,pending,Mayrenis ramos guarico,+584268497777,Guarico,35.00,20.00,2026-05-29T00:28:35.758Z
+96,El Dubai,736,pending,Delia Duque      ( La Grita ),+584149741898,La Grita,21.50,28.50,2026-05-26T01:28:41.982Z
+96,El Dubai,737,pending,Jose Gabino Perez      ( Quimbor edo Lara ),+584245905194,Quimbor edo Lara,35.00,20.00,2026-05-27T23:21:24.694Z
+96,El Dubai,738,pending,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,13.33,34.97,2026-05-29T12:29:30.617Z
+96,El Dubai,739,pending,juan carlos Figueroa,+17733007651,Estados unidos,15.00,35.00,2026-06-04T00:30:55.750Z
+96,El Dubai,740,pending,Enrique medina usa,+14406810853,Estados Unidos,35.00,20.00,2026-06-03T02:16:10.287Z
+96,El Dubai,741,pending,Alexander Sulbaran,+584141766840,La fría,12.50,42.50,2026-06-04T00:30:55.635Z
+96,El Dubai,742,pending,Carlos Daniel Quintero,+584147424963,San Cristóbal,35.00,15.00,2026-05-26T19:20:53.004Z
+96,El Dubai,743,pending,gerson contreras alineación,+584247432468,La fria,15.00,35.00,2026-06-02T17:29:54.582Z
+96,El Dubai,744,pending,Yorvi Zambrano,+584247163958,La Fria,39.50,10.50,2026-06-02T16:40:48.808Z
+96,El Dubai,745,pending,Leonor Joya,+17209685102,Estados unidos,35.00,15.00,2026-05-26T19:07:16.042Z
+96,El Dubai,746,sold,Jhoel Zambrano,+584147095429,La Fría,55.00,0.00,2026-06-04T00:33:44.683Z
+96,El Dubai,747,sold,Yohana hernandez,+584147554641,La fria,55.00,0.00,2026-06-04T00:35:11.454Z
+96,El Dubai,748,pending,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,35.00,13.30,2026-05-29T22:13:33.306Z
+96,El Dubai,749,pending,Domingo sandoval usa,+12163135810,Estados unidos,12.50,37.50,2026-06-02T16:33:36.093Z
+96,El Dubai,750,pending,Jhoan Perez,+15125918454,Estados Unidos,0.00,50.00,2026-05-29T00:22:39.306Z
+96,El Dubai,751,pending,Viviana Contreras,+584247488706,La Fría,0.00,50.00,2026-06-03T02:09:13.125Z
+96,El Dubai,752,pending,Yorman Duarte,+584247443558,La Fria,40.00,15.00,2026-06-04T00:33:26.573Z
+96,El Dubai,753,pending,Anthony Sanchez usa,+19804752209,Estados unidos,15.00,40.00,2026-05-29T19:17:07.968Z
+96,El Dubai,754,pending,Miguel Benavides,+19127104280,La Fria - Usa,7.50,42.50,2026-06-02T17:26:42.668Z
+96,El Dubai,755,pending,yuleidy alvernia,+584247031321,La fria,0.00,50.00,2026-05-29T19:11:02.507Z
+96,El Dubai,756,pending,Gregory Princeso,+584147367045,La fría,35.00,20.00,2026-06-04T00:36:19.142Z
+96,El Dubai,757,pending,Osman Gil,+584149796001,La Fría,15.00,35.00,2026-06-03T02:06:17.931Z
+96,El Dubai,758,pending,Yorvi Zambrano,+584247163958,La Fria,39.50,10.50,2026-06-02T16:40:48.808Z
+96,El Dubai,759,pending,Anderson Chiquito usa,+16154388600,Estados unidos,15.00,35.00,2026-05-29T00:30:37.769Z
+96,El Dubai,760,pending,Alberth Zambrano,+584247527323,San Cristóbal,15.00,40.00,2026-06-13T19:12:13.839Z
+96,El Dubai,761,pending,Freddy chef señas torta,+584147424454,La fria,0.00,55.00,2026-06-04T00:38:35.517Z
+96,El Dubai,762,pending,Jesus Sanchez,+18172984840,Estados Unidos,35.00,15.00,2026-05-30T16:57:13.919Z
+96,El Dubai,763,pending,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,35.00,20.00,2026-05-23T14:19:21.181Z
+96,El Dubai,764,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,765,sold,Daiver velazques,+584241951963,Estados unidos,50.00,0.00,2026-06-02T18:40:08.449Z
+96,El Dubai,767,pending,Gabriela Muñoz,+13802394964,La Fria Usa,16.66,31.67,2026-05-23T18:29:25.057Z
+96,El Dubai,768,pending,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,15.00,35.00,2026-05-25T21:50:48.550Z
+96,El Dubai,769,pending,Jesus baraja Mecanico,+584147354430,La fria,0.00,55.00,2026-06-04T00:37:42.314Z
+96,El Dubai,771,sold,Yajaira Guerrero,+14146298680,La Fria Usa,55.00,0.00,2026-05-26T19:13:19.455Z
+96,El Dubai,772,pending,Jose Reyna,+584247257785,La Fría,35.00,15.00,2026-06-03T02:01:37.770Z
+96,El Dubai,773,pending,Leonor Joya,+17209685102,Estados unidos,35.00,15.00,2026-05-26T19:07:16.042Z
+96,El Dubai,775,pending,Ender Zambrano   (  La Grita ),+584247607775,La Grita,35.00,20.00,2026-05-26T15:12:09.228Z
+96,El Dubai,776,sold,Maritza Mendoza,+584247196147,San Cristóbal Táchira,50.00,0.00,2026-05-30T19:00:14.795Z
+96,El Dubai,777,pending,Kerlyn Montilva    ( La Grita),+584247452780,La Grita,35.00,15.00,2026-06-05T15:58:35.336Z
+96,El Dubai,778,pending,Sergio Ramos,+584128629758,San Cristóbal,0.00,50.00,2026-05-23T17:55:43.948Z
+96,El Dubai,779,pending,Deysi Moncada     ( La Grita),+584247829118,La Grita,0.00,55.00,2026-05-27T17:44:00.901Z
+96,El Dubai,780,pending,Yoel 5 milazo,+584226438032,La fria,0.00,50.00,2026-06-02T16:48:26.624Z
+96,El Dubai,781,pending,Ismar carrillo pollo,+584125942186,La fria,40.00,15.00,2026-06-04T00:40:45.032Z
+96,El Dubai,782,pending,Hercilia Leal     (   Junin ),+584140581902,Junin,0.00,55.00,2026-05-29T16:25:28.785Z
+96,El Dubai,783,pending,Angel Ferrebus,+12109297571,La Fria - Usa,23.33,26.67,2026-05-29T00:14:14.461Z
+96,El Dubai,784,sold,Ana Gomez,+584149766726,La Grita,55.00,0.00,2026-05-29T01:41:49.044Z
+96,El Dubai,785,pending,Cesar Hernández,+584247037993,Sin Dirección,35.00,20.00,2026-05-27T13:46:40.879Z
+96,El Dubai,786,pending,Gustavo Toledo,+584147212636,La Fría,30.00,20.00,2026-06-13T16:53:42.191Z
+96,El Dubai,787,pending,Daniel ochoa Cuñado miguel,+584247687262,La fria,35.00,20.00,2026-06-04T00:40:48.164Z
+96,El Dubai,788,pending,Jose Rafael Casanova   ( Maracaibo - zulia ),+584126573775,Maracaibo,0.00,55.00,2026-06-04T14:45:07.524Z
+96,El Dubai,789,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,50.00,0.00,2026-05-28T23:33:56.040Z
+96,El Dubai,790,pending,Luis Felipe la grita,+584127900215,La grita,35.00,20.00,2026-06-17T21:17:02.527Z
+96,El Dubai,791,pending,Edwin Monsalve   ( Merida ),+573183070316,Merida,0.00,55.00,2026-05-25T17:22:02.253Z
+96,El Dubai,792,sold,Noel sanchez la grita Amigo,+584247179509,La grita,50.00,0.00,2026-05-28T20:16:54.523Z
+96,El Dubai,793,pending,Nidia rondón mama de marquitos,+584247649893,La fria,25.00,30.00,2026-05-29T23:53:51.913Z
+96,El Dubai,794,pending,Rafael Hernandez,+17348997079,Estados Unidos,10.00,45.00,2026-06-04T00:45:32.222Z
+96,El Dubai,795,pending,jhon de pablo Usa,+12109655075,Estados unidos,36.00,12.00,2026-05-23T14:49:45.347Z
+96,El Dubai,796,pending,Ronald Santiago    ( Barinas ),+584149527211,Barinas,35.00,20.00,2026-06-06T18:41:02.119Z
+96,El Dubai,797,pending,Cristian Leon 5 milazo,+584247010906,La fria,15.00,40.00,2026-06-04T00:55:24.004Z
+96,El Dubai,798,pending,Walter Marquez  ( San Cristóbal ),+584147262208,San Cristóbal,0.00,55.00,2026-06-17T21:16:34.534Z
+96,El Dubai,801,pending,Albert Quinceno    ( La Fria - Usa ),+19123381129,La fria usa,0.00,50.00,2026-05-26T04:01:05.964Z
+96,El Dubai,802,sold,Audilio usa Zambrano,+12197271736,Estados unidos,55.00,0.00,2026-06-04T00:45:27.404Z
+96,El Dubai,803,pending,Yimi perez hermano de Jonny la fria,+19413234030,Estados unidos,35.00,15.00,2026-05-26T20:19:17.437Z
+96,El Dubai,804,sold,Alfonso Pernia papa,+584268033286,La grita,55.00,0.00,2026-06-04T00:55:41.909Z
+96,El Dubai,805,pending,victor contreras ls fria,+584247036467,La fria,30.00,20.00,2026-06-02T16:46:36.257Z
+96,El Dubai,806,pending,Deysi Moncada     ( La Grita),+584247829118,La Grita,35.00,20.00,2026-05-23T14:05:00.714Z
+96,El Dubai,809,pending,Chano Briceño,+584247569103,La Fria,0.00,55.00,2026-06-04T00:57:46.152Z
+96,El Dubai,810,pending,Argenis muñoz amigo nilso usa,+14142497817,estados unidos,15.00,35.00,2026-05-30T00:02:51.818Z
+96,El Dubai,811,pending,Luis medina     ( Valencia ),+584247359519,Valencia,0.00,55.00,2026-05-25T22:43:05.225Z
+96,El Dubai,812,pending,carolina contreras usa,+16297298655,Estados unidos,0.00,50.00,2026-06-02T21:45:25.377Z
+96,El Dubai,813,pending,Jean Carlos Ramirez,+584247321597,La Fria,0.00,50.00,2026-06-03T02:26:25.875Z
+96,El Dubai,814,pending,Luis fleming la fria,+18324183244,Ls fria,35.00,20.00,2026-06-04T00:59:58.416Z
+96,El Dubai,815,sold,Orliany Mujica,+584247678563,La Fría,55.00,0.00,2026-06-05T01:22:11.767Z
+96,El Dubai,816,pending,Carlos Jimeno,+584147290794,La fria,35.00,15.00,2026-06-04T00:27:49.000Z
+96,El Dubai,817,pending,Jhony Perez     ( La Grita ),+584147496829,La Grita,24.00,26.00,2026-05-22T03:42:00.581Z
+96,El Dubai,818,pending,Yeimy Ramirez muebles,+584247060503,La fría,26.00,29.00,2026-06-04T00:57:59.799Z
+96,El Dubai,819,pending,Jakelin vivas usa,+15128798132,Estados unidos,35.00,15.00,2026-06-04T01:02:48.071Z
+96,El Dubai,820,pending,Leonardo Guevara Riaño,+34603752050,España Barcelona,31.00,24.00,2026-05-30T19:04:13.191Z
+96,El Dubai,821,pending,Mirian Santander,+573239018602,Bucaramanga,15.00,40.00,2026-05-26T19:32:15.518Z
+96,El Dubai,822,pending,Angelica Villamizar,+584247268859,La Grita,35.00,20.00,2026-06-03T10:05:24.123Z
+96,El Dubai,823,pending,Lucy Rey,+584143796817,La Fría,14.50,35.50,2026-05-23T18:05:59.389Z
+96,El Dubai,824,pending,Jose sanchez La fria,+584149742615,La fria,29.66,18.64,2026-05-29T19:19:02.207Z
+96,El Dubai,825,pending,Yeraldin Vivas usa,+15127122718,Estados unidos,15.00,33.00,2026-05-23T13:18:40.827Z
+96,El Dubai,826,pending,ita carrillo,+584147591447,La fria,30.00,20.00,2026-06-04T01:04:28.851Z
+96,El Dubai,827,pending,Wilmer puentes Maracay,+584141427586,Maracay,15.00,40.00,2026-06-04T01:05:45.554Z
+96,El Dubai,828,pending,Carlos Marchan,+584121704749,La Fría,35.00,20.00,2026-05-26T19:26:10.349Z
+96,El Dubai,829,pending,Jose Efrain Gámez.  ( Tinaquillo - Usa ),+13369205906,Cojedes usa,36.66,13.34,2026-05-23T14:48:49.946Z
+96,El Dubai,830,pending,Eduard Guerrero la fria,+584149773119,La fria,35.00,20.00,2026-06-20T23:07:14.641Z
+96,El Dubai,831,pending,Miguel Benavides,+19127104280,La Fria - Usa,7.50,42.50,2026-06-02T17:26:42.668Z
+96,El Dubai,832,pending,Yaneth Sánchez,+584143762125,San Cristóbal Táchira,35.00,20.00,2026-06-21T01:48:53.352Z
+96,El Dubai,833,sold,Brando Perez,+17372474739,La Fria - Usa,55.00,0.00,2026-05-27T15:22:19.787Z
+96,El Dubai,834,pending,Alberto Pablo garcia,+50763762857,Panamá,0.00,55.00,2026-06-04T01:07:01.801Z
+96,El Dubai,835,pending,Cesar Morales,+584147420854,La Fría,0.00,48.33,2026-05-23T18:24:11.615Z
+96,El Dubai,836,pending,Antonio Gonzáles,+584247396138,La Fría,35.00,15.00,2026-06-03T02:40:22.058Z
+96,El Dubai,837,pending,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,35.00,20.00,2026-06-06T19:54:14.372Z
+96,El Dubai,838,pending,Marisol Contreras,+584147151235,La Grita,35.00,20.00,2026-06-04T01:07:06.507Z
+96,El Dubai,839,sold,Jhon Retamoza   ( Machiques Zulia ),+584127957267,Machiques - Zulia,55.00,0.00,2026-05-23T16:55:05.695Z
+96,El Dubai,840,pending,Cristian Leon 5 milazo,+584247010906,La fria,52.00,3.00,2026-06-04T01:08:41.246Z
+96,El Dubai,841,pending,Jose molina,+584147335828,Coloncito,15.00,40.00,2026-06-04T01:10:40.497Z
+96,El Dubai,842,pending,Jscson duque lavado,+584247774298,La fria,20.00,35.00,2026-05-29T01:23:16.932Z
+96,El Dubai,843,pending,Nelson Gutierrez   ( Usa ),+13344881263,Usa usa,0.00,55.00,2026-06-06T01:49:22.908Z
+96,El Dubai,845,sold,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,san Josecito,50.00,0.00,2026-05-26T01:39:18.131Z
+96,El Dubai,846,pending,juan carlos Figueroa,+17733007651,Estados unidos,15.00,35.00,2026-06-04T00:30:55.750Z
+96,El Dubai,847,pending,Gabriel Sandoval,+12163726045,La Fria,35.00,15.00,2026-05-22T01:50:55.325Z
+96,El Dubai,848,pending,Anyerson arévalo sociedad,+584247602556,Estados unidos,10.00,15.00,2026-05-29T22:22:03.077Z
+96,El Dubai,849,pending,Zoraida Pizzeria,+584247044073,La fría,15.00,40.00,2026-06-04T01:10:55.216Z
+96,El Dubai,850,pending,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,35.00,15.00,2026-05-25T16:09:42.398Z
+96,El Dubai,851,pending,Karelyn chacin usa 092-851,+16097833448,Estados unidos,0.00,50.00,2026-06-06T19:48:41.864Z
+96,El Dubai,852,sold,Luis Arellano        ( Las mesas ),+584167795043,Las mesas,55.00,0.00,2026-05-29T02:41:51.190Z
+96,El Dubai,853,pending,Doris Pernia Tia,+584247271817,San Cristobal,40.00,15.00,2026-06-13T16:41:40.215Z
+96,El Dubai,854,pending,Andres betancourt       ( Boconó edo Trujillo ),+584247587768,Boconó Trujillo,15.00,40.00,2026-06-04T18:46:01.665Z
+96,El Dubai,855,pending,Cristobal rangel bomba merideña,+584122835064,La fría,20.00,28.30,2026-06-02T23:21:15.818Z
+96,El Dubai,856,pending,Chepa Toledo,+584149716434,La fría,17.50,37.50,2026-06-04T01:12:05.856Z
+96,El Dubai,857,pending,Gabriel Urdaneta,+12109055904,Estados Unidos,21.00,29.00,2026-05-28T23:53:23.919Z
+96,El Dubai,858,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,55.00,0.00,2026-06-18T20:07:52.346Z
+96,El Dubai,860,pending,Luis avila,+584147294479,La fria,35.50,19.50,2026-06-04T01:12:47.225Z
+96,El Dubai,861,pending,Yefferson Chacón,+584247452532,Queniquea,0.00,50.00,2026-06-19T00:02:53.104Z
+96,El Dubai,862,sold,bernardo burro orope,+584149754893,La fria,50.00,0.00,2026-06-03T02:09:57.691Z
+96,El Dubai,863,pending,Willian ortega,+584247114136,La fria,30.00,25.00,2026-06-08T23:57:32.977Z
+96,El Dubai,864,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,865,pending,Yefri Carrascal,+15126205262,Estados Unidos,35.00,15.00,2026-05-29T17:58:19.931Z
+96,El Dubai,866,sold,Moisés Quintero,+584147166779,La Fría,50.00,0.00,2026-05-27T16:28:02.124Z
+96,El Dubai,867,pending,jose glaterol usa,+16154579492,Estados unidos,25.00,25.00,2026-06-04T01:18:15.541Z
+96,El Dubai,868,pending,Reinaldo Alvarez     Usa,+19012398405,Usa usa,35.00,20.00,2026-05-28T14:02:48.839Z
+96,El Dubai,869,pending,Morella Doctora,+584145669025,Colón,12.50,42.50,2026-06-04T01:14:32.385Z
+96,El Dubai,870,pending,Argenis Peña,+584242572391,Colom Táchira,0.00,55.00,2026-06-20T13:47:08.810Z
+96,El Dubai,872,pending,Jean Carlos Ramirez,+584247321597,La Fria,0.00,50.00,2026-06-03T02:26:25.875Z
+96,El Dubai,874,pending,Franyer Pernia,+584247549479,La fría,35.00,15.00,2026-06-02T16:56:48.846Z
+96,El Dubai,875,sold,Yoan Medina,+584126577163,Dabajuro,55.00,0.00,2026-05-28T14:34:30.431Z
+96,El Dubai,876,pending,Yimi perez hermano de Jonny la fria,+19413234030,Estados unidos,35.00,15.00,2026-05-26T20:19:17.437Z
+96,El Dubai,877,pending,Mary Dias la fria casa madera,+584147385566,La fria,15.00,35.00,2026-05-29T22:01:09.874Z
+96,El Dubai,879,pending,Yovany fernandez,+584121715327,La fria,35.00,15.00,2026-06-04T01:20:07.240Z
+96,El Dubai,880,pending,Dr Alexandra Molina,+584147385295,La Fría,40.00,15.00,2026-06-03T02:11:12.705Z
+96,El Dubai,881,pending,Jacinto Mendoza,+16157699605,Estados unidos,25.00,25.00,2026-06-17T20:44:39.410Z
+96,El Dubai,882,pending,Elizabel Gonzalez  ( El venado edo Zulia),+584246808462,El Venado edo zulia,0.00,55.00,2026-06-19T16:22:52.302Z
+96,El Dubai,883,sold,Tahis marquez esposa de kiko,+584147379540,La fría,55.00,0.00,2026-06-13T22:43:41.679Z
+96,El Dubai,884,pending,Ignacio salcedo.     (Maracay),+584127568288,maracay,0.00,55.00,2026-06-13T23:26:39.494Z
+96,El Dubai,885,pending,Wendy Amaya,+573243191324,La Fría,32.50,17.50,2026-05-30T17:28:21.045Z
+96,El Dubai,886,pending,Yenis Bettin,+584147577344,La Fría,35.00,20.00,2026-06-19T03:26:13.373Z
+96,El Dubai,887,pending,Enida De Rodriguez     ( La Fria ),+584121744543,La fria,0.00,50.00,2026-06-22T18:14:05.833Z
+96,El Dubai,889,pending,Frederick Alejandro martines usa,+17543272037,Estados unidos,15.00,35.00,2026-06-03T02:31:12.568Z
+96,El Dubai,890,pending,Marianny Contreras      ( La Grita ),+584247240600,La Grita,35.00,20.00,2026-05-29T02:39:55.898Z
+96,El Dubai,891,pending,Angel Ferrebus,+12109297571,La Fria - Usa,23.33,26.67,2026-05-29T00:14:14.461Z
+96,El Dubai,892,pending,Angélica boscan,+584247412268,La fria,35.00,20.00,2026-06-04T01:22:27.518Z
+96,El Dubai,893,sold,Yenifer moreno,+584247830838,La grita,55.00,0.00,2026-06-04T01:24:07.233Z
+96,El Dubai,894,sold,Juan Sanchez     ( San Cristobal ),+584264730476,San Cristobal,55.00,0.00,2026-05-28T03:24:47.530Z
+96,El Dubai,895,sold,Reinaldo Marchan,+14143082362,Estados unidos,50.00,0.00,2026-05-29T00:07:40.210Z
+96,El Dubai,896,pending,Hermés Ortiz     ( Orope ),+584147197792,Orope,0.00,50.00,2026-06-06T01:16:37.519Z
+96,El Dubai,897,pending,Gregori Lozano,+584247601747,Colòn,35.00,20.00,2026-06-04T01:21:06.622Z
+96,El Dubai,898,pending,Dainner montilla Sociedad,+584165768746,Colon,15.00,40.00,2026-06-20T18:00:45.264Z
+96,El Dubai,899,pending,Leomar guerrero usa,+17373952299,Estados unidos,0.00,55.00,2026-05-25T16:53:31.142Z
+96,El Dubai,901,pending,Josue Castiblanco    ( San Cristobal),+584247038169,San Cristobal,0.00,50.00,2026-05-28T17:58:25.300Z
+96,El Dubai,902,pending,Franklin Truma colon,+584146560186,Colon,0.00,55.00,2026-06-04T01:26:56.091Z
+96,El Dubai,903,sold,Andreina Ramirez usa,+13136080927,Estados unidos,50.00,0.00,2026-05-28T23:35:28.344Z
+96,El Dubai,904,sold,Angel Seijas    ( Tumeremo - Bolivar ),+584162099834,Tumeremo Bolivar,55.00,0.00,2026-06-07T01:22:28.926Z
+96,El Dubai,905,pending,Pipa Abasto DyU,+584141201930,La fria,45.00,10.00,2026-06-04T01:30:36.255Z
+96,El Dubai,906,pending,Yen Buitriago,+19803610415,Estados unidos,0.00,50.00,2026-05-29T00:00:29.134Z
+96,El Dubai,907,pending,Jose Rafael Lopez (Pelon),+56932848548,Chile,35.00,15.00,2026-06-02T17:05:56.447Z
+96,El Dubai,909,pending,Yolanda Sanchez,+584247353314,La fria,0.00,55.00,2026-06-04T01:31:45.703Z
+96,El Dubai,910,pending,Franklin vergel usa,+12162069770,Estados unidos,0.00,49.00,2026-05-21T20:56:49.271Z
+96,El Dubai,911,sold,Nelson muñoz caracas,+584143049425,Caracas,50.00,0.00,2026-06-03T02:37:48.117Z
+96,El Dubai,912,pending,Herlyn Montilla San felix,+584247767238,San felix,15.00,40.00,2026-06-04T01:40:46.471Z
+96,El Dubai,913,pending,David Ramirez         La Grita,+584147002584,La Grita,35.00,20.00,2026-06-06T20:36:38.523Z
+96,El Dubai,914,pending,Rafael Molina,+584147484747,La Fría,15.00,35.00,2026-05-28T23:16:20.520Z
+96,El Dubai,915,pending,Eduard sanchez usa,+19843561048,Estados unidos,15.00,35.00,2026-06-02T21:55:37.316Z
+96,El Dubai,916,pending,Amancio Marin,+18172044645,La Fria - Usa,20.00,30.00,2026-05-30T16:22:40.750Z
+96,El Dubai,917,pending,Monica Canquis  colon,+584147260472,Colon,35.00,20.00,2026-06-04T01:37:43.656Z
+96,El Dubai,918,sold,Estefania Sánchez,+18543457863,Estados unidos,55.00,0.00,2026-05-30T19:02:46.898Z
+96,El Dubai,919,pending,Miguel Benavides,+19127104280,La Fria - Usa,15.00,35.00,2026-06-02T17:22:25.012Z
+96,El Dubai,920,pending,Yenifer Soto,+17375291807,Estados unidos,20.00,35.00,2026-06-04T01:42:21.195Z
+96,El Dubai,921,sold,Dina Marisol Contreras,+584141752389,La fría,55.00,0.00,2026-05-30T17:52:56.164Z
+96,El Dubai,922,pending,Brian Buen día,+15083610533,Estados Unidos,30.00,20.00,2026-06-13T20:06:39.673Z
+96,El Dubai,923,pending,Jhoan manuel Chile,+56929969342,Chile,15.00,40.00,2026-06-07T02:07:50.674Z
+96,El Dubai,924,pending,Nelson Ramirez colon,+584163742090,Colon,35.00,20.00,2026-06-10T17:22:41.960Z
+96,El Dubai,925,pending,yuleidy alvernia,+584247031321,La fria,0.00,50.00,2026-05-29T19:11:02.507Z
+96,El Dubai,926,pending,Alicia luna sociedad,+16307768771,Estados unidos,0.00,55.00,2026-06-04T01:43:34.179Z
+96,El Dubai,927,pending,Nancy rivera sociedad,+584247180680,La fria,0.00,55.00,2026-06-03T02:04:32.092Z
+96,El Dubai,928,pending,Larre Guanipa     ( Zulia ),+584146322406,Zulia,0.00,55.00,2026-06-06T13:14:06.378Z
+96,El Dubai,929,pending,Israel Marquez.   San Cristóbal,+584122568839,San Cristobal,35.00,20.00,2026-05-23T14:41:28.452Z
+96,El Dubai,930,pending,Daines Moreno,+56982836762,La Fría Chile,40.00,15.00,2026-05-25T01:55:10.376Z
+96,El Dubai,931,pending,Pablo Mora,+584247840692,La fría,0.00,55.00,2026-06-04T01:42:12.060Z
+96,El Dubai,932,pending,Sander Velandria,+17083486017,Estados Unidos,30.00,20.00,2026-05-30T17:34:34.239Z
+96,El Dubai,933,pending,Deysi Moncada     ( La Grita),+584247829118,La Grita,35.00,20.00,2026-06-07T00:33:31.583Z
+96,El Dubai,934,pending,Abuela Milver,+584247388451,Colón,35.00,20.00,2026-06-04T01:42:49.485Z
+96,El Dubai,935,sold,Ciro sanchez san cristobal,+573102037542,San Cristóbal,55.00,0.00,2026-06-11T02:33:31.698Z
+96,El Dubai,936,pending,Yris Rojas Segnini,+584145926553,La fria,35.00,20.00,2026-05-26T19:10:15.541Z
+96,El Dubai,937,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,938,pending,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,13.33,34.97,2026-05-29T12:29:30.617Z
+96,El Dubai,940,pending,Andres Camargo.   ( La Grita ),+584247038899,La Grita,15.00,35.00,2026-06-09T21:27:19.837Z
+96,El Dubai,941,pending,Yuglendy carrero,+584147348041,Ls fria,0.00,55.00,2026-06-04T01:44:48.852Z
+96,El Dubai,942,pending,Josue Castiblanco    ( San Cristobal),+584247038169,San Cristobal,0.00,50.00,2026-05-28T17:58:25.300Z
+96,El Dubai,943,pending,Klisman candelo,+584147431803,La fria,0.00,55.00,2026-06-04T01:45:53.341Z
+96,El Dubai,944,pending,Gustavo Rojas,+584141760197,La Fría,30.00,20.00,2026-05-23T17:57:10.705Z
+96,El Dubai,946,sold,Anthony urbina rifero,+584247580573,San cristobal,50.00,0.00,2026-05-27T19:33:13.008Z
+96,El Dubai,947,pending,Jose fleming usa,+16823647880,Estados unidos,0.00,50.00,2026-06-02T22:40:26.065Z
+96,El Dubai,948,pending,Alvaro guzman,+56990998845,Chile,35.00,20.00,2026-06-04T01:48:08.683Z
+96,El Dubai,949,pending,Karelys Lopez,+584126181455,La Fría,0.00,55.00,2026-05-30T02:21:11.044Z
+96,El Dubai,950,pending,Yofran Masias,+584247682369,La fría,0.00,55.00,2026-06-04T01:45:31.338Z
+96,El Dubai,951,pending,Jonatan ortiz usa,+12109318969,Estados unidos,0.00,48.00,2026-06-02T17:37:54.331Z
+96,El Dubai,952,pending,Nakary Rojas        ( El Vigia ),+584161398883,El vigia,35.00,20.00,2026-06-12T02:32:06.067Z
+96,El Dubai,953,sold,Eduin medina usa,+16094368300,Estados Unidos,55.00,0.00,2026-06-05T23:36:06.612Z
+96,El Dubai,954,pending,Keismer Contreras,+17372028084,Estados Unidos,31.00,19.00,2026-05-30T18:10:08.222Z
+96,El Dubai,956,pending,Esteban Perez    ( San Juan de colon ),+584122909643,San juan de Colon,0.00,55.00,2026-06-10T16:06:38.987Z
+96,El Dubai,957,pending,Junior Acevedo,+34691691359,España,35.00,20.00,2026-05-26T18:27:34.104Z
+96,El Dubai,958,sold,doris rojas usa,+13316005782,Estados unidos,48.30,0.00,2026-05-22T03:00:22.725Z
+96,El Dubai,959,pending,Miguel Benavides,+19127104280,La Fria - Usa,15.00,40.00,2026-06-06T23:09:25.582Z
+96,El Dubai,960,pending,Derwin Lunares,+584145051038,🍓🍓🍓,11.66,36.84,2026-05-21T20:36:12.914Z
+96,El Dubai,961,pending,Kariusma Mora usa,+15125001004,Estados unidos,0.00,55.00,2026-06-04T01:47:18.761Z
+96,El Dubai,962,pending,Ricardo Bolaño      ( Valencia ),+584124447439,Valencia,15.00,40.00,2026-05-29T02:52:05.820Z
+96,El Dubai,963,pending,Luz valero y esposo Colon,+584168701674,Colon,0.00,55.00,2026-05-27T15:43:37.968Z
+96,El Dubai,964,sold,Gregorio Borjas    ( San Cristóbal ),+584247113011,San Cristobal,50.00,0.00,2026-06-05T00:12:15.701Z
+96,El Dubai,965,sold,Daiver velazques,+584241951963,Estados unidos,50.00,0.00,2026-06-02T18:40:08.449Z
+96,El Dubai,966,pending,Iris Moncada,+584247250796,La Fría,42.00,13.00,2026-06-02T21:48:53.803Z
+96,El Dubai,967,sold,Donny Salas     ( Valencia- Usa ),+16786518734,Valencia usa,50.00,0.00,2026-05-28T14:39:02.013Z
+96,El Dubai,968,pending,Nestor carrillo,+584128099391,Ls fria,15.00,40.00,2026-06-04T01:49:18.195Z
+96,El Dubai,969,pending,Albany ramirez usa,+12105481181,Estados unidos,35.00,15.00,2026-05-29T19:08:46.430Z
+96,El Dubai,970,pending,Edixon Villamizar     ( Barinas ),+584145288325,Barinas,40.00,15.00,2026-05-26T23:38:39.345Z
+96,El Dubai,971,sold,jonatan castro caracas,+584242629287,Caracas,55.00,0.00,2026-05-25T16:14:52.692Z
+96,El Dubai,974,pending,cristian mendez usa,+19126550240,Estados unidos,0.00,50.00,2026-06-04T00:12:29.753Z
+96,El Dubai,975,pending,Yuglendy Bello,+12819129773,La Fria - Usa,15.00,33.50,2026-05-22T02:49:29.688Z
+96,El Dubai,976,pending,Yaney duran,+584247064258,La fria,35.00,20.00,2026-06-04T01:51:09.627Z
+96,El Dubai,977,pending,Digno izarra,+584121720075,La fria,0.00,55.00,2026-06-09T16:07:32.611Z
+96,El Dubai,978,pending,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,18.25,31.75,2026-05-30T16:25:53.428Z
+96,El Dubai,979,sold,Noel sanchez la grita Amigo,+584247179509,La grita,50.00,0.00,2026-05-28T20:16:54.523Z
+96,El Dubai,980,sold,Miguel Tapias,+13316279808,Estados Unidos,50.00,0.00,2026-06-20T20:49:49.844Z
+96,El Dubai,981,pending,Jakelin vivas usa,+15128798132,Estados unidos,35.00,15.00,2026-06-04T01:02:48.071Z
+96,El Dubai,982,pending,ita carrillo,+584147591447,La fria,30.00,20.00,2026-06-04T01:04:28.851Z
+96,El Dubai,983,pending,Junior Moncada,+584147678826,La Fria,35.00,15.00,2026-06-02T22:35:05.995Z
+96,El Dubai,984,pending,Paola Cañizales cartagena,+573042344253,Colombia,0.00,55.00,2026-06-08T23:25:30.058Z
+96,El Dubai,985,pending,Nancy forero 1 de mayo,+584247264304,La fria,37.50,12.50,2026-05-30T14:29:42.451Z
+96,El Dubai,986,pending,Milton molina,+584147211459,La fria,0.00,55.00,2026-06-04T01:52:38.733Z
+96,El Dubai,987,pending,Yovany fernandez,+584121715327,La fria,35.00,15.00,2026-06-04T01:20:07.240Z
+96,El Dubai,989,pending,Johan frenos Sociedad,+584247235032,La fria,0.00,55.00,2026-06-04T01:54:03.769Z
+96,El Dubai,990,pending,edwin meza usa,+15129151598,Estados unidos,0.00,50.00,2026-05-28T21:32:56.689Z
+96,El Dubai,991,pending,Edwin Briceño       ( Trujillo - Chile ),+56999166705,Trujillo,0.00,55.00,2026-06-15T01:16:33.204Z
+96,El Dubai,992,sold,José Buitrago,+14254036252,Estados unidos,55.00,0.00,2026-05-26T18:53:21.696Z
+96,El Dubai,993,sold,Juliana Rosales,+584149755198,La fria,55.00,0.00,2026-06-04T01:52:45.313Z
+96,El Dubai,994,pending,Luis Colina     ( Valencia - Usa ),+17209838033,Valencia Usa,35.00,15.00,2026-05-28T03:33:36.298Z
+96,El Dubai,995,sold,Ronal rangel colon,+584149716069,Colon,55.00,0.00,2026-05-30T17:52:22.596Z
+96,El Dubai,996,sold,Juliana Rosales,+584149755198,La fria,55.00,0.00,2026-06-06T15:03:37.604Z
+96,El Dubai,997,pending,Rafael Hernandez,+17348997079,Estados Unidos,15.00,40.00,2026-06-04T00:46:31.954Z
+96,El Dubai,998,pending,Leomar guerrero usa,+17373952299,Estados unidos,0.00,55.00,2026-05-25T16:53:31.142Z

@@ -1,0 +1,10 @@
+[host] ep-billowing-bread-at8n3cdj-pooler.c-9.us-east-1.aws.neon.tech  |  modo: DRY RUN (no escribe)
+
+── ANTES ──  (rifas con bannerUrl: 4/4 encontradas de 4 esperadas)
+  El Dubai               banner=✓ mobile=✓ icon=✓
+  Gran Rifa Resuelve     banner=✓ mobile=✓ icon=✓
+  El Azulejo             banner=✓ mobile=✓ icon=✓
+  El Marino              banner=✓ mobile=✓ icon=✓
+
+(DRY RUN) Se actualizarían 4 rifa(s), SOLO bannerUrl/bannerMobileUrl/iconUrl.
+Para aplicar: volvé a correr con APPLY=1 y la misma DATABASE_URL/DIRECT_URL de prod.

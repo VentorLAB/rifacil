@@ -1,0 +1,41 @@
+{
+  "generatedFromRows": 3048,
+  "summary": [
+    {
+      "id": "88",
+      "name": "Gran Rifa Resuelve",
+      "nums": 1000,
+      "sold": 1000,
+      "pend": 0,
+      "paid": 12526.03,
+      "due": 0
+    },
+    {
+      "id": "79",
+      "name": "Rifas Hermanos Pernía - El Azulejo",
+      "nums": 992,
+      "sold": 963,
+      "pend": 29,
+      "paid": 22669.740000000045,
+      "due": 509.22
+    },
+    {
+      "id": "96",
+      "name": "El Dubai",
+      "nums": 936,
+      "sold": 150,
+      "pend": 786,
+      "paid": 23883.3,
+      "due": 24925.160000000007
+    },
+    {
+      "id": "73",
+      "name": "Rifas Hermanos Pernía - El Marino",
+      "nums": 120,
+      "sold": 117,
+      "pend": 3,
+      "paid": 3537.5099999999984,
+      "due": 70
+    }
+  ]
+}

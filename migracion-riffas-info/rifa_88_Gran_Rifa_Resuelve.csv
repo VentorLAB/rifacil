@@ -1,0 +1,1001 @@
+raffleId,raffleName,number,status,client,phone,address,paid_usd,due_usd,reservedDate
+88,Gran Rifa Resuelve,0,sold,Derwin Lunares,+584145051038,🍓🍓🍓,12.00,0.00,2026-04-28T22:40:24.957Z
+88,Gran Rifa Resuelve,1,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,2,sold,Maria farfan,+56995132154,Chile,13.00,0.00,2026-04-28T22:42:12.770Z
+88,Gran Rifa Resuelve,3,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,4,sold,evimar Molina,+584247183126,La fria,13.00,0.00,2026-04-28T23:00:50.325Z
+88,Gran Rifa Resuelve,5,sold,Eduin Sánchez,+18439411093,Estados unidos,12.00,0.00,2026-04-25T20:53:49.969Z
+88,Gran Rifa Resuelve,6,sold,evimar Molina,+584247183126,La fria,13.00,0.00,2026-04-28T23:02:36.508Z
+88,Gran Rifa Resuelve,7,sold,Juliana Rosales,+584149755198,La fria,12.00,0.00,2026-04-28T23:10:09.167Z
+88,Gran Rifa Resuelve,8,sold,Bella Celeste,+584247372297,La fria,13.00,0.00,2026-05-01T14:34:07.054Z
+88,Gran Rifa Resuelve,9,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,12.00,0.00,2026-04-25T16:02:39.866Z
+88,Gran Rifa Resuelve,10,sold,Rafael Molina,+584147484747,La Fría,13.00,0.00,2026-04-28T23:12:38.861Z
+88,Gran Rifa Resuelve,11,sold,Maria Reaño,+584247843616,La fria,13.00,0.00,2026-04-29T19:03:40.800Z
+88,Gran Rifa Resuelve,12,sold,Juanita Muñoz,+584143797435,La fria,13.00,0.00,2026-04-25T20:58:06.787Z
+88,Gran Rifa Resuelve,13,sold,Germary aranguren Usa,+13124509506,Estados unidpa,12.00,0.00,2026-04-28T23:21:49.583Z
+88,Gran Rifa Resuelve,14,sold,Cristian Escalante,+573126594950,La Fria,13.00,0.00,2026-04-28T23:27:06.626Z
+88,Gran Rifa Resuelve,15,sold,Ivan herrera Pocholo,+584147014632,La fria,13.00,0.00,2026-04-29T00:07:07.695Z
+88,Gran Rifa Resuelve,16,sold,Angelo Parada usa,+19204140344,Estados unidos,13.00,0.00,2026-04-29T00:08:04.819Z
+88,Gran Rifa Resuelve,17,sold,Ever Colón,+573202150251,Colón,13.00,0.00,2026-04-29T00:13:01.734Z
+88,Gran Rifa Resuelve,18,sold,Yenifer Perez,+16894652656,La Fria - Usa,13.00,0.00,2026-04-29T00:15:06.661Z
+88,Gran Rifa Resuelve,19,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,12.00,0.00,2026-04-25T01:46:47.566Z
+88,Gran Rifa Resuelve,20,sold,Jose Aldana,+16823309290,Estados Unidos,13.00,0.00,2026-04-24T22:23:44.130Z
+88,Gran Rifa Resuelve,21,sold,Eduin Sánchez,+18439411093,Estados unidos,12.00,0.00,2026-04-25T20:53:49.969Z
+88,Gran Rifa Resuelve,22,sold,Yeimi Toledo,+584147387511,La Fria,13.00,0.00,2026-04-29T00:18:06.056Z
+88,Gran Rifa Resuelve,23,sold,Yackelin Fuentes usa,+50761249348,Estados unidos,12.00,0.00,2026-04-24T19:55:26.385Z
+88,Gran Rifa Resuelve,24,sold,Nelson Ramirez colon,+584163742090,Colon,13.00,0.00,2026-04-29T00:23:18.394Z
+88,Gran Rifa Resuelve,25,sold,Maria Elena Marcano        Maturin,+584249377452,Maturin,13.00,0.00,2026-04-25T04:14:51.162Z
+88,Gran Rifa Resuelve,26,sold,Henrry Serrano,+18433050408,La Fria - Usa,12.00,0.00,2026-04-25T18:48:32.467Z
+88,Gran Rifa Resuelve,27,sold,Olga Cabrera,+17432090645,Colón,13.00,0.00,2026-04-24T14:18:19.956Z
+88,Gran Rifa Resuelve,28,sold,Jazmin duque España,+34722239450,España,13.00,0.00,2026-04-29T00:24:44.489Z
+88,Gran Rifa Resuelve,29,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,12.00,0.00,2026-04-24T22:04:24.731Z
+88,Gran Rifa Resuelve,30,sold,Freddy Medina,+13126328062,Estados unidos,12.00,0.00,2026-04-29T00:27:55.571Z
+88,Gran Rifa Resuelve,31,sold,Yefferson Chacón,+584247452532,Queniquea,13.00,0.00,2026-04-24T16:28:42.056Z
+88,Gran Rifa Resuelve,32,sold,Jesús Malpica,+584147061815,Barinas,13.00,0.00,2026-05-01T15:56:31.234Z
+88,Gran Rifa Resuelve,33,sold,Angelo Parada usa,+19204140344,Estados unidos,13.00,0.00,2026-04-29T00:08:04.819Z
+88,Gran Rifa Resuelve,34,sold,Richard Duarte,+584147339746,La fría,12.00,0.00,2026-04-24T23:11:09.311Z
+88,Gran Rifa Resuelve,35,sold,Sandy Ochoa,+573208617597,Colón,13.00,0.00,2026-04-24T14:51:59.719Z
+88,Gran Rifa Resuelve,36,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,37,sold,Emir Parra     ( La Grita ),+584147162627,La Grita,13.00,0.00,2026-04-24T17:36:04.808Z
+88,Gran Rifa Resuelve,38,sold,Aura Milagros,+584247522859,La Fría,12.00,0.00,2026-04-25T21:42:29.774Z
+88,Gran Rifa Resuelve,39,sold,Kleiver duran,+584247018387,La fria,13.00,0.00,2026-04-25T18:49:57.561Z
+88,Gran Rifa Resuelve,40,sold,Diego Morales      ( Chile ),+56978747174,Chile,12.00,0.00,2026-04-29T13:51:32.943Z
+88,Gran Rifa Resuelve,41,sold,Glency Urdaneta colon mama de Daniela,+584247101145,Colon,13.00,0.00,2026-04-28T20:58:08.151Z
+88,Gran Rifa Resuelve,42,sold,jhon de pablo Usa,+12109655075,Estados unidos,11.00,0.00,2026-04-29T00:35:21.437Z
+88,Gran Rifa Resuelve,43,sold,Edixon Rojas    ( Rubio ),+573017413743,Rubio,13.00,0.00,2026-04-25T18:09:39.690Z
+88,Gran Rifa Resuelve,44,sold,Roberto Salazar   ( Barquisimeto - Usa ),+12147724302,Barquisimeto usa,12.50,0.00,2026-04-25T04:04:12.700Z
+88,Gran Rifa Resuelve,45,sold,Sami lopez vecino,+573108029764,La fria,13.00,0.00,2026-05-01T14:41:33.219Z
+88,Gran Rifa Resuelve,46,sold,Yen Buitriago,+19803610415,Estados unidos,12.00,0.00,2026-04-29T20:45:30.040Z
+88,Gran Rifa Resuelve,47,sold,Libardo Borjas chile,+56974451688,Chile,13.00,0.00,2026-04-24T23:18:08.976Z
+88,Gran Rifa Resuelve,48,sold,Juan luan,+573123246557,Estados unidos,13.00,0.00,2026-04-25T14:51:58.552Z
+88,Gran Rifa Resuelve,49,sold,Yonni Hamburguesas,+584247353370,La fria,13.00,0.00,2026-04-29T00:38:18.470Z
+88,Gran Rifa Resuelve,50,sold,Franklin Alchain repuestos,+584247722153,La fria,12.00,0.00,2026-05-10T01:55:40.483Z
+88,Gran Rifa Resuelve,51,sold,Franklin Alchain repuestos,+584247722153,La fria,12.00,0.00,2026-05-10T01:55:40.483Z
+88,Gran Rifa Resuelve,52,sold,Anthony Fernández,+14437354215,Estados unidos,12.00,0.00,2026-04-25T19:32:48.274Z
+88,Gran Rifa Resuelve,53,sold,Pedro Nieto,+15165544157,Estados unidos,12.00,0.00,2026-04-29T00:43:05.217Z
+88,Gran Rifa Resuelve,54,sold,Mogollon Gnb,+584147574458,La fria,13.00,0.00,2026-04-29T00:44:30.795Z
+88,Gran Rifa Resuelve,55,sold,Libardo Arciniegas,+573223410298,Colombia,13.00,0.00,2026-04-29T00:45:16.715Z
+88,Gran Rifa Resuelve,56,sold,Virgina Rojas La Grita,+584147143965,La Grita,13.00,0.00,2026-04-23T22:28:23.741Z
+88,Gran Rifa Resuelve,57,sold,Jesus Sanchez,+18172984840,Estados Unidos,13.00,0.00,2026-05-09T15:23:54.858Z
+88,Gran Rifa Resuelve,58,sold,Jesús Malpica,+584147061815,Barinas,13.00,0.00,2026-05-01T15:56:31.234Z
+88,Gran Rifa Resuelve,59,sold,Yorman Duarte,+584247443558,La Fria,13.00,0.00,2026-04-24T21:10:03.222Z
+88,Gran Rifa Resuelve,60,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,61,sold,Jean Carlos Ramirez,+584247321597,La Fria,12.00,0.00,2026-04-24T18:38:36.501Z
+88,Gran Rifa Resuelve,62,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,63,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,64,sold,Reinaldo Marchan,+14143082362,Estados unidos,12.00,0.00,2026-04-24T21:24:53.138Z
+88,Gran Rifa Resuelve,65,sold,Sander Velandria,+17083486017,Estados Unidos,12.00,0.00,2026-04-29T14:57:01.980Z
+88,Gran Rifa Resuelve,66,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,67,sold,doris rojas usa,+13316005782,Estados unidos,12.00,0.00,2026-04-24T21:07:43.402Z
+88,Gran Rifa Resuelve,68,sold,Manuel Rangel chile,+584247273914,La fria,13.00,0.00,2026-04-24T18:50:10.518Z
+88,Gran Rifa Resuelve,69,sold,Sammy hayles costa rica,+50660047741,Costa rica,13.00,0.00,2026-04-25T14:36:38.130Z
+88,Gran Rifa Resuelve,70,sold,jonatan castro caracas,+584242629287,Caracas,12.00,0.00,2026-05-09T15:15:15.914Z
+88,Gran Rifa Resuelve,71,sold,Eulises Ramirez,+584247744516,La fría,13.00,0.00,2026-04-24T17:03:36.994Z
+88,Gran Rifa Resuelve,72,sold,Ely De duran,+584147308056,La fria,13.00,0.00,2026-04-25T23:56:30.896Z
+88,Gran Rifa Resuelve,73,sold,Sergio Ramos,+584128629758,San Cristóbal,12.00,0.00,2026-04-24T14:43:31.061Z
+88,Gran Rifa Resuelve,74,sold,Angel Ferrebus,+12109297571,La Fria - Usa,12.00,0.00,2026-04-29T15:03:54.573Z
+88,Gran Rifa Resuelve,75,sold,Yei Herrera,+17542319760,Estados Unidos,13.00,0.00,2026-04-24T22:43:15.513Z
+88,Gran Rifa Resuelve,76,sold,Jose gregorio Leon gollo,+584247069005,La fria,13.00,0.00,2026-04-25T19:19:56.601Z
+88,Gran Rifa Resuelve,77,sold,Maryelis Flores,+13184386409,Estados Unidos,13.00,0.00,2026-04-25T19:30:09.488Z
+88,Gran Rifa Resuelve,78,sold,Marina Monsalve,+584265307247,La fria,13.00,0.00,2026-04-29T15:21:03.998Z
+88,Gran Rifa Resuelve,79,sold,Jhoan vaca,+584147388551,La fria,12.00,0.00,2026-04-29T15:05:49.855Z
+88,Gran Rifa Resuelve,80,sold,Jhoan Perez,+15125918454,Estados Unidos,12.00,0.00,2026-04-29T15:23:07.613Z
+88,Gran Rifa Resuelve,81,sold,Thalia Garcia    Caracas,+584242519224,Caracas,13.00,0.00,2026-04-28T22:52:48.366Z
+88,Gran Rifa Resuelve,82,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,13.00,0.00,2026-05-09T22:36:35.698Z
+88,Gran Rifa Resuelve,83,sold,Victor Morales,+56931977659,Chile,13.00,0.00,2026-04-24T20:18:01.086Z
+88,Gran Rifa Resuelve,84,sold,Yonni reyes Pasteles,+584147091716,La fria,13.00,0.00,2026-04-24T22:12:34.159Z
+88,Gran Rifa Resuelve,85,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,12.00,0.00,2026-04-24T19:08:18.081Z
+88,Gran Rifa Resuelve,86,sold,juan Carlos chona,+573212806011,Colombia,13.00,0.00,2026-04-29T15:27:38.249Z
+88,Gran Rifa Resuelve,87,sold,Rosa Valero.      ( Seboruco ),+584247539873,Seboruco,13.00,0.00,2026-04-28T02:57:22.774Z
+88,Gran Rifa Resuelve,88,sold,Jonnathan Velasquez,+525653399283,La Fría,13.00,0.00,2026-04-24T16:37:39.677Z
+88,Gran Rifa Resuelve,89,sold,Rosbeily Morles usa,+12067421305,Estados unidos,12.50,0.00,2026-04-29T15:30:51.540Z
+88,Gran Rifa Resuelve,90,sold,Diego Morales      ( Chile ),+56978747174,Chile,12.00,0.00,2026-04-29T13:51:32.943Z
+88,Gran Rifa Resuelve,91,sold,Angélica boscan,+584247412268,La fria,13.00,0.00,2026-04-24T22:26:17.884Z
+88,Gran Rifa Resuelve,92,sold,Yuglendy Bello,+12819129773,La Fria - Usa,13.00,0.00,2026-04-25T18:09:39.457Z
+88,Gran Rifa Resuelve,93,sold,Gabriel Mujica       La Fria,+584247276204,La fria,13.00,0.00,2026-04-25T16:40:44.512Z
+88,Gran Rifa Resuelve,94,sold,Andres Angulo,+573124762441,Colombia,13.00,0.00,2026-04-28T02:31:42.394Z
+88,Gran Rifa Resuelve,95,sold,Jorge Arellano chile,+56934892474,Chile,13.00,0.00,2026-04-29T16:36:19.229Z
+88,Gran Rifa Resuelve,96,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,12.00,0.00,2026-04-24T19:08:18.081Z
+88,Gran Rifa Resuelve,97,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,98,sold,Rosbeily Morles usa,+12067421305,Estados unidos,12.50,0.00,2026-04-29T15:30:51.540Z
+88,Gran Rifa Resuelve,99,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,100,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,101,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,102,sold,Juanita Muñoz,+584143797435,La fria,13.00,0.00,2026-04-25T20:58:06.787Z
+88,Gran Rifa Resuelve,103,sold,Albany ramirez usa,+12105481181,Estados unidos,12.00,0.00,2026-04-29T16:38:43.967Z
+88,Gran Rifa Resuelve,104,sold,Yenis Bettin,+584147577344,La Fría,13.00,0.00,2026-04-29T16:40:43.724Z
+88,Gran Rifa Resuelve,105,sold,Armando galvis,+584264222113,La fria,13.00,0.00,2026-04-24T16:54:35.729Z
+88,Gran Rifa Resuelve,106,sold,Alexander Buseta,+584127914210,La fria,13.00,0.00,2026-04-24T19:01:26.704Z
+88,Gran Rifa Resuelve,107,sold,Jhon caicedo usa,+18182977354,Estados unidos,13.00,0.00,2026-04-29T20:05:40.166Z
+88,Gran Rifa Resuelve,108,sold,Eduardo Jaime   Colombia,+573203726305,Colombia,12.00,0.00,2026-05-09T15:59:45.726Z
+88,Gran Rifa Resuelve,109,sold,Willian Valencia,+584147387580,La Fría,13.00,0.00,2026-04-29T16:45:51.385Z
+88,Gran Rifa Resuelve,110,sold,Maria Reaño,+584247843616,La fria,13.00,0.00,2026-04-29T19:03:40.800Z
+88,Gran Rifa Resuelve,111,sold,Roberto Salazar   ( Barquisimeto - Usa ),+12147724302,Barquisimeto usa,12.50,0.00,2026-04-25T04:04:12.700Z
+88,Gran Rifa Resuelve,112,sold,Jose sanchez La fria,+584149742615,La fria,12.01,0.00,2026-04-29T19:11:05.009Z
+88,Gran Rifa Resuelve,113,sold,Anthony de luca la fria,+584147387793,La fria,13.00,0.00,2026-04-24T22:52:02.467Z
+88,Gran Rifa Resuelve,114,sold,Germary aranguren Usa,+13124509506,Estados unidpa,12.00,0.00,2026-04-28T23:21:49.583Z
+88,Gran Rifa Resuelve,115,sold,Junior Moncada,+584147678826,La Fria,12.00,0.00,2026-04-25T18:58:47.226Z
+88,Gran Rifa Resuelve,116,sold,Guwer Ruedas,+17543497323,Estados Unidos,12.00,0.00,2026-04-29T19:14:37.733Z
+88,Gran Rifa Resuelve,117,sold,Junior Moncada,+584147678826,La Fria,12.00,0.00,2026-04-25T18:58:47.226Z
+88,Gran Rifa Resuelve,118,sold,Jesus Contreras,+56945427238,La fria,13.00,0.00,2026-04-24T18:43:10.451Z
+88,Gran Rifa Resuelve,119,sold,Idelmary Martinez,+584121703512,La Fría,13.00,0.00,2026-04-24T14:28:07.303Z
+88,Gran Rifa Resuelve,120,sold,Kathlyn Torrejano,+584247029845,La Fría,13.00,0.00,2026-04-24T14:40:50.111Z
+88,Gran Rifa Resuelve,121,sold,Jose Rafael Lopez (Pelon),+56932848548,Chile,13.00,0.00,2026-04-25T18:18:33.282Z
+88,Gran Rifa Resuelve,122,sold,Joseimy Hernández,+584247571473,L fría usa,13.00,0.00,2026-04-24T18:53:27.932Z
+88,Gran Rifa Resuelve,123,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,12.00,0.00,2026-04-29T19:20:25.242Z
+88,Gran Rifa Resuelve,124,sold,Edgar benavides usa,+18437830868,Estados unidos,12.00,0.00,2026-04-24T19:21:14.834Z
+88,Gran Rifa Resuelve,125,sold,Angel Rosales,+584242197659,La Fría,12.00,0.00,2026-04-24T14:13:08.419Z
+88,Gran Rifa Resuelve,126,sold,Lucy Rey,+584143796817,La Fría,12.00,0.00,2026-04-24T14:15:00.694Z
+88,Gran Rifa Resuelve,127,sold,jhon de pablo Usa,+12109655075,Estados unidos,11.00,0.00,2026-04-29T00:35:21.437Z
+88,Gran Rifa Resuelve,128,sold,Freddy Medina,+13126328062,Estados unidos,12.00,0.00,2026-04-29T00:27:55.571Z
+88,Gran Rifa Resuelve,129,sold,Delcy zambrano,+584247100514,La fria,13.00,0.00,2026-04-24T22:38:09.674Z
+88,Gran Rifa Resuelve,130,sold,Marcos Osorio,+573173134587,La Fría,12.00,0.00,2026-04-29T19:22:54.840Z
+88,Gran Rifa Resuelve,131,sold,Jose Durango,+584125004219,La fria,13.00,0.00,2026-04-24T21:17:39.684Z
+88,Gran Rifa Resuelve,132,sold,Rosbeily Morles usa,+12067421305,Estados unidos,12.50,0.00,2026-04-29T15:30:51.540Z
+88,Gran Rifa Resuelve,133,sold,Tina suarez rifera,+584143711379,La fria,13.00,0.00,2026-04-24T22:31:17.928Z
+88,Gran Rifa Resuelve,134,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,12.00,0.00,2026-04-29T19:29:11.447Z
+88,Gran Rifa Resuelve,135,sold,Yorwin Suescun,+584247474246,La fría,13.00,0.00,2026-04-24T21:44:22.345Z
+88,Gran Rifa Resuelve,136,sold,Jose fleming usa,+16823647880,Estados unidos,12.00,0.00,2026-04-24T22:07:47.909Z
+88,Gran Rifa Resuelve,137,sold,yesica Vargas usa,+14257665142,Estados unidoa,12.00,0.00,2026-04-24T21:11:21.639Z
+88,Gran Rifa Resuelve,138,sold,Miguel Benavides,+19127104280,La Fria - Usa,12.00,0.00,2026-04-29T19:32:54.334Z
+88,Gran Rifa Resuelve,139,sold,Gerardo Toledo,+56947525688,Chile,12.00,0.00,2026-04-24T16:34:19.252Z
+88,Gran Rifa Resuelve,140,sold,Jose padilla Amigo,+584122575312,La fria,13.00,0.00,2026-05-01T22:41:59.025Z
+88,Gran Rifa Resuelve,141,sold,Yeiker Pernia      Caracas - Usa,+17869398393,Caracas - Usa,12.00,0.00,2026-04-24T00:17:52.722Z
+88,Gran Rifa Resuelve,142,sold,Douglas Roa,+14147913945,La Fria - Usa,12.00,0.00,2026-04-25T20:49:48.253Z
+88,Gran Rifa Resuelve,143,sold,Alcides sandía maracay,+584265306210,Maracay,13.00,0.00,2026-04-24T22:30:49.449Z
+88,Gran Rifa Resuelve,144,sold,Dily Lizcano    ( La Grita ),+584247024300,La Grita,13.00,0.00,2026-04-25T17:26:26.853Z
+88,Gran Rifa Resuelve,145,sold,Maria chacon,+584247430093,La fria,13.00,0.00,2026-04-24T22:39:43.941Z
+88,Gran Rifa Resuelve,146,sold,Enrrique Cárdenas,+16822603711,Estados unidos,13.00,0.00,2026-04-24T21:59:09.886Z
+88,Gran Rifa Resuelve,147,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,12.01,0.00,2026-04-29T19:47:38.804Z
+88,Gran Rifa Resuelve,148,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,12.01,0.00,2026-04-29T19:47:38.804Z
+88,Gran Rifa Resuelve,149,sold,Nubia Ramírez,+56964480846,Chile,13.00,0.00,2026-05-01T19:21:45.537Z
+88,Gran Rifa Resuelve,150,sold,Daniel Caballero,+584140775883,La fria,13.00,0.00,2026-04-29T20:29:47.628Z
+88,Gran Rifa Resuelve,151,sold,Jhon caicedo usa,+18182977354,Estados unidos,13.00,0.00,2026-04-29T20:11:57.292Z
+88,Gran Rifa Resuelve,152,sold,Miguel Tapias,+13316279808,Estados Unidos,12.00,0.00,2026-04-25T21:59:35.530Z
+88,Gran Rifa Resuelve,153,sold,Pedro Nieto,+15165544157,Estados unidos,12.00,0.00,2026-04-29T00:43:05.217Z
+88,Gran Rifa Resuelve,154,sold,Willian ortega,+584247114136,La fria,13.00,0.00,2026-04-24T21:53:44.181Z
+88,Gran Rifa Resuelve,155,sold,Milanyela Duran,+584126614644,la fria,13.00,0.00,2026-04-29T20:43:29.143Z
+88,Gran Rifa Resuelve,156,sold,Eduardo Zambrano,+584247392707,La Fría,13.00,0.00,2026-04-24T22:39:08.567Z
+88,Gran Rifa Resuelve,157,sold,Yen Buitriago,+19803610415,Estados unidos,12.00,0.00,2026-04-29T20:45:30.040Z
+88,Gran Rifa Resuelve,158,sold,bernardo burro orope,+584149754893,La fria,12.00,0.00,2026-04-25T22:05:55.837Z
+88,Gran Rifa Resuelve,159,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,12.00,0.00,2026-04-24T19:32:42.690Z
+88,Gran Rifa Resuelve,160,sold,Eduar Ramirez la fria,+584147484945,La fria,13.00,0.00,2026-04-29T20:49:18.567Z
+88,Gran Rifa Resuelve,161,sold,Jose Rafael Tortosa       La Grita - Usa,+14193153960,La Grita,13.00,0.00,2026-04-24T02:15:11.386Z
+88,Gran Rifa Resuelve,162,sold,Domingo sandoval usa,+12163135810,Estados unidos,12.00,0.00,2026-04-29T21:03:33.746Z
+88,Gran Rifa Resuelve,163,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,164,sold,Edwin Gomez.     Zulia,+584126902694,Zulia,12.00,0.00,2026-04-23T22:45:16.059Z
+88,Gran Rifa Resuelve,165,sold,Jesus Narváez,+584127953481,Margarita,13.00,0.00,2026-04-25T19:23:57.687Z
+88,Gran Rifa Resuelve,166,sold,Dayana Perez,+584121769567,La Fria,13.00,0.00,2026-04-24T22:35:12.983Z
+88,Gran Rifa Resuelve,167,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,12.00,0.00,2026-04-29T19:47:38.804Z
+88,Gran Rifa Resuelve,168,sold,Adriana Marcela,+584247748193,La Fria,13.00,0.00,2026-04-24T22:41:07.954Z
+88,Gran Rifa Resuelve,169,sold,victor contreras ls fria,+584247036467,La fria,13.00,0.00,2026-04-24T21:04:37.205Z
+88,Gran Rifa Resuelve,170,sold,Brian Buen día,+15083610533,Estados Unidos,12.00,0.00,2026-04-24T21:35:22.273Z
+88,Gran Rifa Resuelve,171,sold,Alvey Calderon,+584247046284,La fria,13.00,0.00,2026-04-25T18:28:01.403Z
+88,Gran Rifa Resuelve,172,sold,Miguel Benavides,+19127104280,La Fria - Usa,12.00,0.00,2026-04-29T19:32:54.334Z
+88,Gran Rifa Resuelve,173,sold,Maria Esposa de eulises,+584247314606,La fria,13.00,0.00,2026-04-24T22:50:16.529Z
+88,Gran Rifa Resuelve,174,sold,Ivaney Arellano,+584247333794,La Grita,13.00,0.00,2026-04-24T22:34:16.700Z
+88,Gran Rifa Resuelve,175,sold,Jose Rafael Tortosa  ( La Grita - Usa ),+584121741766,La grita,13.00,0.00,2026-04-24T22:40:37.412Z
+88,Gran Rifa Resuelve,176,sold,Sander Velandria,+17083486017,Estados Unidos,12.00,0.00,2026-04-29T14:57:01.980Z
+88,Gran Rifa Resuelve,177,sold,Amancio Marin,+18172044645,La Fria - Usa,13.00,0.00,2026-04-29T21:09:34.551Z
+88,Gran Rifa Resuelve,178,sold,Franklin Guerrero       ( La Grita ),+584143756485,La Grita,13.00,0.00,2026-04-24T00:04:12.731Z
+88,Gran Rifa Resuelve,179,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,180,sold,Libardo Arciniegas,+573223410298,Colombia,13.00,0.00,2026-04-29T22:41:26.183Z
+88,Gran Rifa Resuelve,181,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,12.00,0.00,2026-05-01T19:14:47.486Z
+88,Gran Rifa Resuelve,182,sold,José Cruz,+584162017368,La Fría,13.00,0.00,2026-04-24T14:24:11.345Z
+88,Gran Rifa Resuelve,183,sold,Thiago Orozco,+584167774039,La Fría,13.00,0.00,2026-04-27T20:30:43.420Z
+88,Gran Rifa Resuelve,184,sold,Alfonso Pernia papa,+584268033286,La grita,13.00,0.00,2026-04-25T18:32:40.416Z
+88,Gran Rifa Resuelve,185,sold,Liliana Mendez,+584247196052,La fría,13.00,0.00,2026-04-24T22:55:30.097Z
+88,Gran Rifa Resuelve,186,sold,JAVIER Roman usa,+14844751789,Estados Unidos,13.00,0.00,2026-05-10T01:35:36.793Z
+88,Gran Rifa Resuelve,187,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,188,sold,Hurlene Rojas          El Nula,+584121581884,El Nula,13.00,0.00,2026-04-28T00:16:10.345Z
+88,Gran Rifa Resuelve,189,sold,Javier Porras,+584147388794,La Fria,13.00,0.00,2026-04-29T21:33:01.859Z
+88,Gran Rifa Resuelve,190,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,191,sold,doris rojas usa,+13316005782,Estados unidos,12.00,0.00,2026-04-24T21:07:43.402Z
+88,Gran Rifa Resuelve,192,sold,Yajaira Guerrero,+14146298680,La Fria Usa,13.00,0.00,2026-05-09T17:53:08.975Z
+88,Gran Rifa Resuelve,193,sold,Neurimar Gutiérrez,+18179642827,Estados unidos,13.00,0.00,2026-04-24T22:09:09.103Z
+88,Gran Rifa Resuelve,194,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,195,sold,Daniel Vigia,+584145310435,el vigía,13.00,0.00,2026-04-29T21:35:10.426Z
+88,Gran Rifa Resuelve,196,sold,Javier chavez Colon,+584261690378,Colon,13.00,0.00,2026-05-01T19:12:49.286Z
+88,Gran Rifa Resuelve,197,sold,Derwin Lunares,+584145051038,🍓🍓🍓,12.00,0.00,2026-04-28T22:40:24.957Z
+88,Gran Rifa Resuelve,198,sold,Anderson Chiquito usa,+16154388600,Estados unidos,12.00,0.00,2026-04-24T21:27:17.586Z
+88,Gran Rifa Resuelve,199,sold,Gustavo Rojas,+584141760197,La Fría,13.00,0.00,2026-04-24T16:39:18.252Z
+88,Gran Rifa Resuelve,200,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,201,sold,Karina Rojas usa,+15128451679,Estados unidos,12.00,0.00,2026-04-29T21:38:32.445Z
+88,Gran Rifa Resuelve,202,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,12.00,0.00,2026-05-09T12:46:15.298Z
+88,Gran Rifa Resuelve,203,sold,Anderson Chiquito usa,+16154388600,Estados unidos,12.00,0.00,2026-04-24T21:27:17.586Z
+88,Gran Rifa Resuelve,204,sold,Cristobal Zambrano,+13609992787,Estados Unidos,12.00,0.00,2026-04-29T21:43:29.752Z
+88,Gran Rifa Resuelve,205,sold,Katty Colmenarez,+584247022162,La fría,13.00,0.00,2026-04-24T19:35:56.170Z
+88,Gran Rifa Resuelve,206,sold,Junior Moncada,+584147678826,La Fria,12.00,0.00,2026-04-25T18:58:47.226Z
+88,Gran Rifa Resuelve,207,sold,Ruben Mercado,+584247136016,La Fría,12.00,0.00,2026-04-26T21:24:26.451Z
+88,Gran Rifa Resuelve,208,sold,Yeraldin Parada,+573223946408,Colombia,12.00,0.00,2026-04-24T19:47:58.825Z
+88,Gran Rifa Resuelve,209,sold,Yony Perez,+584147385318,La Fría Ronet,13.00,0.00,2026-04-24T21:34:01.041Z
+88,Gran Rifa Resuelve,210,sold,Jampier colon,+584122900680,Colon,13.00,0.00,2026-05-02T23:19:59.216Z
+88,Gran Rifa Resuelve,211,sold,Yuliana Villasmil,+584247750975,La Fria,13.00,0.00,2026-04-24T23:00:43.754Z
+88,Gran Rifa Resuelve,212,sold,Karina Carnes,+584147428933,La Fría,13.00,0.00,2026-04-29T21:49:40.059Z
+88,Gran Rifa Resuelve,213,sold,Edwin Gomez.     Zulia,+584126902694,Zulia,12.00,0.00,2026-04-23T22:45:16.059Z
+88,Gran Rifa Resuelve,214,sold,Saul varela,+584147135237,La grita,13.00,0.00,2026-04-24T20:20:57.461Z
+88,Gran Rifa Resuelve,215,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,12.00,0.00,2026-04-29T19:47:38.804Z
+88,Gran Rifa Resuelve,216,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,217,sold,Gabriel Fuentes,+584247250922,La Fría,13.00,0.00,2026-04-24T16:42:40.984Z
+88,Gran Rifa Resuelve,218,sold,Jesus baraja Mecanico,+584147354430,La fria,13.00,0.00,2026-04-24T21:02:51.437Z
+88,Gran Rifa Resuelve,219,sold,Ruben Mercado,+584247136016,La Fría,12.00,0.00,2026-04-26T21:24:26.451Z
+88,Gran Rifa Resuelve,220,sold,Sandra Rodríguez,+18328692560,La fría,12.00,0.00,2026-05-10T01:43:24.154Z
+88,Gran Rifa Resuelve,221,sold,Yefferson Chacón,+584247452532,Queniquea,13.00,0.00,2026-04-24T16:28:42.056Z
+88,Gran Rifa Resuelve,222,sold,Sandra Rodríguez,+18328692560,La fría,12.00,0.00,2026-05-10T01:43:24.154Z
+88,Gran Rifa Resuelve,223,sold,Daniela Suarez,+584167270923,Colón,13.00,0.00,2026-04-29T21:58:49.292Z
+88,Gran Rifa Resuelve,224,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,12.00,0.00,2026-04-23T22:52:57.402Z
+88,Gran Rifa Resuelve,225,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,12.00,0.00,2026-05-09T12:46:15.298Z
+88,Gran Rifa Resuelve,226,sold,Victor Morales,+56931977659,Chile,13.00,0.00,2026-04-24T20:25:56.606Z
+88,Gran Rifa Resuelve,227,sold,Pedro Nieto,+15165544157,Estados unidos,12.00,0.00,2026-04-29T00:43:05.217Z
+88,Gran Rifa Resuelve,228,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T22:24:29.919Z
+88,Gran Rifa Resuelve,229,sold,Jhon Retamoza   ( Machiques Zulia ),+584127957267,Machiques - Zulia,13.00,0.00,2026-04-24T22:37:13.244Z
+88,Gran Rifa Resuelve,230,sold,Fainory Díaz,+584147063153,La fría,13.00,0.00,2026-04-25T15:32:13.661Z
+88,Gran Rifa Resuelve,231,sold,Aldo Laurano,+584247211003,La Fría,13.00,0.00,2026-04-24T21:12:08.621Z
+88,Gran Rifa Resuelve,232,sold,Jonnathan Florez,+18432981188,Estados unidos,12.00,0.00,2026-04-24T22:58:32.289Z
+88,Gran Rifa Resuelve,233,sold,Ana Karina,+584147324069,San cristobal,13.00,0.00,2026-04-29T22:11:56.612Z
+88,Gran Rifa Resuelve,234,sold,Wendy Amaya,+573243191324,La Fría,12.00,0.00,2026-04-24T19:37:16.000Z
+88,Gran Rifa Resuelve,235,sold,Deysi Moncada     ( La Grita),+584247829118,La Grita,13.00,0.00,2026-04-27T17:30:06.905Z
+88,Gran Rifa Resuelve,236,sold,Charly Quintero,+584147562624,La Fría,13.00,0.00,2026-04-24T22:58:43.787Z
+88,Gran Rifa Resuelve,237,sold,jonatan castro caracas,+584242629287,Caracas,12.00,0.00,2026-05-01T23:42:10.985Z
+88,Gran Rifa Resuelve,238,sold,Daniela Vivas,+584142682865,Ls fria,13.00,0.00,2026-05-01T19:04:07.521Z
+88,Gran Rifa Resuelve,239,sold,Jhoan vaca,+584147388551,La fria,12.00,0.00,2026-04-29T15:05:49.855Z
+88,Gran Rifa Resuelve,240,sold,Luis fleming la fria,+18324183244,Ls fria,13.00,0.00,2026-04-24T18:44:45.697Z
+88,Gran Rifa Resuelve,241,sold,Eduin Sánchez,+18439411093,Estados unidos,12.00,0.00,2026-04-25T20:53:49.969Z
+88,Gran Rifa Resuelve,242,sold,Jorgue luis La tendida rifero,+584247423263,La tendida,13.00,0.00,2026-04-29T22:33:54.287Z
+88,Gran Rifa Resuelve,243,sold,Gomez Migracion,+584120206334,La fria,13.00,0.00,2026-04-29T22:34:45.675Z
+88,Gran Rifa Resuelve,244,sold,Wendy Amaya,+573243191324,La Fría,12.00,0.00,2026-04-24T19:37:16.000Z
+88,Gran Rifa Resuelve,245,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,13.00,0.00,2026-04-27T00:10:23.765Z
+88,Gran Rifa Resuelve,246,sold,bernardo burro orope,+584149754893,La fria,12.00,0.00,2026-04-25T22:05:55.837Z
+88,Gran Rifa Resuelve,247,sold,Jonnathan Velasquez,+525653399283,La Fría,13.00,0.00,2026-04-24T16:37:39.677Z
+88,Gran Rifa Resuelve,248,sold,Anthony Fernández,+14437354215,Estados unidos,12.00,0.00,2026-04-25T19:32:48.274Z
+88,Gran Rifa Resuelve,249,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,250,sold,Andrea Martinez,+17208095947,La Fría,12.00,0.00,2026-04-24T21:19:51.251Z
+88,Gran Rifa Resuelve,251,sold,Jean Carlos Ramirez,+584247321597,La Fria,12.00,0.00,2026-04-24T18:38:36.501Z
+88,Gran Rifa Resuelve,252,sold,Jimmy Silva,+584161724113,La fria,13.00,0.00,2026-04-24T23:16:44.025Z
+88,Gran Rifa Resuelve,253,sold,Jhoan Perez,+15125918454,Estados Unidos,12.00,0.00,2026-04-29T15:23:07.613Z
+88,Gran Rifa Resuelve,254,sold,Ender Ramirez españa,+34653590976,España,12.00,0.00,2026-04-24T21:48:22.311Z
+88,Gran Rifa Resuelve,255,sold,Eduardo Jaime   Colombia,+573203726305,Colombia,12.00,0.00,2026-05-09T15:59:45.726Z
+88,Gran Rifa Resuelve,256,sold,Yonellys rodriguez Estados unidos,+18035545936,Estados unidos,12.00,0.00,2026-04-29T22:37:16.254Z
+88,Gran Rifa Resuelve,257,sold,Wilderson Acosta,+584247623996,La fria,13.00,0.00,2026-04-24T19:30:57.438Z
+88,Gran Rifa Resuelve,258,sold,Katty Acevedo,+584126151311,La fria,13.00,0.00,2026-04-25T21:40:11.826Z
+88,Gran Rifa Resuelve,259,sold,Yolimar Galviz,+16615414832,Estados Unidos,13.00,0.00,2026-04-24T14:51:02.773Z
+88,Gran Rifa Resuelve,260,sold,Eduardo Colmenarez,+584265320111,Colón,12.00,0.00,2026-04-29T22:39:21.058Z
+88,Gran Rifa Resuelve,261,sold,Karina Carnes,+584147428933,La Fría,13.00,0.00,2026-04-29T21:49:40.059Z
+88,Gran Rifa Resuelve,262,sold,Frainy Perez,+584247481755,La fría,13.00,0.00,2026-04-24T14:49:43.475Z
+88,Gran Rifa Resuelve,263,sold,Ricardo Ramirez,+16159389001,La Fria Usa,13.00,0.00,2026-04-29T15:15:44.544Z
+88,Gran Rifa Resuelve,264,sold,Daniela Suarez,+584167270923,Colón,13.00,0.00,2026-04-29T21:58:49.292Z
+88,Gran Rifa Resuelve,265,sold,Eduardo Jaime   Colombia,+573203726305,Colombia,12.00,0.00,2026-05-09T15:59:45.726Z
+88,Gran Rifa Resuelve,266,sold,Diosa Duque,+584247198727,La fría,13.00,0.00,2026-04-28T20:20:23.343Z
+88,Gran Rifa Resuelve,267,sold,Saul Ramírez,+584147220896,La Moruzca,13.00,0.00,2026-04-24T23:12:41.184Z
+88,Gran Rifa Resuelve,268,sold,Yonaiker Suarez,+19127595784,Estados unidos,12.00,0.00,2026-04-24T21:29:07.971Z
+88,Gran Rifa Resuelve,269,sold,Tahis Ramírez,+584247554489,La fría,13.00,0.00,2026-04-29T22:45:03.254Z
+88,Gran Rifa Resuelve,270,sold,Andrea Duque,+584247168079,La grita,13.00,0.00,2026-04-28T20:12:24.288Z
+88,Gran Rifa Resuelve,271,sold,jonatan castro caracas,+584242629287,Caracas,12.00,0.00,2026-05-09T15:15:15.914Z
+88,Gran Rifa Resuelve,272,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.00,0.00,2026-04-25T18:08:07.495Z
+88,Gran Rifa Resuelve,273,sold,Alber Puentes trabaja hitaca,+584147275982,La fria,13.00,0.00,2026-04-25T18:01:16.086Z
+88,Gran Rifa Resuelve,274,sold,Pinto Carrera 8 la fria,+584247498984,La fria,13.00,0.00,2026-04-29T22:41:38.455Z
+88,Gran Rifa Resuelve,275,sold,Said Alvarado maracucho,+584143644877,La fria,12.00,0.00,2026-04-29T22:43:16.107Z
+88,Gran Rifa Resuelve,276,sold,Ruben Moreno,+584161522214,La fria,13.00,0.00,2026-04-29T22:44:10.768Z
+88,Gran Rifa Resuelve,277,sold,Dahir Di domenico colon,+584248562540,Colon,13.00,0.00,2026-04-24T23:13:44.867Z
+88,Gran Rifa Resuelve,278,sold,Leomar guerrero usa,+17373952299,Estados unidos,12.00,0.00,2026-04-24T23:19:30.902Z
+88,Gran Rifa Resuelve,279,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,12.00,0.00,2026-04-24T19:08:18.081Z
+88,Gran Rifa Resuelve,280,sold,Freddy garcia colon,+584164260340,Colon,13.00,0.00,2026-04-29T22:46:24.077Z
+88,Gran Rifa Resuelve,281,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,282,sold,Anthony Fernández,+14437354215,Estados unidos,12.00,0.00,2026-04-25T19:32:48.274Z
+88,Gran Rifa Resuelve,283,sold,Lucy Rey,+584143796817,La Fría,12.00,0.00,2026-04-24T14:15:00.694Z
+88,Gran Rifa Resuelve,284,sold,Laura Zanbrano prima,+584140821823,La grita,13.00,0.00,2026-04-29T22:47:40.332Z
+88,Gran Rifa Resuelve,285,sold,Leycer Campos       Valera,+584121718924,Valera,13.00,0.00,2026-04-24T00:05:35.755Z
+88,Gran Rifa Resuelve,286,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,287,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,288,sold,Yohana Balaguera,+584247590357,La Fría,13.00,0.00,2026-04-28T11:26:58.966Z
+88,Gran Rifa Resuelve,289,sold,wesly rodrigues la fria,+584247357640,La fria,13.00,0.00,2026-04-25T18:15:31.353Z
+88,Gran Rifa Resuelve,290,sold,Belkis vargas la fria matamango,+584243064930,La fria,13.00,0.00,2026-04-28T20:18:54.897Z
+88,Gran Rifa Resuelve,291,sold,Jhoan vaca,+584147388551,La fria,12.00,0.00,2026-04-29T15:05:49.855Z
+88,Gran Rifa Resuelve,292,sold,Jesus Alviarez,+584121715054,Colón,13.00,0.00,2026-04-26T21:36:23.551Z
+88,Gran Rifa Resuelve,293,sold,yesica Vargas usa,+14257665142,Estados unidoa,12.00,0.00,2026-04-24T21:11:21.639Z
+88,Gran Rifa Resuelve,294,sold,Yei Herrera,+17542319760,Estados Unidos,13.00,0.00,2026-04-24T22:46:42.148Z
+88,Gran Rifa Resuelve,295,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.00,0.00,2026-04-25T18:08:07.495Z
+88,Gran Rifa Resuelve,296,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,297,sold,Glency Urdaneta colon mama de Daniela,+584247101145,Colon,13.00,0.00,2026-04-28T20:58:08.151Z
+88,Gran Rifa Resuelve,298,sold,yuleidy alvernia,+584247031321,La fria,13.00,0.00,2026-04-29T22:50:28.916Z
+88,Gran Rifa Resuelve,299,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,300,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T22:24:29.919Z
+88,Gran Rifa Resuelve,301,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,12.00,0.00,2026-04-24T19:32:42.690Z
+88,Gran Rifa Resuelve,302,sold,Eduin velazco la fria,+584247134497,La fria,13.00,0.00,2026-04-25T18:26:53.268Z
+88,Gran Rifa Resuelve,303,sold,Yeritzon Carrero tatto,+584121278332,La fria,13.00,0.00,2026-04-25T18:23:50.993Z
+88,Gran Rifa Resuelve,304,sold,Ivan rivera mendez arauca,+573226423552,Arauca,12.00,0.00,2026-04-29T22:48:42.529Z
+88,Gran Rifa Resuelve,305,sold,Elba Mendoza,+584121749496,La Fría,12.00,0.00,2026-04-24T14:36:20.469Z
+88,Gran Rifa Resuelve,306,sold,yesica Vargas usa,+14257665142,Estados unidoa,12.00,0.00,2026-04-24T21:11:21.639Z
+88,Gran Rifa Resuelve,307,sold,Enrrique Cárdenas,+16822603711,Estados unidos,13.00,0.00,2026-04-24T21:59:09.886Z
+88,Gran Rifa Resuelve,308,sold,Jean Carlos palma      ( La Grita ),+584247004792,La Grita,13.00,0.00,2026-04-23T22:31:53.166Z
+88,Gran Rifa Resuelve,309,sold,Cristian Aguilar,+584247544438,Seboruco,13.00,0.00,2026-04-25T23:10:57.235Z
+88,Gran Rifa Resuelve,310,sold,Albany ramirez usa,+12105481181,Estados unidos,12.00,0.00,2026-04-29T16:38:43.967Z
+88,Gran Rifa Resuelve,311,sold,Anthony Fernández,+14437354215,Estados unidos,12.00,0.00,2026-04-25T19:32:48.274Z
+88,Gran Rifa Resuelve,312,sold,Marisol Arellano mama,+584243367487,La grita,13.00,0.00,2026-04-24T21:40:23.201Z
+88,Gran Rifa Resuelve,313,sold,omarcito caracas,+584143010693,Caracas,13.00,0.00,2026-04-29T19:25:54.989Z
+88,Gran Rifa Resuelve,314,sold,Marcos Osorio,+573173134587,La Fría,12.00,0.00,2026-04-29T19:22:54.840Z
+88,Gran Rifa Resuelve,315,sold,Said (Barbero),+584247383532,La fría,13.00,0.00,2026-04-24T18:58:48.837Z
+88,Gran Rifa Resuelve,316,sold,Katty Panchano     La Grita,+584247221696,La Grita,13.00,0.00,2026-04-24T00:14:00.612Z
+88,Gran Rifa Resuelve,317,sold,Ivan rivera mendez arauca,+573226423552,Arauca,12.00,0.00,2026-04-29T22:48:42.529Z
+88,Gran Rifa Resuelve,318,sold,Eliecer Millan,+584141796609,Estados Unidos,13.00,0.00,2026-04-24T22:55:53.309Z
+88,Gran Rifa Resuelve,319,sold,Alex Contreras,+16153729785,Estados unidos,13.00,0.00,2026-04-25T21:45:46.584Z
+88,Gran Rifa Resuelve,320,sold,Gabriela Muñoz,+13802394964,La Fria Usa,12.00,0.00,2026-04-24T20:09:42.945Z
+88,Gran Rifa Resuelve,321,sold,Franklin vergel usa,+12162069770,Estados unidos,12.00,0.00,2026-04-29T22:56:42.996Z
+88,Gran Rifa Resuelve,322,sold,Ruben Mercado,+584247136016,La Fría,12.00,0.00,2026-04-26T21:24:26.451Z
+88,Gran Rifa Resuelve,323,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,12.00,0.00,2026-04-24T19:08:18.081Z
+88,Gran Rifa Resuelve,324,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,12.00,0.00,2026-04-24T19:08:18.081Z
+88,Gran Rifa Resuelve,325,sold,Andres Camargo.   ( La Grita ),+584247038899,La Grita,13.00,0.00,2026-04-23T23:00:28.632Z
+88,Gran Rifa Resuelve,326,sold,Ivan rivera mendez arauca,+573226423552,Arauca,12.00,0.00,2026-04-29T22:48:42.529Z
+88,Gran Rifa Resuelve,327,sold,Germary aranguren Usa,+13124509506,Estados unidpa,12.00,0.00,2026-04-28T23:21:49.583Z
+88,Gran Rifa Resuelve,328,sold,Yeiker Colmenarez usa,+13313224845,La fria,12.00,0.00,2026-04-29T22:59:01.587Z
+88,Gran Rifa Resuelve,329,sold,Jeferson Bonilla,+17202702745,Estados unidos,13.00,0.00,2026-04-24T14:26:19.351Z
+88,Gran Rifa Resuelve,330,sold,Cristian Arciniegas,+584128190917,La Fria,12.00,0.00,2026-04-29T23:10:11.688Z
+88,Gran Rifa Resuelve,331,sold,Henrry Serrano,+18433050408,La Fria - Usa,12.00,0.00,2026-04-25T18:48:32.467Z
+88,Gran Rifa Resuelve,332,sold,Yacson mendoza,+584247393236,La fria,13.00,0.00,2026-04-25T18:36:12.436Z
+88,Gran Rifa Resuelve,333,sold,Miguel Tapias,+13316279808,Estados Unidos,12.00,0.00,2026-04-25T21:59:35.530Z
+88,Gran Rifa Resuelve,334,sold,Georgina Pernía Hija,+573223283376,La fría,13.00,0.00,2026-04-25T18:46:16.170Z
+88,Gran Rifa Resuelve,335,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T17:24:10.654Z
+88,Gran Rifa Resuelve,336,sold,Emir Parra     ( La Grita ),+584147162627,La Grita,13.00,0.00,2026-04-24T17:36:04.808Z
+88,Gran Rifa Resuelve,337,sold,Nelly Rey.          (La grita),+584247072555,La grita,12.00,0.00,2026-05-03T01:02:54.601Z
+88,Gran Rifa Resuelve,338,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,12.00,0.00,2026-05-09T12:46:15.298Z
+88,Gran Rifa Resuelve,339,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T17:24:10.654Z
+88,Gran Rifa Resuelve,340,sold,Gerardo Toledo,+56947525688,Chile,12.00,0.00,2026-04-24T16:34:19.252Z
+88,Gran Rifa Resuelve,341,sold,Leidy Garcia la fria,+584126483474,La fria,13.00,0.00,2026-04-25T18:21:44.964Z
+88,Gran Rifa Resuelve,342,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,343,sold,Alberto Rodríguez,+584247231949,La grita,13.00,0.00,2026-04-24T22:08:38.154Z
+88,Gran Rifa Resuelve,344,sold,Libardo Borjas chile,+56974451688,Chile,13.00,0.00,2026-04-24T23:18:08.976Z
+88,Gran Rifa Resuelve,345,sold,Keismer Contreras,+17372028084,Estados Unidos,12.00,0.00,2026-04-29T23:15:00.949Z
+88,Gran Rifa Resuelve,346,sold,Alberto Alvarado,+584149766905,La fria,13.00,0.00,2026-05-01T19:19:29.079Z
+88,Gran Rifa Resuelve,347,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,12.00,0.00,2026-04-29T19:29:11.447Z
+88,Gran Rifa Resuelve,348,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,12.00,0.00,2026-04-29T19:47:38.804Z
+88,Gran Rifa Resuelve,349,sold,Anderson Gutiérrez luna,+584147150254,Estados unidos,13.00,0.00,2026-04-24T22:41:01.986Z
+88,Gran Rifa Resuelve,350,sold,Yeraldin Parada,+573223946408,Colombia,12.00,0.00,2026-04-24T19:47:58.825Z
+88,Gran Rifa Resuelve,351,sold,Said Alvarado maracucho,+584143644877,La fria,12.00,0.00,2026-04-29T22:43:16.107Z
+88,Gran Rifa Resuelve,352,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,12.00,0.00,2026-04-25T01:46:47.566Z
+88,Gran Rifa Resuelve,353,sold,Yoni Garcia,+584147567062,La fria,13.00,0.00,2026-04-24T21:00:00.738Z
+88,Gran Rifa Resuelve,354,sold,Keismer Contreras,+17372028084,Estados Unidos,12.00,0.00,2026-04-29T23:15:00.949Z
+88,Gran Rifa Resuelve,355,sold,Alicia luna sociedad,+16307768771,Estados unidos,13.00,0.00,2026-04-24T16:58:05.859Z
+88,Gran Rifa Resuelve,356,sold,Heidy Vergel,+13309621518,Estados unidos,13.00,0.00,2026-04-24T19:40:14.362Z
+88,Gran Rifa Resuelve,357,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,358,sold,Jonnathan Florez,+18432981188,Estados unidos,12.00,0.00,2026-04-24T22:58:32.289Z
+88,Gran Rifa Resuelve,359,sold,terapias Garcia,+17745228026,Estados unidos,13.00,0.00,2026-04-24T21:36:51.285Z
+88,Gran Rifa Resuelve,360,sold,Teresa Urdaneta,+584247527335,Colon,13.00,0.00,2026-04-29T23:31:48.503Z
+88,Gran Rifa Resuelve,361,sold,Andrea ramirez el mercado la fria,+584147265354,La fria,13.00,0.00,2026-04-24T20:36:25.405Z
+88,Gran Rifa Resuelve,362,sold,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,12.00,0.00,2026-05-02T21:51:53.465Z
+88,Gran Rifa Resuelve,363,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.00,0.00,2026-04-25T18:08:07.495Z
+88,Gran Rifa Resuelve,364,sold,Reinaldo Marchan,+14143082362,Estados unidos,12.00,0.00,2026-04-24T21:24:53.138Z
+88,Gran Rifa Resuelve,365,sold,Lorena Luna,+584247656227,La fría,13.00,0.00,2026-04-24T22:34:54.469Z
+88,Gran Rifa Resuelve,366,sold,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,san Josecito,12.50,0.00,2026-04-24T23:01:36.157Z
+88,Gran Rifa Resuelve,367,sold,Dario Usa,+16784990901,Estados unidos,13.00,0.00,2026-04-29T23:59:21.324Z
+88,Gran Rifa Resuelve,368,sold,Olga Cabrera,+17432090645,Colón,13.00,0.00,2026-04-24T14:18:19.956Z
+88,Gran Rifa Resuelve,369,sold,laurita Pico,+584246992779,La fria,13.00,0.00,2026-05-09T17:07:25.214Z
+88,Gran Rifa Resuelve,370,sold,Johander ramirez La fria - chile,+56932679127,Chile,13.00,0.00,2026-04-24T22:53:44.823Z
+88,Gran Rifa Resuelve,371,sold,Yackelin Fuentes usa,+50761249348,Estados unidos,12.00,0.00,2026-04-24T19:55:26.385Z
+88,Gran Rifa Resuelve,372,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,12.00,0.00,2026-04-24T14:58:10.986Z
+88,Gran Rifa Resuelve,373,sold,Cheo Rincón,+584247099532,La fría,13.00,0.00,2026-04-25T18:11:03.746Z
+88,Gran Rifa Resuelve,374,sold,Yorvi Zambrano,+584247163958,La Fria,12.00,0.00,2026-04-29T23:47:55.270Z
+88,Gran Rifa Resuelve,375,sold,Gregory Princeso,+584147367045,La fría,13.00,0.00,2026-04-24T22:28:01.571Z
+88,Gran Rifa Resuelve,376,sold,Maite Calderon,+573145459211,La fria,13.00,0.00,2026-05-01T19:21:15.232Z
+88,Gran Rifa Resuelve,377,sold,Yeiker Colmenarez usa,+13313224845,La fria,12.00,0.00,2026-04-29T22:59:01.587Z
+88,Gran Rifa Resuelve,378,sold,Yaney duran,+584247064258,La fria,13.00,0.00,2026-04-24T19:50:50.120Z
+88,Gran Rifa Resuelve,379,sold,Alexander Uzcátegui,+17373349944,Estados unidos,13.00,0.00,2026-04-24T20:48:13.258Z
+88,Gran Rifa Resuelve,380,sold,Javier Pérez,+56921928867,La Fria chile,13.00,0.00,2026-04-25T21:52:09.698Z
+88,Gran Rifa Resuelve,381,sold,Guwer Ruedas,+17543497323,Estados Unidos,12.00,0.00,2026-04-29T19:14:37.733Z
+88,Gran Rifa Resuelve,382,sold,Jaymar Ramírez,+34643221261,España,13.00,0.00,2026-04-24T19:52:03.935Z
+88,Gran Rifa Resuelve,383,sold,Yeraldin Vivas usa,+15127122718,Estados unidos,12.00,0.00,2026-04-24T20:29:30.193Z
+88,Gran Rifa Resuelve,384,sold,Yoel 5 milazo,+584226438032,La fria,13.00,0.00,2026-05-01T19:22:36.644Z
+88,Gran Rifa Resuelve,385,sold,Miguel Roa.    Portuguesa,+584164731856,Portuguesa,13.00,0.00,2026-04-28T02:55:39.945Z
+88,Gran Rifa Resuelve,386,sold,Cristobal Zambrano,+13609992787,Estados Unidos,12.00,0.00,2026-04-29T21:43:29.752Z
+88,Gran Rifa Resuelve,387,sold,Ever Colón,+573202150251,Colón,13.00,0.00,2026-04-29T00:13:01.734Z
+88,Gran Rifa Resuelve,388,sold,Gerardo Toledo,+56947525688,Chile,12.00,0.00,2026-04-24T16:34:19.252Z
+88,Gran Rifa Resuelve,389,sold,Katty Acevedo,+584126151311,La fria,13.00,0.00,2026-04-25T21:40:11.826Z
+88,Gran Rifa Resuelve,390,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,13.00,0.00,2026-05-01T19:26:08.302Z
+88,Gran Rifa Resuelve,391,sold,Fabiola Ramirez,+584121711584,La fría,13.00,0.00,2026-04-25T18:12:40.855Z
+88,Gran Rifa Resuelve,392,sold,Danny Chacón,+584147397628,La fría,13.00,0.00,2026-04-25T19:00:21.146Z
+88,Gran Rifa Resuelve,393,sold,Andrea Pantoja,+584247374364,La fria,13.00,0.00,2026-04-25T18:43:07.264Z
+88,Gran Rifa Resuelve,394,sold,Douglas Roa,+14147913945,La Fria - Usa,12.00,0.00,2026-04-25T20:49:48.253Z
+88,Gran Rifa Resuelve,395,sold,Marbely Pernia esposa de pablo,+584145323469,La fria,12.00,0.00,2026-04-24T18:47:27.628Z
+88,Gran Rifa Resuelve,396,sold,Enrique Gasolina,+584247047355,La fria,13.00,0.00,2026-04-28T11:28:49.873Z
+88,Gran Rifa Resuelve,397,sold,Yen Buitriago,+19803610415,Estados unidos,12.00,0.00,2026-04-29T20:45:30.040Z
+88,Gran Rifa Resuelve,398,sold,Soriangely ojeda,+56987083985,Chile,12.00,0.00,2026-04-25T20:58:11.221Z
+88,Gran Rifa Resuelve,399,sold,Daniel ochoa Cuñado miguel,+584247687262,La fria,13.00,0.00,2026-04-30T02:37:48.630Z
+88,Gran Rifa Resuelve,400,sold,Jose Sepúlveda,+584147411241,La Grita,13.00,0.00,2026-04-24T22:32:47.106Z
+88,Gran Rifa Resuelve,401,sold,Franyer Pernia,+584247549479,La fría,13.00,0.00,2026-05-01T19:27:50.422Z
+88,Gran Rifa Resuelve,402,sold,Yony Perez,+584147385318,La Fría Ronet,13.00,0.00,2026-04-24T21:34:01.041Z
+88,Gran Rifa Resuelve,403,sold,Alcadio Leon la fria,+584247062164,La fria,13.00,0.00,2026-04-29T23:06:25.792Z
+88,Gran Rifa Resuelve,404,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,12.00,0.00,2026-05-09T12:46:15.298Z
+88,Gran Rifa Resuelve,405,sold,Juneifer Mendoza,+584140112658,La fría,13.00,0.00,2026-05-01T19:29:09.795Z
+88,Gran Rifa Resuelve,406,sold,Javier Contreras,+13126509222,La Fria,13.00,0.00,2026-04-25T22:11:09.515Z
+88,Gran Rifa Resuelve,407,sold,Yackelin Romero,+573138163228,Colombia,13.00,0.00,2026-05-01T19:30:22.930Z
+88,Gran Rifa Resuelve,408,sold,Said Alvarado maracucho,+584143644877,La fria,12.00,0.00,2026-04-29T22:43:16.107Z
+88,Gran Rifa Resuelve,409,sold,Orlena Orellana   Caño Él tigre,+584147038483,Caño el tigre,13.00,0.00,2026-04-24T15:26:10.404Z
+88,Gran Rifa Resuelve,410,sold,Yunior Carrascal,+584149751355,La Fría,13.00,0.00,2026-05-01T19:31:59.283Z
+88,Gran Rifa Resuelve,411,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T17:24:10.654Z
+88,Gran Rifa Resuelve,412,sold,Elba Mendoza,+584121749496,La Fría,12.00,0.00,2026-04-24T14:36:20.469Z
+88,Gran Rifa Resuelve,413,sold,Ronet Ramirez,+584147361575,La Fria,13.00,0.00,2026-04-24T22:04:16.428Z
+88,Gran Rifa Resuelve,414,sold,Frank torrado La fria,+584147467546,La fria,13.00,0.00,2026-05-01T19:33:18.626Z
+88,Gran Rifa Resuelve,415,sold,Jose Durango,+584125004219,La fria,13.00,0.00,2026-04-24T21:17:39.684Z
+88,Gran Rifa Resuelve,416,sold,Alvaro Javier la fria,+573112553175,La fria,13.00,0.00,2026-05-01T19:34:54.809Z
+88,Gran Rifa Resuelve,417,sold,Daiver velazques,+584241951963,Estados unidos,12.00,0.00,2026-04-25T21:51:13.858Z
+88,Gran Rifa Resuelve,418,sold,Yenifer Perez,+16894652656,La Fria - Usa,13.00,0.00,2026-04-29T00:15:06.661Z
+88,Gran Rifa Resuelve,419,sold,Chadi El Sakaan,+584143760000,La Fria,13.00,0.00,2026-04-24T22:15:25.660Z
+88,Gran Rifa Resuelve,420,sold,Norelis de delgado Colon,+584247168207,Colon,13.00,0.00,2026-04-24T20:20:17.541Z
+88,Gran Rifa Resuelve,421,sold,Brian Buen día,+15083610533,Estados Unidos,12.00,0.00,2026-04-24T21:35:22.273Z
+88,Gran Rifa Resuelve,422,sold,Jhoel Zambrano,+584147095429,La Fría,12.00,0.00,2026-04-24T17:05:56.449Z
+88,Gran Rifa Resuelve,423,sold,Jesus Delgado,+584247071197,La fría,13.00,0.00,2026-05-01T19:35:13.301Z
+88,Gran Rifa Resuelve,424,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,425,sold,carolina contreras usa,+16297298655,Estados unidos,12.00,0.00,2026-04-24T18:39:52.740Z
+88,Gran Rifa Resuelve,426,sold,Marian Mendoza colon,+584263740249,Colon,13.00,0.00,2026-05-01T19:37:31.676Z
+88,Gran Rifa Resuelve,427,sold,Antonino Montero la fria,+584147387335,La fría,13.00,0.00,2026-04-24T22:17:52.480Z
+88,Gran Rifa Resuelve,428,sold,Yei Herrera,+17542319760,Estados Unidos,13.00,0.00,2026-04-24T22:43:15.513Z
+88,Gran Rifa Resuelve,429,sold,Luis medina     ( Valencia ),+584247359519,Valencia,13.00,0.00,2026-04-24T03:29:34.686Z
+88,Gran Rifa Resuelve,430,sold,Yefry Contreras,+584247460286,La fria,13.00,0.00,2026-04-25T23:36:51.291Z
+88,Gran Rifa Resuelve,431,sold,Jonnathan Florez,+18432981188,Estados unidos,12.00,0.00,2026-04-24T22:58:32.289Z
+88,Gran Rifa Resuelve,432,sold,Domingo sandoval usa,+12163135810,Estados unidos,12.00,0.00,2026-04-29T21:03:33.746Z
+88,Gran Rifa Resuelve,433,sold,Edwin Gomez.     Zulia,+584126902694,Zulia,12.00,0.00,2026-04-23T22:45:16.059Z
+88,Gran Rifa Resuelve,434,sold,Wendy Amaya,+573243191324,La Fría,12.00,0.00,2026-04-24T19:37:16.000Z
+88,Gran Rifa Resuelve,435,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,12.00,0.00,2026-04-24T14:58:10.986Z
+88,Gran Rifa Resuelve,436,sold,yuleidy alvernia,+584247031321,La fria,13.00,0.00,2026-04-29T22:50:28.916Z
+88,Gran Rifa Resuelve,437,sold,Johanna Rojas,+573244999691,La fria,13.00,0.00,2026-05-01T19:42:02.958Z
+88,Gran Rifa Resuelve,438,sold,Edgar benavides usa,+18437830868,Estados unidos,12.00,0.00,2026-04-24T19:21:14.834Z
+88,Gran Rifa Resuelve,439,sold,Edgar Rodríguez,+12672377251,Estados Unidos,13.00,0.00,2026-04-24T14:53:30.493Z
+88,Gran Rifa Resuelve,440,sold,Henrry Serrano,+18433050408,La Fria - Usa,12.00,0.00,2026-04-25T18:48:32.467Z
+88,Gran Rifa Resuelve,441,sold,Eduard sanchez usa,+19843561048,Estados unidos,12.00,0.00,2026-04-25T21:54:21.060Z
+88,Gran Rifa Resuelve,442,sold,Yonny Gutiérrez,+584147286657,La Fria,13.00,0.00,2026-04-25T18:03:29.956Z
+88,Gran Rifa Resuelve,443,sold,Nakary Rojas        ( El Vigia ),+584161398883,El vigia,13.00,0.00,2026-04-25T16:06:31.822Z
+88,Gran Rifa Resuelve,444,sold,Junior Moncada,+584147678826,La Fria,12.00,0.00,2026-04-25T18:58:47.226Z
+88,Gran Rifa Resuelve,445,sold,Cristian Arciniegas,+584128190917,La Fria,12.00,0.00,2026-04-29T23:10:11.688Z
+88,Gran Rifa Resuelve,446,sold,Edson romero usa,+16892715875,Estados unidos,12.00,0.00,2026-04-24T20:39:05.525Z
+88,Gran Rifa Resuelve,447,sold,Abel Osorio,+584247443856,La fría,13.00,0.00,2026-05-01T19:44:03.649Z
+88,Gran Rifa Resuelve,448,sold,Victor molina,+56933670260,Chile,13.00,0.00,2026-04-25T18:20:53.653Z
+88,Gran Rifa Resuelve,449,sold,Henrry Serrano,+18433050408,La Fria - Usa,12.00,0.00,2026-04-25T18:48:32.467Z
+88,Gran Rifa Resuelve,450,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,12.00,0.00,2026-05-01T19:14:47.486Z
+88,Gran Rifa Resuelve,451,sold,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,Quito Ecuador,12.50,0.00,2026-04-25T15:17:06.611Z
+88,Gran Rifa Resuelve,452,sold,Marbely Pernia esposa de pablo,+584145323469,La fria,12.00,0.00,2026-04-24T18:47:27.628Z
+88,Gran Rifa Resuelve,453,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,454,sold,Yovani Toledo,+584147191457,La fría,13.00,0.00,2026-05-01T19:45:32.605Z
+88,Gran Rifa Resuelve,455,sold,David Marquez,+584247343788,La fria,13.00,0.00,2026-04-24T16:31:25.870Z
+88,Gran Rifa Resuelve,456,sold,Corina prato,+584247710381,Ls fria,13.00,0.00,2026-04-27T00:05:25.224Z
+88,Gran Rifa Resuelve,457,sold,Tomas glaterol delicias,+584141758019,La fria,12.00,0.00,2026-05-01T19:49:41.355Z
+88,Gran Rifa Resuelve,458,sold,Yeraldin Parada,+573223946408,Colombia,12.00,0.00,2026-04-24T19:47:58.825Z
+88,Gran Rifa Resuelve,459,sold,Diana Valbuena,+573228230571,Colombia,13.00,0.00,2026-04-24T21:45:43.680Z
+88,Gran Rifa Resuelve,460,sold,Deysi Moncada     ( La Grita),+584247829118,La Grita,13.00,0.00,2026-05-09T21:20:11.571Z
+88,Gran Rifa Resuelve,461,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,462,sold,David Ramirez         La Grita,+584147002584,La Grita,13.00,0.00,2026-05-06T16:18:53.543Z
+88,Gran Rifa Resuelve,463,sold,Marcos Rondon,+584147542926,La fría,13.00,0.00,2026-05-01T19:52:40.442Z
+88,Gran Rifa Resuelve,464,sold,Ramon Zambrano       Barinas,+584123497717,Barinas,13.00,0.00,2026-04-24T15:43:35.050Z
+88,Gran Rifa Resuelve,465,sold,Yelitza Rosales    ( Prima ),+584147033104,La Grita,13.00,0.00,2026-04-25T04:17:01.830Z
+88,Gran Rifa Resuelve,466,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-05-10T00:39:01.969Z
+88,Gran Rifa Resuelve,467,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,468,sold,Yeraldin Vivas usa,+15127122718,Estados unidos,12.00,0.00,2026-04-24T20:29:30.193Z
+88,Gran Rifa Resuelve,469,sold,Dennys Cardenas guaco,+584242423215,La fria,13.00,0.00,2026-05-01T19:57:14.924Z
+88,Gran Rifa Resuelve,470,sold,Henrry omaña la grita,+584247739657,La grita,13.00,0.00,2026-04-25T21:57:31.926Z
+88,Gran Rifa Resuelve,471,sold,Andres Jaimes,+56972040687,Chile,12.00,0.00,2026-04-24T19:27:04.610Z
+88,Gran Rifa Resuelve,472,sold,Ronal niño la fria,+573112216790,La fria,13.00,0.00,2026-04-24T22:19:51.499Z
+88,Gran Rifa Resuelve,473,sold,Gonzalo colon,+584247702278,Colon,13.00,0.00,2026-04-25T22:15:50.712Z
+88,Gran Rifa Resuelve,474,sold,Junior Moncada,+584147678826,La Fria,12.00,0.00,2026-04-25T18:58:47.226Z
+88,Gran Rifa Resuelve,475,sold,Alex padron la fria,+584141768941,La fria,13.00,0.00,2026-05-01T20:00:11.510Z
+88,Gran Rifa Resuelve,476,sold,Jose fleming usa,+16823647880,Estados unidos,12.00,0.00,2026-04-24T22:07:47.909Z
+88,Gran Rifa Resuelve,477,sold,Rodrigo parra papa de Carlos,+584147505598,La fria,13.00,0.00,2026-04-25T22:26:00.254Z
+88,Gran Rifa Resuelve,478,sold,Yorvi Zambrano,+584247163958,La Fria,12.00,0.00,2026-04-29T23:47:55.270Z
+88,Gran Rifa Resuelve,479,sold,Jhon Noriega.     San Cristóbal- Chile,+56937651021,San Cristobal,13.00,0.00,2026-04-23T23:16:13.422Z
+88,Gran Rifa Resuelve,480,sold,Anyery Vega,+584226424513,La fria,13.00,0.00,2026-04-25T22:12:57.266Z
+88,Gran Rifa Resuelve,481,sold,Iris Moncada,+584247250796,La Fría,13.00,0.00,2026-04-26T21:34:09.644Z
+88,Gran Rifa Resuelve,482,sold,Nestor Duque    ( La Grita ),+584149780291,La Grita Edo táchira,13.00,0.00,2026-04-24T22:33:19.196Z
+88,Gran Rifa Resuelve,483,sold,Geovanny Ramírez,+18177365566,Estados unidos,13.00,0.00,2026-04-24T22:37:52.782Z
+88,Gran Rifa Resuelve,484,sold,Juana iris argentina,+5491165805763,Argentina,13.00,0.00,2026-05-01T20:02:51.938Z
+88,Gran Rifa Resuelve,485,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,12.00,0.00,2026-04-24T14:58:10.986Z
+88,Gran Rifa Resuelve,486,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-05-10T00:39:01.969Z
+88,Gran Rifa Resuelve,487,sold,Freddy Medina,+13126328062,Estados unidos,12.00,0.00,2026-04-29T00:27:55.571Z
+88,Gran Rifa Resuelve,488,sold,Alexander Sulbaran,+584141766840,La fría,13.00,0.00,2026-04-24T21:42:52.834Z
+88,Gran Rifa Resuelve,489,sold,Felipe alineación,+584247500708,La fria,13.00,0.00,2026-05-01T20:04:00.749Z
+88,Gran Rifa Resuelve,490,sold,Edwin Gomez.     Zulia,+584126902694,Zulia,12.00,0.00,2026-04-23T22:45:16.059Z
+88,Gran Rifa Resuelve,491,sold,alfonso lizcano La fria,+584247080304,La fria,13.00,0.00,2026-04-27T00:06:54.174Z
+88,Gran Rifa Resuelve,492,sold,Maryelis Flores,+13184386409,Estados Unidos,13.00,0.00,2026-04-25T19:30:09.488Z
+88,Gran Rifa Resuelve,493,sold,Custodio orope,+573150410579,La fria,13.00,0.00,2026-04-24T19:05:53.261Z
+88,Gran Rifa Resuelve,494,sold,evimar Molina,+584247183126,La fria,13.00,0.00,2026-04-28T23:02:36.508Z
+88,Gran Rifa Resuelve,495,sold,Yen Buitriago,+19803610415,Estados unidos,12.00,0.00,2026-04-29T20:45:30.040Z
+88,Gran Rifa Resuelve,496,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,497,sold,Andrea ramirez el mercado la fria,+584147265354,La fria,13.00,0.00,2026-04-24T20:36:25.405Z
+88,Gran Rifa Resuelve,498,sold,Aura Milagros,+584247522859,La Fría,12.00,0.00,2026-04-25T21:42:29.774Z
+88,Gran Rifa Resuelve,499,sold,Felix Gomez,+584242289939,La Fria,13.00,0.00,2026-05-01T20:06:14.987Z
+88,Gran Rifa Resuelve,500,sold,Nelson molina chile,+56941445035,Chile,13.00,0.00,2026-05-01T20:08:21.355Z
+88,Gran Rifa Resuelve,501,sold,Nancy rivera sociedad,+584247180680,La fria,13.00,0.00,2026-05-01T20:18:55.233Z
+88,Gran Rifa Resuelve,502,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T22:24:29.919Z
+88,Gran Rifa Resuelve,503,sold,Manuel abasto DyU,+584247706745,La fria,12.00,0.00,2026-05-01T20:38:27.122Z
+88,Gran Rifa Resuelve,504,sold,Armando galvis,+584264222113,La fria,13.00,0.00,2026-04-24T16:54:35.729Z
+88,Gran Rifa Resuelve,505,sold,Andrea Martinez,+17208095947,La Fría,12.00,0.00,2026-04-24T21:19:51.251Z
+88,Gran Rifa Resuelve,506,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,507,sold,Patricia Fernández,+584147471530,España,13.00,0.00,2026-04-24T14:39:32.474Z
+88,Gran Rifa Resuelve,508,sold,Cesar Morales,+584147420854,La Fría,12.00,0.00,2026-04-24T16:41:08.427Z
+88,Gran Rifa Resuelve,509,sold,Jorgue luis La tendida rifero,+584247423263,La tendida,13.00,0.00,2026-04-29T22:33:54.287Z
+88,Gran Rifa Resuelve,510,sold,Kenia Delegado,+584247336066,Colón,13.00,0.00,2026-04-24T20:49:58.569Z
+88,Gran Rifa Resuelve,511,sold,Nelson Roa,+17869147200,Estados Unidos,12.00,0.00,2026-04-24T14:29:47.741Z
+88,Gran Rifa Resuelve,512,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,513,sold,Said (Barbero),+584247383532,La fría,13.00,0.00,2026-04-24T18:58:48.837Z
+88,Gran Rifa Resuelve,514,sold,Gladys Duque,+584141774636,Los Cedros,13.00,0.00,2026-04-24T16:32:55.069Z
+88,Gran Rifa Resuelve,515,sold,Osman Gil,+584149796001,La Fría,12.00,0.00,2026-05-01T20:34:59.186Z
+88,Gran Rifa Resuelve,516,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,517,sold,Eduard sanchez usa,+19843561048,Estados unidos,12.00,0.00,2026-04-25T21:54:21.060Z
+88,Gran Rifa Resuelve,518,sold,Sander Velandria,+17083486017,Estados Unidos,12.00,0.00,2026-04-29T14:57:01.980Z
+88,Gran Rifa Resuelve,519,sold,Anderson Chiquito usa,+16154388600,Estados unidos,12.00,0.00,2026-04-24T21:27:17.586Z
+88,Gran Rifa Resuelve,520,sold,Yohana Ayala,+584147576344,La Fría,13.00,0.00,2026-04-24T21:46:31.245Z
+88,Gran Rifa Resuelve,521,sold,Patricia Fernández,+584147471530,España,13.00,0.00,2026-04-24T14:39:32.474Z
+88,Gran Rifa Resuelve,522,sold,Crismar Alviarez,+584147362568,La fria,13.00,0.00,2026-04-25T01:21:32.456Z
+88,Gran Rifa Resuelve,523,sold,jose glaterol usa,+16154579492,Estados unidos,12.00,0.00,2026-05-01T20:41:26.340Z
+88,Gran Rifa Resuelve,524,sold,Yonellys rodriguez Estados unidos,+18035545936,Estados unidos,12.00,0.00,2026-04-29T22:37:16.254Z
+88,Gran Rifa Resuelve,525,sold,Richard Moncada,+584247863327,"La fría, el yukero",13.00,0.00,2026-04-24T16:29:52.696Z
+88,Gran Rifa Resuelve,526,sold,Deisy Jiménez,+584247574093,La fría,13.00,0.00,2026-04-24T22:15:41.415Z
+88,Gran Rifa Resuelve,527,sold,henrry carriso,+584142134025,Colon,13.00,0.00,2026-05-01T20:42:45.940Z
+88,Gran Rifa Resuelve,528,sold,Angel Rosales,+584242197659,La Fría,12.00,0.00,2026-04-24T14:13:08.419Z
+88,Gran Rifa Resuelve,529,sold,Andres Jaimes,+56972040687,Chile,12.00,0.00,2026-04-24T19:27:04.610Z
+88,Gran Rifa Resuelve,530,sold,Richard Duarte,+584147339746,La fría,12.00,0.00,2026-04-24T23:11:09.311Z
+88,Gran Rifa Resuelve,531,sold,gerson contreras alineación,+584247432468,La fria,13.00,0.00,2026-05-01T20:43:53.757Z
+88,Gran Rifa Resuelve,532,sold,Richard Duarte,+584147339746,La fría,12.00,0.00,2026-04-24T23:11:09.311Z
+88,Gran Rifa Resuelve,533,sold,Yolimar Sanchez hija yadira,+584160777495,La fria,13.00,0.00,2026-04-24T17:02:24.350Z
+88,Gran Rifa Resuelve,534,sold,jhon de pablo Usa,+12109655075,Estados unidos,11.00,0.00,2026-04-29T00:35:21.437Z
+88,Gran Rifa Resuelve,535,sold,Viviana Contreras,+584247488706,La Fría,13.00,0.00,2026-04-25T18:01:43.245Z
+88,Gran Rifa Resuelve,536,sold,Gerson Moros,+582778480816,La Fría,13.00,0.00,2026-04-25T19:40:03.104Z
+88,Gran Rifa Resuelve,537,sold,Miguel Tapias,+13316279808,Estados Unidos,12.00,0.00,2026-04-25T21:59:35.530Z
+88,Gran Rifa Resuelve,538,sold,Enderson Rojas marantoquito,+584140815791,La fria,13.00,0.00,2026-04-25T21:49:20.251Z
+88,Gran Rifa Resuelve,539,sold,Vanessa Aranguren,+584247514825,La fria,13.00,0.00,2026-04-24T20:52:04.889Z
+88,Gran Rifa Resuelve,540,sold,Yenso Acosta,+51994898671,Perú,13.00,0.00,2026-05-01T20:46:20.856Z
+88,Gran Rifa Resuelve,541,sold,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,12.00,0.00,2026-05-02T21:51:53.465Z
+88,Gran Rifa Resuelve,542,sold,Anderson Ibarra ( San Cristóbal- Usa ),+12063910133,San Cristóbal,12.00,0.00,2026-05-02T21:51:53.465Z
+88,Gran Rifa Resuelve,543,sold,Yonny Ortiz     ( Quito - Ecuador ),+593995566123,Quito Ecuador,12.50,0.00,2026-04-25T15:17:06.611Z
+88,Gran Rifa Resuelve,544,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,12.00,0.00,2026-04-29T19:20:25.242Z
+88,Gran Rifa Resuelve,545,sold,Luis ramirez termoeléctrica,+584147229058,La fria,13.00,0.00,2026-04-25T18:22:56.336Z
+88,Gran Rifa Resuelve,546,sold,Cecilia Carrillo,+2977401004,Aruba,13.00,0.00,2026-04-24T22:29:55.010Z
+88,Gran Rifa Resuelve,547,sold,Jose sanchez La fria,+584149742615,La fria,12.00,0.00,2026-04-29T19:11:05.009Z
+88,Gran Rifa Resuelve,548,sold,Idelmary Martinez,+584121703512,La Fría,13.00,0.00,2026-04-24T14:28:07.303Z
+88,Gran Rifa Resuelve,549,sold,Maribel Ramirez,+584247090413,La Grita,13.00,0.00,2026-04-24T02:18:58.081Z
+88,Gran Rifa Resuelve,550,sold,Andrea Martinez,+17208095947,La Fría,12.00,0.00,2026-04-24T21:19:51.251Z
+88,Gran Rifa Resuelve,551,sold,Yeiker Pernia      Caracas - Usa,+17869398393,Caracas - Usa,12.00,0.00,2026-04-24T00:17:52.722Z
+88,Gran Rifa Resuelve,552,sold,Kelianny Novia de gollo,+584168741463,La fria,13.00,0.00,2026-05-01T20:47:45.305Z
+88,Gran Rifa Resuelve,553,sold,Carlos moto taxi,+584147213985,La fria,13.00,0.00,2026-04-25T18:04:31.308Z
+88,Gran Rifa Resuelve,554,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,555,sold,Sergio Ramos,+584128629758,San Cristóbal,12.00,0.00,2026-04-24T14:43:31.061Z
+88,Gran Rifa Resuelve,556,sold,Nelly Rey.          (La grita),+584247072555,La grita,12.00,0.00,2026-05-03T01:02:54.601Z
+88,Gran Rifa Resuelve,557,sold,wilson papiolo,+584247091798,La fria,13.00,0.00,2026-04-24T16:50:49.621Z
+88,Gran Rifa Resuelve,558,sold,Andrea Tequita,+14077442357,Estados unidos,13.00,0.00,2026-04-25T15:07:56.046Z
+88,Gran Rifa Resuelve,559,sold,Edixon Cuevas,+584247115837,La fría,13.00,0.00,2026-04-25T22:52:31.201Z
+88,Gran Rifa Resuelve,560,sold,Vicencio Sandoval,+584147041212,Colón,13.00,0.00,2026-04-24T14:46:35.409Z
+88,Gran Rifa Resuelve,561,sold,Edgar benavides usa,+18437830868,Estados unidos,12.00,0.00,2026-04-24T19:21:14.834Z
+88,Gran Rifa Resuelve,562,sold,Yonaiker Suarez,+19127595784,Estados unidos,12.00,0.00,2026-04-24T21:29:07.971Z
+88,Gran Rifa Resuelve,563,sold,Willian Valencia,+584147387580,La Fría,13.00,0.00,2026-04-29T16:45:51.385Z
+88,Gran Rifa Resuelve,564,sold,Danni Carvajal,+584147032665,La Fría,13.00,0.00,2026-04-24T14:31:23.577Z
+88,Gran Rifa Resuelve,565,sold,Franklin vergel usa,+12162069770,Estados unidos,12.00,0.00,2026-04-29T22:56:42.996Z
+88,Gran Rifa Resuelve,566,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-05-10T00:39:01.969Z
+88,Gran Rifa Resuelve,567,sold,Ronal niño la fria,+573112216790,La fria,13.00,0.00,2026-04-24T22:19:51.499Z
+88,Gran Rifa Resuelve,568,sold,Manuel Rangel chile,+584247273914,La fria,13.00,0.00,2026-04-24T18:50:10.518Z
+88,Gran Rifa Resuelve,569,sold,José Buitrago,+14254036252,Estados unidos,12.00,0.00,2026-04-30T20:22:33.607Z
+88,Gran Rifa Resuelve,570,sold,Karina Rojas usa,+15128451679,Estados unidos,12.00,0.00,2026-04-29T21:38:32.445Z
+88,Gran Rifa Resuelve,571,sold,Cesar Morales,+584147420854,La Fría,12.00,0.00,2026-04-24T16:41:08.427Z
+88,Gran Rifa Resuelve,572,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.00,0.00,2026-04-25T18:08:07.495Z
+88,Gran Rifa Resuelve,573,sold,Nancy rivera sociedad,+584247180680,La fria,13.00,0.00,2026-05-01T20:18:28.224Z
+88,Gran Rifa Resuelve,574,sold,jonatan castro caracas,+584242629287,Caracas,12.00,0.00,2026-05-01T23:42:10.985Z
+88,Gran Rifa Resuelve,575,sold,Domingo sandoval usa,+12163135810,Estados unidos,12.00,0.00,2026-04-29T21:03:33.746Z
+88,Gran Rifa Resuelve,576,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,12.00,0.00,2026-05-01T19:14:47.486Z
+88,Gran Rifa Resuelve,577,sold,Gabriela Muñoz,+13802394964,La Fria Usa,12.00,0.00,2026-04-24T20:09:42.945Z
+88,Gran Rifa Resuelve,578,sold,Zunaida Montilla el guayabo,+584120768182,El guayabo,13.00,0.00,2026-04-25T23:12:49.680Z
+88,Gran Rifa Resuelve,579,sold,Tomas glaterol delicias,+584141758019,La fria,12.00,0.00,2026-05-01T19:49:41.355Z
+88,Gran Rifa Resuelve,580,sold,Marleny arellano Tia,+584247120271,La fria,13.00,0.00,2026-04-27T00:12:26.656Z
+88,Gran Rifa Resuelve,581,sold,Nell Gomez     San Cristóbal,+584249232292,San Cristóbal,13.00,0.00,2026-04-23T22:56:06.592Z
+88,Gran Rifa Resuelve,582,sold,Anthony Fernández,+14437354215,Estados unidos,12.00,0.00,2026-04-25T19:32:48.274Z
+88,Gran Rifa Resuelve,583,sold,Eiver Zambrano,+14705365326,Estados unidos,13.00,0.00,2026-05-01T20:49:09.490Z
+88,Gran Rifa Resuelve,584,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,585,sold,Andrea Tequita,+14077442357,Estados unidos,13.00,0.00,2026-04-25T15:07:56.046Z
+88,Gran Rifa Resuelve,586,sold,Jean Carlos Ramirez,+584247321597,La Fria,12.00,0.00,2026-04-24T18:38:36.501Z
+88,Gran Rifa Resuelve,587,sold,Pedro Gutiérrez,+584247417453,La fría,13.00,0.00,2026-05-09T22:04:12.032Z
+88,Gran Rifa Resuelve,588,sold,Wendy Amaya,+573243191324,La Fría,12.00,0.00,2026-04-24T20:56:31.102Z
+88,Gran Rifa Resuelve,589,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,12.00,0.00,2026-04-24T14:58:10.986Z
+88,Gran Rifa Resuelve,590,sold,Yeison naranjo usa,+18542457903,Estados unidos,12.00,0.00,2026-04-24T23:02:59.204Z
+88,Gran Rifa Resuelve,591,sold,Karina Rojas usa,+15128451679,Estados unidos,12.00,0.00,2026-04-29T21:38:32.445Z
+88,Gran Rifa Resuelve,592,sold,Edixon Cuevas,+584247115837,La fría,13.00,0.00,2026-04-25T22:52:31.201Z
+88,Gran Rifa Resuelve,593,sold,Andrés Ferrer.   ( Maracaibo ),+584246497280,Maracaibo,13.00,0.00,2026-04-25T18:19:15.716Z
+88,Gran Rifa Resuelve,594,sold,Tahilor rey,+584147098346,La fria,13.00,0.00,2026-04-24T20:34:50.415Z
+88,Gran Rifa Resuelve,595,sold,Gustavo valdes,+584149772920,La fria,13.00,0.00,2026-04-25T18:19:35.228Z
+88,Gran Rifa Resuelve,596,sold,Yunior Carrascal,+584149751355,La Fría,13.00,0.00,2026-05-01T19:31:59.283Z
+88,Gran Rifa Resuelve,597,sold,Yorwin Suescun,+584247474246,La fría,13.00,0.00,2026-04-24T21:44:22.345Z
+88,Gran Rifa Resuelve,598,sold,Selenni Villegas,+584147157903,La fria,13.00,0.00,2026-04-25T18:31:51.692Z
+88,Gran Rifa Resuelve,599,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,600,sold,Libardo Arciniegas,+573223410298,Colombia,13.00,0.00,2026-05-09T23:30:32.064Z
+88,Gran Rifa Resuelve,601,sold,Daniel Pineda.    La Grita,+584147414908,La grita,13.00,0.00,2026-04-28T23:01:28.729Z
+88,Gran Rifa Resuelve,602,sold,Nelson rosales usa,+14147796920,Estados unidos,13.00,0.00,2026-04-25T18:25:23.204Z
+88,Gran Rifa Resuelve,603,sold,Edson romero usa,+16892715875,Estados unidos,12.00,0.00,2026-04-24T20:39:05.525Z
+88,Gran Rifa Resuelve,604,sold,Belkis vargas la fria matamango,+584243064930,La fria,13.00,0.00,2026-04-28T20:18:54.897Z
+88,Gran Rifa Resuelve,605,sold,Kerwin Barajas,+584247651891,La fria,13.00,0.00,2026-05-01T20:51:13.186Z
+88,Gran Rifa Resuelve,606,sold,Nancy rivera sociedad,+584247180680,La fria,13.00,0.00,2026-05-01T20:18:28.224Z
+88,Gran Rifa Resuelve,607,sold,Frederick Alejandro martines usa,+17543272037,Estados unidos,13.00,0.00,2026-04-24T18:32:52.196Z
+88,Gran Rifa Resuelve,608,sold,Reinaldo Marchan,+14143082362,Estados unidos,12.00,0.00,2026-04-24T21:24:53.138Z
+88,Gran Rifa Resuelve,609,sold,Mahuer Ávila,+584268260801,La fría,13.00,0.00,2026-05-01T20:52:55.545Z
+88,Gran Rifa Resuelve,610,sold,Alex Contreras,+16153729785,Estados unidos,13.00,0.00,2026-04-25T21:45:46.584Z
+88,Gran Rifa Resuelve,611,sold,Nancy forero 1 de mayo,+584247264304,La fria,12.00,0.00,2026-04-24T20:45:58.885Z
+88,Gran Rifa Resuelve,612,sold,Yesica Montoya,+584247028493,La Grita,13.00,0.00,2026-04-24T21:52:47.664Z
+88,Gran Rifa Resuelve,613,sold,Rosbeily Morles usa,+12067421305,Estados unidos,12.50,0.00,2026-04-29T15:30:51.540Z
+88,Gran Rifa Resuelve,614,sold,Eduardo Colmenarez,+584265320111,Colón,12.00,0.00,2026-04-29T22:39:21.058Z
+88,Gran Rifa Resuelve,615,sold,rafael boscan la fria,+584147155644,La fria,13.00,0.00,2026-05-01T20:58:42.639Z
+88,Gran Rifa Resuelve,616,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,12.00,0.00,2026-04-29T19:29:11.447Z
+88,Gran Rifa Resuelve,617,sold,Jorge Arellano chile,+56934892474,Chile,13.00,0.00,2026-04-29T16:36:19.229Z
+88,Gran Rifa Resuelve,618,sold,Gilber Duque,+584146618203,La Fría,13.00,0.00,2026-04-24T22:07:16.578Z
+88,Gran Rifa Resuelve,619,sold,Roman Suarez,+584147017900,La Fria,12.00,0.00,2026-05-01T20:57:30.457Z
+88,Gran Rifa Resuelve,620,sold,Diana Valbuena,+573228230571,Colombia,13.00,0.00,2026-04-24T21:45:43.680Z
+88,Gran Rifa Resuelve,621,sold,Dario Usa,+16784990901,Estados unidos,13.00,0.00,2026-04-29T23:59:21.324Z
+88,Gran Rifa Resuelve,622,sold,Leo Aguilar     ( La Grita ),+584147423505,La Grita,13.00,0.00,2026-05-03T01:32:03.676Z
+88,Gran Rifa Resuelve,623,sold,Antonio Gonzáles,+584247396138,La Fría,12.00,0.00,2026-05-01T21:02:53.876Z
+88,Gran Rifa Resuelve,624,sold,Leonardo Vargas,+584247631600,La fria,13.00,0.00,2026-04-25T18:38:54.161Z
+88,Gran Rifa Resuelve,625,sold,Mixaida rincon Colon,+584162777629,Colon,13.00,0.00,2026-04-24T20:15:57.486Z
+88,Gran Rifa Resuelve,626,sold,Jose Medina,+584141771881,La Fría,13.00,0.00,2026-04-25T22:59:08.434Z
+88,Gran Rifa Resuelve,627,sold,Herly mendoza colon,+584247305708,Colon,13.00,0.00,2026-05-01T21:05:03.514Z
+88,Gran Rifa Resuelve,628,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,629,sold,Yonaiker Suarez,+19127595784,Estados unidos,12.00,0.00,2026-04-24T21:29:07.971Z
+88,Gran Rifa Resuelve,630,sold,Karla Rojas colon,+584143754773,Colon,13.00,0.00,2026-04-24T22:49:42.849Z
+88,Gran Rifa Resuelve,631,sold,Edixon Villamizar     ( Barinas ),+584145288325,Barinas,13.00,0.00,2026-04-24T00:40:16.493Z
+88,Gran Rifa Resuelve,632,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,12.00,0.00,2026-04-23T22:52:57.402Z
+88,Gran Rifa Resuelve,633,sold,Diego Morales      ( Chile ),+56978747174,Chile,12.00,0.00,2026-04-29T13:51:32.943Z
+88,Gran Rifa Resuelve,634,sold,Waldiany Nacary,+584126124052,La Fria,13.00,0.00,2026-04-24T20:53:14.774Z
+88,Gran Rifa Resuelve,635,sold,Liset Luna.   La Grita,+584140768366,La grita,13.00,0.00,2026-04-23T21:21:13.876Z
+88,Gran Rifa Resuelve,636,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.00,0.00,2026-04-25T18:08:07.495Z
+88,Gran Rifa Resuelve,637,sold,Jordan hijo de gollo rifero Alex linowol,+584241737886,La fria,13.00,0.00,2026-05-01T21:08:52.642Z
+88,Gran Rifa Resuelve,638,sold,Mirexy mendez La grita,+584147047877,La grita,13.00,0.00,2026-05-01T21:14:05.414Z
+88,Gran Rifa Resuelve,639,sold,Judit Molina coloncito,+584247401308,Coloncito,13.00,0.00,2026-05-01T21:14:57.470Z
+88,Gran Rifa Resuelve,640,sold,Diego Morales      ( Chile ),+56978747174,Chile,12.00,0.00,2026-04-29T13:51:32.943Z
+88,Gran Rifa Resuelve,641,sold,Enyelber baez vecino sociedad,+584147267764,La fria,13.00,0.00,2026-04-25T22:07:16.210Z
+88,Gran Rifa Resuelve,642,sold,Yenifer Soto,+17375291807,Estados unidos,13.00,0.00,2026-04-25T18:29:03.226Z
+88,Gran Rifa Resuelve,643,sold,Javier delgado sociedad,+584265730047,La fria,13.00,0.00,2026-05-01T21:17:12.390Z
+88,Gran Rifa Resuelve,644,sold,Luis avila,+584147294479,La fria,13.00,0.00,2026-04-25T18:34:49.388Z
+88,Gran Rifa Resuelve,645,sold,Sander Velandria,+17083486017,Estados Unidos,12.00,0.00,2026-04-29T14:57:01.980Z
+88,Gran Rifa Resuelve,646,sold,Reinaldo Alvarez     Usa,+19012398405,Usa usa,13.00,0.00,2026-05-10T01:21:12.154Z
+88,Gran Rifa Resuelve,647,sold,Rogelio Zambrano,+4125237974,La fria,13.00,0.00,2026-04-24T20:27:33.809Z
+88,Gran Rifa Resuelve,648,sold,Ender Ramirez españa,+34653590976,España,12.00,0.00,2026-04-24T21:48:22.311Z
+88,Gran Rifa Resuelve,649,sold,Jhoel Zambrano,+584147095429,La Fría,12.00,0.00,2026-04-24T17:05:56.449Z
+88,Gran Rifa Resuelve,650,sold,Chepa Toledo,+584149716434,La fría,13.00,0.00,2026-04-24T19:08:16.848Z
+88,Gran Rifa Resuelve,651,sold,Yeison naranjo usa,+18542457903,Estados unidos,12.00,0.00,2026-04-24T23:02:59.204Z
+88,Gran Rifa Resuelve,652,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,653,sold,Miguel Tapias,+13316279808,Estados Unidos,12.00,0.00,2026-04-25T21:59:35.530Z
+88,Gran Rifa Resuelve,654,sold,Jakelin vivas usa,+15128798132,Estados unidos,12.00,0.00,2026-04-25T15:12:39.772Z
+88,Gran Rifa Resuelve,655,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T22:24:29.919Z
+88,Gran Rifa Resuelve,656,sold,Anthony Fernández,+14437354215,Estados unidos,12.00,0.00,2026-04-25T19:32:48.274Z
+88,Gran Rifa Resuelve,657,sold,lisbet rosales rosales,+584247714133,La fria,13.00,0.00,2026-04-24T22:13:21.783Z
+88,Gran Rifa Resuelve,658,sold,Juan Flores  ( Santa Barbara del Zulia - Usa ),+13464170770,Usa usa,13.00,0.00,2026-04-25T00:35:42.351Z
+88,Gran Rifa Resuelve,659,sold,Ivan rivera mendez arauca,+573226423552,Arauca,12.00,0.00,2026-04-29T22:48:42.529Z
+88,Gran Rifa Resuelve,660,sold,JAVIER Roman usa,+14844751789,Estados Unidos,13.00,0.00,2026-05-10T01:35:36.793Z
+88,Gran Rifa Resuelve,661,sold,terapias Garcia,+17745228026,Estados unidos,13.00,0.00,2026-04-24T21:36:51.285Z
+88,Gran Rifa Resuelve,662,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,12.00,0.00,2026-05-09T12:46:15.298Z
+88,Gran Rifa Resuelve,663,sold,Pedro medina guayabo,+584147544973,El guayabo,13.00,0.00,2026-04-26T16:01:03.033Z
+88,Gran Rifa Resuelve,664,sold,Jordan hijo de gollo rifero Alex linowol,+584241737886,La fria,13.00,0.00,2026-05-01T21:08:52.642Z
+88,Gran Rifa Resuelve,665,sold,Junior Laguado,+584147554601,La fría,13.00,0.00,2026-04-24T23:06:51.200Z
+88,Gran Rifa Resuelve,666,sold,Karina Cañizares,+584149785425,La vecina,13.00,0.00,2026-05-01T21:21:36.456Z
+88,Gran Rifa Resuelve,667,sold,Jeferson Bonilla,+17202702745,Estados unidos,13.00,0.00,2026-04-24T14:26:19.351Z
+88,Gran Rifa Resuelve,668,sold,Dilia yiyo Luna,+584221783235,La fria,13.00,0.00,2026-04-25T13:20:50.912Z
+88,Gran Rifa Resuelve,669,sold,Karina Pernia    La Grita,+584247331618,la grita,13.00,0.00,2026-04-23T22:23:24.341Z
+88,Gran Rifa Resuelve,670,sold,Cristian Arciniegas,+584128190917,La Fria,12.00,0.00,2026-04-29T23:10:11.688Z
+88,Gran Rifa Resuelve,671,sold,gavilan sanchez la fria,+584121975947,La fria,13.00,0.00,2026-04-26T16:22:48.152Z
+88,Gran Rifa Resuelve,672,sold,Luis fleming la fria,+18324183244,Ls fria,13.00,0.00,2026-05-01T23:31:36.080Z
+88,Gran Rifa Resuelve,673,sold,carolina contreras usa,+16297298655,Estados unidos,12.00,0.00,2026-04-24T18:39:52.740Z
+88,Gran Rifa Resuelve,674,sold,Manuel abasto DyU,+584247706745,La fria,12.00,0.00,2026-05-01T20:38:27.122Z
+88,Gran Rifa Resuelve,675,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,12.00,0.00,2026-04-25T16:02:39.866Z
+88,Gran Rifa Resuelve,676,sold,Javier Contreras,+13126509222,La Fria,13.00,0.00,2026-04-25T22:11:09.515Z
+88,Gran Rifa Resuelve,677,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,12.00,0.00,2026-04-25T16:02:39.866Z
+88,Gran Rifa Resuelve,678,sold,jose glaterol usa,+16154579492,Estados unidos,12.00,0.00,2026-05-01T20:41:26.340Z
+88,Gran Rifa Resuelve,679,sold,Orlando moreno la fria,+584247797409,La fria,13.00,0.00,2026-04-25T14:37:54.338Z
+88,Gran Rifa Resuelve,680,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,681,sold,gavilan sanchez la fria,+584121975947,La fria,13.00,0.00,2026-04-26T16:22:48.152Z
+88,Gran Rifa Resuelve,682,sold,Harol Rangel colon,+584163732385,Colon,13.00,0.00,2026-04-24T20:57:30.852Z
+88,Gran Rifa Resuelve,683,sold,Kleiver duran,+584247018387,La fria,13.00,0.00,2026-04-25T18:49:57.561Z
+88,Gran Rifa Resuelve,684,sold,Gisela Montoya.     ( La Grita - Caracas ),+584247418290,Caracas,13.00,0.00,2026-04-25T18:14:14.131Z
+88,Gran Rifa Resuelve,685,sold,Nancy forero 1 de mayo,+584247264304,La fria,12.00,0.00,2026-04-24T20:45:58.885Z
+88,Gran Rifa Resuelve,686,sold,Osman Gil,+584149796001,La Fría,12.00,0.00,2026-05-01T20:34:59.186Z
+88,Gran Rifa Resuelve,687,sold,jhon de pablo Usa,+12109655075,Estados unidos,11.00,0.00,2026-04-29T00:35:21.437Z
+88,Gran Rifa Resuelve,688,sold,Karina Arcinieca,+584147247283,La fria,13.00,0.00,2026-04-24T19:13:18.826Z
+88,Gran Rifa Resuelve,689,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,690,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T17:24:10.654Z
+88,Gran Rifa Resuelve,691,sold,Yonaiker Suarez,+19127595784,Estados unidos,12.00,0.00,2026-04-24T21:29:07.971Z
+88,Gran Rifa Resuelve,692,sold,Yeimy Ramirez muebles,+584247060503,La fría,13.00,0.00,2026-04-25T23:31:31.488Z
+88,Gran Rifa Resuelve,693,sold,Leonardo Lubo costa rica,+50672863076,Costa rica,13.00,0.00,2026-04-25T14:34:11.498Z
+88,Gran Rifa Resuelve,694,sold,Dennys Cardenas guaco,+584242423215,La fria,13.00,0.00,2026-05-01T19:57:14.924Z
+88,Gran Rifa Resuelve,695,sold,Jesus Sanchez,+18172984840,Estados Unidos,13.00,0.00,2026-05-09T15:23:54.858Z
+88,Gran Rifa Resuelve,696,sold,Jhonny Gil,+584147203435,La Fría,13.00,0.00,2026-04-28T11:25:42.007Z
+88,Gran Rifa Resuelve,697,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,698,sold,Angel Lopez.     ( Cabimas zulia),+573216859350,Cabimas zulia,12.00,0.00,2026-05-09T12:46:15.298Z
+88,Gran Rifa Resuelve,699,sold,Juliana Rosales,+584149755198,La fria,13.00,0.00,2026-05-01T23:29:03.737Z
+88,Gran Rifa Resuelve,700,sold,Arturo Gonzalez    ( La concordia ),+584247503431,La concordia,13.00,0.00,2026-04-30T15:49:00.226Z
+88,Gran Rifa Resuelve,701,sold,Luis fleming la fria,+18324183244,Ls fria,13.00,0.00,2026-04-24T18:44:45.697Z
+88,Gran Rifa Resuelve,702,sold,Joel López,+584247715538,La Fría,13.00,0.00,2026-04-24T22:56:46.705Z
+88,Gran Rifa Resuelve,703,sold,Carlos Marchan,+584269752548,La fría,13.00,0.00,2026-04-25T21:56:18.437Z
+88,Gran Rifa Resuelve,704,sold,Leidy Guerrero,+13855410349,Estados Unidos,13.00,0.00,2026-04-28T11:10:08.929Z
+88,Gran Rifa Resuelve,705,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,706,sold,Leidy Guerrero,+13855410349,Estados Unidos,13.00,0.00,2026-04-28T11:10:08.929Z
+88,Gran Rifa Resuelve,707,sold,Alfredo Escobar           Maracay,+584267344809,Maracay,13.00,0.00,2026-04-26T00:21:37.805Z
+88,Gran Rifa Resuelve,708,sold,Milagros Jauregui,+584247757808,La fria,13.00,0.00,2026-04-24T22:21:25.799Z
+88,Gran Rifa Resuelve,709,sold,Jose luis Suarez,+584147493068,La fria,13.00,0.00,2026-04-25T22:27:51.360Z
+88,Gran Rifa Resuelve,710,sold,Victor Delgado,+584147377105,La fria,13.00,0.00,2026-05-01T21:32:29.386Z
+88,Gran Rifa Resuelve,711,sold,Luis Ávila,+584247831281,Valencia,13.00,0.00,2026-04-24T22:11:09.149Z
+88,Gran Rifa Resuelve,712,sold,Rosa Santaella,+584121737505,La Fría,13.00,0.00,2026-04-25T14:52:26.216Z
+88,Gran Rifa Resuelve,713,sold,Yeiker Pernia      Caracas - Usa,+17869398393,Caracas - Usa,12.00,0.00,2026-04-24T00:17:52.722Z
+88,Gran Rifa Resuelve,714,sold,rafael boscan la fria,+584147155644,La fria,13.00,0.00,2026-05-01T20:58:42.639Z
+88,Gran Rifa Resuelve,715,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,716,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,12.00,0.00,2026-04-29T19:20:25.242Z
+88,Gran Rifa Resuelve,717,sold,Marcos Osorio,+573173134587,La Fría,12.00,0.00,2026-04-29T19:22:54.840Z
+88,Gran Rifa Resuelve,718,sold,Gustavo Toledo,+584147212636,La Fría,13.00,0.00,2026-04-24T14:37:39.019Z
+88,Gran Rifa Resuelve,719,sold,Francisco Payares     ( Colombia ),+573005790054,Colombia,13.00,0.00,2026-04-25T18:29:59.669Z
+88,Gran Rifa Resuelve,720,sold,Aureliana Padilla,+584243413677,Coloncito,13.00,0.00,2026-04-25T18:52:39.423Z
+88,Gran Rifa Resuelve,721,sold,Keismer Contreras,+17372028084,Estados Unidos,12.00,0.00,2026-04-29T23:15:00.949Z
+88,Gran Rifa Resuelve,722,sold,bernardo burro orope,+584149754893,La fria,12.00,0.00,2026-04-25T22:05:55.837Z
+88,Gran Rifa Resuelve,723,sold,Yony Martinez autoperiquitos,+584247404105,La fria,13.00,0.00,2026-04-24T19:16:31.463Z
+88,Gran Rifa Resuelve,724,sold,Gabriel Fuentes,+584247250922,La Fría,13.00,0.00,2026-04-24T16:42:40.984Z
+88,Gran Rifa Resuelve,725,sold,Yuglendy Bello,+12819129773,La Fria - Usa,12.00,0.00,2026-04-25T18:08:07.495Z
+88,Gran Rifa Resuelve,726,sold,Anderson Chiquito usa,+16154388600,Estados unidos,12.00,0.00,2026-04-24T21:27:17.586Z
+88,Gran Rifa Resuelve,727,sold,Miguel Duran,+584247218713,La fria,13.00,0.00,2026-05-01T21:36:59.593Z
+88,Gran Rifa Resuelve,728,sold,Yohana Ayala,+584147576344,La Fría,13.00,0.00,2026-04-25T18:30:35.116Z
+88,Gran Rifa Resuelve,729,sold,Yonaiker Suarez,+19127595784,Estados unidos,12.00,0.00,2026-04-24T21:29:07.971Z
+88,Gran Rifa Resuelve,730,sold,Sergio Ramos,+584128629758,San Cristóbal,12.00,0.00,2026-04-24T14:43:31.061Z
+88,Gran Rifa Resuelve,731,sold,cristian mendez usa,+19126550240,Estados unidos,13.00,0.00,2026-04-24T23:15:43.388Z
+88,Gran Rifa Resuelve,732,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,733,sold,Eimar Ayala la fria chile,+56982219811,Chile,13.00,0.00,2026-04-25T18:29:45.676Z
+88,Gran Rifa Resuelve,734,sold,Victor Morales,+56931977659,Chile,13.00,0.00,2026-04-24T20:18:01.086Z
+88,Gran Rifa Resuelve,735,sold,Aura Milagros,+584247522859,La Fría,12.00,0.00,2026-04-25T21:42:29.774Z
+88,Gran Rifa Resuelve,736,sold,Carolina Camargo,+584141203991,La grita,13.00,0.00,2026-04-24T21:39:38.097Z
+88,Gran Rifa Resuelve,737,sold,Sander Velandria,+17083486017,Estados Unidos,12.00,0.00,2026-04-29T14:57:01.980Z
+88,Gran Rifa Resuelve,738,sold,Leo Aguilar     ( La Grita ),+584147423505,La Grita,13.00,0.00,2026-05-03T01:32:03.676Z
+88,Gran Rifa Resuelve,739,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T22:24:29.919Z
+88,Gran Rifa Resuelve,740,sold,Enrique medina usa,+14406810853,Estados Unidos,13.00,0.00,2026-05-01T21:40:44.903Z
+88,Gran Rifa Resuelve,741,sold,Norvin Mora,+584126428789,La Tendida,13.00,0.00,2026-04-24T20:14:40.242Z
+88,Gran Rifa Resuelve,742,sold,Liliana Mendez,+584247196052,La fría,13.00,0.00,2026-04-24T22:55:30.097Z
+88,Gran Rifa Resuelve,743,sold,gerson contreras alineación,+584247432468,La fria,13.00,0.00,2026-05-01T20:43:53.757Z
+88,Gran Rifa Resuelve,744,sold,Yorvi Zambrano,+584247163958,La Fria,13.00,0.00,2026-05-01T21:44:06.488Z
+88,Gran Rifa Resuelve,745,sold,ita carrillo,+584147591447,La fria,13.00,0.00,2026-04-24T17:09:50.454Z
+88,Gran Rifa Resuelve,746,sold,Leonor Joya,+17209685102,Estados unidos,13.00,0.00,2026-04-24T22:36:25.536Z
+88,Gran Rifa Resuelve,747,sold,Yohana hernandez,+584147554641,La fria,13.00,0.00,2026-04-24T21:14:32.683Z
+88,Gran Rifa Resuelve,748,sold,Yefry Quinceno Usa-la fria,+14328184348,Estados unidos,12.00,0.00,2026-04-29T19:29:11.447Z
+88,Gran Rifa Resuelve,749,sold,Domingo sandoval usa,+12163135810,Estados unidos,12.00,0.00,2026-04-29T21:03:33.746Z
+88,Gran Rifa Resuelve,750,sold,Jhoan Perez,+15125918454,Estados Unidos,12.00,0.00,2026-04-29T15:23:07.613Z
+88,Gran Rifa Resuelve,751,sold,Yenifer Soto,+17375291807,Estados unidos,13.00,0.00,2026-04-25T18:29:03.226Z
+88,Gran Rifa Resuelve,752,sold,Yorman Duarte,+584247443558,La Fria,13.00,0.00,2026-04-24T21:10:03.222Z
+88,Gran Rifa Resuelve,753,sold,Harol Rangel colon,+584163732385,Colon,13.00,0.00,2026-04-24T20:57:30.852Z
+88,Gran Rifa Resuelve,754,sold,Miguel Benavides,+19127104280,La Fria - Usa,12.00,0.00,2026-04-29T19:32:54.334Z
+88,Gran Rifa Resuelve,755,sold,yuleidy alvernia,+584247031321,La fria,13.00,0.00,2026-04-29T22:50:28.916Z
+88,Gran Rifa Resuelve,756,sold,Gregory Princeso,+584147367045,La fría,13.00,0.00,2026-04-24T22:36:47.181Z
+88,Gran Rifa Resuelve,757,sold,Osman Gil,+584149796001,La Fría,12.00,0.00,2026-05-01T20:34:59.186Z
+88,Gran Rifa Resuelve,758,sold,Yorvi Zambrano,+584247163958,La Fria,12.00,0.00,2026-04-29T23:47:55.270Z
+88,Gran Rifa Resuelve,759,sold,Soriangely ojeda,+56987083985,Chile,12.00,0.00,2026-04-25T20:58:11.221Z
+88,Gran Rifa Resuelve,760,sold,Wilder Muñoz,+584121768623,La fría,13.00,0.00,2026-04-25T18:54:46.933Z
+88,Gran Rifa Resuelve,761,sold,Sandra Rodríguez,+18328692560,La fría,12.00,0.00,2026-05-10T01:43:24.154Z
+88,Gran Rifa Resuelve,762,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-04-29T21:32:07.557Z
+88,Gran Rifa Resuelve,763,sold,Jose Olivero.   ( Las mesas - usa ),+16082174238,Las mesas Usa,12.00,0.00,2026-04-24T14:58:10.986Z
+88,Gran Rifa Resuelve,764,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,765,sold,Daiver velazques,+584241951963,Estados unidos,12.00,0.00,2026-04-25T21:51:13.858Z
+88,Gran Rifa Resuelve,766,sold,Angely Rondón      Merida,+584247349984,Merida,13.00,0.00,2026-04-27T17:23:15.107Z
+88,Gran Rifa Resuelve,767,sold,Gabriela Muñoz,+13802394964,La Fria Usa,12.00,0.00,2026-04-24T20:09:42.945Z
+88,Gran Rifa Resuelve,768,sold,Jhoel Zambrano,+584147095429,La Fría,12.00,0.00,2026-04-24T17:05:56.449Z
+88,Gran Rifa Resuelve,769,sold,Jesus baraja Mecanico,+584147354430,La fria,13.00,0.00,2026-04-24T21:02:51.437Z
+88,Gran Rifa Resuelve,770,sold,Erwin Martinez don camaron,+584243228374,La fria,13.00,0.00,2026-05-01T22:30:52.911Z
+88,Gran Rifa Resuelve,771,sold,Yajaira Guerrero,+14146298680,La Fria Usa,13.00,0.00,2026-04-24T22:33:21.330Z
+88,Gran Rifa Resuelve,772,sold,Yackelin Fuentes usa,+50761249348,Estados unidos,12.00,0.00,2026-04-24T19:55:26.385Z
+88,Gran Rifa Resuelve,773,sold,Gabriel Sanchez  La Grita - Chile,+56927682736,La Grita,13.00,0.00,2026-05-09T12:36:51.201Z
+88,Gran Rifa Resuelve,774,sold,Douglas Roa,+14147913945,La Fria - Usa,12.00,0.00,2026-04-25T20:49:48.253Z
+88,Gran Rifa Resuelve,775,sold,Wendy Paz,+584247147909,La fría,13.00,0.00,2026-04-25T19:21:23.260Z
+88,Gran Rifa Resuelve,776,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,12.00,0.00,2026-04-24T19:32:42.690Z
+88,Gran Rifa Resuelve,777,sold,Juan Diego Barrientos   ( Rubio - Usa ),+19043525837,Rubio usa,12.00,0.00,2026-04-23T22:52:57.402Z
+88,Gran Rifa Resuelve,778,sold,Eduardo Martinez (Barbero),+584247564992,La fría,13.00,0.00,2026-04-25T22:36:50.735Z
+88,Gran Rifa Resuelve,779,sold,Nelly Rey.          (La grita),+584247072555,La grita,12.00,0.00,2026-05-03T01:02:54.601Z
+88,Gran Rifa Resuelve,780,sold,Yoel 5 milazo,+584226438032,La fria,13.00,0.00,2026-05-01T19:22:36.644Z
+88,Gran Rifa Resuelve,781,sold,Ismar carrillo pollo,+584125942186,La fria,13.00,0.00,2026-05-01T21:53:47.641Z
+88,Gran Rifa Resuelve,782,sold,Alex padron la fria,+584141768941,La fria,13.00,0.00,2026-05-01T20:00:11.510Z
+88,Gran Rifa Resuelve,783,sold,Angel Ferrebus,+12109297571,La Fria - Usa,12.00,0.00,2026-04-29T15:03:54.573Z
+88,Gran Rifa Resuelve,784,sold,Blanca Sierra,+584143756074,La fría,13.00,0.00,2026-04-25T18:34:04.492Z
+88,Gran Rifa Resuelve,785,sold,emilyer ibarra odontologo,+584226469843,La fria,13.00,0.00,2026-05-10T01:59:19.036Z
+88,Gran Rifa Resuelve,786,sold,juan Carlos chona,+573212806011,Colombia,13.00,0.00,2026-04-29T15:27:38.249Z
+88,Gran Rifa Resuelve,787,sold,Alvaro guzman,+56990998845,Chile,13.00,0.00,2026-04-24T22:16:34.573Z
+88,Gran Rifa Resuelve,788,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:07:08.582Z
+88,Gran Rifa Resuelve,789,sold,lisdey ruedas esposa de ferrebus usa,+12109842388,Estados unidos,12.00,0.00,2026-04-25T01:46:47.566Z
+88,Gran Rifa Resuelve,790,sold,Andres rincon la fría,+584247665533,La fria,13.00,0.00,2026-05-01T22:34:53.155Z
+88,Gran Rifa Resuelve,791,sold,Yeiker Colmenarez usa,+13313224845,La fria,12.00,0.00,2026-04-29T22:59:01.587Z
+88,Gran Rifa Resuelve,792,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:07:08.582Z
+88,Gran Rifa Resuelve,793,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:07:08.582Z
+88,Gran Rifa Resuelve,794,sold,Rafael Hernandez,+17348997079,Estados Unidos,13.00,0.00,2026-04-24T17:15:13.510Z
+88,Gran Rifa Resuelve,795,sold,jhon de pablo Usa,+12109655075,Estados unidos,11.00,0.00,2026-04-29T00:35:21.437Z
+88,Gran Rifa Resuelve,796,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:07:08.582Z
+88,Gran Rifa Resuelve,797,sold,Cristian Leon 5 milazo,+584247010906,La fria,13.00,0.00,2026-04-24T21:05:46.818Z
+88,Gran Rifa Resuelve,798,sold,Tomas glaterol delicias,+584141758019,La fria,12.00,0.00,2026-05-01T19:49:41.355Z
+88,Gran Rifa Resuelve,799,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:07:08.582Z
+88,Gran Rifa Resuelve,800,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,13.00,0.00,2026-05-09T22:36:35.698Z
+88,Gran Rifa Resuelve,801,sold,Guwer Ruedas,+17543497323,Estados Unidos,12.00,0.00,2026-04-29T19:14:37.733Z
+88,Gran Rifa Resuelve,802,sold,Henrry Serrano,+18433050408,La Fria - Usa,12.00,0.00,2026-04-25T18:48:32.467Z
+88,Gran Rifa Resuelve,803,sold,Ricardo Ramirez,+16159389001,La Fria Usa,13.00,0.00,2026-04-29T15:15:44.544Z
+88,Gran Rifa Resuelve,804,sold,Franklin Alchain repuestos,+584247722153,La fria,12.00,0.00,2026-05-10T01:55:40.483Z
+88,Gran Rifa Resuelve,805,sold,victor contreras ls fria,+584247036467,La fria,13.00,0.00,2026-04-24T21:04:37.205Z
+88,Gran Rifa Resuelve,806,sold,Deysi Moncada     ( La Grita),+584247829118,La Grita,13.00,0.00,2026-04-23T23:12:12.470Z
+88,Gran Rifa Resuelve,807,sold,Robert Bettin usa,+14078616053,Estados unidos,13.00,0.00,2026-05-01T20:28:56.965Z
+88,Gran Rifa Resuelve,808,sold,Reimar Villegas la fria,+584247743235,La fria,13.00,0.00,2026-04-28T21:35:28.037Z
+88,Gran Rifa Resuelve,809,sold,Elba Mendoza,+584121749496,La Fría,12.00,0.00,2026-04-24T14:36:20.469Z
+88,Gran Rifa Resuelve,810,sold,Victor molina,+56933670260,Chile,13.00,0.00,2026-04-25T18:20:53.653Z
+88,Gran Rifa Resuelve,811,sold,Nancy forero 1 de mayo,+584247264304,La fria,12.00,0.00,2026-04-24T20:45:58.885Z
+88,Gran Rifa Resuelve,812,sold,carolina contreras usa,+16297298655,Estados unidos,12.00,0.00,2026-04-24T18:39:52.740Z
+88,Gran Rifa Resuelve,813,sold,Jean Carlos Ramirez,+584247321597,La Fria,12.00,0.00,2026-04-24T18:38:36.501Z
+88,Gran Rifa Resuelve,814,sold,Luis fleming la fria,+18324183244,Ls fria,13.00,0.00,2026-05-01T23:31:36.080Z
+88,Gran Rifa Resuelve,815,sold,yuleidy alvernia,+584247031321,La fria,13.00,0.00,2026-04-29T22:50:28.916Z
+88,Gran Rifa Resuelve,816,sold,Carlos Jimeno,+584147290794,La fria,13.00,0.00,2026-05-01T22:03:26.183Z
+88,Gran Rifa Resuelve,817,sold,Jhony Perez     ( La Grita ),+584147496829,La Grita,13.00,0.00,2026-04-23T23:01:40.562Z
+88,Gran Rifa Resuelve,818,sold,Jacinto Mendoza,+16157699605,Estados unidos,13.00,0.00,2026-04-24T22:13:54.783Z
+88,Gran Rifa Resuelve,819,sold,Jakelin vivas usa,+15128798132,Estados unidos,12.00,0.00,2026-04-25T15:12:39.772Z
+88,Gran Rifa Resuelve,820,sold,Leonardo Guevara Riaño,+34603752050,España Barcelona,13.00,0.00,2026-04-24T21:44:58.165Z
+88,Gran Rifa Resuelve,821,sold,Ender Ramirez españa,+34653590976,España,12.00,0.00,2026-04-24T21:48:22.311Z
+88,Gran Rifa Resuelve,822,sold,jesus Duque colombia,+573204326737,Colombia,13.00,0.00,2026-05-01T18:39:39.778Z
+88,Gran Rifa Resuelve,823,sold,Lucy Rey,+584143796817,La Fría,12.00,0.00,2026-04-24T14:15:00.694Z
+88,Gran Rifa Resuelve,824,sold,Jose sanchez La fria,+584149742615,La fria,12.00,0.00,2026-04-29T19:11:05.009Z
+88,Gran Rifa Resuelve,825,sold,Yeraldin Vivas usa,+15127122718,Estados unidos,12.00,0.00,2026-04-24T20:29:30.193Z
+88,Gran Rifa Resuelve,826,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,827,sold,Wilmer puentes Maracay,+584141427586,Maracay,13.00,0.00,2026-05-01T22:08:21.476Z
+88,Gran Rifa Resuelve,828,sold,Reinaldo Marchan,+14143082362,Estados unidos,12.00,0.00,2026-04-24T21:24:53.138Z
+88,Gran Rifa Resuelve,829,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,13.00,0.00,2026-04-25T22:14:23.327Z
+88,Gran Rifa Resuelve,830,sold,Anderson Chiquito usa,+16154388600,Estados unidos,12.00,0.00,2026-04-24T21:27:17.586Z
+88,Gran Rifa Resuelve,831,sold,Miguel Benavides,+19127104280,La Fria - Usa,12.00,0.00,2026-04-29T19:32:54.334Z
+88,Gran Rifa Resuelve,832,sold,alfonso lizcano La fria,+584247080304,La fria,13.00,0.00,2026-04-24T22:54:20.171Z
+88,Gran Rifa Resuelve,833,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,12.00,0.00,2026-04-24T22:04:24.731Z
+88,Gran Rifa Resuelve,834,sold,Yeison naranjo usa,+18542457903,Estados unidos,12.00,0.00,2026-04-24T23:02:59.204Z
+88,Gran Rifa Resuelve,835,sold,Cesar Morales,+584147420854,La Fría,12.00,0.00,2026-04-24T16:41:08.427Z
+88,Gran Rifa Resuelve,836,sold,Antonio Gonzáles,+584247396138,La Fría,12.00,0.00,2026-05-01T21:02:53.876Z
+88,Gran Rifa Resuelve,837,sold,Guwer Ruedas,+17543497323,Estados Unidos,12.00,0.00,2026-04-29T19:14:37.733Z
+88,Gran Rifa Resuelve,838,sold,Marisol Contreras,+584147151235,La Grita,13.00,0.00,2026-05-01T22:15:11.778Z
+88,Gran Rifa Resuelve,839,sold,Robinson Rico      Ureña,+584147576728,Ureña,13.00,0.00,2026-05-02T23:11:37.605Z
+88,Gran Rifa Resuelve,840,sold,Cristian Leon 5 milazo,+584247010906,La fria,13.00,0.00,2026-04-24T21:05:46.818Z
+88,Gran Rifa Resuelve,841,sold,Jose molina,+584147335828,Coloncito,13.00,0.00,2026-04-29T19:06:32.664Z
+88,Gran Rifa Resuelve,842,sold,Yeimi Toledo,+584147387511,La Fria,13.00,0.00,2026-04-29T00:18:06.056Z
+88,Gran Rifa Resuelve,843,sold,Edson romero usa,+16892715875,Estados unidos,12.00,0.00,2026-04-24T20:39:05.525Z
+88,Gran Rifa Resuelve,844,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,845,sold,Jackson Ramirez    ( San Jocesito - Usa ),+16029072118,san Josecito,12.50,0.00,2026-04-24T23:01:36.157Z
+88,Gran Rifa Resuelve,846,sold,Edwin Gomez.     Zulia,+584126902694,Zulia,12.00,0.00,2026-04-23T22:45:16.059Z
+88,Gran Rifa Resuelve,847,sold,Marcos Rondon,+584147542926,La fría,13.00,0.00,2026-05-01T19:52:40.442Z
+88,Gran Rifa Resuelve,848,sold,Anyerson arévalo sociedad,+584247602556,Estados unidos,12.00,0.00,2026-04-29T19:47:38.804Z
+88,Gran Rifa Resuelve,849,sold,Rossy Mora,+573144629424,La fria,13.00,0.00,2026-04-24T21:13:48.037Z
+88,Gran Rifa Resuelve,850,sold,Nancy forero 1 de mayo,+584247264304,La fria,12.00,0.00,2026-04-24T20:45:58.885Z
+88,Gran Rifa Resuelve,851,sold,Luzma Bustamante,+584247293934,La Fria,13.00,0.00,2026-05-01T22:22:52.720Z
+88,Gran Rifa Resuelve,852,sold,Nelson Roa,+17869147200,Estados Unidos,12.00,0.00,2026-04-24T14:29:47.741Z
+88,Gran Rifa Resuelve,853,sold,Gabriel Mujica       La Fria,+584247276204,La fria,13.00,0.00,2026-04-25T18:14:37.505Z
+88,Gran Rifa Resuelve,854,sold,Nathaly De Olmos,+584121712387,La fría,13.00,0.00,2026-04-28T14:36:48.003Z
+88,Gran Rifa Resuelve,855,sold,Kilver Niño,+573213814594,La Fría sociedad con Carlos Parra,13.00,0.00,2026-04-27T00:10:23.765Z
+88,Gran Rifa Resuelve,856,sold,Roman Suarez,+584147017900,La Fria,12.00,0.00,2026-05-01T20:57:30.457Z
+88,Gran Rifa Resuelve,857,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,858,sold,Nene Casa madera,+584247631852,La fria,13.00,0.00,2026-04-24T19:19:46.749Z
+88,Gran Rifa Resuelve,859,sold,Rigo Berto Angulo Perez   ( Usa ),+18047222077,Usa usa,12.00,0.00,2026-05-10T00:29:43.811Z
+88,Gran Rifa Resuelve,860,sold,Luis Morales,+584121570103,Colon,13.00,0.00,2026-05-01T22:35:33.894Z
+88,Gran Rifa Resuelve,861,sold,Guwer Ruedas,+17543497323,Estados Unidos,12.00,0.00,2026-04-29T19:14:37.733Z
+88,Gran Rifa Resuelve,862,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,863,sold,Yus Orozco colon,+584263729683,Colon,13.00,0.00,2026-04-24T21:50:59.639Z
+88,Gran Rifa Resuelve,864,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,865,sold,Sergio Ramos,+584128629758,San Cristóbal,12.00,0.00,2026-04-24T14:43:31.061Z
+88,Gran Rifa Resuelve,866,sold,Jorgue Machado,+584247347355,San Cristóbal,13.00,0.00,2026-05-01T22:38:43.948Z
+88,Gran Rifa Resuelve,867,sold,jose glaterol usa,+16154579492,Estados unidos,12.00,0.00,2026-05-01T20:41:26.340Z
+88,Gran Rifa Resuelve,868,sold,Angela Ramirez,+13133910947,La fria,13.00,0.00,2026-04-28T23:13:49.623Z
+88,Gran Rifa Resuelve,869,sold,Morella Doctora,+584145669025,Colón,13.00,0.00,2026-04-25T19:18:21.132Z
+88,Gran Rifa Resuelve,870,sold,Sergio Ramos,+584128629758,San Cristóbal,12.00,0.00,2026-04-24T14:43:31.061Z
+88,Gran Rifa Resuelve,871,sold,Cristobal Zambrano,+13609992787,Estados Unidos,12.00,0.00,2026-04-29T21:43:29.752Z
+88,Gran Rifa Resuelve,872,sold,Jean Carlos Ramirez,+584247321597,La Fria,12.00,0.00,2026-04-24T18:38:36.501Z
+88,Gran Rifa Resuelve,873,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,12.00,0.00,2026-04-29T19:20:25.242Z
+88,Gran Rifa Resuelve,874,sold,JAVIER GARCIA La fria,+584247602624,La fria,13.00,0.00,2026-04-25T18:56:11.278Z
+88,Gran Rifa Resuelve,875,sold,Ender Ramirez españa,+34653590976,España,12.00,0.00,2026-04-24T21:48:22.311Z
+88,Gran Rifa Resuelve,876,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,12.00,0.00,2026-04-25T16:02:39.866Z
+88,Gran Rifa Resuelve,877,sold,José Buitrago,+14254036252,Estados unidos,12.00,0.00,2026-04-30T20:22:33.607Z
+88,Gran Rifa Resuelve,878,sold,Yefry Morales,+584265542386,La fría,13.00,0.00,2026-05-01T22:43:33.983Z
+88,Gran Rifa Resuelve,879,sold,Yovany fernandez,+584121715327,La fria,13.00,0.00,2026-04-24T19:02:39.144Z
+88,Gran Rifa Resuelve,880,sold,Jesus Sanchez,+18172984840,Estados Unidos,12.00,0.00,2026-05-02T17:02:40.192Z
+88,Gran Rifa Resuelve,881,sold,Eduin Vera,+17202128806,Estados unidos,13.00,0.00,2026-04-24T23:09:36.310Z
+88,Gran Rifa Resuelve,882,sold,Miguel Tapias,+13316279808,Estados Unidos,12.00,0.00,2026-04-25T21:59:35.530Z
+88,Gran Rifa Resuelve,883,sold,Tahis marquez esposa de kiko,+584147379540,La fría,13.00,0.00,2026-04-24T22:40:34.027Z
+88,Gran Rifa Resuelve,884,sold,Jose Ortega,+584247243869,La Fria,13.00,0.00,2026-04-28T14:20:38.502Z
+88,Gran Rifa Resuelve,885,sold,Wendy Amaya,+573243191324,La Fría,12.00,0.00,2026-04-24T20:56:31.102Z
+88,Gran Rifa Resuelve,886,sold,Pedro Contreras,+584140780004,La Grita,13.00,0.00,2026-05-01T23:06:04.888Z
+88,Gran Rifa Resuelve,887,sold,Andres Jaimes,+56972040687,Chile,12.00,0.00,2026-04-24T19:27:04.610Z
+88,Gran Rifa Resuelve,888,sold,Nakary Rojas        ( El Vigia ),+584161398883,El vigia,13.00,0.00,2026-04-25T16:06:31.822Z
+88,Gran Rifa Resuelve,889,sold,Frederick Alejandro martines usa,+17543272037,Estados unidos,13.00,0.00,2026-04-24T18:32:52.196Z
+88,Gran Rifa Resuelve,890,sold,David Quiroz.  ( La Grita),+584247288395,La Grita,13.00,0.00,2026-04-25T15:59:24.210Z
+88,Gran Rifa Resuelve,891,sold,Angel Ferrebus,+12109297571,La Fria - Usa,12.00,0.00,2026-04-29T15:03:54.573Z
+88,Gran Rifa Resuelve,892,sold,Angélica boscan,+584247412268,La fria,13.00,0.00,2026-04-24T22:25:47.622Z
+88,Gran Rifa Resuelve,893,sold,Yenifer moreno,+584247830838,La grita,13.00,0.00,2026-05-02T02:42:04.801Z
+88,Gran Rifa Resuelve,894,sold,Azael Pabón,+584120750744,Michelena,13.00,0.00,2026-04-30T19:57:29.122Z
+88,Gran Rifa Resuelve,895,sold,Reinaldo Marchan,+14143082362,Estados unidos,12.00,0.00,2026-04-24T21:24:53.138Z
+88,Gran Rifa Resuelve,896,sold,Jorgue Angarita,+584122913601,La Fria,13.00,0.00,2026-04-29T22:13:15.274Z
+88,Gran Rifa Resuelve,897,sold,Gregori Lozano,+584247601747,Colòn,13.00,0.00,2026-04-24T22:09:29.640Z
+88,Gran Rifa Resuelve,898,sold,Edgar Rodríguez,+12672377251,Estados Unidos,13.00,0.00,2026-04-24T14:53:30.493Z
+88,Gran Rifa Resuelve,899,sold,Leomar guerrero usa,+17373952299,Estados unidos,12.00,0.00,2026-04-24T23:19:30.902Z
+88,Gran Rifa Resuelve,900,sold,Alejandro Arellano,+525562185848,La Grita,13.00,0.00,2026-05-09T22:14:49.971Z
+88,Gran Rifa Resuelve,901,sold,Jose Rodriguez        ( Usa ),+16822718786,Usa usa,12.00,0.00,2026-04-24T17:24:10.654Z
+88,Gran Rifa Resuelve,902,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,13.00,0.00,2026-05-09T22:36:35.698Z
+88,Gran Rifa Resuelve,903,sold,Jean Carlos Ramirez,+584247321597,La Fria,12.00,0.00,2026-04-24T18:38:36.501Z
+88,Gran Rifa Resuelve,904,sold,Luis Colina     ( Valencia - Usa ),+17209838033,Valencia Usa,13.00,0.00,2026-04-29T13:55:05.225Z
+88,Gran Rifa Resuelve,905,sold,Pipa Abasto DyU,+584141201930,La fria,13.00,0.00,2026-04-24T18:48:34.786Z
+88,Gran Rifa Resuelve,906,sold,Yen Buitriago,+19803610415,Estados unidos,12.00,0.00,2026-04-29T20:45:30.040Z
+88,Gran Rifa Resuelve,907,sold,Jose Rafael Lopez (Pelon),+56932848548,Chile,13.00,0.00,2026-04-25T18:18:33.282Z
+88,Gran Rifa Resuelve,908,sold,Ender Ramirez españa,+34653590976,España,12.00,0.00,2026-04-24T21:48:22.311Z
+88,Gran Rifa Resuelve,909,sold,Yolanda Sanchez,+584247353314,La fria,13.00,0.00,2026-05-01T22:52:50.231Z
+88,Gran Rifa Resuelve,910,sold,Franklin vergel usa,+12162069770,Estados unidos,12.00,0.00,2026-04-29T22:56:42.996Z
+88,Gran Rifa Resuelve,911,sold,Nancy forero 1 de mayo,+584247264304,La fria,12.00,0.00,2026-04-24T20:45:58.885Z
+88,Gran Rifa Resuelve,912,sold,Angel Rosales,+584242197659,La Fría,12.00,0.00,2026-04-24T14:13:08.419Z
+88,Gran Rifa Resuelve,913,sold,David Ramirez         La Grita,+584147002584,La Grita,13.00,0.00,2026-04-23T23:05:15.599Z
+88,Gran Rifa Resuelve,914,sold,Rafael Molina,+584147484747,La Fría,13.00,0.00,2026-04-28T23:12:38.861Z
+88,Gran Rifa Resuelve,915,sold,Eduard sanchez usa,+19843561048,Estados unidos,12.00,0.00,2026-04-25T21:54:21.060Z
+88,Gran Rifa Resuelve,916,sold,Alexander Buseta,+584127914210,La fria,13.00,0.00,2026-04-24T19:01:26.704Z
+88,Gran Rifa Resuelve,917,sold,Monica Canquis  colon,+584147260472,Colon,13.00,0.00,2026-05-01T22:55:11.160Z
+88,Gran Rifa Resuelve,918,sold,Anderson Rodríguez,+584126436359,La fría,13.00,0.00,2026-04-24T20:58:47.541Z
+88,Gran Rifa Resuelve,919,sold,Miguel Benavides,+19127104280,La Fria - Usa,12.00,0.00,2026-04-29T19:32:54.334Z
+88,Gran Rifa Resuelve,920,sold,Daines Moreno,+56982836762,La Fría Chile,13.00,0.00,2026-04-24T16:27:34.241Z
+88,Gran Rifa Resuelve,921,sold,Yuglendy carrero,+584147348041,Ls fria,13.00,0.00,2026-04-24T20:40:38.733Z
+88,Gran Rifa Resuelve,922,sold,Brian Buen día,+15083610533,Estados Unidos,12.00,0.00,2026-04-24T21:35:22.273Z
+88,Gran Rifa Resuelve,923,sold,Jhoan manuel Chile,+56929969342,Chile,13.00,0.00,2026-04-24T19:18:36.223Z
+88,Gran Rifa Resuelve,924,sold,Yoli González,+584242709577,La Fría,13.00,0.00,2026-04-24T20:12:27.363Z
+88,Gran Rifa Resuelve,925,sold,Andrey Ramirez,+584143769458,La Fría,13.00,0.00,2026-04-24T14:47:41.702Z
+88,Gran Rifa Resuelve,926,sold,Alicia luna sociedad,+16307768771,Estados unidos,13.00,0.00,2026-04-24T16:57:15.348Z
+88,Gran Rifa Resuelve,927,sold,Luis Ramirez Mosquera      ( Usa ),+17868515173,Usa usa,10.00,0.00,2026-04-25T00:48:08.215Z
+88,Gran Rifa Resuelve,928,sold,Mirian Santander,+573239018602,Bucaramanga,13.00,0.00,2026-04-24T22:11:33.750Z
+88,Gran Rifa Resuelve,929,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,12.00,0.00,2026-04-24T22:04:24.731Z
+88,Gran Rifa Resuelve,930,sold,Francia Bohórquez,+573236235085,La Fría,13.00,0.00,2026-04-24T14:44:51.616Z
+88,Gran Rifa Resuelve,931,sold,Marbely Pernia esposa de pablo,+584145323469,La fria,12.00,0.00,2026-04-24T18:47:27.628Z
+88,Gran Rifa Resuelve,932,sold,Wilfred Acuña,+584247029659,La fría,13.00,0.00,2026-04-24T23:05:31.369Z
+88,Gran Rifa Resuelve,933,sold,Yerixon ortega Tucu tucu,+56988694444,La fria,13.00,0.00,2026-04-29T00:05:59.723Z
+88,Gran Rifa Resuelve,934,sold,Abuela Milver,+584247388451,Colón,13.00,0.00,2026-05-01T23:00:01.153Z
+88,Gran Rifa Resuelve,935,sold,jonatan castro caracas,+584242629287,Caracas,12.00,0.00,2026-05-09T15:15:15.914Z
+88,Gran Rifa Resuelve,936,sold,Yris Rojas Segnini,+584145926553,La fria,13.00,0.00,2026-04-24T22:23:03.390Z
+88,Gran Rifa Resuelve,937,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,938,sold,Romel vargas Doctor,+584247568485,La fria,13.00,0.00,2026-04-25T19:25:34.828Z
+88,Gran Rifa Resuelve,939,sold,Fernando Andrade,+584247417833,La Fría,13.00,0.00,2026-04-28T17:55:20.862Z
+88,Gran Rifa Resuelve,940,sold,Jorge Luis Castro   San Cristóbal - Chile,+56922179755,San Cristobal chile,13.00,0.00,2026-04-27T17:27:03.055Z
+88,Gran Rifa Resuelve,941,sold,Ana Chacon,+584247000556,La fria,13.00,0.00,2026-04-25T18:40:44.767Z
+88,Gran Rifa Resuelve,942,sold,Yulimar Gutierrez,+584247640026,Valencia,13.00,0.00,2026-04-28T02:16:56.763Z
+88,Gran Rifa Resuelve,943,sold,Klisman candelo,+584147431803,La fria,13.00,0.00,2026-04-24T19:05:06.853Z
+88,Gran Rifa Resuelve,944,sold,Gustavo Rojas,+584141760197,La Fría,13.00,0.00,2026-04-24T16:39:18.252Z
+88,Gran Rifa Resuelve,945,sold,Alicia luna sociedad,+16307768771,Estados unidos,13.00,0.00,2026-04-24T16:57:15.348Z
+88,Gran Rifa Resuelve,946,sold,Zulay Becerra,+584161178541,La fria,13.00,0.00,2026-04-25T01:29:07.063Z
+88,Gran Rifa Resuelve,947,sold,Jose fleming usa,+16823647880,Estados unidos,12.00,0.00,2026-04-24T22:07:47.909Z
+88,Gran Rifa Resuelve,948,sold,Antonio Gonzáles,+584247396138,La Fría,12.00,0.00,2026-05-01T21:02:53.876Z
+88,Gran Rifa Resuelve,949,sold,Jose Perez,+584247595721,La Fria,13.00,0.00,2026-05-02T14:30:13.451Z
+88,Gran Rifa Resuelve,950,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,13.00,0.00,2026-04-25T22:14:23.327Z
+88,Gran Rifa Resuelve,951,sold,Jonatan ortiz usa,+12109318969,Estados unidos,12.25,0.00,2026-04-29T14:49:18.727Z
+88,Gran Rifa Resuelve,952,sold,Juliana Rosales,+584149755198,La fria,12.00,0.00,2026-04-28T23:10:09.167Z
+88,Gran Rifa Resuelve,953,sold,Mixaida rincon Colon,+584162777629,Colon,13.00,0.00,2026-04-24T20:15:57.486Z
+88,Gran Rifa Resuelve,954,sold,Keismer Contreras,+17372028084,Estados Unidos,13.00,0.00,2026-05-01T23:08:35.581Z
+88,Gran Rifa Resuelve,955,sold,Teresa Urdaneta,+584247527335,Colon,13.00,0.00,2026-04-29T23:31:48.503Z
+88,Gran Rifa Resuelve,956,sold,Eduardo Colmenarez,+584265320111,Colón,12.00,0.00,2026-04-29T22:39:21.058Z
+88,Gran Rifa Resuelve,957,sold,Roman Suarez,+584147017900,La Fria,12.00,0.00,2026-05-01T20:57:30.457Z
+88,Gran Rifa Resuelve,958,sold,doris rojas usa,+13316005782,Estados unidos,12.00,0.00,2026-04-24T21:07:43.402Z
+88,Gran Rifa Resuelve,959,sold,Miguel Benavides,+19127104280,La Fria - Usa,12.00,0.00,2026-04-29T19:32:54.334Z
+88,Gran Rifa Resuelve,960,sold,Derwin Lunares,+584145051038,🍓🍓🍓,12.00,0.00,2026-04-28T22:40:24.957Z
+88,Gran Rifa Resuelve,961,sold,Kariusma Mora usa,+15125001004,Estados unidos,13.00,0.00,2026-05-01T23:10:35.986Z
+88,Gran Rifa Resuelve,962,sold,Orlando Espinel   ( San Antonio del Táchira),+573135679179,San Antonio del Táchira,13.00,0.00,2026-04-24T22:57:46.855Z
+88,Gran Rifa Resuelve,963,sold,ita carrillo,+584147591447,La fria,13.00,0.00,2026-04-24T17:09:50.454Z
+88,Gran Rifa Resuelve,964,sold,Yuglendy Bello,+12819129773,La Fria - Usa,13.00,0.00,2026-04-25T18:09:39.457Z
+88,Gran Rifa Resuelve,965,sold,Daiver velazques,+584241951963,Estados unidos,12.00,0.00,2026-04-25T21:51:13.858Z
+88,Gran Rifa Resuelve,966,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,12.00,0.00,2026-04-24T22:04:24.731Z
+88,Gran Rifa Resuelve,967,sold,Enyelber baez vecino sociedad,+584147267764,La fria,13.00,0.00,2026-04-25T22:38:57.666Z
+88,Gran Rifa Resuelve,968,sold,Victor Ruiz,+584247565520,La fria,13.00,0.00,2026-04-29T23:49:38.449Z
+88,Gran Rifa Resuelve,969,sold,Albany ramirez usa,+12105481181,Estados unidos,12.00,0.00,2026-04-29T16:38:43.967Z
+88,Gran Rifa Resuelve,970,sold,Soriangely ojeda,+56987083985,Chile,12.00,0.00,2026-04-25T20:58:11.221Z
+88,Gran Rifa Resuelve,971,sold,jonatan castro caracas,+584242629287,Caracas,12.00,0.00,2026-05-01T23:42:10.985Z
+88,Gran Rifa Resuelve,972,sold,Yoli Bohórquez Peliona usa,+15129685484,Estados unidos,12.00,0.00,2026-04-29T19:20:25.242Z
+88,Gran Rifa Resuelve,973,sold,Yonathan Vargas,+584147126622,Chile,13.00,0.00,2026-04-24T17:00:20.028Z
+88,Gran Rifa Resuelve,974,sold,cristian mendez usa,+19126550240,Estados unidos,13.00,0.00,2026-04-24T23:15:43.388Z
+88,Gran Rifa Resuelve,975,sold,Manuel abasto DyU,+584247706745,La fria,12.00,0.00,2026-05-01T20:38:27.122Z
+88,Gran Rifa Resuelve,976,sold,omarcito caracas,+584143010693,Caracas,13.00,0.00,2026-04-29T19:25:54.989Z
+88,Gran Rifa Resuelve,977,sold,Señora amanda chourio Sociedad,+14078616052,Estados unidos,12.00,0.00,2026-04-24T19:08:18.081Z
+88,Gran Rifa Resuelve,978,sold,Francisco Kiko,+584147478552,Sociedad 50% Valor Vehículo,13.00,0.00,2026-05-01T19:16:19.566Z
+88,Gran Rifa Resuelve,979,sold,Yelitza Adrianza,+584147385028,La fría,13.00,0.00,2026-04-29T14:19:53.819Z
+88,Gran Rifa Resuelve,980,sold,Alemys Lozano (Yonathan Castro),+584142725977,Caracas,12.00,0.00,2026-04-24T22:04:24.731Z
+88,Gran Rifa Resuelve,981,sold,Jakelin vivas usa,+15128798132,Estados unidos,12.00,0.00,2026-04-25T15:12:39.772Z
+88,Gran Rifa Resuelve,982,sold,Deisy García,+584167732705,Los pitufos,13.00,0.00,2026-05-01T23:20:20.800Z
+88,Gran Rifa Resuelve,983,sold,Nelson Roa,+17869147200,Estados Unidos,12.00,0.00,2026-04-24T14:29:47.741Z
+88,Gran Rifa Resuelve,984,sold,Gabriel Urdaneta,+12109055904,Estados Unidos,12.00,0.00,2026-04-28T22:55:54.769Z
+88,Gran Rifa Resuelve,985,sold,Nancy forero 1 de mayo,+584247264304,La fria,12.00,0.00,2026-04-24T20:45:58.885Z
+88,Gran Rifa Resuelve,986,sold,Milton molina,+584147211459,La fria,13.00,0.00,2026-04-25T19:17:20.242Z
+88,Gran Rifa Resuelve,987,sold,Yovany fernandez,+584121715327,La fria,13.00,0.00,2026-04-24T19:02:39.144Z
+88,Gran Rifa Resuelve,988,sold,Diego Morales      ( Chile ),+56978747174,Chile,12.00,0.00,2026-04-29T13:51:32.943Z
+88,Gran Rifa Resuelve,989,sold,Johan frenos Sociedad,+584247235032,La fria,13.00,0.00,2026-04-24T21:22:45.681Z
+88,Gran Rifa Resuelve,990,sold,Deysi Moncada     ( La Grita),+584247829118,La Grita,13.00,0.00,2026-04-28T02:52:18.743Z
+88,Gran Rifa Resuelve,991,sold,Joel Vera,+584140367090,La fria,13.00,0.00,2026-05-01T23:25:05.781Z
+88,Gran Rifa Resuelve,992,sold,José Buitrago,+14254036252,Estados unidos,12.00,0.00,2026-04-30T20:22:33.607Z
+88,Gran Rifa Resuelve,993,sold,Juliana Rosales,+584149755198,La fria,12.00,0.00,2026-04-28T23:10:09.167Z
+88,Gran Rifa Resuelve,994,sold,Caroline Duarte,+584247371165,La fría,13.00,0.00,2026-05-01T23:26:50.486Z
+88,Gran Rifa Resuelve,995,sold,Cesar Augusto,+584147097860,Capacho,13.00,0.00,2026-05-01T23:28:19.709Z
+88,Gran Rifa Resuelve,996,sold,Yonellys rodriguez Estados unidos,+18035545936,Estados unidos,12.00,0.00,2026-04-29T22:37:16.254Z
+88,Gran Rifa Resuelve,997,sold,Rafael Hernandez,+17348997079,Estados Unidos,13.00,0.00,2026-04-24T17:15:13.510Z
+88,Gran Rifa Resuelve,998,sold,Leomar guerrero usa,+17373952299,Estados unidos,12.00,0.00,2026-04-24T23:19:30.902Z
+88,Gran Rifa Resuelve,999,sold,Carlos Hernandez  ( Usa ),+17204195298,Usa usa,12.00,0.00,2026-04-25T16:02:39.866Z
