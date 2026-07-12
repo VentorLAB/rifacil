@@ -81,7 +81,6 @@ export default function PublicRafflePage() {
   }, [id]);
   const [done, setDone] = useState<null | {
     numbers: string[];
-    receiptUrl: string | null;
     amountPaid: number;
     debt: number;
   }>(null);
@@ -518,7 +517,7 @@ function CheckoutSheet({
   paymentAccounts: any[];
   vendorCode?: string;
   onClose: () => void;
-  onDone: (res: { numbers: string[]; receiptUrl: string | null; amountPaid: number; debt: number }) => void;
+  onDone: (res: { numbers: string[]; amountPaid: number; debt: number }) => void;
 }) {
   const total = pricePerNumber * numbers.length;
   const [name, setName] = useState("");
@@ -560,7 +559,7 @@ function CheckoutSheet({
   const create = api.public.createSale.useMutation({
     onSuccess: (res) => {
       toast.success("¡Apartado registrado!");
-      onDone({ numbers: res.numbers, receiptUrl: res.receiptUrl, amountPaid: res.amountPaid, debt: res.debt });
+      onDone({ numbers: res.numbers, amountPaid: res.amountPaid, debt: res.debt });
     },
     onError: (e) => toast.error(e.message),
   });
@@ -789,14 +788,13 @@ function SuccessScreen({
   color: string;
   brandName: string;
   contactWhatsapp?: string | null;
-  result: { numbers: string[]; receiptUrl: string | null; amountPaid: number; debt: number };
+  result: { numbers: string[]; amountPaid: number; debt: number };
   onReset: () => void;
 }) {
   const waLink = contactWhatsapp
     ? `https://wa.me/${contactWhatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
         `Hola ${brandName}, aparté el/los número(s) ${result.numbers.join(", ")}.` +
-          (result.debt > 0 ? ` Aboné ${money(result.amountPaid)} (resta ${money(result.debt)}).` : "") +
-          (result.receiptUrl ? `\n\nMi comprobante: ${result.receiptUrl}` : "")
+          (result.debt > 0 ? ` Aboné ${money(result.amountPaid)} (resta ${money(result.debt)}).` : "")
       )}`
     : null;
 
@@ -828,17 +826,12 @@ function SuccessScreen({
           )}
         </div>
 
-        {result.receiptUrl && (
-          <a
-            href={result.receiptUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-xl py-3 font-medium text-white"
-            style={{ backgroundColor: color }}
-          >
-            <Receipt className="h-5 w-5" /> Ver mi recibo
-          </a>
-        )}
+        {/* El comprobante oficial NO existe aún: se emite cuando el organizador
+            confirma el pago (los montos de aquí son auto-reportados). */}
+        <p className="flex items-center justify-center gap-2 text-sm text-slate-500">
+          <Receipt className="h-4 w-4" />
+          Recibirás tu comprobante oficial por WhatsApp al confirmarse tu pago.
+        </p>
         {waLink && (
           <a
             href={waLink}
@@ -846,7 +839,7 @@ function SuccessScreen({
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 rounded-xl border py-3 font-medium text-slate-700 hover:bg-slate-50"
           >
-            {result.receiptUrl ? "Enviar mi comprobante al organizador" : "Escribir al organizador"}
+            Escribir al organizador
           </a>
         )}
         <button onClick={onReset} className="text-sm text-slate-500 hover:underline">

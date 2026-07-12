@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { Loader2, Check, X, Receipt, ClipboardCheck, ImageIcon } from "lucide-react";
+import { SendReceiptActions } from "@/components/send-receipt-actions";
+import { celebrateSale } from "@/lib/celebrate";
+import { Loader2, Check, X, Receipt, ClipboardCheck, ImageIcon, CheckCircle2 } from "lucide-react";
 
 const METHOD_LABELS: Record<string, string> = {
   PAGO_MOVIL: "Pago Móvil",
@@ -40,9 +43,37 @@ export default function PendingPage() {
     utils.sale.list.invalidate();
   };
 
+  // Venta recién aprobada: se ofrece el envío del recibo de una vez (el cliente
+  // que compró en la tienda pública está esperando SU confirmación).
+  const [justConfirmed, setJustConfirmed] = useState<null | {
+    saleId: string;
+    phone: string | null;
+    contactName: string | null;
+    brandName: string | null;
+    raffleTitle: string;
+    numbers: string[];
+    total: unknown;
+    paid: unknown;
+    status: string | null;
+    receiptUrl: string | null;
+  }>(null);
+
   const confirm = api.sale.confirmSale.useMutation({
     onSuccess: (res: any) => {
       toast.success(res.isFullyPaid ? "Aprobada · pagado ✓" : "Aprobada · apartado ✓");
+      celebrateSale();
+      setJustConfirmed({
+        saleId: res.id,
+        phone: res.contact?.phone ?? null,
+        contactName: res.contact?.name ?? null,
+        brandName: res.brandName ?? null,
+        raffleTitle: res.raffle?.title ?? "",
+        numbers: res.numbers ?? [],
+        total: res.finalAmount,
+        paid: res.amountPaid,
+        status: res.status ?? null,
+        receiptUrl: res.receiptUrl ?? null,
+      });
       refresh();
     },
     onError: (e) => toast.error(e.message),
@@ -163,6 +194,47 @@ export default function PendingPage() {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Sheet post-aprobación: enviar el recibo sin salir de la bandeja */}
+      {justConfirmed && (
+        <div
+          className="fixed inset-0 z-50 flex items-end justify-center sm:items-center"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setJustConfirmed(null)}
+          />
+          <div className="relative w-full rounded-t-2xl bg-white p-5 shadow-xl sm:max-w-md sm:rounded-2xl">
+            <div className="mb-4 text-center">
+              <CheckCircle2 className="mx-auto h-12 w-12 text-green-600" />
+              <h2 className="mt-2 text-lg font-bold text-slate-900">Venta aprobada</h2>
+              <p className="text-sm text-slate-500">
+                {justConfirmed.contactName || "Tu cliente"} está esperando su confirmación. Envíale el recibo:
+              </p>
+            </div>
+            <SendReceiptActions
+              saleId={justConfirmed.saleId}
+              phone={justConfirmed.phone}
+              contactName={justConfirmed.contactName}
+              brandName={justConfirmed.brandName}
+              raffleTitle={justConfirmed.raffleTitle}
+              numbers={justConfirmed.numbers}
+              total={justConfirmed.total}
+              paid={justConfirmed.paid}
+              status={justConfirmed.status}
+              receiptUrl={justConfirmed.receiptUrl}
+            />
+            <button
+              onClick={() => setJustConfirmed(null)}
+              className="mt-3 w-full rounded-xl border py-3 font-medium text-slate-600 hover:bg-slate-50"
+            >
+              Listo
+            </button>
+          </div>
         </div>
       )}
     </div>

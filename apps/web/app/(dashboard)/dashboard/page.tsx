@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { api } from "@/lib/trpc";
+import { GettingStarted } from "@/components/getting-started";
 import {
   Ticket,
   Wallet,
@@ -70,14 +72,28 @@ const QUICK_ACTIONS = [
   },
 ];
 
+// Saludo por hora del día (hora local del dispositivo del rifero).
+function greeting(): string {
+  const h = new Date().getHours();
+  if (h < 5) return "¡A esta hora vendiendo! 🌙";
+  if (h < 12) return "¡Buenos días! ☀️";
+  if (h < 19) return "¡Buenas tardes! 👋";
+  return "¡Buenas noches! 🌆";
+}
+
 export default function DashboardHomePage() {
   const { data, isLoading } = api.analytics.summary.useQuery();
+
+  // El saludo se resuelve tras montar: la hora del servidor (UTC de Vercel) no
+  // es la del rifero y en SSR provocaría un mismatch de hidratación.
+  const [greet, setGreet] = useState("¡Hola! 👋");
+  useEffect(() => setGreet(greeting()), []);
 
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Panel</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{greet}</h1>
           <p className="text-sm text-slate-500 dark:text-slate-400">
             Tu resumen de hoy. Rifá fácil, cobrá fácil.
           </p>
@@ -89,6 +105,9 @@ export default function DashboardHomePage() {
           <Plus className="h-5 w-5" /> Nueva rifa
         </Link>
       </div>
+
+      {/* Primeros pasos (solo mientras falte algo por completar) */}
+      <GettingStarted />
 
       {/* Métricas */}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
