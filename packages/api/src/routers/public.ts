@@ -6,7 +6,6 @@ import { normalizePhone } from "@riffas/shared";
 import { uploadImage } from "@riffas/shared/cloudinary";
 import { getActiveRate } from "../lib/exchangeRate";
 import { parseStorefrontConfig } from "../lib/storefrontConfig";
-import { brandFor, raffleReceiptFields } from "../lib/receiptData";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -24,19 +23,6 @@ function maskName(name: string): string {
   const first = parts[0];
   const next = parts.slice(1).find((w) => !NAME_CONNECTORS.has(w.toLowerCase()));
   return next ? `${first} ${next.charAt(0).toUpperCase()}.` : first;
-}
-
-// Carga diferida del recibo (binarios nativos satori/resvg) — igual que en sale.ts,
-// para no tumbar la API al iniciar y tolerar el fallo del render.
-type ReceiptArgs = Parameters<typeof import("@riffas/shared/receipt")["generateReceipt"]>[0];
-async function safeGenerateReceipt(args: ReceiptArgs): Promise<string | null> {
-  try {
-    const { generateReceipt } = await import("@riffas/shared/receipt");
-    return await generateReceipt(args);
-  } catch (err) {
-    console.error("[public] generateReceipt falló; la venta se guardó sin recibo:", err);
-    return null;
-  }
 }
 
 export const publicRouter = createTRPCRouter({
@@ -279,6 +265,70 @@ export const publicRouter = createTRPCRouter({
           accountNumber: a.accountNumber,
           note: a.note,
         })),
+      };
+    }),
+
+  // Comprobante público de una venta: alimenta la página /c/[saleId] que el
+  // comprador recibe por WhatsApp. El saleId es un cuid no adivinable (misma
+  // superficie que la URL de Cloudinary que ya se compartía en el mensaje).
+  // Devuelve lo MÍNIMO: imagen del recibo + marca + rifa. Nombre enmascarado,
+  // NUNCA teléfono ni datos extra del cliente.
+  getReceipt: publicProcedure
+    .input(z.object({ id: z.string().min(16) }))
+    .query(async ({ ctx, input }) => {
+      const sale = await ctx.prisma.sale.findUnique({
+        where: { id: input.id },
+        select: {
+          id: true,
+          numbers: true,
+          finalAmount: true,
+          amountPaid: true,
+          status: true,
+          receiptUrl: true,
+          receiptNumber: true,
+          contact: { select: { name: true } },
+          raffle: {
+            select: { id: true, title: true, status: true, isPublic: true, drawDate: true },
+          },
+          user: { select: { name: true, brandName: true, brandLogo: true, brandColor: true } },
+        },
+      });
+      // Solo ventas CONFIRMADAS por el rifero (RESERVED/PAID). Una PENDING de la
+      // tienda pública lleva montos AUTO-REPORTADOS por el comprador: si se
+      // sirviera aquí, cualquiera podría fabricarse un "PAGADO ✅ verificado"
+      // declarando el pago completo sin que el rifero lo haya aprobado.
+      if (
+        !sale ||
+        !sale.receiptUrl ||
+        (sale.status !== "RESERVED" && sale.status !== "PAID")
+      ) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+
+      const total = Number(sale.finalAmount);
+      const paid = Number(sale.amountPaid);
+      return {
+        id: sale.id,
+        receiptUrl: sale.receiptUrl,
+        receiptNumber: sale.receiptNumber,
+        numbers: sale.numbers,
+        total,
+        paid,
+        debt: round2(Math.max(0, total - paid)),
+        status: sale.status,
+        buyerName: maskName(sale.contact.name),
+        raffle: {
+          id: sale.raffle.id,
+          title: sale.raffle.title,
+          // Solo se enlaza a /r/[id] si la rifa sigue pública y activa (upsell).
+          isPublic: sale.raffle.isPublic && sale.raffle.status === "ACTIVE",
+          drawDate: sale.raffle.drawDate,
+        },
+        brand: {
+          name: sale.user.brandName || sale.user.name || "Rifácil",
+          logo: sale.user.brandLogo,
+          color: sale.user.brandColor,
+        },
       };
     }),
 
@@ -560,29 +610,12 @@ export const publicRouter = createTRPCRouter({
         data: { soldCount: { increment: input.numbers.length } },
       });
 
-      // Recibo.
-      const prizes = await prisma.prize.findMany({
-        where: { raffleId: raffle.id },
-        orderBy: { orden: "asc" },
-        select: { titulo: true },
-      });
-      const brand = await brandFor(prisma, userId);
-      const receiptUrl = await safeGenerateReceipt({
-        sale,
-        raffle: await raffleReceiptFields(prisma, raffle, prizes),
-        contact: sale.contact,
-        ...brand,
-        brandColor: raffle.color || brand.brandColor || null,
-      });
-      await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
-      if (receiptUrl) {
-        await prisma.raffleNumber.updateMany({ where: { saleId: sale.id }, data: { receiptUrl } });
-      }
-
+      // SIN recibo oficial todavía: los montos de esta venta son AUTO-REPORTADOS
+      // por el comprador y la plantilla marcaría "Pagado" con deuda 0. El recibo
+      // se emite en confirmSale, cuando el rifero verifica el pago.
       return {
         saleId: sale.id,
         receiptNumber,
-        receiptUrl,
         numbers: input.numbers,
         finalAmount,
         amountPaid: declared,

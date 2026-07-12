@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { api } from "@/lib/trpc";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { celebrateBig } from "@/lib/celebrate";
 import { ArrowLeft, Loader2, ImagePlus, X } from "lucide-react";
 import { useState } from "react";
 import { PrizesEditor, type PrizeDraft } from "@/components/prizes-editor";
@@ -42,7 +43,10 @@ export default function NewRafflePage() {
 
   const createRaffle = api.raffle.create.useMutation({
     onSuccess: (data) => {
-      toast.success("¡Rifa creada!");
+      celebrateBig();
+      toast.success("🚀 ¡Tu rifa está lista! Actívala y empieza a vender.", {
+        duration: 5000,
+      });
       router.push(`/dashboard/raffles/${data.id}`);
     },
     onError: (error) => {

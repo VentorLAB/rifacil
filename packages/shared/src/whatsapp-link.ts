@@ -30,8 +30,20 @@ export interface ReceiptWaInput {
   total: unknown;
   /** Abonado real. */
   paid?: unknown;
+  /**
+   * Estado de la venta (Sale.status). Si viene, "PAGADO" SOLO se afirma con
+   * "PAID": nunca deducirlo de la resta de montos (pueden ser auto-reportados
+   * o estar desincronizados del estado que confirmó el rifero).
+   */
+  status?: string | null;
   /** URL de la imagen del recibo (Cloudinary). Si falta, el mensaje va sin link. */
   receiptUrl?: string | null;
+  /**
+   * URL de la página pública del comprobante (/c/[saleId]). Si viene, el mensaje
+   * enlaza AQUÍ en vez del PNG crudo: WhatsApp muestra el recibo como preview
+   * grande (og:image) y al tocar se ve bonito, sin obligar a descargar nada.
+   */
+  receiptPageUrl?: string | null;
 }
 
 /**
@@ -42,21 +54,25 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const total = Number(input.total ?? 0);
   const paid = Number(input.paid ?? total);
   const debt = Math.max(0, Math.round((total - paid) * 100) / 100);
+  const isPaid = input.status ? input.status === "PAID" : debt <= 0;
 
   const hola = input.contactName ? `¡Hola ${input.contactName}! ` : "";
+  const link = input.receiptPageUrl || input.receiptUrl || null;
   return [
     `🎟️ *${input.raffleTitle}*`,
     `${hola}Tu apartado quedó registrado. 🍀`,
     ``,
     `Tus números: *${input.numbers.join(", ")}*`,
     `Valor total: ${money(total)}`,
-    debt > 0
-      ? `Abonado: ${money(paid)} · *Te falta: ${money(debt)}*`
-      : `Estado: *PAGADO* ✅`,
-    debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
-    input.receiptUrl ? `` : null,
-    input.receiptUrl ? `📄 Tu comprobante oficial:` : null,
-    input.receiptUrl ? input.receiptUrl : null,
+    isPaid
+      ? `Estado: *PAGADO* ✅`
+      : debt > 0
+        ? `Abonado: ${money(paid)} · *Te falta: ${money(debt)}*`
+        : `Abonado: ${money(paid)}`,
+    !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
+    link ? `` : null,
+    link ? `🧾 Mira tu comprobante aquí:` : null,
+    link ? link : null,
     ``,
     `🏆 Todo juega hasta tener ganador.`,
     `— ${input.brandName ?? "Riffas"}`,
