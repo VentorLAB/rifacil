@@ -3,8 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { buildReceiptWaLink } from "@riffas/shared";
-import { X, Loader2, Search, UserPlus, Check, Receipt, MessageCircle, CheckCircle2 } from "lucide-react";
+import { SendReceiptActions } from "@/components/send-receipt-actions";
+import { celebrateSale, saleCheer } from "@/lib/celebrate";
+import { X, Loader2, Search, UserPlus, Check, Receipt, CheckCircle2 } from "lucide-react";
 
 // Métodos de pago ofrecidos (Venezuela primero).
 const METHODS = [
@@ -89,10 +90,19 @@ export function SellNumberSheet({
 
   // Resultado del apartado/venta: dispara la pantalla de "Enviar por WhatsApp".
   const [sold, setSold] = useState<{
-    waLink: string | null;
+    saleId: string;
+    phone: string | null;
+    contactName: string | null;
+    brandName: string | null;
+    raffleTitle: string;
+    numbers: string[];
+    total: unknown;
+    paid: unknown;
+    status: string | null;
     receiptUrl: string | null;
     isFullyPaid: boolean;
     debt: number;
+    cheer: string;
   } | null>(null);
 
   const createSale = api.sale.create.useMutation({
@@ -102,24 +112,22 @@ export function SellNumberSheet({
           ? `¡Número ${number} vendido! 🎉`
           : `Número ${number} apartado · Deuda ${money(res.debt)}`
       );
+      celebrateSale();
       const c = res.sale.contact;
-      const waLink = c?.phone
-        ? buildReceiptWaLink({
-            phone: c.phone,
-            contactName: c.name,
-            brandName: res.brandName,
-            raffleTitle: res.sale.raffle.title,
-            numbers: res.sale.numbers,
-            total: res.sale.finalAmount,
-            paid: res.sale.amountPaid,
-            receiptUrl: res.sale.receiptUrl,
-          })
-        : null;
       setSold({
-        waLink,
+        saleId: res.sale.id,
+        phone: c?.phone ?? null,
+        contactName: c?.name ?? null,
+        brandName: res.brandName ?? null,
+        raffleTitle: res.sale.raffle.title,
+        numbers: res.sale.numbers,
+        total: res.sale.finalAmount,
+        paid: res.sale.amountPaid,
+        status: res.sale.status ?? null,
         receiptUrl: res.sale.receiptUrl ?? null,
         isFullyPaid: res.isFullyPaid,
         debt: res.debt,
+        cheer: saleCheer(),
       });
       onSold(); // refresca la grilla por detrás; el sheet queda en pantalla de envío
     },
@@ -197,6 +205,7 @@ export function SellNumberSheet({
                   ? `¡Número ${number} vendido!`
                   : `Número ${number} apartado`}
               </h3>
+              <p className="mt-1 text-sm font-medium text-green-700">{sold.cheer}</p>
               <p className="mt-1 text-sm text-slate-500">
                 {sold.isFullyPaid
                   ? "Envíale el comprobante al cliente."
@@ -204,31 +213,18 @@ export function SellNumberSheet({
               </p>
             </div>
 
-            {sold.waLink ? (
-              <a
-                href={sold.waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3.5 font-medium text-white hover:bg-green-700"
-              >
-                <MessageCircle className="h-5 w-5" /> Enviar recibo por WhatsApp
-              </a>
-            ) : (
-              <p className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
-                No se pudo armar el WhatsApp (teléfono inválido). Podés ver el recibo abajo.
-              </p>
-            )}
-
-            {sold.receiptUrl && (
-              <a
-                href={sold.receiptUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-sm text-blue-600 hover:underline"
-              >
-                <Receipt className="h-4 w-4" /> Ver recibo
-              </a>
-            )}
+            <SendReceiptActions
+              saleId={sold.saleId}
+              phone={sold.phone}
+              contactName={sold.contactName}
+              brandName={sold.brandName}
+              raffleTitle={sold.raffleTitle}
+              numbers={sold.numbers}
+              total={sold.total}
+              paid={sold.paid}
+              status={sold.status}
+              receiptUrl={sold.receiptUrl}
+            />
             {!sold.receiptUrl && (
               <p className="text-xs text-slate-400">
                 El recibo no se generó (revisá la configuración de imágenes).

@@ -538,7 +538,8 @@ export const saleRouter = createTRPCRouter({
         },
       });
 
-      return { ...updated, receiptUrl, amountPaid, isFullyPaid };
+      // brandName: para que la UI firme el wa.me con la marca del rifero.
+      return { ...updated, receiptUrl, amountPaid, isFullyPaid, brandName: brand.brandName };
     }),
 
   // Rechazar: libera los números (vuelven a disponibles), cancela la venta y audita.

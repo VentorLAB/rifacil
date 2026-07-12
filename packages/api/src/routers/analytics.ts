@@ -34,6 +34,40 @@ export const analyticsRouter = createTRPCRouter({
     };
   }),
 
+  // Estado del checklist "Primeros pasos" del panel (estilo Canva): 4 hitos que
+  // llevan al rifero hasta su primer recibo enviado (el "aha moment" de la app).
+  onboarding: protectedProcedure.query(async ({ ctx }) => {
+    const { prisma } = ctx;
+    const businessId = ctx.businessId;
+
+    const [user, raffles, sales, withReceipt] = await Promise.all([
+      prisma.user.findUnique({
+        where: { id: businessId },
+        select: { brandName: true, brandLogo: true },
+      }),
+      prisma.raffle.count({
+        where: { userId: businessId, status: { not: "CANCELLED" } },
+      }),
+      prisma.sale.count({
+        where: { userId: businessId, status: { notIn: ["CANCELLED", "REFUNDED"] } },
+      }),
+      prisma.sale.count({
+        where: {
+          userId: businessId,
+          receiptUrl: { not: null },
+          status: { notIn: ["CANCELLED", "REFUNDED"] },
+        },
+      }),
+    ]);
+
+    return {
+      hasBrand: !!(user?.brandName || user?.brandLogo),
+      hasRaffle: raffles > 0,
+      hasSale: sales > 0,
+      hasReceipt: withReceipt > 0,
+    };
+  }),
+
   // Tarjetas de la pantalla /dashboard/analytics.
   dashboard: protectedProcedure.query(async ({ ctx }) => {
     const { prisma } = ctx;

@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
+import { celebrateBig, crossedMilestone } from "@/lib/celebrate";
 import { ArrowLeft, Loader2, Play, Pause, Trash2 } from "lucide-react";
 import { NumberBoard } from "@/components/number-board";
 import { PrizesManager } from "@/components/prizes-manager";
@@ -22,6 +23,29 @@ export default function RaffleDetailPage() {
     { enabled: !!id }
   );
   const { data: stats } = api.raffle.getStats.useQuery({ id }, { enabled: !!id });
+
+  // % vendido (todo lo que no está disponible) para la barra de avance y los hitos.
+  const soldPct =
+    stats && stats.total > 0
+      ? Math.round(((stats.total - stats.available) / stats.total) * 100)
+      : null;
+
+  // Hitos de venta (25/50/75/90/100%): celebrar SOLO cuando se cruzan en vivo,
+  // nunca al abrir la página (la primera lectura solo fija la línea base).
+  const prevPctRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (soldPct === null) return;
+    if (prevPctRef.current === null) {
+      prevPctRef.current = soldPct;
+      return;
+    }
+    const milestone = crossedMilestone(prevPctRef.current, soldPct);
+    prevPctRef.current = soldPct;
+    if (milestone) {
+      celebrateBig();
+      toast(milestone.message, { icon: "🎊", duration: 5000 });
+    }
+  }, [soldPct]);
 
   const activate = api.raffle.activate.useMutation({
     onSuccess: () => {
@@ -120,6 +144,31 @@ export default function RaffleDetailPage() {
         <Stat label="Vendidos" value={(stats ? stats.sold + stats.paid : "—") as any} />
         <Stat label="Recaudado" value={stats ? `$${stats.revenue}` : "—"} />
       </div>
+
+      {/* Barra de avance: ver la rifa llenarse motiva a seguir vendiendo */}
+      {soldPct !== null && (
+        <div className="rounded-xl border bg-white p-4">
+          <div className="mb-2 flex items-center justify-between text-sm">
+            <span className="font-medium text-slate-700">Avance de la rifa</span>
+            <span className="font-bold text-green-600">{soldPct}% vendido</span>
+          </div>
+          <div className="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-green-500 to-emerald-400 transition-all duration-700"
+              style={{ width: `${soldPct}%` }}
+            />
+          </div>
+          {soldPct >= 100 ? (
+            <p className="mt-2 text-xs font-medium text-green-600">
+              🏆 ¡Rifa vendida completa!
+            </p>
+          ) : soldPct >= 75 ? (
+            <p className="mt-2 text-xs text-slate-500">
+              🔥 Recta final: quedan {stats?.available} números.
+            </p>
+          ) : null}
+        </div>
+      )}
 
       <div className="rounded-xl border bg-white p-6 space-y-2">
         <Row label="Precio por número" value={`$${Number(raffle.pricePerNumber)}`} />
