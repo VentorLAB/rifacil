@@ -333,6 +333,37 @@
 .sf .gallery-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
 .sf .gallery-item figcaption { padding: 10px 12px; font-size: .82rem; font-weight: 600; color: var(--gold-2); }
 
+/* ── Ganadores en video: carrusel de reels de Instagram (prueba social) ──
+   Tarjetas verticales 9:16 con scroll-snap horizontal. Los embeds cargan
+   lazy directo de instagram.com/reel/<code>/embed/. */
+.sf .reels-scroller {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(78vw, 320px);
+  gap: 18px; overflow-x: auto; padding: 6px 4px 22px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: rgba(247, 183, 51, .5) transparent;
+}
+.sf .reels-scroller::-webkit-scrollbar { height: 8px; }
+.sf .reels-scroller::-webkit-scrollbar-thumb { background: rgba(247, 183, 51, .35); border-radius: 99px; }
+.sf .reel-card {
+  scroll-snap-align: center; position: relative;
+  background: linear-gradient(180deg, var(--ink-3), var(--ink-2));
+  border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: var(--shadow); display: flex; flex-direction: column;
+}
+.sf .reel-card:hover { border-color: var(--line-2); }
+.sf .reel-embed { position: relative; aspect-ratio: 9/15; background: var(--ink); }
+.sf .reel-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.sf .reel-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--line); }
+.sf .reel-tag {
+  font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: var(--r-pill);
+  background: rgba(52, 211, 153, .18); color: #7cf3c3; border: 1px solid rgba(52, 211, 153, .5);
+}
+.sf .reel-link { font-size: .8rem; font-weight: 700; color: var(--gold-2); }
+.sf .reel-link:hover { text-decoration: underline; }
+.sf .reels-hint { text-align: center; color: var(--muted-2); font-size: .85rem; margin: 4px 0 0; font-weight: 600; }
+.sf .reels-cta { display: flex; justify-content: center; margin-top: 14px; }
+
 /* Respeta prefers-reduced-motion: sin lluvia ni spins agresivos */
 @media (prefers-reduced-motion: reduce) {
   .sf *, .sf *::after, .sf *::before { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .05ms !important; }

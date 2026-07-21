@@ -104,6 +104,66 @@ const waMessage = (title: string, emoji: string) =>
 //   WINNERS_GALLERY: { imageUrl: "https://res.cloudinary.com/...", caption?: "Ganador El Azulejo · feb 2026" }
 const WINNERS_GALLERY: { imageUrl: string; caption?: string }[] = [];
 
+// ───────── Ganadores en video (reels de Instagram — prueba social) ─────────
+// Shortcodes de instagram.com/reel/<code>/. EDITABLE: el ORDEN manda (el primero
+// es el más potente). Para quitar uno, borrá la línea; para destacar otro, subilo.
+// Fuente: reels pasados por Orlando (jul 2026), ordenados del más reciente al más antiguo.
+const WINNER_REELS: string[] = [
+  "Da5cVifR8Tw",
+  "DXFIxWQkW2s",
+  "DXFAhYojQ2e",
+  "DSShubGDaZr",
+  "DOWgyE1iXtM",
+  "DOTvBzRDYVf",
+  "DOJ2qwcEo3J",
+  "DOJ1y7Qksjk",
+  "DMGEKJgRJAa",
+  "DId4dxfR0dp",
+];
+
+// Carrusel de reels (server) — renderiza null si la lista está vacía. Los iframes
+// cargan lazy directo de Instagram (no requiere embed.js ni tokens).
+function WinnerReels({ codes }: { codes: string[] }) {
+  if (!codes.length) return null;
+  return (
+    <section className="section" id="ganadores-video" style={{ paddingTop: 0 }}>
+      <div className="wrap">
+        <div className="section-head">
+          <span className="kicker">📲 Prueba social real</span>
+          <h2 className="h-lg">Ganadores <span className="gold-text">en video</span></h2>
+          <p className="lead">Sin libreto y sin filtro: así reciben sus premios nuestros ganadores. Miralo con tus propios ojos.</p>
+        </div>
+        <div className="reels-scroller">
+          {codes.map((code, i) => (
+            <article className="reel-card" data-reveal key={code}>
+              <div className="reel-embed">
+                <iframe
+                  src={`https://www.instagram.com/reel/${code}/embed/`}
+                  title={`Video de ganador ${i + 1}`}
+                  loading="lazy"
+                  scrolling="no"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="reel-foot">
+                <span className="reel-tag">✓ Premio entregado</span>
+                <a className="reel-link" href={`https://www.instagram.com/reel/${code}/`} target="_blank" rel="noopener noreferrer">
+                  Ver en Instagram ↗
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p className="reels-hint">← Deslizá para ver más videos →</p>
+        <div className="reels-cta">
+          <a className="btn btn-gold" href="#rifas">🎟️ Quiero ser el próximo ganador</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Componente reutilizable (server) — renderiza null si la lista está vacía.
 function WinnersGallery({ items }: { items: { imageUrl: string; caption?: string }[] }) {
   if (!items.length) return null;
@@ -323,6 +383,9 @@ export default async function BrandLanding({ params }: { params: { host: string 
           )}
         </div>
       </section>
+
+      {/* ───────── GANADORES EN VIDEO (reels de Instagram, editable en WINNER_REELS) ───────── */}
+      <WinnerReels codes={WINNER_REELS} />
 
       {/* ───────── GANADORES / SORTEOS CUMPLIDOS ───────── */}
       {winners.length > 0 && (
