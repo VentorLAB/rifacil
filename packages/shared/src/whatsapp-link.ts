@@ -39,11 +39,43 @@ export interface ReceiptWaInput {
   /** URL de la imagen del recibo (Cloudinary). Si falta, el mensaje va sin link. */
   receiptUrl?: string | null;
   /**
-   * URL de la página pública del comprobante (/c/[saleId]). Si viene, el mensaje
-   * enlaza AQUÍ en vez del PNG crudo: WhatsApp muestra el recibo como preview
-   * grande (og:image) y al tocar se ve bonito, sin obligar a descargar nada.
+   * URL de la página pública del comprobante (/c/[saleId]). Se usa como CTA de
+   * FALLBACK (enlace tocable) SOLO si el rifero no tiene dominio propio.
    */
   receiptPageUrl?: string | null;
+  /**
+   * Dominio propio del rifero (p.ej. "rifashermanospernia.com", con o sin
+   * esquema). Si viene, es el CTA "mira todas nuestras rifas" del mensaje.
+   * Multi-tenant: cada rifero enlaza al SUYO; nunca se comparte entre riferos.
+   */
+  brandUrl?: string | null;
+}
+
+// El enlace PREVIEW del mensaje debe ser una IMAGEN directa: WhatsApp la muestra
+// inline en el chat (foto grande), de forma fiable en móvil Y en WhatsApp Web —
+// a diferencia de enlazar una página HTML y depender del scrapeo de og:image
+// (flaky, y peor en Web / cold start). Derivamos una versión comprimida del PNG
+// del recibo (Cloudinary): recibo COMPLETO, jpg, ancho 1080 → bien por debajo del
+// límite de preview de WhatsApp. Solo transformamos URLs de Cloudinary /upload/;
+// cualquier otra URL se usa tal cual (sigue siendo una imagen válida).
+function receiptImageForWa(receiptUrl: string): string {
+  try {
+    const u = new URL(receiptUrl);
+    if (u.hostname === "res.cloudinary.com" && u.pathname.includes("/upload/")) {
+      return receiptUrl.replace("/upload/", "/upload/f_jpg,q_auto:good,w_1080/");
+    }
+  } catch {
+    // URL no parseable → se devuelve sin tocar abajo.
+  }
+  return receiptUrl;
+}
+
+// El dominio propio se guarda "pelado" (sin esquema). Para un enlace tocable en
+// WhatsApp necesita https://. Devuelve null si no hay dominio.
+function normalizeBrandUrl(raw?: string | null): string | null {
+  const t = (raw ?? "").trim();
+  if (!t) return null;
+  return /^https?:\/\//i.test(t) ? t : `https://${t.replace(/^\/+/, "")}`;
 }
 
 /**
@@ -57,7 +89,11 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const isPaid = input.status ? input.status === "PAID" : debt <= 0;
 
   const hola = input.contactName ? `¡Hola ${input.contactName}! ` : "";
-  const link = input.receiptPageUrl || input.receiptUrl || null;
+  // Preview del chat = la IMAGEN del recibo (debe ir PRIMERA: WhatsApp previsualiza
+  // el primer enlace del mensaje).
+  const imageUrl = input.receiptUrl ? receiptImageForWa(input.receiptUrl) : null;
+  // CTA tocable secundario: dominio propio del rifero; si no tiene, la página /c.
+  const ctaUrl = normalizeBrandUrl(input.brandUrl) || input.receiptPageUrl || null;
   return [
     `🎟️ *${input.raffleTitle}*`,
     `${hola}Tu apartado quedó registrado. 🍀`,
@@ -70,9 +106,12 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
         ? `Abonado: ${money(paid)} · *Te falta: ${money(debt)}*`
         : `Abonado: ${money(paid)}`,
     !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
-    link ? `` : null,
-    link ? `🧾 Mira tu comprobante aquí:` : null,
-    link ? link : null,
+    imageUrl ? `` : null,
+    imageUrl ? `🧾 Aquí tienes tu comprobante:` : null,
+    imageUrl ? imageUrl : null,
+    ctaUrl ? `` : null,
+    ctaUrl ? `🎉 Mira todas nuestras rifas:` : null,
+    ctaUrl ? ctaUrl : null,
     ``,
     `🏆 Todo juega hasta tener ganador.`,
     `— ${input.brandName ?? "Riffas"}`,

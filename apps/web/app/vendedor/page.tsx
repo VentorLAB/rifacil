@@ -309,6 +309,7 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
               phone={lastSale.phone}
               contactName={lastSale.contactName}
               brandName={me?.brand?.name}
+              brandUrl={me?.brand?.url}
               raffleTitle={lastSale.raffleTitle}
               numbers={lastSale.numbers}
               total={lastSale.total}

@@ -67,7 +67,7 @@ export const vendorPortalRouter = createTRPCRouter({
 
     const user = await ctx.prisma.user.findUnique({
       where: { id: vendor.userId },
-      select: { name: true, brandName: true, brandColor: true, brandColorSecondary: true, brandLogo: true },
+      select: { name: true, brandName: true, brandColor: true, brandColorSecondary: true, brandLogo: true, customDomain: true },
     });
     const raffles = await ctx.prisma.raffle.findMany({
       where: { userId: vendor.userId, status: "ACTIVE", isPublic: true },
@@ -89,6 +89,7 @@ export const vendorPortalRouter = createTRPCRouter({
         color: user?.brandColor || "#3b82f6",
         colorSecondary: user?.brandColorSecondary || "#1e293b",
         logo: user?.brandLogo || null,
+        url: user?.customDomain || null,
       },
       raffles: raffles.map((r) => ({
         id: r.id,
