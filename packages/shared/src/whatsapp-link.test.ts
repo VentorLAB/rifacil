@@ -91,6 +91,21 @@ describe("buildReceiptMessage", () => {
     expect(msg).not.toContain("/c/abc123");
   });
 
+  it("omitImageLink: no repite la URL de la imagen (se adjunta como archivo) pero deja datos + marca", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      receiptUrl: "https://res.cloudinary.com/dbi6monrl/image/upload/v1/y.png",
+      brandUrl: "rifashermanospernia.com",
+      omitImageLink: true,
+    });
+    expect(msg).not.toContain("res.cloudinary.com");
+    expect(msg).not.toContain("Aquí tienes tu comprobante");
+    expect(msg).toContain("Tus números: *012, 345*");
+    expect(msg).toContain("*PAGADO* ✅");
+    expect(msg).toContain("https://rifashermanospernia.com");
+  });
+
   it("sin recibo ni links, no hay bloque de comprobante", () => {
     const without = buildReceiptMessage({ ...base, paid: 10 });
     expect(without).not.toContain("Aquí tienes tu comprobante");

@@ -12,8 +12,8 @@
 //   3. Ver recibo: abre la página pública /c/[saleId].
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
-import { buildReceiptWaLink } from "@riffas/shared";
-import { MessageCircle, Image as ImageIcon, Receipt, Loader2 } from "lucide-react";
+import { buildReceiptWaLink, buildReceiptMessage } from "@riffas/shared";
+import { MessageCircle, Receipt, Loader2 } from "lucide-react";
 
 export interface SendReceiptActionsProps {
   saleId: string;
@@ -78,6 +78,25 @@ export function SendReceiptActions({
     [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, receiptUrl, pageUrl, brandUrl]
   );
 
+  // Caption del share nativo: mismos datos, pero SIN el enlace a la imagen
+  // (la imagen viaja adjunta como foto real), y con el CTA de marca.
+  const shareCaption = useMemo(
+    () =>
+      buildReceiptMessage({
+        phone: phone ?? "",
+        contactName,
+        brandName,
+        raffleTitle,
+        numbers,
+        total,
+        paid,
+        status,
+        brandUrl,
+        omitImageLink: true,
+      }),
+    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, brandUrl]
+  );
+
   // Precarga del PNG para compartirlo como imagen nativa (solo si el navegador
   // soporta compartir archivos: iOS Safari y Android Chrome sí).
   const fileRef = useRef<File | null>(null);
@@ -113,11 +132,17 @@ export function SendReceiptActions({
     if (!file || sharing) return;
     setSharing(true);
     try {
-      await navigator.share({ files: [file] });
+      // Adjunta la foto del recibo + el texto como caption. El cliente elige el
+      // contacto y el recibo llega como IMAGEN dentro del chat (no un enlace).
+      await navigator.share({
+        files: [file],
+        text: shareCaption,
+        title: brandName ? `Recibo · ${brandName}` : "Tu recibo",
+      });
       toast.success("Recibo compartido 🧾✨");
     } catch (e: any) {
       if (e?.name !== "AbortError") {
-        toast.error("No se pudo compartir la imagen. Usa el botón verde de WhatsApp.");
+        toast.error("No se pudo compartir la imagen. Probá “enviar solo el texto”.");
       }
     } finally {
       setSharing(false);
@@ -126,9 +151,45 @@ export function SendReceiptActions({
 
   const btnBase = compact ? "py-2.5 text-sm" : "py-3.5";
 
+  // El ÚNICO modo de que la foto del recibo quede INCRUSTADA en el chat (no un
+  // enlace) es compartir el archivo por la Web Share API — soportado en móvil
+  // (iOS Safari / Android Chrome). Cuando está disponible, es la acción primaria.
+  const canSharePhoto = shareReady && !!receiptUrl;
+
   return (
     <div className="space-y-2">
-      {waLink ? (
+      {canSharePhoto ? (
+        <>
+          <button
+            type="button"
+            onClick={shareImage}
+            disabled={sharing}
+            className={`flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 font-medium text-white hover:bg-green-700 disabled:opacity-60 ${btnBase}`}
+          >
+            {sharing ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <MessageCircle className="h-5 w-5" />
+            )}
+            Enviar recibo por WhatsApp
+          </button>
+          {!compact && (
+            <p className="text-center text-xs text-slate-400">
+              El recibo llega como imagen dentro del chat 📸
+            </p>
+          )}
+          {waLink && (
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center text-xs text-slate-400 hover:underline"
+            >
+              o enviar solo el texto
+            </a>
+          )}
+        </>
+      ) : waLink ? (
         <>
           <a
             href={waLink}
@@ -139,35 +200,19 @@ export function SendReceiptActions({
             <MessageCircle className="h-5 w-5" />
             {receiptUrl ? "Enviar recibo por WhatsApp" : "Enviar confirmación por WhatsApp"}
           </a>
-          {pageUrl && !compact && (
+          {receiptUrl && !compact && (
+            // Escritorio (WhatsApp Web no acepta adjuntar la foto desde la web):
+            // se manda el texto; para incrustar la imagen hay que usar el móvil.
             <p className="text-center text-xs text-slate-400">
-              El cliente ve el recibo directo en el chat 😎
+              Para que el recibo llegue como imagen 📸, envíalo desde tu teléfono.
             </p>
           )}
         </>
       ) : phone ? (
-        // Hay teléfono pero no se pudo armar el wa.me → avisar. Sin teléfono
-        // no hay nada que avisar: quedan las demás acciones (imagen / ver recibo).
         <p className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
           No se pudo armar el WhatsApp (teléfono inválido).
         </p>
       ) : null}
-
-      {shareReady && (
-        <button
-          type="button"
-          onClick={shareImage}
-          disabled={sharing}
-          className={`flex w-full items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 font-medium text-green-700 hover:bg-green-100 disabled:opacity-50 ${btnBase}`}
-        >
-          {sharing ? (
-            <Loader2 className="h-5 w-5 animate-spin" />
-          ) : (
-            <ImageIcon className="h-5 w-5" />
-          )}
-          Enviar la imagen del recibo
-        </button>
-      )}
 
       {pageUrl && (
         <a

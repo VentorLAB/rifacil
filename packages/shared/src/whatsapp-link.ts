@@ -49,6 +49,13 @@ export interface ReceiptWaInput {
    * Multi-tenant: cada rifero enlaza al SUYO; nunca se comparte entre riferos.
    */
   brandUrl?: string | null;
+  /**
+   * Cuando el recibo se ADJUNTA como archivo (Web Share API: la imagen viaja
+   * como foto real en el chat), el texto NO debe repetir el enlace a la imagen.
+   * true → omite el bloque "Aquí tienes tu comprobante" + url; deja el resto
+   * (datos de la venta + CTA de marca). Usado como caption del navigator.share.
+   */
+  omitImageLink?: boolean;
 }
 
 // El enlace PREVIEW del mensaje debe ser una IMAGEN directa: WhatsApp la muestra
@@ -92,6 +99,8 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   // Preview del chat = la IMAGEN del recibo (debe ir PRIMERA: WhatsApp previsualiza
   // el primer enlace del mensaje).
   const imageUrl = input.receiptUrl ? receiptImageForWa(input.receiptUrl) : null;
+  // Si la imagen se adjunta como archivo (share nativo), no repetir su enlace.
+  const showImage = !!imageUrl && !input.omitImageLink;
   // CTA tocable secundario: dominio propio del rifero; si no tiene, la página /c.
   const ctaUrl = normalizeBrandUrl(input.brandUrl) || input.receiptPageUrl || null;
   return [
@@ -106,9 +115,9 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
         ? `Abonado: ${money(paid)} · *Te falta: ${money(debt)}*`
         : `Abonado: ${money(paid)}`,
     !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
-    imageUrl ? `` : null,
-    imageUrl ? `🧾 Aquí tienes tu comprobante:` : null,
-    imageUrl ? imageUrl : null,
+    showImage ? `` : null,
+    showImage ? `🧾 Aquí tienes tu comprobante:` : null,
+    showImage ? imageUrl : null,
     ctaUrl ? `` : null,
     ctaUrl ? `🎉 Mira todas nuestras rifas:` : null,
     ctaUrl ? ctaUrl : null,
