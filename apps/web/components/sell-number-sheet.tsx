@@ -94,6 +94,7 @@ export function SellNumberSheet({
     phone: string | null;
     contactName: string | null;
     brandName: string | null;
+    brandUrl: string | null;
     raffleTitle: string;
     numbers: string[];
     total: unknown;
@@ -119,6 +120,7 @@ export function SellNumberSheet({
         phone: c?.phone ?? null,
         contactName: c?.name ?? null,
         brandName: res.brandName ?? null,
+        brandUrl: res.brandUrl ?? null,
         raffleTitle: res.sale.raffle.title,
         numbers: res.sale.numbers,
         total: res.sale.finalAmount,
@@ -218,6 +220,7 @@ export function SellNumberSheet({
               phone={sold.phone}
               contactName={sold.contactName}
               brandName={sold.brandName}
+              brandUrl={sold.brandUrl}
               raffleTitle={sold.raffleTitle}
               numbers={sold.numbers}
               total={sold.total}

@@ -260,6 +260,7 @@ export const saleRouter = createTRPCRouter({
         debt,
         isFullyPaid,
         brandName: brand.brandName,
+        brandUrl: brand.brandWebsite,
       };
     }),
 
@@ -538,8 +539,9 @@ export const saleRouter = createTRPCRouter({
         },
       });
 
-      // brandName: para que la UI firme el wa.me con la marca del rifero.
-      return { ...updated, receiptUrl, amountPaid, isFullyPaid, brandName: brand.brandName };
+      // brandName + brandUrl: para que la UI firme el wa.me con la marca y el
+      // dominio propio del rifero.
+      return { ...updated, receiptUrl, amountPaid, isFullyPaid, brandName: brand.brandName, brandUrl: brand.brandWebsite };
     }),
 
   // Rechazar: libera los números (vuelven a disponibles), cancela la venta y audita.
@@ -658,7 +660,7 @@ export const saleRouter = createTRPCRouter({
           vendor: true,
           numbers_rel: true,
           payments: { orderBy: { createdAt: "asc" } },
-          user: { select: { brandName: true, name: true } },
+          user: { select: { brandName: true, name: true, customDomain: true } },
         },
       });
 

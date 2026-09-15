@@ -27,6 +27,8 @@ export interface SendReceiptActionsProps {
   /** Sale.status: "PAGADO" en el mensaje solo se afirma con "PAID". */
   status?: string | null;
   receiptUrl?: string | null;
+  /** Dominio propio del rifero (CTA "mira todas nuestras rifas" en el wa.me). */
+  brandUrl?: string | null;
   /** Versión reducida (portal del vendedor). */
   compact?: boolean;
 }
@@ -42,6 +44,7 @@ export function SendReceiptActions({
   paid,
   status,
   receiptUrl,
+  brandUrl,
   compact = false,
 }: SendReceiptActionsProps) {
   // Origen leído tras montar (nunca en render: evita mismatch de hidratación
@@ -69,9 +72,10 @@ export function SendReceiptActions({
             status,
             receiptUrl,
             receiptPageUrl: pageUrl,
+            brandUrl,
           })
         : null,
-    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, receiptUrl, pageUrl]
+    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, receiptUrl, pageUrl, brandUrl]
   );
 
   // Precarga del PNG para compartirlo como imagen nativa (solo si el navegador

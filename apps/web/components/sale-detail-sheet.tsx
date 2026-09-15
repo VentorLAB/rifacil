@@ -352,6 +352,7 @@ export function SaleDetailSheet({
                 paid={sale.amountPaid}
                 status={sale.status}
                 receiptUrl={sale.receiptUrl}
+                brandUrl={sale.user?.customDomain}
               />
             )}
           </div>

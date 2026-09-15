@@ -50,6 +50,7 @@ export default function PendingPage() {
     phone: string | null;
     contactName: string | null;
     brandName: string | null;
+    brandUrl: string | null;
     raffleTitle: string;
     numbers: string[];
     total: unknown;
@@ -67,6 +68,7 @@ export default function PendingPage() {
         phone: res.contact?.phone ?? null,
         contactName: res.contact?.name ?? null,
         brandName: res.brandName ?? null,
+        brandUrl: res.brandUrl ?? null,
         raffleTitle: res.raffle?.title ?? "",
         numbers: res.numbers ?? [],
         total: res.finalAmount,
@@ -221,6 +223,7 @@ export default function PendingPage() {
               phone={justConfirmed.phone}
               contactName={justConfirmed.contactName}
               brandName={justConfirmed.brandName}
+              brandUrl={justConfirmed.brandUrl}
               raffleTitle={justConfirmed.raffleTitle}
               numbers={justConfirmed.numbers}
               total={justConfirmed.total}

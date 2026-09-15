@@ -36,27 +36,65 @@ describe("buildReceiptMessage", () => {
     expect(paidMsg).toContain("*PAGADO* ✅");
   });
 
-  it("prefiere la página pública (/c) sobre el PNG crudo", () => {
+  it("el preview es la IMAGEN del recibo (Cloudinary comprimido, recibo completo)", () => {
     const msg = buildReceiptMessage({
       ...base,
       paid: 10,
-      receiptUrl: "https://res.cloudinary.com/x/y.png",
-      receiptPageUrl: "https://rifacil.app/c/abc123",
+      receiptUrl:
+        "https://res.cloudinary.com/dbi6monrl/image/upload/v1/riffas/receipts/R-1.png",
     });
-    expect(msg).toContain("https://rifacil.app/c/abc123");
-    expect(msg).not.toContain("res.cloudinary.com");
+    // Transforma /upload/ a jpg comprimido a 1080 de ancho (recibo completo, sin recorte).
+    expect(msg).toContain(
+      "https://res.cloudinary.com/dbi6monrl/image/upload/f_jpg,q_auto:good,w_1080/v1/riffas/receipts/R-1.png"
+    );
+    expect(msg).toContain("🧾 Aquí tienes tu comprobante:");
   });
 
-  it("sin página pública cae al PNG; sin nada, no hay bloque de link", () => {
-    const withPng = buildReceiptMessage({
+  it("la imagen va ANTES que el CTA de marca (WhatsApp previsualiza el 1er enlace)", () => {
+    const msg = buildReceiptMessage({
       ...base,
       paid: 10,
-      receiptUrl: "https://res.cloudinary.com/x/y.png",
+      receiptUrl: "https://res.cloudinary.com/dbi6monrl/image/upload/v1/y.png",
+      brandUrl: "rifashermanospernia.com",
     });
-    expect(withPng).toContain("res.cloudinary.com");
+    const iImg = msg.indexOf("res.cloudinary.com");
+    const iBrand = msg.indexOf("https://rifashermanospernia.com");
+    expect(iImg).toBeGreaterThan(-1);
+    expect(iBrand).toBeGreaterThan(-1);
+    expect(iImg).toBeLessThan(iBrand);
+  });
 
+  it("brandUrl pelado se normaliza a https:// (dominio propio del rifero)", () => {
+    const msg = buildReceiptMessage({ ...base, paid: 10, brandUrl: "rifashermanospernia.com" });
+    expect(msg).toContain("https://rifashermanospernia.com");
+    expect(msg).toContain("Mira todas nuestras rifas");
+  });
+
+  it("sin dominio propio, el CTA cae a la página /c del comprobante", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      receiptUrl: "https://res.cloudinary.com/dbi6monrl/image/upload/v1/y.png",
+      receiptPageUrl: "https://rifacil.vip/c/abc123",
+    });
+    expect(msg).toContain("https://rifacil.vip/c/abc123");
+  });
+
+  it("el dominio propio tiene prioridad sobre la página /c", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      brandUrl: "rifashermanospernia.com",
+      receiptPageUrl: "https://rifacil.vip/c/abc123",
+    });
+    expect(msg).toContain("https://rifashermanospernia.com");
+    expect(msg).not.toContain("/c/abc123");
+  });
+
+  it("sin recibo ni links, no hay bloque de comprobante", () => {
     const without = buildReceiptMessage({ ...base, paid: 10 });
-    expect(without).not.toContain("Mira tu comprobante");
+    expect(without).not.toContain("Aquí tienes tu comprobante");
+    expect(without).not.toContain("Mira todas nuestras rifas");
   });
 });
 
