@@ -142,7 +142,7 @@ export function SendReceiptActions({
       toast.success("Recibo compartido 🧾✨");
     } catch (e: any) {
       if (e?.name !== "AbortError") {
-        toast.error("No se pudo compartir la imagen. Probá “enviar solo el texto”.");
+        toast.error("No se pudo adjuntar la foto. Usá el botón verde de WhatsApp.");
       }
     } finally {
       setSharing(false);
@@ -151,45 +151,16 @@ export function SendReceiptActions({
 
   const btnBase = compact ? "py-2.5 text-sm" : "py-3.5";
 
-  // El ÚNICO modo de que la foto del recibo quede INCRUSTADA en el chat (no un
-  // enlace) es compartir el archivo por la Web Share API — soportado en móvil
-  // (iOS Safari / Android Chrome). Cuando está disponible, es la acción primaria.
-  const canSharePhoto = shareReady && !!receiptUrl;
+  // La MINIATURA del recibo la pinta WhatsApp desde la URL de la imagen incluida
+  // en el texto wa.me (mismo mecanismo que la v1): en Android se ve foto + datos;
+  // en WhatsApp Web/PC solo el texto (WhatsApp de escritorio no pinta miniaturas
+  // de imágenes sueltas). Respaldo en móvil: ADJUNTAR la foto real por Web Share,
+  // por si algún equipo no pinta la miniatura.
+  const canAttachPhoto = shareReady && !!receiptUrl;
 
   return (
     <div className="space-y-2">
-      {canSharePhoto ? (
-        <>
-          <button
-            type="button"
-            onClick={shareImage}
-            disabled={sharing}
-            className={`flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 font-medium text-white hover:bg-green-700 disabled:opacity-60 ${btnBase}`}
-          >
-            {sharing ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              <MessageCircle className="h-5 w-5" />
-            )}
-            Enviar recibo por WhatsApp
-          </button>
-          {!compact && (
-            <p className="text-center text-xs text-slate-400">
-              El recibo llega como imagen dentro del chat 📸
-            </p>
-          )}
-          {waLink && (
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center text-xs text-slate-400 hover:underline"
-            >
-              o enviar solo el texto
-            </a>
-          )}
-        </>
-      ) : waLink ? (
+      {waLink ? (
         <>
           <a
             href={waLink}
@@ -201,13 +172,41 @@ export function SendReceiptActions({
             {receiptUrl ? "Enviar recibo por WhatsApp" : "Enviar confirmación por WhatsApp"}
           </a>
           {receiptUrl && !compact && (
-            // Escritorio (WhatsApp Web no acepta adjuntar la foto desde la web):
-            // se manda el texto; para incrustar la imagen hay que usar el móvil.
             <p className="text-center text-xs text-slate-400">
-              Para que el recibo llegue como imagen 📸, envíalo desde tu teléfono.
+              En el celular llega la foto del recibo + los datos en el chat 📸
             </p>
           )}
+          {canAttachPhoto && (
+            <button
+              type="button"
+              onClick={shareImage}
+              disabled={sharing}
+              className={`flex w-full items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 font-medium text-green-700 hover:bg-green-100 disabled:opacity-50 ${btnBase}`}
+            >
+              {sharing ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : (
+                <MessageCircle className="h-5 w-5" />
+              )}
+              o enviar la foto adjunta
+            </button>
+          )}
         </>
+      ) : canAttachPhoto ? (
+        // Sin teléfono válido para wa.me, pero se puede adjuntar la foto por Compartir.
+        <button
+          type="button"
+          onClick={shareImage}
+          disabled={sharing}
+          className={`flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 font-medium text-white hover:bg-green-700 disabled:opacity-60 ${btnBase}`}
+        >
+          {sharing ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <MessageCircle className="h-5 w-5" />
+          )}
+          Enviar recibo por WhatsApp
+        </button>
       ) : phone ? (
         <p className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
           No se pudo armar el WhatsApp (teléfono inválido).
