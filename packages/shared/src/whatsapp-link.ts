@@ -77,6 +77,25 @@ function receiptImageForWa(receiptUrl: string): string {
   return receiptUrl;
 }
 
+// Enlace de PREVIEW en NUESTRO dominio: /rc/<receiptNumber>. Es una página HTML con
+// og:image, que WhatsApp SÍ convierte en miniatura (una URL de imagen "pelada" no,
+// sobre todo en WhatsApp Web). El receiptNumber es el public_id dentro de la URL de
+// Cloudinary; el origin sale de la URL de la página /c. Sin ambos → null (cae a la
+// imagen directa). Ruta /rc/ (no /r/, que es el storefront público de la rifa).
+function receiptPreviewPage(
+  receiptUrl?: string | null,
+  receiptPageUrl?: string | null
+): string | null {
+  if (!receiptUrl || !receiptPageUrl) return null;
+  const m = receiptUrl.match(/\/riffas\/receipts\/([^/.]+)/);
+  if (!m) return null;
+  try {
+    return `${new URL(receiptPageUrl).origin}/rc/${encodeURIComponent(m[1])}`;
+  } catch {
+    return null;
+  }
+}
+
 // El dominio propio se guarda "pelado" (sin esquema). Para un enlace tocable en
 // WhatsApp necesita https://. Devuelve null si no hay dominio.
 function normalizeBrandUrl(raw?: string | null): string | null {
@@ -98,9 +117,14 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const hola = input.contactName ? `¡Hola ${input.contactName}! ` : "";
   // Preview del chat = la IMAGEN del recibo (debe ir PRIMERA: WhatsApp previsualiza
   // el primer enlace del mensaje).
-  const imageUrl = input.receiptUrl ? receiptImageForWa(input.receiptUrl) : null;
+  // Preferimos la página /r (HTML con og:image → miniatura fiable en WhatsApp,
+  // también en Web); si no se puede armar, caemos a la URL directa de la imagen.
+  const previewLink = input.receiptUrl
+    ? receiptPreviewPage(input.receiptUrl, input.receiptPageUrl) ||
+      receiptImageForWa(input.receiptUrl)
+    : null;
   // Si la imagen se adjunta como archivo (share nativo), no repetir su enlace.
-  const showImage = !!imageUrl && !input.omitImageLink;
+  const showImage = !!previewLink && !input.omitImageLink;
   // CTA tocable secundario: dominio propio del rifero; si no tiene, la página /c.
   const ctaUrl = normalizeBrandUrl(input.brandUrl) || input.receiptPageUrl || null;
   return [
@@ -117,7 +141,7 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
     !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
     showImage ? `` : null,
     showImage ? `🧾 Aquí tienes tu comprobante:` : null,
-    showImage ? imageUrl : null,
+    showImage ? previewLink : null,
     ctaUrl ? `` : null,
     ctaUrl ? `🎉 Mira todas nuestras rifas:` : null,
     ctaUrl ? ctaUrl : null,
