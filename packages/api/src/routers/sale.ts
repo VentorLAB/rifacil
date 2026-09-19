@@ -352,11 +352,12 @@ export const saleRouter = createTRPCRouter({
         orderBy: { orden: "asc" },
         select: { titulo: true },
       });
+      const brand = await brandFor(prisma, businessId);
       const receiptUrl = await safeGenerateReceipt({
         sale: updated,
         raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
         contact: updated.contact,
-        ...(await brandFor(prisma, businessId)),
+        ...brand,
       });
       await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
       await prisma.raffleNumber.updateMany({
@@ -364,7 +365,9 @@ export const saleRouter = createTRPCRouter({
         data: { receiptUrl },
       });
 
-      return { sale: { ...updated, receiptUrl }, amountPaid, debt, isFullyPaid };
+      // brandName + brandUrl: para que la UI arme el wa.me (marca + dominio propio)
+      // con datos FRESCOS del abono y lo abra directo, sin depender del refetch.
+      return { sale: { ...updated, receiptUrl }, amountPaid, debt, isFullyPaid, brandName: brand.brandName, brandUrl: brand.brandWebsite };
     }),
 
   // Marca una venta como saldada por completo: registra el saldo pendiente como

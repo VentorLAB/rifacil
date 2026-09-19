@@ -29,6 +29,13 @@ export interface SendReceiptActionsProps {
   receiptUrl?: string | null;
   /** Dominio propio del rifero (CTA "mira todas nuestras rifas" en el wa.me). */
   brandUrl?: string | null;
+  /**
+   * Si true, apenas el enlace wa.me esté listo se abre WhatsApp SOLO (sin que el
+   * rifero toque el botón): tras registrar el pago/abono se va directo a enviar
+   * el recibo. Se dispara una única vez. El botón queda como respaldo por si el
+   * navegador bloqueara la apertura.
+   */
+  autoOpen?: boolean;
   /** Versión reducida (portal del vendedor). */
   compact?: boolean;
 }
@@ -45,6 +52,7 @@ export function SendReceiptActions({
   status,
   receiptUrl,
   brandUrl,
+  autoOpen,
   compact = false,
 }: SendReceiptActionsProps) {
   // Origen leído tras montar (nunca en render: evita mismatch de hidratación
@@ -96,6 +104,24 @@ export function SendReceiptActions({
       }),
     [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, brandUrl]
   );
+
+  // Auto-abrir WhatsApp tras registrar pago/abono (sin tocar el botón). Se usa
+  // location.href como respaldo porque window.open sin gesto suele bloquearse; la
+  // navegación de la pestaña sí está permitida. Se dispara una sola vez.
+  const autoOpenedRef = useRef(false);
+  useEffect(() => {
+    // Esperamos a `origin` (lo fija un effect de montaje) para que el wa.me incluya
+    // el CTA a /c cuando el rifero no tiene dominio propio.
+    if (!autoOpen || !origin || !waLink || autoOpenedRef.current) return;
+    autoOpenedRef.current = true;
+    let opened: Window | null = null;
+    try {
+      opened = window.open(waLink, "_blank");
+    } catch {
+      opened = null;
+    }
+    if (!opened) window.location.href = waLink;
+  }, [autoOpen, origin, waLink]);
 
   // Precarga del PNG para compartirlo como imagen nativa (solo si el navegador
   // soporta compartir archivos: iOS Safari y Android Chrome sí).

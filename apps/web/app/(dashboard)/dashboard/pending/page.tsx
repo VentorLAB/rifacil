@@ -224,6 +224,7 @@ export default function PendingPage() {
               contactName={justConfirmed.contactName}
               brandName={justConfirmed.brandName}
               brandUrl={justConfirmed.brandUrl}
+              autoOpen
               raffleTitle={justConfirmed.raffleTitle}
               numbers={justConfirmed.numbers}
               total={justConfirmed.total}

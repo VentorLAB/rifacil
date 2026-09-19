@@ -4,6 +4,7 @@ import { useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
 import { SendReceiptActions } from "@/components/send-receipt-actions";
+import { buildReceiptWaLink } from "@riffas/shared";
 import { celebrateBig } from "@/lib/celebrate";
 import { X, Loader2, Plus } from "lucide-react";
 
@@ -93,6 +94,33 @@ export function SaleDetailSheet({
       if (res.isFullyPaid) celebrateBig();
       setAmount("");
       setReference("");
+      // Auto-abrir WhatsApp con el recibo YA ACTUALIZADO. Se arma con los datos
+      // FRESCOS que devuelve la mutación (no con la query cacheada, que aún trae
+      // los montos viejos hasta que el refetch resuelva).
+      const link = buildReceiptWaLink({
+        phone: res.sale.contact?.phone ?? "",
+        contactName: res.sale.contact?.name,
+        brandName: res.brandName,
+        brandUrl: res.brandUrl,
+        raffleTitle: res.sale.raffle?.title ?? "",
+        numbers: res.sale.numbers ?? [],
+        total: res.sale.finalAmount,
+        paid: res.amountPaid,
+        status: res.sale.status,
+        receiptUrl: res.sale.receiptUrl,
+        receiptPageUrl: res.sale.receiptUrl
+          ? `${window.location.origin}/c/${res.sale.id}`
+          : null,
+      });
+      if (link) {
+        let w: Window | null = null;
+        try {
+          w = window.open(link, "_blank");
+        } catch {
+          w = null;
+        }
+        if (!w) window.location.href = link;
+      }
       // Refrescar el detalle (deuda + historial) y la lista de ventas.
       utils.sale.getById.invalidate({ id: saleId });
       utils.sale.list.invalidate();
