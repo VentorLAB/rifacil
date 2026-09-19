@@ -50,6 +50,20 @@ describe("buildReceiptMessage", () => {
     expect(msg).toContain("🧾 Aquí tienes tu comprobante:");
   });
 
+  it("con receiptUrl de Cloudinary + origin, el preview es la página /r (og:image), no la imagen directa", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      receiptUrl:
+        "https://res.cloudinary.com/dbi6monrl/image/upload/v1789/riffas/receipts/R-123-ABCD.png",
+      receiptPageUrl: "https://rifacil.vip/c/sale123",
+    });
+    // WhatsApp scrapea /rc (HTML con og:image) → miniatura fiable, también en Web.
+    expect(msg).toContain("https://rifacil.vip/rc/R-123-ABCD");
+    // El preview ya NO es la URL directa de la imagen.
+    expect(msg).not.toContain("res.cloudinary.com");
+  });
+
   it("la imagen va ANTES que el CTA de marca (WhatsApp previsualiza el 1er enlace)", () => {
     const msg = buildReceiptMessage({
       ...base,
