@@ -34,9 +34,11 @@ export async function GET(
 
   const upload = `https://res.cloudinary.com/${CLOUD}/image/upload`;
   const path = `/riffas/receipts/${id}.png`;
-  // Card 1.91:1 anclada arriba (marca + estado + números) para un preview limpio.
-  const card = `${upload}/c_fill,g_north,w_1200,h_630,q_auto:good,f_jpg${path}`;
-  // Recibo COMPLETO para quien toca el enlace.
+  // og:image VERTICAL con el recibo COMPLETO (c_pad a 4:5, fondo del marco del
+  // recibo). Aspecto tipo FOTO (no banner 1.91:1) → WhatsApp muestra la card
+  // GRANDE y legible, no el thumbnail chico. Dimensiones fijas y conocidas.
+  const card = `${upload}/c_pad,w_1080,h_1350,b_rgb:e6e7eb,q_auto:good,f_jpg${path}`;
+  // Recibo COMPLETO (natural) para quien toca el enlace.
   const full = `${upload}/f_jpg,q_auto:good,w_1080${path}`;
 
   const html = `<!doctype html><html lang="es"><head><meta charset="utf-8">
@@ -47,8 +49,8 @@ export async function GET(
 <meta property="og:title" content="Tu comprobante 🧾">
 <meta property="og:description" content="Mirá tu comprobante de la rifa.">
 <meta property="og:image" content="${esc(card)}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1350">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${esc(card)}">
 <style>html,body{margin:0;background:#0f1115;color:#e6e7eb;font-family:system-ui,-apple-system,sans-serif}
