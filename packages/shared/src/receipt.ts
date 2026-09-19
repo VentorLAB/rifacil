@@ -532,5 +532,22 @@ export async function generateReceipt(
     resource_type: "image",
   });
 
+  // Pre-calentamos el derivado que la página /rc usa como og:image. En frío,
+  // Cloudinary tarda ~2.5s en generarlo; el crawler de WhatsApp corta antes y
+  // cae al thumbnail chico ilegible. Generándolo ahora (segundos antes de que el
+  // rifero envíe), WhatsApp lo recibe YA listo (~0.6s) y muestra la card GRANDE.
+  // OJO: este transform DEBE coincidir con el de apps/web/app/rc/[id]/route.ts.
+  const cardUrl = uploaded.secure_url
+    .replace(/\/v\d+\//, "/")
+    .replace(
+      "/upload/",
+      "/upload/c_pad,w_1080,h_1350,b_rgb:e6e7eb,q_auto:good,f_jpg/"
+    );
+  try {
+    await fetch(cardUrl);
+  } catch {
+    // best-effort: si el pre-calentado falla, el recibo igual quedó subido.
+  }
+
   return uploaded.secure_url;
 }
