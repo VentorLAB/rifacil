@@ -525,28 +525,43 @@ export async function generateReceipt(
 ): Promise<string> {
   const png = await renderReceiptPng(input);
   const dataUri = `data:image/png;base64,${png.toString("base64")}`;
+  // Transform del og:image que usa /rc. DEBE coincidir con apps/web/app/rc/[id]/route.ts.
+  const CARD_TRANSFORM = "c_pad,w_1080,h_1350,b_rgb:e6e7eb,q_auto:good,f_jpg";
+
   const uploaded = await cloudinary.uploader.upload(dataUri, {
     folder: "riffas/receipts",
     public_id: input.sale.receiptNumber,
     overwrite: true,
+    // Al regenerar el recibo (p.ej. APARTADO→PAGADO tras un abono) invalidamos el
+    // edge cache para que la card de WhatsApp no muestre el estado/montos viejos.
+    invalidate: true,
     resource_type: "image",
+    // Pre-generamos (eager SÍNCRONO) el derivado del og:image DENTRO de la subida.
+    // En frío Cloudinary tarda ~2.5s en generarlo y el crawler de WhatsApp corta
+    // antes → cae al thumbnail chico ilegible. Al generarlo aquí, cuando el rifero
+    // envía (segundos después) WhatsApp lo recibe YA listo y muestra la card GRANDE.
+    eager: [
+      {
+        crop: "pad",
+        width: 1080,
+        height: 1350,
+        background: "rgb:e6e7eb",
+        quality: "auto:good",
+        fetch_format: "jpg",
+      },
+    ],
+    eager_async: false,
   });
 
-  // Pre-calentamos el derivado que la página /rc usa como og:image. En frío,
-  // Cloudinary tarda ~2.5s en generarlo; el crawler de WhatsApp corta antes y
-  // cae al thumbnail chico ilegible. Generándolo ahora (segundos antes de que el
-  // rifero envíe), WhatsApp lo recibe YA listo (~0.6s) y muestra la card GRANDE.
-  // OJO: este transform DEBE coincidir con el de apps/web/app/rc/[id]/route.ts.
-  const cardUrl = uploaded.secure_url
-    .replace(/\/v\d+\//, "/")
-    .replace(
-      "/upload/",
-      "/upload/c_pad,w_1080,h_1350,b_rgb:e6e7eb,q_auto:good,f_jpg/"
-    );
+  // Además llenamos el edge cache de la URL EXACTA (sin versión) que sirve /rc;
+  // ya es rápida porque el eager generó el derivado. Best-effort.
   try {
+    const cardUrl = uploaded.secure_url
+      .replace(/\/v\d+\//, "/")
+      .replace("/upload/", `/upload/${CARD_TRANSFORM}/`);
     await fetch(cardUrl);
   } catch {
-    // best-effort: si el pre-calentado falla, el recibo igual quedó subido.
+    // si falla, el recibo igual quedó subido.
   }
 
   return uploaded.secure_url;
