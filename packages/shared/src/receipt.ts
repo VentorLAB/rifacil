@@ -219,7 +219,6 @@ export async function renderReceiptPng(
   const paidValue = num(sale.amountPaid ?? sale.finalAmount);
   const debtValue = Math.max(0, Number((totalValue - paidValue).toFixed(2)));
   const paid = debtValue <= 0;
-  const rate = num(sale.rateUsed);
 
   // Premio (línea corta y persuasiva bajo el título).
   const prizeText = (
@@ -448,16 +447,6 @@ export async function renderReceiptPng(
           dataRow("Valor total", money(totalValue), C.ink, { strong: true }),
           dataRow(paid ? "Pagado" : "Abonado", money(paidValue), C.green, { strong: true }),
           !paid ? dataRow("Deuda", money(debtValue), brand, { strong: true }) : el("div", {}),
-          rate > 0
-            ? dataRow(
-                paid ? "Total en Bs" : "Falta en Bs",
-                `${((paid ? totalValue : debtValue) * rate).toLocaleString("es-VE", {
-                  maximumFractionDigits: 2,
-                })} Bs · tasa ${rate.toLocaleString("es-VE", { maximumFractionDigits: 2 })}`,
-                C.faint,
-                { small: true }
-              )
-            : el("div", {}),
         ]
       ),
 
