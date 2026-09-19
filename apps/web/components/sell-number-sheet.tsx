@@ -221,6 +221,7 @@ export function SellNumberSheet({
               contactName={sold.contactName}
               brandName={sold.brandName}
               brandUrl={sold.brandUrl}
+              autoOpen
               raffleTitle={sold.raffleTitle}
               numbers={sold.numbers}
               total={sold.total}
