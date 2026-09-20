@@ -22,7 +22,7 @@ function esc(s: string): string {
 }
 
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   // Aceptamos "<id>" o "<id>.png". Sanitizamos: solo el juego de chars de un
@@ -30,6 +30,14 @@ export async function GET(
   const id = decodeURIComponent(params.id || "").replace(/\.png$/i, "");
   if (!/^[A-Za-z0-9_-]{4,80}$/.test(id)) {
     return new Response("Comprobante no encontrado", { status: 404 });
+  }
+
+  // URL canónica de esta página (para og:url). Falla suave a la ruta relativa.
+  let ogUrl = `/rc/${id}`;
+  try {
+    ogUrl = `${new URL(req.url).origin}/rc/${encodeURIComponent(id)}`;
+  } catch {
+    // sin req.url válido → relativa
   }
 
   const upload = `https://res.cloudinary.com/${CLOUD}/image/upload`;
@@ -46,10 +54,14 @@ export async function GET(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tu comprobante</title>
 <meta name="robots" content="noindex,nofollow">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Rifácil">
+<meta property="og:url" content="${esc(ogUrl)}">
 <meta property="og:title" content="Tu comprobante 🧾">
 <meta property="og:description" content="Mirá tu comprobante de la rifa.">
 <meta property="og:image" content="${esc(card)}">
+<meta property="og:image:secure_url" content="${esc(card)}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="675">
 <meta name="twitter:card" content="summary_large_image">
