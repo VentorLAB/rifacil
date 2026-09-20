@@ -452,7 +452,7 @@ export async function generateReceipt(
   const png = await renderReceiptPng(input);
   const dataUri = `data:image/png;base64,${png.toString("base64")}`;
   // Transform del og:image que usa /rc. DEBE coincidir con apps/web/app/rc/[id]/route.ts.
-  const CARD_TRANSFORM = "c_pad,w_1200,h_675,b_rgb:e6e7eb,q_auto:good,f_jpg";
+  const CARD_TRANSFORM = "c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good,f_jpg";
 
   const uploaded = await cloudinary.uploader.upload(dataUri, {
     folder: "riffas/receipts",
@@ -469,8 +469,8 @@ export async function generateReceipt(
     eager: [
       {
         crop: "pad",
-        width: 1200,
-        height: 675,
+        width: 1080,
+        height: 790,
         background: "rgb:e6e7eb",
         quality: "auto:good",
         fetch_format: "jpg",
