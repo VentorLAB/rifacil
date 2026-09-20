@@ -3,7 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
-import { brandFor, raffleReceiptFields } from "../lib/receiptData";
+import { brandFor, raffleReceiptFields, contactRaffleNumbers } from "../lib/receiptData";
 
 // Redondeo a 2 decimales para montos de dinero.
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -235,8 +235,12 @@ export const saleRouter = createTRPCRouter({
         select: { titulo: true },
       });
       const brand = await brandFor(prisma, businessId);
+      // El recibo muestra TODOS los números que el contacto tiene en la rifa
+      // (no solo los de esta venta), para que el comprador vea todos los suyos.
+      const allNums = await contactRaffleNumbers(prisma, raffle.id, sale.contactId);
       const receiptUrl = await safeGenerateReceipt({
-        sale, // incluye amountPaid => el recibo muestra Valor total / Abonado / Deuda reales
+        // sale incluye amountPaid (Valor total / Abonado / Deuda reales); numbers → todos los del contacto.
+        sale: { ...sale, numbers: allNums.length ? allNums : sale.numbers },
         raffle: await raffleReceiptFields(prisma, raffle, prizes),
         contact: sale.contact,
         ...brand,
@@ -353,8 +357,10 @@ export const saleRouter = createTRPCRouter({
         select: { titulo: true },
       });
       const brand = await brandFor(prisma, businessId);
+      // Recibo con TODOS los números que el contacto tiene en la rifa (no solo esta venta).
+      const allNums = await contactRaffleNumbers(prisma, updated.raffleId, updated.contactId);
       const receiptUrl = await safeGenerateReceipt({
-        sale: updated,
+        sale: { ...updated, numbers: allNums.length ? allNums : updated.numbers },
         raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
         contact: updated.contact,
         ...brand,
@@ -521,8 +527,10 @@ export const saleRouter = createTRPCRouter({
         select: { titulo: true },
       });
       const brand = await brandFor(prisma, businessId);
+      // Recibo con TODOS los números que el contacto tiene en la rifa (no solo esta venta).
+      const allNums = await contactRaffleNumbers(prisma, updated.raffleId, updated.contactId);
       const receiptUrl = await safeGenerateReceipt({
-        sale: updated,
+        sale: { ...updated, numbers: allNums.length ? allNums : updated.numbers },
         raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
         contact: updated.contact,
         ...brand,
