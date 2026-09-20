@@ -37,6 +37,28 @@ export async function brandFor(prisma: any, userId: string) {
   };
 }
 
+// TODOS los números que este contacto tiene en la rifa (RESERVED/PAID/SOLD), para
+// que el recibo muestre TODOS sus números, no solo los de esta venta. Orden
+// numérico. Si no hay contacto, devuelve [] (el llamador cae a los de la venta).
+export async function contactRaffleNumbers(
+  prisma: any,
+  raffleId: string,
+  contactId: string | null | undefined
+): Promise<string[]> {
+  if (!contactId) return [];
+  const rows = await prisma.raffleNumber.findMany({
+    where: { raffleId, contactId, status: { in: ["RESERVED", "PAID", "SOLD"] } },
+    select: { number: true },
+  });
+  return rows
+    .map((r: { number: string }) => r.number)
+    .sort((a: string, b: string) => {
+      const na = Number(a);
+      const nb = Number(b);
+      return Number.isFinite(na) && Number.isFinite(nb) ? na - nb : a.localeCompare(b);
+    });
+}
+
 // Foto LIMPIA del premio para el banner del recibo (NO el flyer = raffle.bannerUrl).
 // Mapeada por título de rifa. Si el título está acá, se usa este valor (aunque sea
 // null = banner oscuro) y NO se cae al flyer. Si NO está, se usa raffle.bannerUrl.
