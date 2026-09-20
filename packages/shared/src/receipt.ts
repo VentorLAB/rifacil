@@ -252,10 +252,10 @@ export async function renderReceiptPng(
         backgroundColor: C.gold,
         color: C.goldInk,
         fontWeight: 700,
-        fontSize: 17,
-        padding: "5px 11px",
-        borderRadius: 8,
-        letterSpacing: 1,
+        fontSize: 25,
+        padding: "9px 17px",
+        borderRadius: 11,
+        letterSpacing: 1.5,
         border: `1px solid ${C.goldEdge}`,
       },
       n
@@ -264,16 +264,16 @@ export async function renderReceiptPng(
 
   // Campo apilado (etiqueta arriba, valor abajo) para la columna derecha del boleto.
   const field = (label: string, value: string, valueColor: string = C.ink, small = false) =>
-    el("div", { display: "flex", flexDirection: "column", marginBottom: 7 }, [
-      el("div", { color: C.faint, fontSize: 9, fontWeight: 700, letterSpacing: 0.5 }, label.toUpperCase()),
-      el("div", { color: valueColor, fontSize: small ? 11 : 13, fontWeight: 600, marginTop: 1 }, value),
+    el("div", { display: "flex", flexDirection: "column", marginBottom: 10 }, [
+      el("div", { color: C.faint, fontSize: 12, fontWeight: 700, letterSpacing: 0.5 }, label),
+      el("div", { color: valueColor, fontSize: small ? 15 : 19, fontWeight: 700, marginTop: 2 }, value),
     ]);
 
   // Fila de monto (etiqueta izquierda, valor derecha).
   const mrow = (label: string, value: string, valueColor: string, strong = false) =>
-    el("div", { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "3px 0" }, [
-      el("div", { color: C.sub, fontSize: 11.5 }, label),
-      el("div", { color: valueColor, fontSize: 13, fontWeight: strong ? 700 : 600 }, value),
+    el("div", { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "5px 0" }, [
+      el("div", { color: C.sub, fontSize: 16 }, label),
+      el("div", { color: valueColor, fontSize: 21, fontWeight: strong ? 700 : 600 }, value),
     ]);
 
   const statusChip = paid
@@ -284,9 +284,9 @@ export async function renderReceiptPng(
           backgroundColor: "#E7F7EE",
           border: "1px solid #A6E2C2",
           borderRadius: 999,
-          padding: "5px 14px",
+          padding: "7px 18px",
         },
-        el("div", { color: C.green, fontSize: 12.5, fontWeight: 700 }, "PAGADO · ¡ESTÁS DENTRO! 🎉")
+        el("div", { color: C.green, fontSize: 17, fontWeight: 700 }, "PAGADO · ¡ESTÁS DENTRO!")
       )
     : el(
         "div",
@@ -295,11 +295,11 @@ export async function renderReceiptPng(
           backgroundColor: "#FDF3E2",
           border: "1px solid #F0D9A6",
           borderRadius: 999,
-          padding: "5px 14px",
+          padding: "7px 18px",
         },
         el(
           "div",
-          { color: C.amber, fontSize: 12.5, fontWeight: 700 },
+          { color: C.amber, fontSize: 17, fontWeight: 700 },
           `APARTADO · te falta ${money(debtValue)}`
         )
       );
@@ -311,19 +311,20 @@ export async function renderReceiptPng(
       flexDirection: "column",
       width: "100%",
       backgroundColor: C.card,
-      borderRadius: 16,
+      borderRadius: 20,
+      border: "2px dashed #B9BEC7",
       overflow: "hidden",
       fontFamily: "Inter",
     },
     [
-      // 1) Encabezado (FILA): logo en placa blanca (izq) + kicker (der). Compacto.
+      // 1) Encabezado (FILA): logo en placa blanca (izq) + kicker (der).
       el(
         "div",
         {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "10px 16px",
+          padding: "12px 20px",
           backgroundColor: brand,
         },
         [
@@ -335,15 +336,15 @@ export async function renderReceiptPng(
                   alignItems: "center",
                   justifyContent: "center",
                   backgroundColor: "#ffffff",
-                  borderRadius: 9,
-                  padding: "5px 12px",
+                  borderRadius: 10,
+                  padding: "7px 15px",
                 },
-                img(logoUri, { height: 30, width: 132, objectFit: "contain" })
+                img(logoUri, { height: 40, width: 172, objectFit: "contain" })
               )
-            : el("div", { display: "flex", color: onBrand, fontSize: 16, fontWeight: 700 }, brandName),
+            : el("div", { display: "flex", color: onBrand, fontSize: 20, fontWeight: 700 }, brandName),
           el(
             "div",
-            { color: onBrand, opacity: 0.9, fontSize: 9.5, fontWeight: 700, letterSpacing: 2 },
+            { color: onBrand, opacity: 0.95, fontSize: 15, fontWeight: 700, letterSpacing: 2.5 },
             "COMPROBANTE DE COMPRA"
           ),
         ]
@@ -352,19 +353,19 @@ export async function renderReceiptPng(
       // 2) Cuerpo en DOS COLUMNAS (boleto horizontal → WhatsApp muestra card grande).
       el(
         "div",
-        { display: "flex", flexDirection: "row", padding: "13px 16px" },
+        { display: "flex", flexDirection: "row", padding: "18px 22px" },
         [
           // Columna IZQUIERDA: rifa + estado + números (protagonistas)
           el(
             "div",
-            { display: "flex", flexDirection: "column", flexGrow: 1.15, flexBasis: 0, paddingRight: 14 },
+            { display: "flex", flexDirection: "column", flexGrow: 1.15, flexBasis: 0, paddingRight: 18 },
             [
-              el("div", { color: C.ink, fontSize: 18, fontWeight: 700 }, raffle.title || "Rifa"),
-              prizeText ? el("div", { color: C.sub, fontSize: 11.5, marginTop: 2 }, `🎁 ${prizeText}`) : el("div", {}),
-              drawLine ? el("div", { color: C.faint, fontSize: 10, marginTop: 2 }, drawLine) : el("div", {}),
-              el("div", { display: "flex", marginTop: 8 }, statusChip),
-              el("div", { color: C.faint, fontSize: 9, fontWeight: 700, letterSpacing: 2, marginTop: 12, marginBottom: 7 }, "TUS NÚMEROS"),
-              el("div", { display: "flex", flexWrap: "wrap", gap: 6 }, numberPills),
+              el("div", { color: C.ink, fontSize: 27, fontWeight: 700 }, raffle.title || "Rifa"),
+              prizeText ? el("div", { color: C.sub, fontSize: 16, marginTop: 3 }, `🎁 ${prizeText}`) : el("div", {}),
+              drawLine ? el("div", { color: C.faint, fontSize: 13.5, marginTop: 3 }, drawLine) : el("div", {}),
+              el("div", { display: "flex", marginTop: 12 }, statusChip),
+              el("div", { color: C.faint, fontSize: 13, fontWeight: 700, letterSpacing: 2, marginTop: 16, marginBottom: 10 }, "TUS NÚMEROS"),
+              el("div", { display: "flex", flexWrap: "wrap", gap: 9 }, numberPills),
             ]
           ),
 
@@ -374,14 +375,14 @@ export async function renderReceiptPng(
           // Columna DERECHA: comprador + montos
           el(
             "div",
-            { display: "flex", flexDirection: "column", flexGrow: 1, flexBasis: 0, paddingLeft: 14 },
+            { display: "flex", flexDirection: "column", flexGrow: 1, flexBasis: 0, paddingLeft: 18 },
             [
               field("Comprador", contact.name + (contact.city ? ` · ${contact.city}` : "")),
               contact.phone ? field("Teléfono", contact.phone) : el("div", {}),
               sale.createdAt ? field("Reservado", fmtReserva(sale.createdAt), C.sub, true) : el("div", {}),
               el(
                 "div",
-                { display: "flex", flexDirection: "column", backgroundColor: C.moneyBg, borderRadius: 10, padding: "8px 11px", marginTop: 2 },
+                { display: "flex", flexDirection: "column", backgroundColor: C.moneyBg, borderRadius: 14, padding: "12px 16px", marginTop: 4 },
                 [
                   mrow("Valor total", money(totalValue), C.ink, true),
                   mrow(paid ? "Pagado" : "Abonado", money(paidValue), C.green, true),
@@ -393,20 +394,20 @@ export async function renderReceiptPng(
         ]
       ),
 
-      // 3) Barra persuasiva (fina)
+      // 3) Barra persuasiva
       el(
         "div",
-        { display: "flex", justifyContent: "center", padding: "7px 16px", borderTop: "1px solid #ECEDEF" },
-        el("div", { color: C.ink, fontSize: 11, fontWeight: 600, textAlign: "center" }, persuasive)
+        { display: "flex", justifyContent: "center", padding: "11px 18px", borderTop: "1px dashed #D7DAE0" },
+        el("div", { color: C.ink, fontSize: 16, fontWeight: 600, textAlign: "center" }, persuasive)
       ),
 
       // 4) Pie de confianza
       el(
         "div",
-        { display: "flex", flexDirection: "column", alignItems: "center", padding: "9px 16px", backgroundColor: C.footer },
+        { display: "flex", flexDirection: "column", alignItems: "center", padding: "12px 18px", backgroundColor: C.footer },
         [
-          el("div", { color: C.gold, fontSize: 10, fontWeight: 700, letterSpacing: 0.5 }, "🏆 TODO JUEGA HASTA TENER GANADOR"),
-          el("div", { color: "#C7CDD6", fontSize: 9, marginTop: 3 }, `${website}  ·  ${instagram}  ·  Recibo ${sale.receiptNumber}`),
+          el("div", { color: C.gold, fontSize: 15, fontWeight: 700, letterSpacing: 0.5 }, "🏆 TODO JUEGA HASTA TENER GANADOR"),
+          el("div", { color: "#C7CDD6", fontSize: 12.5, marginTop: 4 }, `${website}  ·  ${instagram}  ·  Recibo ${sale.receiptNumber}`),
         ]
       ),
     ]
@@ -427,9 +428,10 @@ export async function renderReceiptPng(
 
   const font = getFont();
   const svg = await satori(tree as any, {
-    // Boleto HORIZONTAL (landscape): WhatsApp muestra la card GRANDE (no el
-    // thumbnail chico que da a las imágenes verticales).
-    width: 660,
+    // Boleto HORIZONTAL (landscape ~4:3): WhatsApp muestra la card GRANDE (no el
+    // thumbnail chico que da a las imágenes verticales). Ancho mayor para que
+    // entren las 2 columnas con fuentes grandes y legibles.
+    width: 780,
     fonts: [
       { name: "Inter", data: font, weight: 400, style: "normal" },
       { name: "Inter", data: font, weight: 600, style: "normal" },
@@ -439,8 +441,8 @@ export async function renderReceiptPng(
       code === "emoji" ? await loadEmoji(segment) : "",
   } as any);
 
-  // Rasterizamos a 2x (660 -> 1320) para un PNG nítido en pantallas retina.
-  const png = new Resvg(svg, { fitTo: { mode: "width", value: 1320 } })
+  // Rasterizamos a 2x (780 -> 1560) para un PNG nítido en pantallas retina.
+  const png = new Resvg(svg, { fitTo: { mode: "width", value: 1560 } })
     .render()
     .asPng();
   return png;
