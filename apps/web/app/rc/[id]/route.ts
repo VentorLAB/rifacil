@@ -42,11 +42,12 @@ export async function GET(
 
   const upload = `https://res.cloudinary.com/${CLOUD}/image/upload`;
   const path = `/riffas/receipts/${id}.png`;
-  // og:image HORIZONTAL 16:9 con el recibo COMPLETO (c_pad, fondo del marco). El
-  // recibo ya es landscape (~1.76) → WhatsApp muestra la card GRANDE y legible
-  // (a las imágenes verticales les da el thumbnail chico). DEBE coincidir con el
+  // og:image ~4:3 (1080x790) con el recibo COMPLETO (c_pad, fondo = marco del
+  // recibo, así el pad se funde con el borde). WhatsApp Web muestra la card GRANDE
+  // con relación ~4:3 (a 16:9/banner ancho o a vertical les da el thumbnail chico;
+  // 4:3 es la que usa la referencia que sí sale grande). DEBE coincidir con el
   // eager de packages/shared/src/receipt.ts.
-  const card = `${upload}/c_pad,w_1200,h_675,b_rgb:e6e7eb,q_auto:good,f_jpg${path}`;
+  const card = `${upload}/c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good,f_jpg${path}`;
   // Recibo COMPLETO (natural) para quien toca el enlace.
   const full = `${upload}/f_jpg,q_auto:good,w_1200${path}`;
 
@@ -62,8 +63,8 @@ export async function GET(
 <meta property="og:image" content="${esc(card)}">
 <meta property="og:image:secure_url" content="${esc(card)}">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="675">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="790">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${esc(card)}">
 <style>html,body{margin:0;background:#0f1115;color:#e6e7eb;font-family:system-ui,-apple-system,sans-serif}
