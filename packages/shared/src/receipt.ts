@@ -227,6 +227,16 @@ export async function renderReceiptPng(
     raffle.prize ||
     ""
   ).trim();
+  // Emoji del premio según el texto (auto, moto, efectivo, tecnología, o regalo).
+  const prizeIcon = /(carro|auto|toyota|agya|aveo|veh[ií]culo|camioneta|0\s?km)/i.test(prizeText)
+    ? "🚗"
+    : /(moto|motocicleta|scooter)/i.test(prizeText)
+      ? "🏍️"
+      : /(efectivo|d[oó]lares|dinero|cash|usd)/i.test(prizeText)
+        ? "💵"
+        : /(iphone|celular|tel[eé]fono|laptop|tv|televisor|tecnolog)/i.test(prizeText)
+          ? "📱"
+          : "🎁";
 
   // Sorteo + lotería (contexto y gancho: "está por jugarse").
   const drawStr = fmtDraw(raffle.drawDate);
@@ -361,7 +371,7 @@ export async function renderReceiptPng(
             { display: "flex", flexDirection: "column", flexGrow: 1.15, flexBasis: 0, paddingRight: 18 },
             [
               el("div", { color: C.ink, fontSize: 27, fontWeight: 700 }, raffle.title || "Rifa"),
-              prizeText ? el("div", { color: C.sub, fontSize: 16, marginTop: 3 }, `🎁 ${prizeText}`) : el("div", {}),
+              prizeText ? el("div", { color: C.sub, fontSize: 16, marginTop: 3 }, `${prizeIcon} ${prizeText}`) : el("div", {}),
               drawLine ? el("div", { color: C.faint, fontSize: 13.5, marginTop: 3 }, drawLine) : el("div", {}),
               el("div", { display: "flex", marginTop: 12 }, statusChip),
               el("div", { color: C.faint, fontSize: 13, fontWeight: 700, letterSpacing: 2, marginTop: 16, marginBottom: 10 }, "TUS NÚMEROS"),
