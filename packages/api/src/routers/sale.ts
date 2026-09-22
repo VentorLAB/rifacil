@@ -26,6 +26,40 @@ async function safeGenerateReceipt(args: ReceiptArgs): Promise<string | null> {
   }
 }
 
+// Genera (o REGENERA) el recibo de una venta y persiste receiptUrl en la venta
+// y en sus números. Unifica lo que antes estaba copiado en create / addPayment /
+// confirmSale (misma marca, mismos "todos los números del contacto"). Devuelve
+// también la marca porque los llamadores la usan para armar el wa.me de respuesta.
+// receiptUrl null = el render falló; la venta queda funcional y se puede
+// reintentar con la mutación regenerateReceipt.
+async function issueSaleReceipt(
+  prisma: any,
+  businessId: string,
+  sale: any // Sale con include { contact, raffle }
+): Promise<{ receiptUrl: string | null; brand: Awaited<ReturnType<typeof brandFor>> }> {
+  const prizes = await prisma.prize.findMany({
+    where: { raffleId: sale.raffleId },
+    orderBy: { orden: "asc" },
+    select: { titulo: true },
+  });
+  const brand = await brandFor(prisma, businessId);
+  // El recibo muestra TODOS los números que el contacto tiene en la rifa
+  // (no solo los de esta venta), para que el comprador vea todos los suyos.
+  const allNums = await contactRaffleNumbers(prisma, sale.raffleId, sale.contactId);
+  const receiptUrl = await safeGenerateReceipt({
+    sale: { ...sale, numbers: allNums.length ? allNums : sale.numbers },
+    raffle: await raffleReceiptFields(prisma, sale.raffle, prizes),
+    contact: sale.contact,
+    ...brand,
+  });
+  await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
+  await prisma.raffleNumber.updateMany({
+    where: { saleId: sale.id },
+    data: { receiptUrl },
+  });
+  return { receiptUrl, brand };
+}
+
 // brandFor (marca: logo/instagram/web) + raffleReceiptFields (escasez dinámica)
 // viven en lib/receiptData para que panel, portal del vendedor y tienda pública
 // emitan el MISMO recibo.
@@ -229,32 +263,8 @@ export const saleRouter = createTRPCRouter({
         },
       });
 
-      const prizes = await prisma.prize.findMany({
-        where: { raffleId: raffle.id },
-        orderBy: { orden: "asc" },
-        select: { titulo: true },
-      });
-      const brand = await brandFor(prisma, businessId);
-      // El recibo muestra TODOS los números que el contacto tiene en la rifa
-      // (no solo los de esta venta), para que el comprador vea todos los suyos.
-      const allNums = await contactRaffleNumbers(prisma, raffle.id, sale.contactId);
-      const receiptUrl = await safeGenerateReceipt({
-        // sale incluye amountPaid (Valor total / Abonado / Deuda reales); numbers → todos los del contacto.
-        sale: { ...sale, numbers: allNums.length ? allNums : sale.numbers },
-        raffle: await raffleReceiptFields(prisma, raffle, prizes),
-        contact: sale.contact,
-        ...brand,
-      });
-
-      await prisma.sale.update({
-        where: { id: sale.id },
-        data: { receiptUrl },
-      });
-
-      await prisma.raffleNumber.updateMany({
-        where: { saleId: sale.id },
-        data: { receiptUrl },
-      });
+      // Recibo (render server-side + Cloudinary) vía helper unificado.
+      const { receiptUrl, brand } = await issueSaleReceipt(prisma, businessId, sale);
 
       // El comprobante se envía por wa.me desde la UI (no Cloud API): la mutación
       // devuelve sale.contact + receiptUrl + brandName y el cliente arma el wa.me.

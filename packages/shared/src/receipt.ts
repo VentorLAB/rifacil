@@ -464,7 +464,9 @@ export async function generateReceipt(
   const png = await renderReceiptPng(input);
   const dataUri = `data:image/png;base64,${png.toString("base64")}`;
   // Transform del og:image que usa /rc. DEBE coincidir con apps/web/app/rc/[id]/route.ts.
-  const CARD_TRANSFORM = "c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good,f_jpg";
+  // PNG REAL (sin f_jpg): la URL .png coincide con el content-type image/png, igual
+  // que el i.ibb.co/....png de ImgBB que WhatsApp pinta como card GRANDE.
+  const CARD_TRANSFORM = "c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good";
 
   const uploaded = await cloudinary.uploader.upload(dataUri, {
     folder: "riffas/receipts",
@@ -485,7 +487,8 @@ export async function generateReceipt(
         height: 790,
         background: "rgb:e6e7eb",
         quality: "auto:good",
-        fetch_format: "jpg",
+        // Sin fetch_format → el derivado queda como PNG (mismo formato que la subida),
+        // así el og:image .png entrega image/png (réplica de ImgBB, card grande).
       },
     ],
     eager_async: false,

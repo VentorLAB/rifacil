@@ -43,11 +43,12 @@ export async function GET(
   const upload = `https://res.cloudinary.com/${CLOUD}/image/upload`;
   const path = `/riffas/receipts/${id}.png`;
   // og:image ~4:3 (1080x790) con el recibo COMPLETO (c_pad, fondo = marco del
-  // recibo, así el pad se funde con el borde). WhatsApp Web muestra la card GRANDE
-  // con relación ~4:3 (a 16:9/banner ancho o a vertical les da el thumbnail chico;
-  // 4:3 es la que usa la referencia que sí sale grande). DEBE coincidir con el
-  // eager de packages/shared/src/receipt.ts.
-  const card = `${upload}/c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good,f_jpg${path}`;
+  // recibo, así el pad se funde con el borde). CLAVE: entregamos un PNG REAL (sin
+  // f_jpg) → la extensión de la URL (.png) coincide con el content-type (image/png),
+  // exactamente como el i.ibb.co/....png de ImgBB que WhatsApp SÍ pinta como card
+  // GRANDE. Con f_jpg la URL decía .png pero servía JPEG (híbrido) y WhatsApp caía a
+  // la miniatura chica. DEBE coincidir con el eager de packages/shared/src/receipt.ts.
+  const card = `${upload}/c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good${path}`;
   // Recibo COMPLETO (natural) para quien toca el enlace.
   const full = `${upload}/f_jpg,q_auto:good,w_1200${path}`;
 
@@ -62,7 +63,7 @@ export async function GET(
 <meta property="og:description" content="Mirá tu comprobante de la rifa.">
 <meta property="og:image" content="${esc(card)}">
 <meta property="og:image:secure_url" content="${esc(card)}">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="790">
 <meta name="twitter:card" content="summary_large_image">
