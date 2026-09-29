@@ -4,7 +4,8 @@ import { PaymentMethod } from "@riffas/db";
 import { createTRPCRouter, publicProcedure, vendorProcedure } from "../trpc";
 import { getVendorIdFromReq } from "../lib/vendorAuth";
 import { getActiveRate } from "../lib/exchangeRate";
-import { brandFor, raffleReceiptFields } from "../lib/receiptData";
+import { brandFor, raffleReceiptFields, receiptCardUrl } from "../lib/receiptData";
+import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -20,11 +21,16 @@ async function safeGenerateReceipt(args: any): Promise<string | null> {
   }
 }
 
-// Genera y guarda el recibo de una venta. Devuelve la URL para que la UI arme el
+// Genera y guarda el recibo de una venta. Devuelve receiptUrl (Cloudinary) y
+// receiptShareUrl (ImgBB/ibb.co, card GRANDE en WhatsApp) para que la UI arme el
 // enlace wa.me (el envío es por wa.me desde el cliente, no por Cloud API).
-async function emitReceipt(prisma: any, businessId: string, saleId: string): Promise<string | null> {
+async function emitReceipt(
+  prisma: any,
+  businessId: string,
+  saleId: string
+): Promise<{ receiptUrl: string | null; receiptShareUrl: string | null }> {
   const sale = await prisma.sale.findUnique({ where: { id: saleId }, include: { contact: true, raffle: true } });
-  if (!sale) return null;
+  if (!sale) return { receiptUrl: null, receiptShareUrl: null };
   const prizes = await prisma.prize.findMany({
     where: { raffleId: sale.raffleId },
     orderBy: { orden: "asc" },
@@ -37,9 +43,18 @@ async function emitReceipt(prisma: any, businessId: string, saleId: string): Pro
     contact: sale.contact,
     ...brand,
   });
+  // Persistimos receiptUrl YA (durable) antes de la subida a ImgBB (por si el proceso
+  // muere durante la subida).
   await prisma.sale.update({ where: { id: saleId }, data: { receiptUrl } });
   await prisma.raffleNumber.updateMany({ where: { saleId }, data: { receiptUrl } });
-  return receiptUrl;
+  // Mismo formato que el panel: subimos a ImgBB el derivado 1080x790 (RGB) → card grande.
+  const receiptShareUrl = receiptUrl
+    ? (await uploadReceiptToImgBB(receiptCardUrl(receiptUrl), sale.receiptNumber))?.viewerUrl ?? null
+    : null;
+  if (receiptShareUrl) {
+    await prisma.sale.update({ where: { id: saleId }, data: { receiptShareUrl } });
+  }
+  return { receiptUrl, receiptShareUrl };
 }
 
 // Portal del VENDEDOR: lee la cookie de vendedor (no la sesión del rifero) y
@@ -281,13 +296,14 @@ export const vendorPortalRouter = createTRPCRouter({
       });
       await prisma.raffle.update({ where: { id: raffle.id }, data: { soldCount: { increment: input.numbers.length }, revenue: { increment: amountPaid } } });
 
-      const receiptUrl = await emitReceipt(prisma, businessId, sale.id);
+      const { receiptUrl, receiptShareUrl } = await emitReceipt(prisma, businessId, sale.id);
       return {
         saleId: sale.id,
         status: saleStatus,
         amountPaid,
         debt: round2(finalAmount - amountPaid),
         receiptUrl,
+        receiptShareUrl,
         contactName: contact.name,
         contactPhone: contact.phone,
         numbers: input.numbers,

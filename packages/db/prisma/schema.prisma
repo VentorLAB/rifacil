@@ -543,6 +543,7 @@ model Sale {
   // Receipt
   receiptNumber   String @unique
   receiptUrl      String?
+  receiptShareUrl String?  // link ImgBB (ibb.co) del recibo → preview GRANDE en WhatsApp
   receiptSent     Boolean @default(false)
   receiptSentAt   DateTime?
 

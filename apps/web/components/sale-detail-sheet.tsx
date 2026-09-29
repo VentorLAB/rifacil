@@ -381,6 +381,7 @@ export function SaleDetailSheet({
                 paid={sale.amountPaid}
                 status={sale.status}
                 receiptUrl={sale.receiptUrl}
+                receiptShareUrl={sale.receiptShareUrl}
                 brandUrl={sale.user?.customDomain}
               />
             )}

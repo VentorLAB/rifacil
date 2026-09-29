@@ -203,6 +203,7 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
     paid: number;
     status: string | null;
     receiptUrl: string | null;
+    receiptShareUrl: string | null;
   } | null>(null);
 
   const live = api.vendorPortal.numbers.useQuery({ raffleId }, { enabled: !!raffleId });
@@ -220,6 +221,7 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
         paid: r.amountPaid,
         status: r.status ?? null,
         receiptUrl: r.receiptUrl ?? null,
+        receiptShareUrl: r.receiptShareUrl ?? null,
       });
       setNumbers(""); setName(""); setPhone(""); setAbono("");
       utils.vendorPortal.numbers.invalidate();
@@ -317,6 +319,7 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
               paid={lastSale.paid}
               status={lastSale.status}
               receiptUrl={lastSale.receiptUrl}
+              receiptShareUrl={lastSale.receiptShareUrl}
             />
           </div>
         )}

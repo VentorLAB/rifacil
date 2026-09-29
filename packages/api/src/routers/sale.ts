@@ -59,6 +59,9 @@ async function issueSaleReceipt(
     contact: sale.contact,
     ...brand,
   });
+  // Persistimos receiptUrl YA (barato y durable), ANTES de la subida a ImgBB: si el
+  // proceso muere durante la subida (timeout serverless, OOM), la venta no queda sin
+  // recibo.
   await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
   await prisma.raffleNumber.updateMany({
     where: { saleId: sale.id },
@@ -71,6 +74,12 @@ async function issueSaleReceipt(
   const receiptShareUrl = receiptUrl
     ? (await uploadReceiptToImgBB(receiptCardUrl(receiptUrl), sale.receiptNumber))?.viewerUrl ?? null
     : null;
+  // Persistimos el link de ImgBB → el reenvío desde una venta ya abierta (getById),
+  // el portal del vendedor y la página /c también muestran la card grande, no solo el
+  // auto-envío inmediato.
+  if (receiptShareUrl) {
+    await prisma.sale.update({ where: { id: sale.id }, data: { receiptShareUrl } });
+  }
   return { receiptUrl, receiptShareUrl, brand };
 }
 
