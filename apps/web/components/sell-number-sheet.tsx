@@ -101,6 +101,7 @@ export function SellNumberSheet({
     paid: unknown;
     status: string | null;
     receiptUrl: string | null;
+    receiptShareUrl: string | null;
     isFullyPaid: boolean;
     debt: number;
     cheer: string;
@@ -127,6 +128,7 @@ export function SellNumberSheet({
         paid: res.sale.amountPaid,
         status: res.sale.status ?? null,
         receiptUrl: res.sale.receiptUrl ?? null,
+        receiptShareUrl: res.sale.receiptShareUrl ?? null,
         isFullyPaid: res.isFullyPaid,
         debt: res.debt,
         cheer: saleCheer(),
@@ -228,6 +230,7 @@ export function SellNumberSheet({
               paid={sold.paid}
               status={sold.status}
               receiptUrl={sold.receiptUrl}
+              receiptShareUrl={sold.receiptShareUrl}
             />
             {!sold.receiptUrl && (
               <p className="text-xs text-slate-400">

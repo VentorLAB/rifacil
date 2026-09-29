@@ -108,6 +108,7 @@ export function SaleDetailSheet({
         paid: res.amountPaid,
         status: res.sale.status,
         receiptUrl: res.sale.receiptUrl,
+        receiptShareUrl: res.sale.receiptShareUrl,
         receiptPageUrl: res.sale.receiptUrl
           ? `${window.location.origin}/c/${res.sale.id}`
           : null,

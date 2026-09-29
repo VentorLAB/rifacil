@@ -57,6 +57,7 @@ export default function PendingPage() {
     paid: unknown;
     status: string | null;
     receiptUrl: string | null;
+    receiptShareUrl: string | null;
   }>(null);
 
   const confirm = api.sale.confirmSale.useMutation({
@@ -75,6 +76,7 @@ export default function PendingPage() {
         paid: res.amountPaid,
         status: res.status ?? null,
         receiptUrl: res.receiptUrl ?? null,
+        receiptShareUrl: res.receiptShareUrl ?? null,
       });
       refresh();
     },
@@ -231,6 +233,7 @@ export default function PendingPage() {
               paid={justConfirmed.paid}
               status={justConfirmed.status}
               receiptUrl={justConfirmed.receiptUrl}
+              receiptShareUrl={justConfirmed.receiptShareUrl}
             />
             <button
               onClick={() => setJustConfirmed(null)}

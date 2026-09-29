@@ -39,6 +39,13 @@ export interface ReceiptWaInput {
   /** URL de la imagen del recibo (Cloudinary). Si falta, el mensaje va sin link. */
   receiptUrl?: string | null;
   /**
+   * Link del VISOR de ImgBB (https://ibb.co/XXXX) del recibo. Si viene, es el
+   * enlace de PREVIEW preferido del mensaje: WhatsApp scrapea la página de ImgBB
+   * y muestra la card GRANDE y legible dentro del chat (la imagen se lee sin abrir
+   * el enlace), como la app de referencia. Si falta, se cae a /rc o a la imagen.
+   */
+  receiptShareUrl?: string | null;
+  /**
    * URL de la página pública del comprobante (/c/[saleId]). Se usa como CTA de
    * FALLBACK (enlace tocable) SOLO si el rifero no tiene dominio propio.
    */
@@ -117,12 +124,17 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const hola = input.contactName ? `¡Hola ${input.contactName}! ` : "";
   // Preview del chat = la IMAGEN del recibo (debe ir PRIMERA: WhatsApp previsualiza
   // el primer enlace del mensaje).
-  // Preferimos la página /r (HTML con og:image → miniatura fiable en WhatsApp,
-  // también en Web); si no se puede armar, caemos a la URL directa de la imagen.
-  const previewLink = input.receiptUrl
-    ? receiptPreviewPage(input.receiptUrl, input.receiptPageUrl) ||
-      receiptImageForWa(input.receiptUrl)
-    : null;
+  // Prioridad del enlace de preview:
+  //   1) ImgBB (ibb.co): WhatsApp lo pinta como card GRANDE y legible dentro del
+  //      chat (la imagen se lee sin abrir el enlace) — el objetivo real.
+  //   2) nuestra página /rc (HTML con og:image) como respaldo.
+  //   3) la URL directa de la imagen de Cloudinary.
+  const previewLink =
+    (input.receiptShareUrl && input.receiptShareUrl.trim() ? input.receiptShareUrl.trim() : null) ||
+    (input.receiptUrl
+      ? receiptPreviewPage(input.receiptUrl, input.receiptPageUrl) ||
+        receiptImageForWa(input.receiptUrl)
+      : null);
   // Si la imagen se adjunta como archivo (share nativo), no repetir su enlace.
   const showImage = !!previewLink && !input.omitImageLink;
   // CTA tocable secundario: dominio propio del rifero; si no tiene, la página /c.

@@ -27,6 +27,8 @@ export interface SendReceiptActionsProps {
   /** Sale.status: "PAGADO" en el mensaje solo se afirma con "PAID". */
   status?: string | null;
   receiptUrl?: string | null;
+  /** Link del visor de ImgBB (ibb.co) del recibo: preview GRANDE y legible en WhatsApp. */
+  receiptShareUrl?: string | null;
   /** Dominio propio del rifero (CTA "mira todas nuestras rifas" en el wa.me). */
   brandUrl?: string | null;
   /**
@@ -51,6 +53,7 @@ export function SendReceiptActions({
   paid,
   status,
   receiptUrl,
+  receiptShareUrl,
   brandUrl,
   autoOpen,
   compact = false,
@@ -79,11 +82,12 @@ export function SendReceiptActions({
             paid,
             status,
             receiptUrl,
+            receiptShareUrl,
             receiptPageUrl: pageUrl,
             brandUrl,
           })
         : null,
-    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, receiptUrl, pageUrl, brandUrl]
+    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, receiptUrl, receiptShareUrl, pageUrl, brandUrl]
   );
 
   // Caption del share nativo: mismos datos, pero SIN el enlace a la imagen

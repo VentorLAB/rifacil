@@ -64,6 +64,34 @@ describe("buildReceiptMessage", () => {
     expect(msg).not.toContain("res.cloudinary.com");
   });
 
+  it("receiptShareUrl (ImgBB/ibb.co) es el preview PREFERIDO sobre /rc y la imagen directa", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      receiptShareUrl: "https://ibb.co/7J6hKQP8",
+      receiptUrl:
+        "https://res.cloudinary.com/dbi6monrl/image/upload/v1789/riffas/receipts/R-123-ABCD.png",
+      receiptPageUrl: "https://rifacil.vip/c/sale123",
+    });
+    // Gana ImgBB: WhatsApp pinta su card GRANDE y legible dentro del chat.
+    expect(msg).toContain("https://ibb.co/7J6hKQP8");
+    // Y NO usa /rc ni la imagen directa cuando hay link de ImgBB.
+    expect(msg).not.toContain("/rc/");
+    expect(msg).not.toContain("res.cloudinary.com");
+  });
+
+  it("sin receiptShareUrl, cae a /rc (respaldo)", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      receiptShareUrl: null,
+      receiptUrl:
+        "https://res.cloudinary.com/dbi6monrl/image/upload/v1789/riffas/receipts/R-123-ABCD.png",
+      receiptPageUrl: "https://rifacil.vip/c/sale123",
+    });
+    expect(msg).toContain("https://rifacil.vip/rc/R-123-ABCD");
+  });
+
   it("la imagen va ANTES que el CTA de marca (WhatsApp previsualiza el 1er enlace)", () => {
     const msg = buildReceiptMessage({
       ...base,

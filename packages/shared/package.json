@@ -8,6 +8,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./receipt": "./src/receipt.ts",
+    "./imgbb": "./src/imgbb.ts",
     "./cloudinary": "./src/cloudinary.ts"
   },
   "scripts": {

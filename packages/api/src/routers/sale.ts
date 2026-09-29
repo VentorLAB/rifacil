@@ -4,6 +4,9 @@ import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
 import { brandFor, raffleReceiptFields, contactRaffleNumbers } from "../lib/receiptData";
+// imgbb.ts NO tiene binarios nativos (solo fetch) → import estático seguro, a
+// diferencia de receipt.ts (satori/resvg) que se importa diferido más abajo.
+import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
 
 // Redondeo a 2 decimales para montos de dinero.
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -36,7 +39,11 @@ async function issueSaleReceipt(
   prisma: any,
   businessId: string,
   sale: any // Sale con include { contact, raffle }
-): Promise<{ receiptUrl: string | null; brand: Awaited<ReturnType<typeof brandFor>> }> {
+): Promise<{
+  receiptUrl: string | null;
+  receiptShareUrl: string | null;
+  brand: Awaited<ReturnType<typeof brandFor>>;
+}> {
   const prizes = await prisma.prize.findMany({
     where: { raffleId: sale.raffleId },
     orderBy: { orden: "asc" },
@@ -57,7 +64,13 @@ async function issueSaleReceipt(
     where: { saleId: sale.id },
     data: { receiptUrl },
   });
-  return { receiptUrl, brand };
+  // Subimos el recibo a ImgBB para que WhatsApp muestre la card GRANDE y legible
+  // dentro del chat (link ibb.co), como la app de referencia. Falla suave: si no
+  // hay IMGBB_API_KEY o falla, receiptShareUrl = null y el wa.me cae a /rc.
+  const receiptShareUrl = receiptUrl
+    ? (await uploadReceiptToImgBB(receiptUrl, sale.receiptNumber))?.viewerUrl ?? null
+    : null;
+  return { receiptUrl, receiptShareUrl, brand };
 }
 
 // brandFor (marca: logo/instagram/web) + raffleReceiptFields (escasez dinámica)
@@ -263,13 +276,14 @@ export const saleRouter = createTRPCRouter({
         },
       });
 
-      // Recibo (render server-side + Cloudinary) vía helper unificado.
-      const { receiptUrl, brand } = await issueSaleReceipt(prisma, businessId, sale);
+      // Recibo (render server-side + Cloudinary + ImgBB) vía helper unificado.
+      const { receiptUrl, receiptShareUrl, brand } = await issueSaleReceipt(prisma, businessId, sale);
 
       // El comprobante se envía por wa.me desde la UI (no Cloud API): la mutación
-      // devuelve sale.contact + receiptUrl + brandName y el cliente arma el wa.me.
+      // devuelve sale.contact + receiptUrl + receiptShareUrl (ibb.co) + brandName y
+      // el cliente arma el wa.me con la card grande de ImgBB.
       return {
-        sale: { ...sale, receiptUrl },
+        sale: { ...sale, receiptUrl, receiptShareUrl },
         amountPaid,
         debt,
         isFullyPaid,
@@ -360,30 +374,13 @@ export const saleRouter = createTRPCRouter({
         data: { revenue: { increment: applied } },
       });
 
-      // Regenerar el recibo con los montos reales actualizados (overwrite en Cloudinary).
-      const prizes = await prisma.prize.findMany({
-        where: { raffleId: updated.raffleId },
-        orderBy: { orden: "asc" },
-        select: { titulo: true },
-      });
-      const brand = await brandFor(prisma, businessId);
-      // Recibo con TODOS los números que el contacto tiene en la rifa (no solo esta venta).
-      const allNums = await contactRaffleNumbers(prisma, updated.raffleId, updated.contactId);
-      const receiptUrl = await safeGenerateReceipt({
-        sale: { ...updated, numbers: allNums.length ? allNums : updated.numbers },
-        raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
-        contact: updated.contact,
-        ...brand,
-      });
-      await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
-      await prisma.raffleNumber.updateMany({
-        where: { saleId: sale.id },
-        data: { receiptUrl },
-      });
+      // Regenerar el recibo (Cloudinary + ImgBB) con los montos reales vía el helper
+      // unificado: mismo camino que create (marca + todos los números + link ibb.co).
+      const { receiptUrl, receiptShareUrl, brand } = await issueSaleReceipt(prisma, businessId, updated);
 
       // brandName + brandUrl: para que la UI arme el wa.me (marca + dominio propio)
       // con datos FRESCOS del abono y lo abra directo, sin depender del refetch.
-      return { sale: { ...updated, receiptUrl }, amountPaid, debt, isFullyPaid, brandName: brand.brandName, brandUrl: brand.brandWebsite };
+      return { sale: { ...updated, receiptUrl, receiptShareUrl }, amountPaid, debt, isFullyPaid, brandName: brand.brandName, brandUrl: brand.brandWebsite };
     }),
 
   // Marca una venta como saldada por completo: registra el saldo pendiente como
@@ -530,23 +527,8 @@ export const saleRouter = createTRPCRouter({
         data: { revenue: { increment: amountPaid } },
       });
 
-      // Recibo con montos confirmados.
-      const prizes = await prisma.prize.findMany({
-        where: { raffleId: sale.raffleId },
-        orderBy: { orden: "asc" },
-        select: { titulo: true },
-      });
-      const brand = await brandFor(prisma, businessId);
-      // Recibo con TODOS los números que el contacto tiene en la rifa (no solo esta venta).
-      const allNums = await contactRaffleNumbers(prisma, updated.raffleId, updated.contactId);
-      const receiptUrl = await safeGenerateReceipt({
-        sale: { ...updated, numbers: allNums.length ? allNums : updated.numbers },
-        raffle: await raffleReceiptFields(prisma, updated.raffle, prizes),
-        contact: updated.contact,
-        ...brand,
-      });
-      await prisma.sale.update({ where: { id: sale.id }, data: { receiptUrl } });
-      await prisma.raffleNumber.updateMany({ where: { saleId: sale.id }, data: { receiptUrl } });
+      // Recibo (Cloudinary + ImgBB) con montos confirmados vía helper unificado.
+      const { receiptUrl, receiptShareUrl, brand } = await issueSaleReceipt(prisma, businessId, updated);
 
       // El comprobante se reenvía por wa.me desde la UI (no Cloud API).
       // Auditoría: quién confirmó.
@@ -562,7 +544,7 @@ export const saleRouter = createTRPCRouter({
 
       // brandName + brandUrl: para que la UI firme el wa.me con la marca y el
       // dominio propio del rifero.
-      return { ...updated, receiptUrl, amountPaid, isFullyPaid, brandName: brand.brandName, brandUrl: brand.brandWebsite };
+      return { ...updated, receiptUrl, receiptShareUrl, amountPaid, isFullyPaid, brandName: brand.brandName, brandUrl: brand.brandWebsite };
     }),
 
   // Rechazar: libera los números (vuelven a disponibles), cancela la venta y audita.
