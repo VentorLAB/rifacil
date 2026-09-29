@@ -8,6 +8,9 @@
 //
 // Ruta /rc/ (recibo-comprobante): /r/[id] YA es el storefront público de la rifa.
 import { NextRequest } from "next/server";
+// Constante compartida (módulo sin deps nativas → seguro en edge). Mismo transform
+// RGB que usan ImgBB (receiptData) y el eager de receipt.ts.
+import { RECEIPT_CARD_TRANSFORM } from "@riffas/shared/receipt-card";
 
 export const runtime = "edge";
 
@@ -42,13 +45,11 @@ export async function GET(
 
   const upload = `https://res.cloudinary.com/${CLOUD}/image/upload`;
   const path = `/riffas/receipts/${id}.png`;
-  // og:image ~4:3 (1080x790) con el recibo COMPLETO (c_pad, fondo = marco del
-  // recibo, así el pad se funde con el borde). CLAVE: entregamos un PNG REAL (sin
-  // f_jpg) → la extensión de la URL (.png) coincide con el content-type (image/png),
-  // exactamente como el i.ibb.co/....png de ImgBB que WhatsApp SÍ pinta como card
-  // GRANDE. Con f_jpg la URL decía .png pero servía JPEG (híbrido) y WhatsApp caía a
-  // la miniatura chica. DEBE coincidir con el eager de packages/shared/src/receipt.ts.
-  const card = `${upload}/c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good${path}`;
+  // og:image ~4:3 (1080x790) con el recibo COMPLETO (c_pad, fondo = marco del recibo).
+  // CLAVE: PNG RGB REAL — sin f_jpg (la .png entrega image/png) y SIN q_auto (q_auto lo
+  // pasaría a PALETA, y WhatsApp no pinta como card grande los PNG de paleta). Usa la
+  // constante compartida para no desincronizarse del eager de receipt.ts ni de ImgBB.
+  const card = `${upload}/${RECEIPT_CARD_TRANSFORM}${path}`;
   // Recibo COMPLETO (natural) para quien toca el enlace.
   const full = `${upload}/f_jpg,q_auto:good,w_1200${path}`;
 

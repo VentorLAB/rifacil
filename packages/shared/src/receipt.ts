@@ -2,6 +2,7 @@ import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { v2 as cloudinary } from "cloudinary";
 import { INTER_SEMIBOLD_WOFF_BASE64 } from "./inter-font";
+import { RECEIPT_CARD_TRANSFORM } from "./receipt-card";
 
 /**
  * Generación de recibos DEL LADO DEL SERVIDOR.
@@ -257,13 +258,21 @@ export async function renderReceiptPng(
 
   // Números como TEXTO legible (como riffas.info): "045, 088, 112". Muestra TODOS
   // los del comprador. Si son muchos, envuelve; nunca se recorta.
-  const numbersText = (sale.numbers || []).join(",  ") || "—";
+  // ESCALADO por cantidad: un comprador mayorista (50-80 números, común en VE) haría
+  // crecer el alto hasta volver la imagen VERTICAL → WhatsApp la dejaría en blanco.
+  // Bajamos el tamaño (y compactamos el separador) según cuántos sean, para que la
+  // imagen se mantenga HORIZONTAL aun con muchos números.
+  const numCount = (sale.numbers || []).length;
+  const numbersText = (sale.numbers || []).join(numCount > 20 ? ", " : ",  ") || "—";
+  const numbersFontSize =
+    numCount <= 12 ? 32 : numCount <= 24 ? 26 : numCount <= 45 ? 21 : numCount <= 80 ? 16 : 13;
+  const numbersLetterSpacing = numCount <= 24 ? 1 : 0.3;
 
   // Fila "Etiqueta:  valor" alineada a la izquierda, alto contraste (legible de un
   // vistazo en el preview de WhatsApp). La etiqueta tiene ancho fijo → los valores
   // quedan alineados en columna.
   const row = (label: string, value: string, valueColor: string = C.ink, big = false) =>
-    el("div", { display: "flex", flexDirection: "row", alignItems: "baseline", marginBottom: 10 }, [
+    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }, [
       el("div", { display: "flex", color: C.sub, fontSize: 19, width: 168 }, label),
       el(
         "div",
@@ -354,56 +363,78 @@ export async function renderReceiptPng(
         ]
       ),
 
-      // 2) Cuerpo VERTICAL, limpio y de alto contraste (todo se lee de un vistazo).
+      // 2) Cuerpo HORIZONTAL en 2 columnas. CLAVE: el aspecto final es ~4:3
+      // (landscape) porque WhatsApp SOLO pinta como card GRANDE las imágenes
+      // horizontales; una vertical/alta la deja EN BLANCO (no muestra nada).
+      // Mismo aspecto que la referencia (riffas.info, 1080x790).
       el(
         "div",
-        { display: "flex", flexDirection: "column", padding: "24px 28px" },
+        { display: "flex", flexDirection: "row", padding: "22px 26px" },
         [
-          // Título de la rifa + premio + sorteo
-          el("div", { display: "flex", color: C.ink, fontSize: 34, fontWeight: 700 }, raffle.title || "Rifa"),
-          prizeText
-            ? el("div", { display: "flex", color: C.sub, fontSize: 19, marginTop: 6 }, `${prizeIcon} ${prizeText}`)
-            : el("div", {}),
-          drawLine
-            ? el("div", { display: "flex", color: C.faint, fontSize: 15, marginTop: 5 }, drawLine)
-            : el("div", {}),
-
-          sep(),
-
-          // NÚMEROS (protagonistas): texto grande, todos los del comprador.
+          // Columna IZQUIERDA: rifa + números (protagonistas).
           el(
             "div",
-            { display: "flex", color: C.faint, fontSize: 14, fontWeight: 700, letterSpacing: 2, marginBottom: 8 },
-            "TUS NÚMEROS"
+            { display: "flex", flexDirection: "column", flexGrow: 1.25, flexBasis: 0, paddingRight: 22 },
+            [
+              el("div", { display: "flex", color: C.ink, fontSize: 32, fontWeight: 700 }, raffle.title || "Rifa"),
+              prizeText
+                ? el("div", { display: "flex", color: C.sub, fontSize: 18, marginTop: 6 }, `${prizeIcon} ${prizeText}`)
+                : el("div", {}),
+              drawLine
+                ? el("div", { display: "flex", color: C.faint, fontSize: 14, marginTop: 5 }, drawLine)
+                : el("div", {}),
+
+              sep(),
+
+              el(
+                "div",
+                { display: "flex", color: C.faint, fontSize: 14, fontWeight: 700, letterSpacing: 2, marginBottom: 8 },
+                "TUS NÚMEROS"
+              ),
+              el(
+                "div",
+                {
+                  display: "flex",
+                  flexWrap: "wrap",
+                  color: C.ink,
+                  fontSize: numbersFontSize,
+                  fontWeight: 700,
+                  letterSpacing: numbersLetterSpacing,
+                },
+                numbersText
+              ),
+
+              el("div", { display: "flex", marginTop: 14 }, statusChip),
+            ]
           ),
+
+          // Troquel vertical (línea de puntos entre columnas).
+          el("div", { display: "flex", width: 0, borderLeft: `2px dashed ${C.dash}`, margin: "2px 0" }),
+
+          // Columna DERECHA: comprador + montos.
           el(
             "div",
-            { display: "flex", flexWrap: "wrap", color: C.ink, fontSize: 30, fontWeight: 700, letterSpacing: 1 },
-            numbersText
-          ),
+            { display: "flex", flexDirection: "column", flexGrow: 1, flexBasis: 0, paddingLeft: 22 },
+            [
+              row("Comprador:", contact.name + (contact.city ? ` · ${contact.city}` : "")),
+              contact.phone ? row("Teléfono:", contact.phone) : el("div", {}),
+              sale.createdAt ? row("Reservado:", fmtReserva(sale.createdAt)) : el("div", {}),
 
-          sep(),
+              sep(),
 
-          // Datos del comprador
-          row("Comprador:", contact.name + (contact.city ? ` · ${contact.city}` : "")),
-          contact.phone ? row("Teléfono:", contact.phone) : el("div", {}),
-          sale.createdAt ? row("Reservado:", fmtReserva(sale.createdAt)) : el("div", {}),
-
-          sep(),
-
-          // Montos + estado
-          row("Valor total:", money(totalValue), C.ink, true),
-          row(paid ? "Pagado:" : "Abonado:", money(paidValue), C.green, true),
-          !paid ? row("Deuda:", money(debtValue), brand, true) : el("div", {}),
-          el("div", { display: "flex" }, statusChip),
-
-          // Línea persuasiva (cierre cálido, como el "¡Gracias!" de la referencia).
-          el(
-            "div",
-            { display: "flex", justifyContent: "center", width: "100%", color: C.ink, fontSize: 18, fontWeight: 600, marginTop: 18 },
-            persuasive
+              row("Valor total:", money(totalValue), C.ink, true),
+              row(paid ? "Pagado:" : "Abonado:", money(paidValue), C.green, true),
+              !paid ? row("Deuda:", money(debtValue), brand, true) : el("div", {}),
+            ]
           ),
         ]
+      ),
+
+      // 2b) Barra persuasiva (cierre cálido, como el "¡Gracias!" de la referencia).
+      el(
+        "div",
+        { display: "flex", justifyContent: "center", padding: "10px 18px", borderTop: `1px dashed ${C.dash}` },
+        el("div", { display: "flex", color: C.ink, fontSize: 17, fontWeight: 600 }, persuasive)
       ),
 
       // 3) Pie de confianza (barra oscura con marca).
@@ -433,10 +464,10 @@ export async function renderReceiptPng(
 
   const font = getFont();
   const svg = await satori(tree as any, {
-    // Boleto VERTICAL, limpio y legible (estilo riffas.info). La entrega a WhatsApp
-    // se hace vía ImgBB (link ibb.co) que muestra la card GRANDE sin importar el
-    // aspecto — por eso podemos priorizar la legibilidad sobre el ancho.
-    width: 620,
+    // Boleto HORIZONTAL (~4:3): WhatsApp SOLO pinta como card GRANDE las imágenes
+    // horizontales (una vertical/alta la deja en blanco). Ancho grande para las 2
+    // columnas; la altura sale ~4:3 como la referencia (riffas.info 1080x790).
+    width: 940,
     fonts: [
       { name: "Inter", data: font, weight: 400, style: "normal" },
       { name: "Inter", data: font, weight: 600, style: "normal" },
@@ -446,8 +477,8 @@ export async function renderReceiptPng(
       code === "emoji" ? await loadEmoji(segment) : "",
   } as any);
 
-  // Rasterizamos a 2x (620 -> 1240) para un PNG nítido en pantallas retina.
-  const png = new Resvg(svg, { fitTo: { mode: "width", value: 1240 } })
+  // Rasterizamos a 2x (940 -> 1880) para un PNG nítido en pantallas retina.
+  const png = new Resvg(svg, { fitTo: { mode: "width", value: 1880 } })
     .render()
     .asPng();
   return png;
@@ -458,10 +489,10 @@ export async function generateReceipt(
 ): Promise<string> {
   const png = await renderReceiptPng(input);
   const dataUri = `data:image/png;base64,${png.toString("base64")}`;
-  // Transform del og:image que usa /rc. DEBE coincidir con apps/web/app/rc/[id]/route.ts.
-  // PNG REAL (sin f_jpg): la URL .png coincide con el content-type image/png, igual
-  // que el i.ibb.co/....png de ImgBB que WhatsApp pinta como card GRANDE.
-  const CARD_TRANSFORM = "c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good";
+  // Transform del derivado del recibo (constante compartida, misma que usan ImgBB vía
+  // receiptData y la página /rc). PNG RGB SIN q_auto (no paleta) → WhatsApp lo pinta
+  // como card grande. Ver packages/shared/src/receipt-card.ts.
+  const CARD_TRANSFORM = RECEIPT_CARD_TRANSFORM;
 
   const uploaded = await cloudinary.uploader.upload(dataUri, {
     folder: "riffas/receipts",
@@ -481,9 +512,10 @@ export async function generateReceipt(
         width: 1080,
         height: 790,
         background: "rgb:e6e7eb",
-        quality: "auto:good",
-        // Sin fetch_format → el derivado queda como PNG (mismo formato que la subida),
-        // así el og:image .png entrega image/png (réplica de ImgBB, card grande).
+        // Sin quality:q_auto (evita que Cloudinary lo pase a PALETA) y sin fetch_format
+        // → el derivado queda PNG RGB: el MISMO que consume ImgBB (receiptCardUrl) y /rc,
+        // así el eager pre-genera exactamente esa URL y no se genera en frío. RGB =
+        // WhatsApp lo pinta como card grande (los PNG de paleta, no).
       },
     ],
     eager_async: false,

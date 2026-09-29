@@ -4,6 +4,18 @@
  * (vendorPortal.ts) y la tienda pública (public.ts) emitan recibos IDÉNTICOS:
  * misma marca (logo/instagram/web) y misma escasez dinámica.
  */
+import { RECEIPT_CARD_TRANSFORM } from "@riffas/shared/receipt-card";
+
+// Derivado del recibo que se sube a ImgBB para el preview de WhatsApp: c_pad a
+// **1080x790 (4:3 EXACTO)** y RGB (ver RECEIPT_CARD_TRANSFORM — SIN q_auto → no paleta,
+// porque WhatsApp no pinta como card grande los PNG de paleta). c_pad normaliza SIEMPRE
+// a 4:3 aunque el recibo crudo sea más alto (comprador con muchos números) o más ancho.
+// El transform es la constante compartida (misma que usan receipt.ts y /rc).
+export function receiptCardUrl(secureUrl: string): string {
+  // Solo transformamos URLs de Cloudinary /upload/; cualquier otra se devuelve igual.
+  if (!/res\.cloudinary\.com\/.+\/upload\//.test(secureUrl)) return secureUrl;
+  return secureUrl.replace("/upload/", `/upload/${RECEIPT_CARD_TRANSFORM}/`);
+}
 
 // La marca del rifero NO viaja en la sesión (solo id/name/email/image): la
 // leemos de la DB para que el recibo aplique nombre/color/logo + instagram/web.

@@ -18,9 +18,12 @@ describe("/rc/[id] — página preview del comprobante (og:image)", () => {
     // la URL .png coincida con el content-type image/png y WhatsApp pinte la card
     // GRANDE. Fijamos el transform EXACTO: si alguien re-mete f_jpg, el "/" pegado a
     // q_auto:good se rompe (quedaría "q_auto:good,f_jpg/") y este assert falla.
+    // PNG RGB (sin q_auto → no paleta) para que WhatsApp pinte la card grande.
     expect(html).toContain(
-      "c_pad,w_1080,h_790,b_rgb:e6e7eb,q_auto:good/riffas/receipts/R-123-ABCD.png"
+      "c_pad,w_1080,h_790,b_rgb:e6e7eb/riffas/receipts/R-123-ABCD.png"
     );
+    // El og:image NO debe llevar q_auto (paleta) ni f_jpg.
+    expect(html).not.toContain("q_auto:good/riffas/receipts/R-123-ABCD.png");
     expect(html).toContain('property="og:image:type" content="image/png"');
     // La imagen `full` (la que ve una persona al tocar el link) SÍ es JPEG a
     // propósito — otro flujo, no el og:image. La protegemos para no confundirlas.

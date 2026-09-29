@@ -3,7 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
-import { brandFor, raffleReceiptFields, contactRaffleNumbers } from "../lib/receiptData";
+import { brandFor, raffleReceiptFields, contactRaffleNumbers, receiptCardUrl } from "../lib/receiptData";
 // imgbb.ts NO tiene binarios nativos (solo fetch) → import estático seguro, a
 // diferencia de receipt.ts (satori/resvg) que se importa diferido más abajo.
 import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
@@ -64,11 +64,12 @@ async function issueSaleReceipt(
     where: { saleId: sale.id },
     data: { receiptUrl },
   });
-  // Subimos el recibo a ImgBB para que WhatsApp muestre la card GRANDE y legible
-  // dentro del chat (link ibb.co), como la app de referencia. Falla suave: si no
-  // hay IMGBB_API_KEY o falla, receiptShareUrl = null y el wa.me cae a /rc.
+  // Subimos a ImgBB el derivado **1080x790 (4:3)** — NO el PNG crudo — para que
+  // WhatsApp muestre la card GRANDE (mismo formato que riffas.info; el crudo, más
+  // ancho/alto, WhatsApp lo dejaba en blanco o chico). Falla suave: sin IMGBB_API_KEY
+  // o si falla, receiptShareUrl = null y el wa.me cae a /rc.
   const receiptShareUrl = receiptUrl
-    ? (await uploadReceiptToImgBB(receiptUrl, sale.receiptNumber))?.viewerUrl ?? null
+    ? (await uploadReceiptToImgBB(receiptCardUrl(receiptUrl), sale.receiptNumber))?.viewerUrl ?? null
     : null;
   return { receiptUrl, receiptShareUrl, brand };
 }
