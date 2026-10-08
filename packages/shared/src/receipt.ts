@@ -82,21 +82,30 @@ const money = (v: unknown) => {
 
 const MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 
-// "11 JUL 2026, 10:10 PM" (fecha del sorteo)
+// "11 JUL 2026, 10:10 PM" (fecha del sorteo). SIEMPRE en hora de Caracas: el
+// servidor (Vercel) corre en UTC y sin timeZone el sorteo salía 4h corrido
+// (hasta un día después) en el recibo. La base es ~80% Venezuela.
+const VE_TZ = "America/Caracas";
 function fmtDraw(d?: Date | string | null): string {
   if (!d) return "";
-  const dt = new Date(d);
-  let h = dt.getHours();
-  const ampm = h >= 12 ? "PM" : "AM";
-  h = h % 12 || 12;
-  const mm = dt.getMinutes().toString().padStart(2, "0");
-  return `${dt.getDate()} ${MONTHS[dt.getMonth()]} ${dt.getFullYear()}, ${h}:${mm} ${ampm}`;
+  const parts = new Intl.DateTimeFormat("es-VE", {
+    timeZone: VE_TZ,
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  }).formatToParts(new Date(d));
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
+  return `${get("day")} ${MONTHS[Number(get("month")) - 1]} ${get("year")}, ${get("hour")}:${get("minute")} ${get("dayPeriod").toUpperCase()}`;
 }
 
 // Fecha de reserva (corta, es-VE)
 function fmtReserva(d?: Date | string | null): string {
   if (!d) return "";
   return new Date(d).toLocaleString("es-VE", {
+    timeZone: VE_TZ,
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -264,56 +273,69 @@ export async function renderReceiptPng(
   // imagen se mantenga HORIZONTAL aun con muchos números.
   const numCount = (sale.numbers || []).length;
   const numbersText = (sale.numbers || []).join(numCount > 20 ? ", " : ",  ") || "—";
-  const numbersFontSize =
-    numCount <= 12 ? 32 : numCount <= 24 ? 26 : numCount <= 45 ? 21 : numCount <= 80 ? 16 : 13;
+  const numbersFontSizeV2 =
+    numCount <= 8 ? 44 : numCount <= 16 ? 36 : numCount <= 30 ? 29 : numCount <= 60 ? 23 : numCount <= 100 ? 18 : 15;
   const numbersLetterSpacing = numCount <= 24 ? 1 : 0.3;
 
-  // Fila "Etiqueta:  valor" alineada a la izquierda, alto contraste (legible de un
-  // vistazo en el preview de WhatsApp). La etiqueta tiene ancho fijo → los valores
-  // quedan alineados en columna.
-  const row = (label: string, value: string, valueColor: string = C.ink, big = false) =>
-    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }, [
-      el("div", { display: "flex", color: C.sub, fontSize: 19, width: 168 }, label),
+  // ── REDISEÑO "ticket legible" (v2) ─────────────────────────────────────
+  // Objetivo: la misma legibilidad del recibo viejo de riffas.info (UNA
+  // columna, texto GRANDE que llena el ancho) con el acabado visual de la v2
+  // (marca, colores, chip de estado). El lienzo apunta a ~4:3 (1000x~730) para
+  // que el derivado 1080x790 de WhatsApp no tenga que achicarlo ni rellenarlo.
+  const rowBig = (label: string, value: string, valueColor: string = C.ink, valueWeight = 400) =>
+    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 9 }, [
+      el("div", { display: "flex", color: C.ink, fontSize: 27, fontWeight: 700, width: 215 }, label),
       el(
         "div",
-        { display: "flex", color: valueColor, fontSize: big ? 24 : 20, fontWeight: 700, flexGrow: 1, flexBasis: 0 },
+        { display: "flex", color: valueColor, fontSize: 27, fontWeight: valueWeight, flexGrow: 1, flexBasis: 0 },
+        value
+      ),
+    ]);
+
+  const rowMoney = (label: string, value: string, valueColor: string = C.ink) =>
+    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }, [
+      el("div", { display: "flex", color: C.ink, fontSize: 30, fontWeight: 700, width: 215 }, label),
+      el(
+        "div",
+        { display: "flex", color: valueColor, fontSize: 30, fontWeight: 700, flexGrow: 1, flexBasis: 0 },
         value
       ),
     ]);
 
   // Separador troquelado (línea de puntos horizontal).
   const sep = () =>
-    el("div", { display: "flex", width: "100%", height: 0, borderTop: `2px dashed ${C.dash}`, margin: "16px 0" });
+    el("div", { display: "flex", width: "100%", height: 0, borderTop: `2px dashed ${C.dash}`, margin: "13px 0" });
 
-  const statusChip = paid
+  // Franja de estado a todo el ancho (chip grande, imposible de no ver).
+  const statusBanner = paid
     ? el(
         "div",
         {
           display: "flex",
-          alignSelf: "flex-start",
+          justifyContent: "center",
           backgroundColor: "#E7F7EE",
-          border: "1px solid #A6E2C2",
-          borderRadius: 999,
-          padding: "9px 22px",
-          marginTop: 6,
+          border: "2px solid #A6E2C2",
+          borderRadius: 16,
+          padding: "11px 20px",
+          marginTop: 4,
         },
-        el("div", { color: C.green, fontSize: 20, fontWeight: 700 }, "PAGADO · ¡ESTÁS DENTRO!")
+        el("div", { color: C.green, fontSize: 26, fontWeight: 700 }, "PAGADO · ¡ESTÁS DENTRO!")
       )
     : el(
         "div",
         {
           display: "flex",
-          alignSelf: "flex-start",
+          justifyContent: "center",
           backgroundColor: "#FDF3E2",
-          border: "1px solid #F0D9A6",
-          borderRadius: 999,
-          padding: "9px 22px",
-          marginTop: 6,
+          border: "2px solid #F0D9A6",
+          borderRadius: 16,
+          padding: "11px 20px",
+          marginTop: 4,
         },
         el(
           "div",
-          { color: C.amber, fontSize: 20, fontWeight: 700 },
-          `APARTADO · te falta ${money(debtValue)}`
+          { color: C.amber, fontSize: 26, fontWeight: 700 },
+          `APARTADO · TE FALTA ${money(debtValue)}`
         )
       );
 
@@ -324,138 +346,89 @@ export async function renderReceiptPng(
       flexDirection: "column",
       width: "100%",
       backgroundColor: C.card,
-      borderRadius: 22,
-      border: "2px dashed #B9BEC7",
+      borderRadius: 24,
+      border: `3px dashed ${brand}`,
       overflow: "hidden",
       fontFamily: "Inter",
+      padding: "24px 40px",
     },
     [
-      // 1) Encabezado de marca: logo en placa blanca (o nombre) + "COMPROBANTE".
+      // 1) Encabezado: marca (color del rifero) + título de la rifa + premio.
+      el("div", { display: "flex", flexDirection: "row", alignItems: "center" }, [
+        logoUri
+          ? img(logoUri, { height: 30, width: 120, objectFit: "contain" })
+          : el("div", {}),
+        el(
+          "div",
+          { display: "flex", color: brand, fontSize: 17, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", marginLeft: logoUri ? 12 : 0 },
+          brandName
+        ),
+      ]),
+      el("div", { display: "flex", color: C.ink, fontSize: 34, fontWeight: 700, marginTop: 4 }, raffle.title || "Rifa"),
+      prizeText
+        ? el("div", { display: "flex", color: C.sub, fontSize: 22, marginTop: 4 }, `${prizeIcon} ${prizeText}`)
+        : el("div", {}),
+      drawLine
+        ? el("div", { display: "flex", color: C.faint, fontSize: 18, marginTop: 3 }, drawLine)
+        : el("div", {}),
+
+      sep(),
+
+      // 2) Números: protagonistas, GRANDES (escalan si son muchos).
+      el(
+        "div",
+        { display: "flex", color: C.faint, fontSize: 17, fontWeight: 700, letterSpacing: 2, marginBottom: 8 },
+        "TUS NÚMEROS"
+      ),
       el(
         "div",
         {
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "16px 26px",
-          backgroundColor: brand,
+          flexWrap: "wrap",
+          color: C.ink,
+          fontSize: numbersFontSizeV2,
+          fontWeight: 700,
+          letterSpacing: numbersLetterSpacing,
         },
-        [
-          logoUri
-            ? el(
-                "div",
-                {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  backgroundColor: "#ffffff",
-                  borderRadius: 12,
-                  padding: "8px 16px",
-                },
-                img(logoUri, { height: 44, width: 190, objectFit: "contain" })
-              )
-            : el("div", { display: "flex", color: onBrand, fontSize: 24, fontWeight: 700 }, brandName),
-          el(
-            "div",
-            { color: onBrand, opacity: 0.95, fontSize: 15, fontWeight: 700, letterSpacing: 2.5 },
-            "COMPROBANTE"
-          ),
-        ]
+        numbersText
       ),
 
-      // 2) Cuerpo HORIZONTAL en 2 columnas. CLAVE: el aspecto final es ~4:3
-      // (landscape) porque WhatsApp SOLO pinta como card GRANDE las imágenes
-      // horizontales; una vertical/alta la deja EN BLANCO (no muestra nada).
-      // Mismo aspecto que la referencia (riffas.info, 1080x790).
+      sep(),
+
+      // 3) Datos del comprador (etiqueta:valor, una sola columna, texto grande).
+      rowBig("Comprador:", contact.name + (contact.city ? ` · ${contact.city}` : "")),
+      contact.phone ? rowBig("Teléfono:", contact.phone) : el("div", {}),
+      sale.createdAt ? rowBig("Reservado:", fmtReserva(sale.createdAt)) : el("div", {}),
+
+      sep(),
+
+      // 4) Montos: etiqueta:valor grandes y con color semántico.
+      rowMoney("Valor total:", money(totalValue)),
+      rowMoney(paid ? "Pagado:" : "Abonado:", money(paidValue), C.green),
+      !paid ? rowMoney("Deuda:", money(debtValue), brand) : el("div", {}),
+
+      // 5) Estado a todo lo ancho + cierre cálido + pie de confianza.
+      statusBanner,
       el(
         "div",
-        { display: "flex", flexDirection: "row", padding: "22px 26px" },
-        [
-          // Columna IZQUIERDA: rifa + números (protagonistas).
-          el(
-            "div",
-            { display: "flex", flexDirection: "column", flexGrow: 1.25, flexBasis: 0, paddingRight: 22 },
-            [
-              el("div", { display: "flex", color: C.ink, fontSize: 32, fontWeight: 700 }, raffle.title || "Rifa"),
-              prizeText
-                ? el("div", { display: "flex", color: C.sub, fontSize: 18, marginTop: 6 }, `${prizeIcon} ${prizeText}`)
-                : el("div", {}),
-              drawLine
-                ? el("div", { display: "flex", color: C.faint, fontSize: 14, marginTop: 5 }, drawLine)
-                : el("div", {}),
-
-              sep(),
-
-              el(
-                "div",
-                { display: "flex", color: C.faint, fontSize: 14, fontWeight: 700, letterSpacing: 2, marginBottom: 8 },
-                "TUS NÚMEROS"
-              ),
-              el(
-                "div",
-                {
-                  display: "flex",
-                  flexWrap: "wrap",
-                  color: C.ink,
-                  fontSize: numbersFontSize,
-                  fontWeight: 700,
-                  letterSpacing: numbersLetterSpacing,
-                },
-                numbersText
-              ),
-
-              el("div", { display: "flex", marginTop: 14 }, statusChip),
-            ]
-          ),
-
-          // Troquel vertical (línea de puntos entre columnas).
-          el("div", { display: "flex", width: 0, borderLeft: `2px dashed ${C.dash}`, margin: "2px 0" }),
-
-          // Columna DERECHA: comprador + montos.
-          el(
-            "div",
-            { display: "flex", flexDirection: "column", flexGrow: 1, flexBasis: 0, paddingLeft: 22 },
-            [
-              row("Comprador:", contact.name + (contact.city ? ` · ${contact.city}` : "")),
-              contact.phone ? row("Teléfono:", contact.phone) : el("div", {}),
-              sale.createdAt ? row("Reservado:", fmtReserva(sale.createdAt)) : el("div", {}),
-
-              sep(),
-
-              row("Valor total:", money(totalValue), C.ink, true),
-              row(paid ? "Pagado:" : "Abonado:", money(paidValue), C.green, true),
-              !paid ? row("Deuda:", money(debtValue), brand, true) : el("div", {}),
-            ]
-          ),
-        ]
+        { display: "flex", justifyContent: "center", marginTop: 14 },
+        el("div", { display: "flex", color: C.ink, fontSize: 24, fontWeight: 600 }, persuasive)
       ),
-
-      // 2b) Barra persuasiva (cierre cálido, como el "¡Gracias!" de la referencia).
       el(
         "div",
-        { display: "flex", justifyContent: "center", padding: "10px 18px", borderTop: `1px dashed ${C.dash}` },
-        el("div", { display: "flex", color: C.ink, fontSize: 17, fontWeight: 600 }, persuasive)
-      ),
-
-      // 3) Pie de confianza (barra oscura con marca).
-      el(
-        "div",
-        { display: "flex", flexDirection: "column", alignItems: "center", padding: "16px 20px", backgroundColor: C.footer },
-        [
-          el("div", { display: "flex", color: C.gold, fontSize: 16, fontWeight: 700, letterSpacing: 0.5 }, "🏆 TODO JUEGA HASTA TENER GANADOR"),
-          el("div", { display: "flex", color: "#C7CDD6", fontSize: 13, marginTop: 5 }, `${website}  ·  ${instagram}  ·  Recibo ${sale.receiptNumber}`),
-        ]
+        { display: "flex", justifyContent: "center", marginTop: 10 },
+        el("div", { display: "flex", color: C.faint, fontSize: 17 }, `${website}  ·  ${instagram}  ·  Recibo ${sale.receiptNumber}`)
       ),
     ]
   );
 
-  // Marco exterior (da el aire alrededor del boleto y el color de las muescas).
+  // Marco exterior (da el aire alrededor del boleto).
   const tree = el(
     "div",
     {
       display: "flex",
       width: "100%",
-      padding: 14,
+      padding: 16,
       backgroundColor: C.frame,
       fontFamily: "Inter",
     },
@@ -467,7 +440,7 @@ export async function renderReceiptPng(
     // Boleto HORIZONTAL (~4:3): WhatsApp SOLO pinta como card GRANDE las imágenes
     // horizontales (una vertical/alta la deja en blanco). Ancho grande para las 2
     // columnas; la altura sale ~4:3 como la referencia (riffas.info 1080x790).
-    width: 940,
+    width: 1000,
     fonts: [
       { name: "Inter", data: font, weight: 400, style: "normal" },
       { name: "Inter", data: font, weight: 600, style: "normal" },
