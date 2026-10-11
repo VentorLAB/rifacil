@@ -53,6 +53,7 @@ export const settingsRouter = createTRPCRouter({
         whatsappPhoneNumberId: z.string().optional().nullable(),
         whatsappBusinessId: z.string().optional().nullable(),
         whatsappApiToken: z.string().optional().nullable(),
+        whatsappConnected: z.boolean().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
