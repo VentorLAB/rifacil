@@ -101,7 +101,30 @@ async function businessContext(prisma: PrismaClient, userId: string) {
   return { nombre: user?.name || "la rifa", rifas, pagos };
 }
 
+// Proveedor de IA: OPENROUTER_API_KEY (una llave, varios modelos — preferencia de
+// Marco) tiene prioridad; si no, ANTHROPIC_API_KEY directo. Modelo por env
+// CHATBOT_MODEL (default según proveedor).
 async function callClaude(system: string, history: { role: "user" | "assistant"; content: string }[]) {
+  const openrouterKey = process.env.OPENROUTER_API_KEY;
+  if (openrouterKey) {
+    const r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${openrouterKey}`,
+        "content-type": "application/json",
+        "HTTP-Referer": "https://rifacil.vip",
+        "X-Title": "Rifacil Chatbot",
+      },
+      body: JSON.stringify({
+        model: process.env.CHATBOT_MODEL || "anthropic/claude-haiku-4.5",
+        max_tokens: 400,
+        messages: [{ role: "system", content: system }, ...history.slice(-20)],
+      }),
+    });
+    const j: any = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(`OpenRouter ${r.status}: ${j?.error?.message || r.statusText}`);
+    return String(j?.choices?.[0]?.message?.content ?? "").trim();
+  }
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -125,7 +148,7 @@ async function callClaude(system: string, history: { role: "user" | "assistant";
 // webhook debe responder 200 igual).
 export async function handleInboundMessage(prisma: PrismaClient, msg: InboundMessage) {
   try {
-    if (!process.env.ANTHROPIC_API_KEY) return;
+    if (!process.env.ANTHROPIC_API_KEY && !process.env.OPENROUTER_API_KEY) return;
     const tenant = await findTenant(prisma, msg);
     if (!tenant?.whatsappApiToken) return;
 
