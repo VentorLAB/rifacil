@@ -3,6 +3,7 @@
 // con nombre de archivo legible) y el botón "Enviar como imagen" del panel
 // (fetch same-origin → File → navigator.share, sin pelear con CORS de Cloudinary).
 import { prisma } from "@riffas/db";
+import { RECEIPT_CARD_TRANSFORM } from "@riffas/shared/receipt-card";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -37,11 +38,22 @@ export async function GET(
     return new NextResponse("Comprobante no disponible", { status: 404 });
   }
 
+  // ?card=1 → versión "tarjeta" 1080x790 (la del header del recibo por
+  // WhatsApp): se sirve desde NUESTRO dominio para que Meta la descargue
+  // inline sin depender de terceros.
+  let upstreamUrl = url.toString();
+  if (req.nextUrl.searchParams.get("card") === "1") {
+    upstreamUrl = upstreamUrl.replace(
+      "/upload/",
+      `/upload/${RECEIPT_CARD_TRANSFORM}/`
+    );
+  }
+
   // redirect:"error": la validación anti-SSRF es sobre la URL inicial; un 30x
   // de Cloudinary podría sacarnos del host permitido, así que no se sigue.
   let upstream: Response;
   try {
-    upstream = await fetch(url, { cache: "no-store", redirect: "error" });
+    upstream = await fetch(upstreamUrl, { cache: "no-store", redirect: "error" });
   } catch {
     return new NextResponse("Comprobante no disponible", { status: 502 });
   }

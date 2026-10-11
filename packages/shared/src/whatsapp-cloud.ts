@@ -38,13 +38,17 @@ export interface ReceiptTemplateData {
   language?: string;
   /** URL pública de la imagen de cabecera (derivado 1080x790 del recibo). */
   imageUrl: string;
-  /** Variables del cuerpo, en orden {{1}}..{{6}}: marca, rifa, números, total, abonado, deuda. */
-  brandName: string;
+  /** Variables del cuerpo, en orden {{1}}..{{9}}:
+   *  nombre cliente, rifa, números, total, abonado, deuda, estado, catálogo, marca. */
+  customerName: string;
   raffleTitle: string;
   numbers: string;
   total: string;
   paid: string;
   debt: string;
+  estado: string;
+  catalogUrl: string;
+  brandName: string;
 }
 
 export interface SendResult {
@@ -67,12 +71,15 @@ function templateComponents(d: ReceiptTemplateData) {
     {
       type: "body",
       parameters: [
-        d.brandName,
+        d.customerName,
         d.raffleTitle,
         d.numbers,
         d.total,
         d.paid,
         d.debt,
+        d.estado,
+        d.catalogUrl,
+        d.brandName,
       ].map((text) => ({ type: "text", text: String(text).slice(0, 900) })),
     },
   ];
