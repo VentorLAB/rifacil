@@ -80,12 +80,105 @@ async function issueSaleReceipt(
   if (receiptShareUrl) {
     await prisma.sale.update({ where: { id: sale.id }, data: { receiptShareUrl } });
   }
+  // Auto-envío integrado (si el rifero conectó WhatsApp API): el recibo llega
+  // solo al comprador. Falla suave → el wa.me de respaldo sigue saliendo.
+  await tryAutoSendReceipt(prisma, businessId, sale, receiptUrl, allNums.length ? allNums : sale.numbers);
   return { receiptUrl, receiptShareUrl, brand };
 }
 
 // brandFor (marca: logo/instagram/web) + raffleReceiptFields (escasez dinámica)
 // viven en lib/receiptData para que panel, portal del vendedor y tienda pública
 // emitan el MISMO recibo.
+
+
+// --- Auto-envío INTEGRADO del recibo por WhatsApp (Cloud API / YCloud) ---
+// Diferenciador clave vs riffas.info: el recibo sale SOLO al confirmar, sin que el
+// vendedor abra otra app. Si el rifero no conectó su WhatsApp (o el envío falla),
+// TODO sigue igual: el flujo wa.me de siempre queda como fallback. NUNCA lanza.
+async function tryAutoSendReceipt(
+  prisma: any,
+  businessId: string,
+  sale: any, // Sale con include { contact, raffle }
+  receiptUrl: string | null,
+  allNumbers: string[] // mismos números que muestra la imagen del recibo
+): Promise<void> {
+  try {
+    if (!receiptUrl) return;
+    // La config vive en userSettings (no en User). autoSendWhatsApp=false apaga
+    // solo el auto-envío; el wa.me manual sigue disponible para el vendedor.
+    const cfg = await prisma.userSettings.findUnique({
+      where: { userId: businessId },
+      select: {
+        whatsappConnected: true,
+        whatsappNotifications: true,
+        autoSendWhatsApp: true,
+        whatsappProvider: true,
+        whatsappApiToken: true,
+        whatsappPhoneNumberId: true,
+        whatsappPhoneNumber: true,
+      },
+    });
+    if (!cfg?.whatsappConnected || cfg.whatsappNotifications === false || cfg.autoSendWhatsApp === false) return;
+    if (!cfg.whatsappApiToken || !cfg.whatsappProvider || cfg.whatsappProvider === "NONE") return;
+    const owner = await prisma.user.findUnique({
+      where: { id: businessId },
+      select: { brandName: true },
+    });
+
+    const total = Number(sale.totalAmount ?? sale.finalAmount ?? 0);
+    const paid = Number(sale.amountPaid ?? 0);
+    const debt = Math.max(0, total - paid);
+    const fmt = (n: number) => `$${(Number.isFinite(n) ? n : 0).toLocaleString("en-US", { maximumFractionDigits: 2 })}`;
+
+    const { sendReceiptWhatsapp } = await import("@riffas/shared/whatsapp-cloud");
+    const result = await sendReceiptWhatsapp(
+      {
+        provider: cfg.whatsappProvider as any,
+        apiToken: cfg.whatsappApiToken!,
+        phoneNumberId: cfg.whatsappPhoneNumberId,
+        phoneNumber: cfg.whatsappPhoneNumber,
+      },
+      sale.contact.phone,
+      {
+        imageUrl: receiptCardUrl(receiptUrl),
+        brandName: owner?.brandName || "Tu rifa",
+        raffleTitle: sale.raffle?.title || "Rifa",
+        numbers: allNumbers.join(", "),
+        total: fmt(total),
+        paid: fmt(paid),
+        debt: fmt(debt),
+      }
+    );
+    console.log(`[sale] auto-envío recibo ${sale.receiptNumber} por ${result.provider}: ${result.ok ? `OK (${result.messageId})` : `falló (${result.error}) → fallback wa.me`}`);
+
+    // METERING por tenant (base del reporte "mensajes este mes" y de la futura
+    // refacturación con margen). Falla suave: un error de log NO afecta la venta.
+    try {
+      const { estimateCostUsd } = await import("@riffas/shared/whatsapp-rates");
+      const cost = estimateCostUsd(sale.contact.phone, "UTILITY");
+      await prisma.whatsappMessageLog.create({
+        data: {
+          businessId,
+          saleId: sale.id,
+          recipient: sale.contact.phone,
+          templateName: "recibo_compra",
+          category: "UTILITY",
+          provider: result.provider,
+          messageId: result.messageId ?? null,
+          status: result.ok ? "SENT" : "FAILED",
+          countryCode: cost.countryCode,
+          costUsd: result.ok ? cost.costUsd : 0,
+          pricingNote: cost.pricingNote,
+          error: result.ok ? null : result.error,
+        },
+      });
+    } catch (logErr) {
+      console.error("[sale] no se pudo registrar el metering del mensaje:", logErr);
+    }
+  } catch (err) {
+    console.error("[sale] tryAutoSendReceipt falló; la venta y el wa.me siguen intactos:", err);
+  }
+}
 
 export const saleRouter = createTRPCRouter({
   create: protectedProcedure

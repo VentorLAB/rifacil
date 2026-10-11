@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 
 export const analyticsRouter = createTRPCRouter({
@@ -69,6 +70,52 @@ export const analyticsRouter = createTRPCRouter({
   }),
 
   // Tarjetas de la pantalla /dashboard/analytics.
+
+  // --- Metering WhatsApp: "mensajes este mes" por tenant ---
+  // Base de la futura refacturación (rifacil paga Meta y revende con margen).
+  // HOY cada rifero paga su WABA: esto solo MIDE y reporta. El costo es
+  // estimado (ver pricingNote de cada fila); el volumen es exacto.
+  whatsappUsage: protectedProcedure
+    .input(
+      z
+        .object({
+          // YYYY-MM; default: mes actual en UTC
+          month: z.string().regex(/^\d{4}-\d{2}$/).optional(),
+        })
+        .optional()
+    )
+    .query(async ({ ctx, input }) => {
+      const month = input?.month ?? new Date().toISOString().slice(0, 7);
+      const from = new Date(`${month}-01T00:00:00.000Z`);
+      const to = new Date(from);
+      to.setUTCMonth(to.getUTCMonth() + 1);
+
+      const rows = await ctx.prisma.whatsappMessageLog.findMany({
+        where: { businessId: ctx.businessId, createdAt: { gte: from, lt: to } },
+        select: { category: true, status: true, costUsd: true, countryCode: true },
+      });
+
+      const byStatus: Record<string, number> = {};
+      const byCategory: Record<string, number> = {};
+      let costUsdEstimated = 0;
+      let unrated = 0;
+      for (const r of rows) {
+        byStatus[r.status] = (byStatus[r.status] || 0) + 1;
+        byCategory[r.category] = (byCategory[r.category] || 0) + 1;
+        if (r.costUsd != null) costUsdEstimated += r.costUsd;
+        else unrated++;
+      }
+      return {
+        month,
+        totalMessages: rows.length,
+        byStatus,
+        byCategory,
+        costUsdEstimated: Number(costUsdEstimated.toFixed(4)),
+        unratedCount: unrated,
+        note: "Costo estimado por mensaje entregado según tarifa Meta por país (verificar tabla vigente); plantillas utility dentro de ventana de servicio pueden ser $0.",
+      };
+    }),
+
   dashboard: protectedProcedure.query(async ({ ctx }) => {
     const { prisma } = ctx;
     const businessId = ctx.businessId;

@@ -48,7 +48,7 @@ export const settingsRouter = createTRPCRouter({
         autoSendWhatsApp: z.boolean().optional(),
         reservationExpiryMinutes: z.number().min(5).max(1440).optional(),
         // WhatsApp Cloud API (BSP) — credenciales para envío masivo (upgrade).
-        whatsappProvider: z.enum(["NONE", "CLOUD_API"]).optional(),
+        whatsappProvider: z.enum(["NONE", "CLOUD_API", "YCLOUD"]).optional(),
         whatsappPhoneNumber: z.string().optional().nullable(),
         whatsappPhoneNumberId: z.string().optional().nullable(),
         whatsappBusinessId: z.string().optional().nullable(),

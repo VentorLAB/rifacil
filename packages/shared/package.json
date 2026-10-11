@@ -10,7 +10,9 @@
     "./receipt": "./src/receipt.ts",
     "./receipt-card": "./src/receipt-card.ts",
     "./imgbb": "./src/imgbb.ts",
-    "./cloudinary": "./src/cloudinary.ts"
+    "./cloudinary": "./src/cloudinary.ts",
+    "./whatsapp-cloud": "./src/whatsapp-cloud.ts",
+    "./whatsapp-rates": "./src/whatsapp-rates.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
