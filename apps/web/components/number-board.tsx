@@ -19,6 +19,20 @@ const PILL_STYLES: Record<string, string> = {
   PAID: "bg-green-500 text-white hover:bg-green-600",
 };
 
+const METHOD_LABELS: Record<string, string> = {
+  PAGO_MOVIL: "Pago Móvil",
+  ZELLE: "Zelle",
+  BINANCE: "Binance / USDT",
+  ZINLI: "Zinli",
+  EFECTIVO_USD: "Efectivo USD",
+  EFECTIVO_VES: "Efectivo Bs",
+  TRANSFERENCIA_VES: "Transferencia Bs",
+  NEQUI: "Nequi",
+  BANCOLOMBIA: "Bancolombia",
+  CASH: "Efectivo (otro)",
+  BANK_TRANSFER: "Transferencia",
+};
+
 const FILTERS: { key: StatusFilter; label: string; dot?: string }[] = [
   { key: "ALL", label: "Todos" },
   { key: "AVAILABLE", label: "Disponibles", dot: "bg-slate-300" },
@@ -41,6 +55,11 @@ export function NumberBoard({
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
+  // Filtros de paridad (riffas.info): vendedor, método de pago y rango de fechas.
+  const [vendorId, setVendorId] = useState("");
+  const [method, setMethod] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
 
   // Sheets abiertas
   const [sellNumber, setSellNumber] = useState<string | null>(null);
@@ -58,16 +77,22 @@ export function NumberBoard({
   // Resetear página al cambiar de filtro.
   useEffect(() => {
     setPage(0);
-  }, [status]);
+  }, [status, vendorId, method, dateFrom, dateTo]);
 
   const { data: stats } = api.raffle.getStats.useQuery({ id: raffleId });
+  const { data: vendors } = api.vendor.list.useQuery();
   const { data, isLoading, isFetching } = api.raffle.listNumbers.useQuery({
     raffleId,
     status,
     search: search || undefined,
+    vendorId: vendorId || undefined,
+    paymentMethod: method || undefined,
+    dateFrom: dateFrom ? new Date(`${dateFrom}T00:00:00`).toISOString() : undefined,
+    dateTo: dateTo ? new Date(`${dateTo}T23:59:59`).toISOString() : undefined,
     page,
     pageSize: PAGE_SIZE,
   });
+  const hasExtraFilters = !!(vendorId || method || dateFrom || dateTo);
 
   function refreshBoard() {
     utils.raffle.listNumbers.invalidate();
@@ -130,6 +155,56 @@ export function NumberBoard({
           className="w-full rounded-xl border border-slate-300 bg-white py-3 pl-9 pr-4 text-slate-900"
         />
       </div>
+
+      {/* Filtros avanzados: vendedor, método de pago, fechas de venta */}
+      <div className="mb-4 grid grid-cols-2 gap-2 md:grid-cols-4">
+        <select
+          value={vendorId}
+          onChange={(e) => setVendorId(e.target.value)}
+          className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900"
+        >
+          <option value="">Vendedor: todos</option>
+          {((vendors as any)?.vendors ?? []).map((v: any) => (
+            <option key={v.id} value={v.id}>
+              {v.name} {v.lastName ?? ""}
+            </option>
+          ))}
+        </select>
+        <select
+          value={method}
+          onChange={(e) => setMethod(e.target.value)}
+          className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900"
+        >
+          <option value="">Método: todos</option>
+          {Object.entries(METHOD_LABELS).map(([k, label]) => (
+            <option key={k} value={k}>
+              {label}
+            </option>
+          ))}
+        </select>
+        <input
+          type="date"
+          value={dateFrom}
+          onChange={(e) => setDateFrom(e.target.value)}
+          className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
+          aria-label="Vendidos desde"
+        />
+        <input
+          type="date"
+          value={dateTo}
+          onChange={(e) => setDateTo(e.target.value)}
+          className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
+          aria-label="Vendidos hasta"
+        />
+      </div>
+      {hasExtraFilters && (
+        <button
+          onClick={() => { setVendorId(""); setMethod(""); setDateFrom(""); setDateTo(""); }}
+          className="mb-3 text-xs font-medium text-blue-600 hover:underline"
+        >
+          Limpiar filtros
+        </button>
+      )}
 
       {/* Grilla de pastillas */}
       {isLoading ? (
