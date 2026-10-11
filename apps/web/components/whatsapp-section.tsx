@@ -20,6 +20,8 @@ export function WhatsappSection() {
   const [businessId, setBusinessId] = useState("");
   const [token, setToken] = useState("");
   const [connected, setConnected] = useState(false);
+  const [chatbot, setChatbot] = useState(false);
+  const [chatbotInstructions, setChatbotInstructions] = useState("");
 
   useEffect(() => {
     if (!settings) return;
@@ -29,6 +31,8 @@ export function WhatsappSection() {
     setBusinessId(settings.whatsappBusinessId ?? "");
     setToken(settings.whatsappApiToken ?? "");
     setConnected(!!settings.whatsappConnected);
+    setChatbot(!!(settings as any).chatbotEnabled);
+    setChatbotInstructions((settings as any).chatbotInstructions ?? "");
   }, [settings]);
 
   const save = api.settings.update.useMutation({
@@ -47,7 +51,9 @@ export function WhatsappSection() {
       whatsappBusinessId: businessId || null,
       whatsappApiToken: token || null,
       whatsappConnected: connected && provider !== "NONE",
-    });
+      chatbotEnabled: chatbot && connected && provider !== "NONE",
+      chatbotInstructions: chatbotInstructions || null,
+    } as any);
   }
 
   const webhookUrl = typeof window !== "undefined" ? `${window.location.origin}/api/webhooks/whatsapp` : "/api/webhooks/whatsapp";
@@ -108,6 +114,19 @@ export function WhatsappSection() {
                 <input type="checkbox" checked={connected} onChange={(e) => setConnected(e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
                 Activar recibo automático al vender
               </label>
+              <label className="flex items-center gap-2 text-sm text-slate-700">
+                <input type="checkbox" checked={chatbot} onChange={(e) => setChatbot(e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
+                Chatbot con IA: responde mensajes de compradores (con memoria por conversación)
+              </label>
+              {chatbot && (
+                <textarea
+                  value={chatbotInstructions}
+                  onChange={(e) => setChatbotInstructions(e.target.value)}
+                  rows={3}
+                  placeholder="Instrucciones extra para tu chatbot (opcional): tono, promociones, respuestas frecuentes…"
+                  className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm"
+                />
+              )}
               <div className="rounded-xl bg-slate-50 px-4 py-3 text-xs text-slate-600">
                 <p className="mb-1 font-medium text-slate-700">Para estados de entrega (opcional):</p>
                 <p>URL de webhook en Meta/YCloud: <code className="break-all">{webhookUrl}</code></p>

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@riffas/db";
+import { extractInboundMessages, handleInboundMessage } from "@riffas/api";
 
 // Webhook de estados de WhatsApp (Meta Cloud API / YCloud → mismo formato de
 // eventos de Meta). Alimenta el METERING: actualiza SENT → DELIVERED/READ/FAILED
@@ -7,7 +8,9 @@ import { prisma } from "@riffas/db";
 // token de env WHATSAPP_WEBHOOK_VERIFY_TOKEN.
 //
 // Seguridad: la verificación GET exige el token; el POST valida que el wamid
-// exista (solo actualiza filas propias) — no crea datos ni acepta comandos.
+// exista (solo actualiza filas propias). Los mensajes entrantes solo se
+// procesan para tenants con chatbotEnabled=true y nunca ejecutan comandos:
+// van a Claude como texto y la respuesta sale por la API del propio rifero.
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -30,6 +33,10 @@ const STATUS_MAP: Record<string, string> = {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    // Mensajes entrantes → chatbot (si el tenant lo activó).
+    for (const msg of extractInboundMessages(body)) {
+      await handleInboundMessage(prisma, msg);
+    }
     // Formato Meta: entry[].changes[].value.statuses[] (YCloud reenvía igual).
     for (const entry of body?.entry ?? []) {
       for (const change of entry?.changes ?? []) {

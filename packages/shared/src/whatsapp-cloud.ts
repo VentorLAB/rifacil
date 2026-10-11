@@ -175,3 +175,33 @@ export async function sendReceiptWhatsapp(
     return { ok: false, provider: creds.provider, error: err?.message || "error de red" };
   }
 }
+
+// ─── Texto libre (chatbot / utilidades) ─────────────────────────────────────
+export async function sendTextWhatsapp(
+  creds: WhatsappCredentials,
+  to: string,
+  body: string
+): Promise<SendResult> {
+  try {
+    if (creds.provider === "YCLOUD") {
+      const r = await fetch("https://api.ycloud.com/v2/whatsapp/messages", {
+        method: "POST",
+        headers: { "X-API-Key": creds.apiToken, "Content-Type": "application/json" },
+        body: JSON.stringify({ from: creds.phoneNumber, to, type: "text", text: { body } }),
+      });
+      const j: any = await r.json().catch(() => ({}));
+      if (!r.ok) return { ok: false, provider: "YCLOUD", error: `YCloud ${r.status}: ${j?.message || r.statusText}` };
+      return { ok: true, provider: "YCLOUD", messageId: j?.id };
+    }
+    const r = await fetch(`https://graph.facebook.com/v21.0/${creds.phoneNumberId}/messages`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${creds.apiToken}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ messaging_product: "whatsapp", to, type: "text", text: { body } }),
+    });
+    const j: any = await r.json().catch(() => ({}));
+    if (!r.ok) return { ok: false, provider: "CLOUD_API", error: `Cloud API ${r.status}: ${j?.error?.message || r.statusText}` };
+    return { ok: true, provider: "CLOUD_API", messageId: j?.messages?.[0]?.id };
+  } catch (e: any) {
+    return { ok: false, provider: creds.provider, error: e?.message || "error de red" };
+  }
+}
