@@ -120,10 +120,15 @@ async function tryAutoSendReceipt(
     });
     if (!cfg?.whatsappConnected || cfg.whatsappNotifications === false || cfg.autoSendWhatsApp === false) return;
     if (!cfg.whatsappApiToken || !cfg.whatsappProvider || cfg.whatsappProvider === "NONE") return;
-    const owner = await prisma.user.findUnique({
-      where: { id: businessId },
-      select: { brandName: true },
-    });
+    const { brandFor } = await import("../lib/receiptData");
+    const brandInfo = await brandFor(prisma, businessId);
+    // Header de la plantilla: la imagen la sirve NUESTRO dominio
+    // (/api/receipt/[id]?card=1, público, con guardia anti-SSRF) — Meta la
+    // descarga inline de ahí; ImgBB ya NO participa en este flujo.
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "https://rifacil.vip").replace(/\/$/, "");
+    const catalog = brandInfo.brandWebsite
+      ? (String(brandInfo.brandWebsite).startsWith("http") ? String(brandInfo.brandWebsite) : `https://${brandInfo.brandWebsite}`)
+      : "rifacil.vip";
 
     const total = Number(sale.totalAmount ?? sale.finalAmount ?? 0);
     const paid = Number(sale.amountPaid ?? 0);
@@ -140,13 +145,16 @@ async function tryAutoSendReceipt(
       },
       sale.contact.phone,
       {
-        imageUrl: receiptCardUrl(receiptUrl),
-        brandName: owner?.brandName || "Tu rifa",
+        imageUrl: `${appUrl}/api/receipt/${sale.id}?card=1`,
+        customerName: (sale.contact?.name || "amigo(a)").trim().split(/\s+/)[0],
         raffleTitle: sale.raffle?.title || "Rifa",
         numbers: allNumbers.join(", "),
         total: fmt(total),
         paid: fmt(paid),
         debt: fmt(debt),
+        estado: debt <= 0.005 ? "PAGADO ✅" : "APARTADO ⏳",
+        catalogUrl: catalog,
+        brandName: brandInfo.brandName || "Tu rifa",
       }
     );
     console.log(`[sale] auto-envío recibo ${sale.receiptNumber} por ${result.provider}: ${result.ok ? `OK (${result.messageId})` : `falló (${result.error}) → fallback wa.me`}`);
