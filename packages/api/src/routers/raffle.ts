@@ -720,6 +720,63 @@ export const raffleRouter = createTRPCRouter({
       };
     }),
 
+
+  // --- Exportar la rifa a CSV (abre en Excel) ---
+  // Equivalente al "DESCARGAR EXCEL" de riffas.info. Además es la base de la
+  // MIGRACIÓN de data: mismo formato para importar rifas históricas.
+  exportCsv: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { prisma } = ctx;
+      const raffle = await prisma.raffle.findFirst({
+        where: { id: input.id, userId: ctx.businessId },
+        select: { id: true, title: true, pricePerNumber: true },
+      });
+      if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
+
+      const numbers = await prisma.raffleNumber.findMany({
+        where: { raffleId: raffle.id },
+        orderBy: { number: "asc" },
+        include: {
+          contact: { select: { name: true, phone: true, city: true } },
+          vendor: { select: { name: true, lastName: true, code: true } },
+          sale: { select: { receiptNumber: true, finalAmount: true, amountPaid: true, status: true } },
+        },
+      });
+
+      const esc = (v: unknown) => {
+        const s = v == null ? "" : String(v);
+        return /[",;\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+      };
+      const ESTADO: Record<string, string> = {
+        AVAILABLE: "disponible",
+        RESERVED: "apartado",
+        SOLD: "vendido",
+        PAID: "pagado",
+      };
+      const header = "numero,estado,cliente,telefono,ciudad,vendedor,metodo_pago,referencia_pago,recibo,monto,abonado,fecha_venta,fecha_pago";
+      const lines = numbers.map((n) =>
+        [
+          n.number,
+          ESTADO[n.status] ?? n.status.toLowerCase(),
+          esc(n.contact?.name),
+          esc(n.contact?.phone),
+          esc(n.contact?.city),
+          esc(n.vendor ? `${n.vendor.name}${n.vendor.lastName ? " " + n.vendor.lastName : ""}` : ""),
+          esc(n.paymentMethod),
+          esc(n.paymentReference),
+          esc(n.receiptNumber ?? n.sale?.receiptNumber),
+          n.sale ? Number(n.sale.finalAmount) : "",
+          n.sale ? Number(n.sale.amountPaid) : "",
+          n.soldAt ? n.soldAt.toISOString() : "",
+          n.paidAt ? n.paidAt.toISOString() : "",
+        ].join(",")
+      );
+      const csv = "\uFEFF" + [header, ...lines].join("\n"); // BOM para que Excel respete UTF-8
+      const safeTitle = raffle.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "rifa";
+      return { filename: `${safeTitle}-numeros.csv`, csv, totalRows: numbers.length };
+    }),
+
   // Actualizar rifa
   update: protectedProcedure
     .input(
