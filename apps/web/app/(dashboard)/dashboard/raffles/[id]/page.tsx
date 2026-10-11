@@ -168,11 +168,12 @@ export default function RaffleDetailPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
         <Stat label="Total números" value={stats?.total ?? raffle.totalNumbers} />
         <Stat label="Disponibles" value={stats?.available ?? "—"} />
         <Stat label="Vendidos" value={(stats ? stats.sold + stats.paid : "—") as any} />
         <Stat label="Recaudado" value={stats ? `$${stats.revenue}` : "—"} />
+        <Stat label="Rechazados" value={(stats?.rejectedPayments ?? "—") as any} />
       </div>
 
       {/* Barra de avance: ver la rifa llenarse motiva a seguir vendiendo */}
