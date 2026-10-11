@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
 import { celebrateBig, crossedMilestone } from "@/lib/celebrate";
-import { ArrowLeft, Loader2, Play, Pause, Trash2 } from "lucide-react";
+import { ArrowLeft, Loader2, Play, Pause, Trash2, Download } from "lucide-react";
 import { NumberBoard } from "@/components/number-board";
 import { PrizesManager } from "@/components/prizes-manager";
 import { ReportSection } from "@/components/report-section";
@@ -23,6 +23,29 @@ export default function RaffleDetailPage() {
     { enabled: !!id }
   );
   const { data: stats } = api.raffle.getStats.useQuery({ id }, { enabled: !!id });
+
+  // DESCARGAR EXCEL (CSV UTF-8 con BOM): la data completa de la rifa — números,
+  // estados, clientes, vendedores, montos. Equivalente al de riffas.info y base
+  // del formato de migración.
+  const [downloading, setDownloading] = useState(false);
+  async function downloadCsv() {
+    try {
+      setDownloading(true);
+      const res = await utils.raffle.exportCsv.fetch({ id });
+      const blob = new Blob([res.csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = res.filename;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast.success(`Descargados ${res.totalRows} números`);
+    } catch {
+      toast.error("No se pudo generar el archivo");
+    } finally {
+      setDownloading(false);
+    }
+  }
 
   // % vendido (todo lo que no está disponible) para la barra de avance y los hitos.
   const soldPct =
@@ -130,6 +153,13 @@ export default function RaffleDetailPage() {
             <Pause className="w-4 h-4" /> Pausar
           </button>
         )}
+        <button
+          onClick={downloadCsv}
+          disabled={downloading}
+          className="flex items-center gap-2 px-4 py-2 border border-green-200 text-green-700 rounded-xl hover:bg-green-50 disabled:opacity-50"
+        >
+          {downloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />} Excel
+        </button>
         <button
           onClick={() => setConfirmDelete(true)}
           className="flex items-center gap-2 px-4 py-2 border border-red-200 text-red-600 rounded-xl hover:bg-red-50"
