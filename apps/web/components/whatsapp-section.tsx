@@ -5,31 +5,35 @@ import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
 import { MessageCircle, Loader2 } from "lucide-react";
 
-// Credenciales de WhatsApp Cloud API (BSP). El envío masivo automático requiere
-// cuenta Meta verificada + plantillas aprobadas (setup externo). Aquí queda lista
-// la arquitectura: el rifero guarda sus credenciales y activa el proveedor.
+// Conexión de WhatsApp API del rifero: habilita el RECIBO AUTOMÁTICO al vender
+// (utility template con imagen). Compatible con coexistencia (misma línea en la
+// app Business + API) y con número dedicado. Si no hay conexión, todo sigue por
+// wa.me como siempre.
 export function WhatsappSection() {
   const utils = api.useContext();
   const { data: settings, isLoading } = api.settings.get.useQuery();
+  const { data: usage } = api.analytics.whatsappUsage.useQuery({});
 
-  const [provider, setProvider] = useState(false); // true = CLOUD_API
+  const [provider, setProvider] = useState<"NONE" | "CLOUD_API" | "YCLOUD">("NONE");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberId, setPhoneNumberId] = useState("");
   const [businessId, setBusinessId] = useState("");
   const [token, setToken] = useState("");
+  const [connected, setConnected] = useState(false);
 
   useEffect(() => {
     if (!settings) return;
-    setProvider(settings.whatsappProvider === "CLOUD_API");
+    setProvider((settings.whatsappProvider as "NONE" | "CLOUD_API" | "YCLOUD") ?? "NONE");
     setPhoneNumber(settings.whatsappPhoneNumber ?? "");
     setPhoneNumberId(settings.whatsappPhoneNumberId ?? "");
     setBusinessId(settings.whatsappBusinessId ?? "");
     setToken(settings.whatsappApiToken ?? "");
+    setConnected(!!settings.whatsappConnected);
   }, [settings]);
 
   const save = api.settings.update.useMutation({
     onSuccess: () => {
-      toast.success("Credenciales guardadas");
+      toast.success("Conexión guardada");
       utils.settings.get.invalidate();
     },
     onError: (e) => toast.error(e.message),
@@ -37,85 +41,97 @@ export function WhatsappSection() {
 
   function handleSave() {
     save.mutate({
-      whatsappProvider: provider ? "CLOUD_API" : "NONE",
+      whatsappProvider: provider,
       whatsappPhoneNumber: phoneNumber || null,
       whatsappPhoneNumberId: phoneNumberId || null,
       whatsappBusinessId: businessId || null,
       whatsappApiToken: token || null,
+      whatsappConnected: connected && provider !== "NONE",
     });
   }
+
+  const webhookUrl = typeof window !== "undefined" ? `${window.location.origin}/api/webhooks/whatsapp` : "/api/webhooks/whatsapp";
 
   return (
     <div className="space-y-4 rounded-xl border bg-white p-6 dark:bg-slate-900">
       <div className="flex items-center gap-2">
         <MessageCircle className="h-5 w-5 text-slate-700" />
-        <h2 className="text-lg font-semibold text-slate-900">WhatsApp Cloud API (envío masivo)</h2>
+        <h2 className="text-lg font-semibold text-slate-900">WhatsApp API (recibo automático)</h2>
       </div>
-      <div className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
-        <b>Upgrade opcional.</b> El envío masivo automático necesita una cuenta de Meta verificada y
-        plantillas aprobadas. Mientras tanto, usa <b>Campañas</b> para enviar por enlaces wa.me sin
-        costo. Aquí dejas listas tus credenciales para activarlo después.
+      <div className="rounded-xl bg-green-50 px-4 py-3 text-sm text-green-800">
+        Conecta tu WhatsApp API y <b>el recibo le llega solo al comprador</b> cada vez que
+        confirmes una venta o un abono, con tu plantilla aprobada. Sin conexión, rifacil sigue
+        funcionando con los enlaces wa.me de siempre.
       </div>
 
       {isLoading ? (
-        <div className="flex justify-center py-6 text-slate-400">
-          <Loader2 className="h-5 w-5 animate-spin" />
-        </div>
+        <div className="flex justify-center py-6"><Loader2 className="h-5 w-5 animate-spin text-slate-400" /></div>
       ) : (
         <>
-          <label className="flex items-center justify-between rounded-xl border p-3">
-            <span className="text-sm font-medium text-slate-700">Activar Cloud API</span>
-            <span className="relative">
-              <input
-                type="checkbox"
-                checked={provider}
-                onChange={(e) => setProvider(e.target.checked)}
-                className="peer sr-only"
-              />
-              <span className="block h-6 w-11 rounded-full bg-slate-300 transition peer-checked:bg-green-500" />
-              <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-5" />
-            </span>
-          </label>
+          <div>
+            <label className="mb-1 block text-sm font-medium text-slate-700">Proveedor</label>
+            <select
+              value={provider}
+              onChange={(e) => setProvider(e.target.value as typeof provider)}
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm"
+            >
+              <option value="NONE">Sin conexión (usar wa.me)</option>
+              <option value="CLOUD_API">Meta Cloud API (directo)</option>
+              <option value="YCLOUD">YCloud</option>
+            </select>
+          </div>
 
-          <Field label="Número de WhatsApp (display)">
-            <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="+58424…" className={inputCls} />
-          </Field>
-          <Field label="Phone Number ID (Meta)">
-            <input value={phoneNumberId} onChange={(e) => setPhoneNumberId(e.target.value)} placeholder="1234567890" className={inputCls} />
-          </Field>
-          <Field label="WABA / Business Account ID">
-            <input value={businessId} onChange={(e) => setBusinessId(e.target.value)} placeholder="1234567890" className={inputCls} />
-          </Field>
-          <Field label="Access Token permanente">
-            <input
-              type="password"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-              placeholder="EAAG…"
-              className={inputCls}
-            />
-          </Field>
+          {provider === "CLOUD_API" && (
+            <div className="space-y-3">
+              <p className="text-xs text-slate-500">
+                De tu app en developers.facebook.com: token permanente (System User), Phone Number ID y WABA ID.
+              </p>
+              <input value={phoneNumberId} onChange={(e) => setPhoneNumberId(e.target.value)} placeholder="Phone Number ID" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" />
+              <input value={businessId} onChange={(e) => setBusinessId(e.target.value)} placeholder="WhatsApp Business Account ID" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" />
+              <input value={token} onChange={(e) => setToken(e.target.value)} placeholder="Token de acceso permanente" type="password" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" />
+            </div>
+          )}
+
+          {provider === "YCLOUD" && (
+            <div className="space-y-3">
+              <p className="text-xs text-slate-500">
+                De tu panel de YCloud: la X-API-Key y tu número de WhatsApp con formato internacional.
+              </p>
+              <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Número (ej: +584247376999)" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" />
+              <input value={token} onChange={(e) => setToken(e.target.value)} placeholder="X-API-Key de YCloud" type="password" className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm" />
+            </div>
+          )}
+
+          {provider !== "NONE" && (
+            <>
+              <label className="flex items-center gap-2 text-sm text-slate-700">
+                <input type="checkbox" checked={connected} onChange={(e) => setConnected(e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
+                Activar recibo automático al vender
+              </label>
+              <div className="rounded-xl bg-slate-50 px-4 py-3 text-xs text-slate-600">
+                <p className="mb-1 font-medium text-slate-700">Para estados de entrega (opcional):</p>
+                <p>URL de webhook en Meta/YCloud: <code className="break-all">{webhookUrl}</code></p>
+                <p>Token de verificación: el valor de WHATSAPP_WEBHOOK_VERIFY_TOKEN del servidor.</p>
+              </div>
+            </>
+          )}
+
+          {usage && (
+            <p className="text-xs text-slate-500">
+              Mensajes este mes: <b>{usage.totalMessages}</b>
+              {usage.byStatus ? ` (entregados: ${usage.byStatus.DELIVERED ?? 0}, leídos: ${usage.byStatus.READ ?? 0}, fallidos: ${usage.byStatus.FAILED ?? 0})` : ""}
+            </p>
+          )}
 
           <button
             onClick={handleSave}
             disabled={save.isLoading}
-            className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-50"
           >
-            {save.isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Guardar credenciales"}
+            {save.isLoading ? "Guardando…" : "Guardar conexión"}
           </button>
         </>
       )}
-    </div>
-  );
-}
-
-const inputCls = "w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-900";
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <label className="mb-1 block text-xs font-medium text-slate-500">{label}</label>
-      {children}
     </div>
   );
 }

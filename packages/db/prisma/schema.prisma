@@ -872,3 +872,29 @@ model ExchangeRate {
   @@index([userId, isActive])
   @@index([userId, source])
 }
+
+// --- Metering de mensajes WhatsApp por tenant ---
+// Cada plantilla enviada/entregada/leída/fallida queda registrada con tipo y
+// costo Meta estimado. Base para el reporte "mensajes este mes" por rifero y,
+// a futuro, la refacturación con margen (rifacil paga Meta y revende).
+// HOY: cada rifero paga su propio consumo (su WABA); esto solo MIDE.
+model WhatsappMessageLog {
+  id           String   @id @default(cuid())
+  businessId   String // tenant (businessId efectivo del rifero)
+  saleId       String? // venta que disparó el mensaje (null = campaña/otro flujo)
+  recipient    String // E.164 del comprador
+  templateName String
+  category     String   @default("UTILITY") // UTILITY | MARKETING | AUTHENTICATION | SERVICE
+  provider     String // CLOUD_API | YCLOUD
+  messageId    String?  @unique // wamid: lo actualiza el webhook de estados
+  status       String   @default("SENT") // SENT | DELIVERED | READ | FAILED
+  countryCode  String? // calling code del destinatario (ej "58") para tarifar
+  costUsd      Float? // estimado de la tarifa Meta; null si no se pudo estimar
+  pricingNote  String? // ej "rate-card estimado, verificar tabla vigente" | "posible $0 por ventana de servicio"
+  error        String? // detalle si FAILED
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([businessId, createdAt])
+  @@map("WhatsappMessageLog")
+}

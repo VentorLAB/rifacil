@@ -6,3 +6,5 @@ export * from "./phone";
 export * from "./google-contacts";
 export * from "./numbers";
 export * from "./whatsapp-link";
+export * from "./whatsapp-cloud"; // fetch puro, sin binarios nativos: seguro de importar estático
+export * from "./whatsapp-rates"; // fetch puro y constantes: seguro
