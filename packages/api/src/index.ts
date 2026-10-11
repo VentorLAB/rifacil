@@ -30,3 +30,4 @@ export const appRouter = createTRPCRouter({
 });
 
 export type AppRouter = typeof appRouter;
+export { extractInboundMessages, handleInboundMessage } from "./chatbot";
