@@ -110,7 +110,7 @@ async function callClaude(system: string, history: { role: "user" | "assistant";
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      model: process.env.CHATBOT_MODEL || "claude-sonnet-4-20250514",
+      model: process.env.CHATBOT_MODEL || "claude-haiku-4-5-20251001",
       max_tokens: 400,
       system,
       messages: history.slice(-20),
