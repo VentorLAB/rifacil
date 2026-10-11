@@ -589,7 +589,10 @@ export const raffleRouter = createTRPCRouter({
             select: { status: true, number: true, soldAt: true, paidAt: true },
           },
           sales: {
-            select: { finalAmount: true, status: true, createdAt: true, paymentMethod: true },
+            select: {
+              finalAmount: true, status: true, createdAt: true, paymentMethod: true,
+              payments: { select: { status: true } },
+            },
           },
         },
       });
@@ -606,6 +609,10 @@ export const raffleRouter = createTRPCRouter({
           .filter((s) => s.status === "PAID")
           .reduce((sum, s) => sum + Number(s.finalAmount), 0),
         totalSales: raffle.sales.length,
+        // Paridad riffas.info: pagos rechazados (comprobante inválido) por rifa.
+        rejectedPayments: raffle.sales.reduce(
+          (sum, s) => sum + s.payments.filter((p) => p.status === "REJECTED").length, 0
+        ),
         salesByDay: groupByDay(raffle.sales),
         salesByPaymentMethod: groupBy(raffle.sales, "paymentMethod"),
       };
