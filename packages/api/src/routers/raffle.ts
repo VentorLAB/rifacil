@@ -93,6 +93,10 @@ export const raffleRouter = createTRPCRouter({
         raffleId: z.string(),
         status: z.enum(["ALL", "AVAILABLE", "RESERVED", "SOLD", "PAID"]).default("ALL"),
         search: z.string().optional(),
+        vendorId: z.string().optional(),
+        paymentMethod: z.string().optional(),
+        dateFrom: z.string().datetime().optional(),
+        dateTo: z.string().datetime().optional(),
         page: z.number().int().min(0).default(0),
         pageSize: z.number().int().min(20).max(500).default(120),
       })
@@ -111,6 +115,14 @@ export const raffleRouter = createTRPCRouter({
       if (input.status !== "ALL") where.status = input.status;
       const search = input.search?.trim();
       if (search) where.number = { contains: search };
+      // Filtros de paridad (riffas.info): vendedor, método de pago y rango de fechas (por fecha de venta).
+      if (input.vendorId) where.vendorId = input.vendorId;
+      if (input.paymentMethod) where.paymentMethod = input.paymentMethod;
+      if (input.dateFrom || input.dateTo) {
+        where.soldAt = {};
+        if (input.dateFrom) where.soldAt.gte = new Date(input.dateFrom);
+        if (input.dateTo) where.soldAt.lte = new Date(input.dateTo);
+      }
 
       const [total, numbers] = await Promise.all([
         prisma.raffleNumber.count({ where }),
@@ -124,6 +136,9 @@ export const raffleRouter = createTRPCRouter({
             number: true,
             status: true,
             saleId: true,
+            paymentMethod: true,
+            soldAt: true,
+            vendor: { select: { id: true, name: true, lastName: true } },
             contact: { select: { id: true, name: true, phone: true } },
           },
         }),
