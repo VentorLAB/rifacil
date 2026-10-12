@@ -55,8 +55,8 @@ function shortPrize(prizes: { titulo: string }[], fallback: string) {
 }
 
 const DEFAULT_FAQS = [
-  { q: "¿Cómo participo en una rifa?", a: "Entrá a la rifa que quieras, elegí tus números, completá tus datos, pagá por el método que prefieras y subí tu comprobante. Confirmamos tu boleto por WhatsApp." },
-  { q: "¿Cómo sé que mis números quedaron reservados?", a: "Apenas confirmás, recibís tu comprobante por WhatsApp. También podés consultarlos en el verificador con tu teléfono o número de boleto." },
+  { q: "¿Cómo participo en una rifa?", a: "Entra a la rifa que quieras, elige tus números, completa tus datos, paga por el método que prefieras y sube tu comprobante. Confirmamos tu boleto por WhatsApp." },
+  { q: "¿Cómo sé que mis números quedaron reservados?", a: "Apenas confirmas, recibes tu comprobante por WhatsApp. También puedes consultarlos en el verificador con tu teléfono o número de boleto." },
   { q: "¿Cuándo y cómo se realiza el sorteo?", a: "El sorteo se transmite EN VIVO por nuestras redes en la fecha indicada de cada rifa. Jugamos con la lotería para total transparencia." },
   { q: "¿Cómo recibo mi premio si gano?", a: "Te contactamos de inmediato por WhatsApp para coordinar la entrega. Los premios en efectivo se pagan por el método que prefieras." },
 ];
@@ -80,7 +80,7 @@ const TRUST_SEALS: { icon: string; text: string }[] = [
 
 // Paso 5 — "Cómo funciona" (3 pasos) para el comprador frío.
 const HOW_IT_WORKS: { h: string; p: string }[] = [
-  { h: "Elegí tu número y apartalo", p: "Entrá a la rifa, escogé tu número y reservalo en segundos. Mientras más lleves, menos pagás por cada uno." },
+  { h: "Elige tu número y apártalo", p: "Entra a la rifa, escoge tu número y resérvalo en segundos. Mientras más lleves, menos pagas por cada uno." },
   { h: "Paga y sube tu comprobante (o coordiná por WhatsApp)", p: "Pago Móvil, Binance, Zelle, Zinli, Bancolombia o efectivo. Subí la captura en el sitio o mandánosla por WhatsApp." },
   { h: "Mira el sorteo EN VIVO — si tu número sale, ganaste 🏆", p: "El sorteo se transmite por Instagram con la Lotería del Táchira. Transparencia total: el resultado no lo decidimos nosotros." },
 ];
@@ -173,7 +173,7 @@ function WinnersGallery({ items }: { items: { imageUrl: string; caption?: string
         <div className="section-head">
           <span className="kicker">📸 Entregas reales</span>
           <h2 className="h-lg">Galería de <span className="gold-text">ganadores</span></h2>
-          <p className="lead">Premios entregados de verdad. El próximo podés ser vos.</p>
+          <p className="lead">Premios entregados de verdad. El próximo puedes ser tú.</p>
         </div>
         <div className="grid-gallery">
           {items.map((g, i) => (
@@ -195,7 +195,7 @@ export async function generateMetadata({ params }: { params: { host: string } })
     const data = await getPublicCaller().public.getStorefrontByDomain({ host });
     return {
       title: data.brand.name,
-      description: `${data.brand.name} — Premios reales, sorteos en vivo. Elegí tus números y participá.`,
+      description: `${data.brand.name} — Premios reales, sorteos en vivo. Elige tus números y participa.`,
       // Favicon de marca (isotipo HP) SOLO en la landing — no pisa el favicon de
       // plataforma (Rifácil) del root layout. Generados desde el logo de Cloudinary.
       icons: {
@@ -249,7 +249,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
               {/* Con logo (logotipo completo) NO repetimos el nombre como h1. */}
               {!brand.logo && <h1 className="h-xl">{brand.name}</h1>}
               <p className="lead">
-                Carros, motos y efectivo que cambian vidas. Elegí tus números, pagá seguro y participá.{" "}
+                Carros, motos y efectivo que cambian vidas. Elige tus números, paga seguro y participa.{" "}
                 <b style={{ color: "var(--text)" }}>Nuestros premios juegan hasta que haya ganador.</b>
               </p>
               <div className="hero-cta">
@@ -281,7 +281,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
           <div className="section-head">
             <span className="kicker">🎯 En juego ahora</span>
             <h2 className="h-lg">Rifas <span className="gold-text">disponibles</span></h2>
-            <p className="lead">Elegí tu rifa, apartá tus números antes de que se agoten y preparate para ganar.</p>
+            <p className="lead">Elige tu rifa, aparta tus números antes de que se agoten y prepárate para ganar.</p>
           </div>
 
           {/* Franja de confianza (anti-estafa). Textos en TRUST_SEALS (editables). */}
@@ -306,7 +306,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
                 const packs = computePacks(r.discountPackages, r.pricePerNumber);
                 const sp = shortPrize(r.prizes, r.prize);
                 const isObject = !/^\$/.test(sp); // premio "objeto" (carro/moto) vs efectivo
-                const ctaText = isObject ? `Quiero ganar el ${sp}` : "Apartá tus números";
+                const ctaText = isObject ? `Quiero ganar el ${sp}` : "Aparta tus números";
                 return (
                   <article className="rifa-card" data-reveal key={r.id}>
                     <div className="rifa-media">
@@ -394,7 +394,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
             <div className="section-head">
               <span className="kicker">🏆 Sorteos cumplidos</span>
               <h2 className="h-lg">Nuestros <span className="gold-text">ganadores</span></h2>
-              <p className="lead">Premios entregados de verdad. El próximo podés ser vos.</p>
+              <p className="lead">Premios entregados de verdad. El próximo puedes ser tú.</p>
             </div>
             <div className="grid-winners">
               {winners.map((w) => {
@@ -459,7 +459,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
           <div className="section-head">
             <span className="kicker">💳 Paga seguro</span>
             <h2 className="h-lg">Cuentas de <span className="gold-text">pago</span></h2>
-            <p className="lead">Elegí el método que más te convenga. Tocá “Copiar datos” para no equivocarte.</p>
+            <p className="lead">Elige el método que más te convenga. Toca “Copiar datos” para no equivocarte.</p>
           </div>
           <PaymentAccountsSection accounts={paymentAccounts} />
         </div>
@@ -470,8 +470,8 @@ export default async function BrandLanding({ params }: { params: { host: string 
         <div className="wrap">
           <div className="section-head">
             <span className="kicker">🔎 Tranquilidad total</span>
-            <h2 className="h-lg">Verificá tus <span className="gold-text">boletos</span></h2>
-            <p className="lead">Consultá tus números con tu teléfono o número de boleto.</p>
+            <h2 className="h-lg">Verifica tus <span className="gold-text">boletos</span></h2>
+            <p className="lead">Consulta tus números con tu teléfono o número de boleto.</p>
           </div>
           <VerifyWidget raffles={raffles.map((r) => ({ id: r.id, title: r.title }))} />
         </div>

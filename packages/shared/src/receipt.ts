@@ -260,7 +260,7 @@ export async function renderReceiptPng(
   const firstName = (contact.name || "").trim().split(/\s+/)[0] || "";
   const persuasive = paid
     ? `🍀 ¡Ya estás jugando${firstName ? `, ${firstName}` : ""}! Mucha suerte`
-    : `🤝 Completá tu pago y asegurá tus números`;
+    : `🤝 Completa tu pago y asegura tus números`;
 
   // Logo del rifero (falla suave a null).
   const logoUri = await fetchDataUri(input.brandLogo);

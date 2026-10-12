@@ -13,6 +13,25 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { buildReceiptWaLink, buildReceiptMessage } from "@riffas/shared";
+
+// Descarga la card del recibo SOLO en desktop (donde no hay Web Share con
+// archivos): el vendedor la adjunta en WhatsApp Web y llega como FOTO real.
+// Exportada para reusarla en flujos que abren wa.me fuera de este componente
+// (p.ej. el auto-open tras registrar un abono en el detalle de venta).
+export function downloadReceiptPngDesktop(saleId: string) {
+  try {
+    const probe = new File([new Uint8Array(1)], "r.png", { type: "image/png" });
+    if (navigator.canShare?.({ files: [probe] })) return; // móvil: share nativo
+  } catch {
+    // sigue con la descarga
+  }
+  const a = document.createElement("a");
+  a.href = `/api/receipt/${saleId}?card=1&download=1`;
+  a.download = "recibo.png";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
 import { MessageCircle, Receipt, Loader2 } from "lucide-react";
 
 export interface SendReceiptActionsProps {
@@ -125,6 +144,8 @@ export function SendReceiptActions({
       opened = null;
     }
     if (!opened) window.location.href = waLink;
+    maybeDownloadReceipt();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpen, origin, waLink]);
 
   // Precarga del PNG para compartirlo como imagen nativa (solo si el navegador
@@ -172,11 +193,21 @@ export function SendReceiptActions({
       toast.success("Recibo compartido 🧾✨");
     } catch (e: any) {
       if (e?.name !== "AbortError") {
-        toast.error("No se pudo adjuntar la foto. Usá el botón verde de WhatsApp.");
+        toast.error("No se pudo adjuntar la foto. Usa el botón verde de WhatsApp.");
       }
     } finally {
       setSharing(false);
     }
+  }
+
+  // En ESCRITORIO WhatsApp Web no pinta la miniatura del link y no hay Web Share
+  // con archivos: riffas.info lo resuelve descargando la imagen al enviar para
+  // que el vendedor la arrastre/adjunte en el chat (llega como FOTO real).
+  // Replicamos: al abrir wa.me también bajamos el PNG de la card. En móvil no
+  // hace falta (ahí está el botón "enviar la foto adjunta").
+  function maybeDownloadReceipt() {
+    if (!receiptUrl) return;
+    downloadReceiptPngDesktop(saleId);
   }
 
   const btnBase = compact ? "py-2.5 text-sm" : "py-3.5";
@@ -196,6 +227,7 @@ export function SendReceiptActions({
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={maybeDownloadReceipt}
             className={`flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 font-medium text-white hover:bg-green-700 ${btnBase}`}
           >
             <MessageCircle className="h-5 w-5" />
@@ -203,7 +235,7 @@ export function SendReceiptActions({
           </a>
           {receiptUrl && !compact && (
             <p className="text-center text-xs text-slate-400">
-              En el celular llega la foto del recibo + los datos en el chat 📸
+              En el celular llega la foto del recibo + los datos en el chat 📸 · En PC se descarga la imagen: adjúntala en el chat y llega como foto
             </p>
           )}
           {canAttachPhoto && (

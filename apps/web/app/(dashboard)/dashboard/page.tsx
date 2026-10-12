@@ -61,7 +61,7 @@ const QUICK_ACTIONS = [
   {
     href: "/dashboard/contacts",
     label: "Contactos",
-    description: "Gestioná tus clientes",
+    description: "Gestiona tus clientes",
     icon: Users,
   },
   {

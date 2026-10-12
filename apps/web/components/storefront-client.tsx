@@ -260,7 +260,7 @@ export function VerifyWidget({ raffles }: { raffles: RaffleOpt[] }) {
     e?.preventDefault();
     const q = query.trim();
     if (q.length < 2) return toast.error("Escribe tu teléfono o número de boleto");
-    if (!raffleId) return toast.error("Elegí una rifa");
+    if (!raffleId) return toast.error("Elige una rifa");
     setLoading(true);
     try { setResult(await utils.public.verify.fetch({ raffleId, query: q })); }
     catch { toast.error("No se pudo verificar"); setResult(null); }
@@ -335,7 +335,7 @@ export function VerifyWidget({ raffles }: { raffles: RaffleOpt[] }) {
                 )}
               </>
             ) : (
-              <p className="lead center" style={{ margin: 0 }}>No encontramos boletos con ese dato. Verificá el teléfono o número.</p>
+              <p className="lead center" style={{ margin: 0 }}>No encontramos boletos con ese dato. Verifica el teléfono o número.</p>
             )}
           </div>
         )}

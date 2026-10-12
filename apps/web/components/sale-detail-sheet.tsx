@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { SendReceiptActions } from "@/components/send-receipt-actions";
+import { SendReceiptActions, downloadReceiptPngDesktop } from "@/components/send-receipt-actions";
 import { buildReceiptWaLink } from "@riffas/shared";
 import { celebrateBig } from "@/lib/celebrate";
 import { X, Loader2, Plus } from "lucide-react";
@@ -121,6 +121,7 @@ export function SaleDetailSheet({
           w = null;
         }
         if (!w) window.location.href = link;
+        if (res.sale.receiptUrl) downloadReceiptPngDesktop(res.sale.id);
       }
       // Refrescar el detalle (deuda + historial) y la lista de ventas.
       utils.sale.getById.invalidate({ id: saleId });
@@ -139,7 +140,7 @@ export function SaleDetailSheet({
   function submit() {
     const n = Number(amount);
     if (!n || n <= 0) {
-      toast.error("Ingresá un monto válido");
+      toast.error("Ingresa un monto válido");
       return;
     }
     if (n - debt > 0.001) {
