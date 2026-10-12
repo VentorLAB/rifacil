@@ -13,6 +13,25 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { buildReceiptWaLink, buildReceiptMessage } from "@riffas/shared";
+
+// Descarga la card del recibo SOLO en desktop (donde no hay Web Share con
+// archivos): el vendedor la adjunta en WhatsApp Web y llega como FOTO real.
+// Exportada para reusarla en flujos que abren wa.me fuera de este componente
+// (p.ej. el auto-open tras registrar un abono en el detalle de venta).
+export function downloadReceiptPngDesktop(saleId: string) {
+  try {
+    const probe = new File([new Uint8Array(1)], "r.png", { type: "image/png" });
+    if (navigator.canShare?.({ files: [probe] })) return; // móvil: share nativo
+  } catch {
+    // sigue con la descarga
+  }
+  const a = document.createElement("a");
+  a.href = `/api/receipt/${saleId}?card=1&download=1`;
+  a.download = "recibo.png";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
 import { MessageCircle, Receipt, Loader2 } from "lucide-react";
 
 export interface SendReceiptActionsProps {
@@ -174,7 +193,7 @@ export function SendReceiptActions({
       toast.success("Recibo compartido 🧾✨");
     } catch (e: any) {
       if (e?.name !== "AbortError") {
-        toast.error("No se pudo adjuntar la foto. Usá el botón verde de WhatsApp.");
+        toast.error("No se pudo adjuntar la foto. Usa el botón verde de WhatsApp.");
       }
     } finally {
       setSharing(false);
@@ -188,18 +207,7 @@ export function SendReceiptActions({
   // hace falta (ahí está el botón "enviar la foto adjunta").
   function maybeDownloadReceipt() {
     if (!receiptUrl) return;
-    try {
-      const probe = new File([new Uint8Array(1)], "r.png", { type: "image/png" });
-      if (navigator.canShare?.({ files: [probe] })) return; // móvil: share nativo
-    } catch {
-      // sigue con la descarga
-    }
-    const a = document.createElement("a");
-    a.href = `/api/receipt/${saleId}?card=1&download=1`;
-    a.download = "recibo.png";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    downloadReceiptPngDesktop(saleId);
   }
 
   const btnBase = compact ? "py-2.5 text-sm" : "py-3.5";

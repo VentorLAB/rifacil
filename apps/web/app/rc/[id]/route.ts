@@ -61,7 +61,7 @@ export async function GET(
 <meta property="og:site_name" content="Rifácil">
 <meta property="og:url" content="${esc(ogUrl)}">
 <meta property="og:title" content="Tu comprobante 🧾">
-<meta property="og:description" content="Mirá tu comprobante de la rifa.">
+<meta property="og:description" content="Mira tu comprobante de la rifa.">
 <meta property="og:image" content="${esc(card)}">
 <meta property="og:image:secure_url" content="${esc(card)}">
 <meta property="og:image:type" content="image/png">

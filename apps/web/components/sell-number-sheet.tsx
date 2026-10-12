@@ -234,7 +234,7 @@ export function SellNumberSheet({
             />
             {!sold.receiptUrl && (
               <p className="text-xs text-slate-400">
-                El recibo no se generó (revisá la configuración de imágenes).
+                El recibo no se generó (revisa la configuración de imágenes).
               </p>
             )}
 

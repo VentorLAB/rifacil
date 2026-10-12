@@ -177,7 +177,7 @@ type V1 = { num: number; status: "sold" | "pending"; paid: number; due: number; 
 
   // 8) APPLY (sólo con APPLY=1, tras revisión).
   if (!APPLY) {
-    console.log(`\n(DRY RUN) No se escribió NADA en la DB. Revisá el reporte y el CSV.`);
+    console.log(`\n(DRY RUN) No se escribió NADA en la DB. Revisa el reporte y el CSV.`);
     console.log(`Para aplicar: APPLY=1 con la MISMA DATABASE_URL/DIRECT_URL de prod.`);
     await prisma.$disconnect();
     return;

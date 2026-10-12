@@ -3,7 +3,7 @@
 // stock, números, status ni ningún otro campo.
 //
 // Seguridad: DRY RUN por defecto (imprime ANTES + lo que cambiaría, no escribe).
-// Aplicar: APPLY=1. Idempotente. Confirmá [host] = ep-billowing-bread (prod).
+// Aplicar: APPLY=1. Idempotente. Confirma [host] = ep-billowing-bread (prod).
 //
 //   DATABASE_URL=<prod> DIRECT_URL=<prod> tsx scripts/set-eldubai-copy.ts        # dry-run
 //   APPLY=1 DATABASE_URL=<prod> DIRECT_URL=<prod> tsx scripts/set-eldubai-copy.ts # aplicar

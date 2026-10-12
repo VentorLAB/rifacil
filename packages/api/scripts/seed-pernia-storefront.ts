@@ -32,7 +32,7 @@ const config = {
   ],
   faqs: [
     { q: "¿Cómo participo en una rifa?", a: "Entrá a la rifa que quieras, elegí tus números (o pulsá “Elegir a la suerte”), llená tus datos, pagá por el método que prefieras y subí tu comprobante. Confirmamos tu boleto por WhatsApp." },
-    { q: "¿Cómo sé que mis números quedaron reservados?", a: "Apenas confirmás, recibís tu boleto por WhatsApp. También podés consultarlos en el verificador con tu teléfono o número de boleto." },
+    { q: "¿Cómo sé que mis números quedaron reservados?", a: "Apenas confirmas, recibes tu boleto por WhatsApp. También puedes consultarlos en el verificador con tu teléfono o número de boleto." },
     { q: "¿Cuándo y cómo se realiza el sorteo?", a: "El sorteo se transmite EN VIVO por nuestro Instagram en la fecha indicada de cada rifa. Jugamos con la lotería para total transparencia." },
     { q: "¿Qué pasa si la rifa no se vende completa?", a: "Nuestros premios juegan hasta que haya ganador. Si no se vende el total, se reprograma y se avisa por nuestras redes." },
     { q: "¿Cómo recibo mi premio si gano?", a: "Te contactamos de inmediato por WhatsApp para coordinar la entrega. Los premios en efectivo se pagan por el método que prefieras." },
