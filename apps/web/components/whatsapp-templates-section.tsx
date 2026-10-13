@@ -30,7 +30,9 @@ export function WhatsappTemplatesSection() {
   const [name, setName] = useState("");
   const [category, setCategory] = useState<"UTILITY" | "MARKETING">("UTILITY");
   const [language, setLanguage] = useState("es");
+  const [headerType, setHeaderType] = useState<"NONE" | "TEXT" | "IMAGE">("NONE");
   const [headerText, setHeaderText] = useState("");
+  const [headerImage, setHeaderImage] = useState<{ base64: string; type: string; name: string } | null>(null);
   const [bodyText, setBodyText] = useState("");
   const [footerText, setFooterText] = useState("");
   const [examples, setExamples] = useState<string[]>([]);
@@ -40,7 +42,8 @@ export function WhatsappTemplatesSection() {
 
   function resetForm() {
     setName(""); setCategory("UTILITY"); setLanguage("es");
-    setHeaderText(""); setBodyText(""); setFooterText(""); setExamples([]);
+    setHeaderType("NONE"); setHeaderText(""); setHeaderImage(null);
+    setBodyText(""); setFooterText(""); setExamples([]);
     setShowForm(false);
   }
 
@@ -49,11 +52,18 @@ export function WhatsappTemplatesSection() {
       toast.error("Las variables deben ser {{1}}, {{2}}... en secuencia, sin saltos");
       return;
     }
+    if (headerType === "IMAGE" && !headerImage) {
+      toast.error("Sube la imagen de muestra del encabezado");
+      return;
+    }
     create.mutate({
       name,
       category,
       language,
-      headerText: headerText || undefined,
+      headerType,
+      headerText: headerType === "TEXT" ? headerText || undefined : undefined,
+      headerImageBase64: headerType === "IMAGE" ? headerImage?.base64 : undefined,
+      headerImageType: headerType === "IMAGE" ? headerImage?.type : undefined,
       bodyText,
       footerText: footerText || undefined,
       exampleValues: vars.length ? vars.map((_, i) => examples[i] ?? "") : undefined,
@@ -179,15 +189,61 @@ export function WhatsappTemplatesSection() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700">Encabezado (opcional, sin variables)</label>
-            <input
-              value={headerText}
-              onChange={(e) => setHeaderText(e.target.value)}
-              maxLength={60}
-              placeholder="Tu recibo de rifa"
-              className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm"
-            />
+            <label className="mb-1 block text-sm font-medium text-slate-700">Encabezado</label>
+            <select
+              value={headerType}
+              onChange={(e) => setHeaderType(e.target.value as "NONE" | "TEXT" | "IMAGE")}
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm"
+            >
+              <option value="NONE">Sin encabezado</option>
+              <option value="TEXT">Texto (sin variables)</option>
+              <option value="IMAGE">Imagen (el afiche: vende más)</option>
+            </select>
           </div>
+          {headerType === "TEXT" && (
+            <div>
+              <label className="mb-1 block text-sm font-medium text-slate-700">Texto del encabezado (máx. 60)</label>
+              <input
+                value={headerText}
+                onChange={(e) => setHeaderText(e.target.value)}
+                maxLength={60}
+                placeholder="Tu recibo de rifa"
+                className="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm"
+              />
+            </div>
+          )}
+          {headerType === "IMAGE" && (
+            <div>
+              <label className="mb-1 block text-sm font-medium text-slate-700">
+                Imagen de muestra (JPG o PNG, máx. 5 MB) — Meta la exige para revisar
+              </label>
+              <input
+                type="file"
+                accept="image/jpeg,image/png"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (!f) return setHeaderImage(null);
+                  if (f.size > 5 * 1024 * 1024) {
+                    toast.error("La imagen no puede pasar de 5 MB");
+                    e.target.value = "";
+                    return;
+                  }
+                  const reader = new FileReader();
+                  reader.onload = () =>
+                    setHeaderImage({
+                      base64: String(reader.result).split(",")[1] ?? "",
+                      type: f.type,
+                      name: f.name,
+                    });
+                  reader.readAsDataURL(f);
+                }}
+                className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm"
+              />
+              {headerImage && (
+                <p className="mt-1 text-xs text-green-600">✓ {headerImage.name} lista para subir a Meta</p>
+              )}
+            </div>
+          )}
           <div>
             <label className="mb-1 block text-sm font-medium text-slate-700">
               Cuerpo (variables como {"{{1}}"}, {"{{2}}"}…)
