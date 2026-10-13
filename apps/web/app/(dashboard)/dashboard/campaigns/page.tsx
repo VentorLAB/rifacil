@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
+import { WaMessageTemplatesSection } from "@/components/wa-message-templates-section";
 import {
   MessageSquare,
+  MessageSquareText,
+  Link2,
   Send,
   Copy,
   ImagePlus,
@@ -45,6 +48,7 @@ const money = (v: number) =>
 export default function CampaignsPage() {
   const { data: options } = api.campaign.options.useQuery();
 
+  const [tab, setTab] = useState<"enlaces" | "mensajes">("enlaces");
   const [segment, setSegment] = useState<Segment>("DEBT");
   const [tag, setTag] = useState("");
   const [raffleId, setRaffleId] = useState("");
@@ -101,11 +105,33 @@ export default function CampaignsPage() {
     <div className="max-w-3xl space-y-6">
       <div className="flex items-center gap-2">
         <MessageSquare className="h-6 w-6 text-slate-700" />
-        <h1 className="text-2xl font-bold text-slate-900">Campañas de WhatsApp</h1>
+        <h1 className="text-2xl font-bold text-slate-900">WhatsApp gratis</h1>
       </div>
+
+      <div className="flex gap-2 rounded-xl bg-slate-100 p-1">
+        <button
+          onClick={() => setTab("enlaces")}
+          className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-medium transition ${
+            tab === "enlaces" ? "bg-white shadow text-slate-900" : "text-slate-500"
+          }`}
+        >
+          <Link2 className="h-4 w-4" /> Enlaces de campaña
+        </button>
+        <button
+          onClick={() => setTab("mensajes")}
+          className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-medium transition ${
+            tab === "mensajes" ? "bg-white shadow text-slate-900" : "text-slate-500"
+          }`}
+        >
+          <MessageSquareText className="h-4 w-4" /> Mensajes gratis
+        </button>
+      </div>
+
+      {tab === "enlaces" && (
+      <>
       <p className="-mt-3 text-sm text-slate-500">
         Genera enlaces de WhatsApp listos para enviar a un segmento de tu CRM. Sin costo: abres cada
-        enlace y envías. (El envío masivo automático llega con WhatsApp Cloud API — ver Ajustes.)
+        enlace y envías. (El envío masivo automático llega con WhatsApp Cloud API — ver WhatsApp pago.)
       </p>
 
       <div className="space-y-4 rounded-xl border bg-white p-5">
@@ -296,6 +322,10 @@ export default function CampaignsPage() {
           )}
         </div>
       )}
+      </>
+      )}
+
+      {tab === "mensajes" && <WaMessageTemplatesSection />}
     </div>
   );
 }

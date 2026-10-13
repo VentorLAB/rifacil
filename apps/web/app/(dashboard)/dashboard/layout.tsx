@@ -24,8 +24,8 @@ const NAV = [
   { href: "/dashboard/sales", label: "Ventas", icon: Receipt },
   { href: "/dashboard/contacts", label: "Contactos", icon: Users },
   { href: "/dashboard/vendors", label: "Vendedores", icon: UserCog },
-  { href: "/dashboard/campaigns", label: "Campañas", icon: MessageSquare },
-  { href: "/dashboard/whatsapp", label: "WhatsApp", icon: MessageCircle },
+  { href: "/dashboard/campaigns", label: "WhatsApp gratis", icon: MessageSquare },
+  { href: "/dashboard/whatsapp", label: "WhatsApp pago", icon: MessageCircle },
   { href: "/dashboard/settings", label: "Ajustes", icon: Settings },
 ];
 
