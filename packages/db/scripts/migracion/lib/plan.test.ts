@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mapNumberStatus, mapPaymentMethod, planRaffle, titleKey, type PlanOptions } from "./plan";
+import { fitAbonos, mapNumberStatus, mapPaymentMethod, planRaffle, titleKey, type PlanOptions } from "./plan";
 
 const NOW = new Date("2026-10-13T12:00:00Z");
 const opts: PlanOptions = {
@@ -110,6 +110,44 @@ describe("planRaffle", () => {
     expect(s.paidAt?.toISOString()).toBe("2026-09-03T00:00:00.000Z");
   });
 
+  it("ignores repeated abonos: a $25 ticket with abonos [25, 25, 25] is $25 paid, not $75", () => {
+    const p = planRaffle(
+      dump({
+        clients: [client(7, "04241234567", [rn(1, "sold", "10.00", "0.00", [
+          pay("10.00", 11, "2026-09-01T00:00:00Z"),
+          pay("10.00", 11, "2026-09-02T00:00:00Z"),
+          pay("10.00", 11, "2026-09-03T00:00:00Z"),
+        ])])],
+      }),
+      "5",
+      opts,
+    );
+    const s = p.sales[0];
+    expect(s.totalAmount).toBe(10);
+    expect(s.amountPaid).toBe(10);
+    expect(s.payments).toEqual([{ amount: 10, method: "PAGO_MOVIL", createdAt: new Date("2026-09-01T00:00:00Z") }]);
+    expect(p.stats.ledgerRevenue).toBe(30);
+    expect(p.stats.expectedRevenue).toBe(10);
+    expect(p.warnings.join()).toMatch(/1 numbers with MORE abonos.*\$20\.00 ignored/);
+  });
+
+  it("covers a paid amount without abono detail with one assumed payment", () => {
+    const p = planRaffle(dump({ clients: [client(7, "04241234567", [rn(1, "sold", "10.00", "0.00", [pay("4.00", 11, "2026-09-01T00:00:00Z")])])] }), "5", opts);
+    const s = p.sales[0];
+    expect(s.amountPaid).toBe(10);
+    expect(s.payments).toEqual([
+      { amount: 4, method: "PAGO_MOVIL", createdAt: new Date("2026-09-01T00:00:00Z") },
+      { amount: 6, method: "EFECTIVO_USD", createdAt: new Date("2026-09-01T00:00:00Z") },
+    ]);
+    expect(p.warnings.join()).toMatch(/paid without abono detail: \$6\.00/);
+  });
+
+  it("warns on a sold number with $0 paid and $0 debt instead of hiding it", () => {
+    const p = planRaffle(dump({ clients: [client(7, "04241234567", [rn(2, "sold", "0.00", "0.00")])] }), "5", opts);
+    expect(p.sales[0].totalAmount).toBe(0);
+    expect(p.warnings.join()).toMatch(/sold with \$0 paid and \$0 debt.*002/);
+  });
+
   it("normalizes phones to E.164 and detects the country", () => {
     const p = planRaffle(dump({ clients: [client(7, "+57 300 123 4567", [rn(1, "sold", "10", "0")])] }), "5", opts);
     expect(p.sales[0].contact).toMatchObject({ phone: "+573001234567", country: "CO", realPhone: true });
@@ -180,6 +218,30 @@ describe("planRaffle", () => {
     const p = planRaffle(dump(), "5", opts);
     expect(p.universe[0]).toBe("000");
     expect(p.universe).toHaveLength(10);
+  });
+});
+
+describe("fitAbonos", () => {
+  const d = (s: string) => new Date(s);
+  it("keeps the oldest abonos, trims the one that crosses the paid amount", () => {
+    const r = fitAbonos(50, [
+      { amount: 30, method: "ZELLE", createdAt: d("2026-09-02") },
+      { amount: 15, method: "PAGO_MOVIL", createdAt: d("2026-09-01") },
+      { amount: 20, method: "ZELLE", createdAt: d("2026-09-03") },
+    ], "EFECTIVO_USD", null);
+    expect(r.payments.map((p) => p.amount)).toEqual([15, 30, 5]);
+    expect(r.ignored).toBe(15);
+    expect(r.added).toBe(0);
+  });
+
+  it("adds nothing and keeps nothing when nothing was paid", () => {
+    expect(fitAbonos(0, [{ amount: 10, method: "ZELLE", createdAt: null }], "EFECTIVO_USD", null)).toEqual({ payments: [], ignored: 10, added: 0 });
+  });
+
+  it("payments always add up to the paid amount", () => {
+    const r = fitAbonos(37.5, [{ amount: 12.25, method: "ZELLE", createdAt: d("2026-09-01") }], "EFECTIVO_VES", d("2026-08-30"));
+    expect(r.payments.reduce((a, p) => a + p.amount, 0)).toBe(37.5);
+    expect(r.payments[1]).toEqual({ amount: 25.25, method: "EFECTIVO_VES", createdAt: d("2026-09-01") });
   });
 });
 

@@ -17,6 +17,7 @@
  *
  * Options: --raffle-id <ext> (only that raffle) · --map <ext=raffleId|new,...>
  * (explicit target; otherwise matched by title) · --drawn <ext,...> (force DRAWN)
+ * · --active <ext,...> (keep selling although the draw date passed)
  * · --skip-raffle <ext,ext>
  * (default 96: El Dubai is reconciled by packages/api/scripts/import-eldubai-v1.ts)
  * · --cash-method EFECTIVO_USD|EFECTIVO_VES|CASH · --offline (plan only, no DB).
@@ -67,6 +68,9 @@ const ONLY = getArg("--raffle-id");
 const SKIP = new Set((getArg("--skip-raffle") ?? "96").split(",").map((s) => s.trim()).filter(Boolean));
 // --drawn 79,73,112 : force DRAWN (closed to sales) regardless of riffas.info's date.
 const FORCE_DRAWN = new Set((getArg("--drawn") ?? "").split(",").map((s) => s.trim()).filter(Boolean));
+// --active 117 : keep selling a raffle whose riffas.info draw date already passed
+// (Marco 13-oct: El Plateado stays ACTIVE although its playDate was 4-oct).
+const FORCE_ACTIVE = new Set((getArg("--active") ?? "").split(",").map((s) => s.trim()).filter(Boolean));
 // --map 73=<rifacil raffle id>,117=new : explicit target per riffas.info raffle.
 const MAP = new Map(
   (getArg("--map") ?? "").split(",").map((s) => s.trim()).filter(Boolean).map((kv) => {
@@ -143,8 +147,8 @@ async function preflight(prisma: PrismaClient, plan: RafflePlan, userId: string 
 
   // Which raffle does this land on?
   const mapped = idMap[plan.ext];
-  const sel = { id: true, title: true, status: true, isPublic: true, totalNumbers: true } as const;
-  let target: { id: string; title: string; status: string; isPublic: boolean; totalNumbers: number } | null = null;
+  const sel = { id: true, title: true, status: true, isPublic: true, totalNumbers: true, pricePerNumber: true } as const;
+  let target: { id: string; title: string; status: string; isPublic: boolean; totalNumbers: number; pricePerNumber: unknown } | null = null;
   if (mapped) {
     target = await prisma.raffle.findFirst({ where: { id: mapped.raffleId, userId }, select: sel });
     if (!target) pf.blockers.push(`id-map points to raffle ${mapped.raffleId}, which is not in this account (wrong database or deleted)`);
@@ -178,6 +182,10 @@ async function preflight(prisma: PrismaClient, plan: RafflePlan, userId: string 
     pf.existing = { title: target.title, status: target.status, isPublic: target.isPublic };
     if (target.totalNumbers !== plan.totalNumbers) {
       pf.blockers.push(`"${target.title}" has ${target.totalNumbers} numbers in rifacil vs ${plan.totalNumbers} in riffas.info`);
+    }
+    // Adoption keeps rifacil's price; a different price would make receipts disagree with the sales.
+    if (Math.abs(Number(target.pricePerNumber) - plan.pricePerNumber) > 0.005) {
+      pf.blockers.push(`"${target.title}" costs $${Number(target.pricePerNumber)} per number in rifacil vs $${plan.pricePerNumber} in riffas.info`);
     }
     if (target.status === "DRAWN" && plan.status === "ACTIVE") {
       pf.blockers.push(`"${target.title}" is DRAWN in rifacil but its riffas.info draw date is in the future — confirm which is right`);
@@ -489,7 +497,8 @@ function printPlan(p: RafflePlan, pf: Preflight | null) {
   console.log(`\n━━ [${p.ext}] ${p.title}  →  ${pf ? pf.mode.toUpperCase() : "OFFLINE"}${pf?.raffleId ? ` (${pf.raffleId})` : ""}`);
   console.log(`   status=${p.status} drawDate=${p.drawDate?.toISOString().slice(0, 10) ?? "?"} price=$${p.pricePerNumber} numbers=${p.totalNumbers}`);
   console.log(`   board occupied=${s.boardOccupied}  planned occupied=${s.plannedOccupied}  (client sales=${s.clientSales}, board-only=${s.boardOnlySales})`);
-  console.log(`   PAID=${s.byStatus.PAID} SOLD=${s.byStatus.SOLD} RESERVED=${s.byStatus.RESERVED}  revenue=$${s.expectedRevenue.toFixed(2)} debt=$${s.expectedDebt.toFixed(2)}${s.appRevenue != null ? ` (riffas.info app: $${s.appRevenue.toFixed(2)})` : ""}`);
+  console.log(`   PAID=${s.byStatus.PAID} SOLD=${s.byStatus.SOLD} RESERVED=${s.byStatus.RESERVED}  revenue=$${s.expectedRevenue.toFixed(2)} debt=$${s.expectedDebt.toFixed(2)}`);
+  console.log(`   revenue check: abonos as listed=$${s.ledgerRevenue.toFixed(2)}${s.appRevenue != null ? `  riffas.info app=$${s.appRevenue.toFixed(2)}` : ""}`);
   console.log(`   methods: ${Object.entries(s.methods).map(([k, v]) => `${k}=${v}`).join(", ") || "-"}`);
   if (pf) {
     console.log(`   target: ${pf.existing ? `"${pf.existing.title}" ${pf.existing.status} public=${pf.existing.isPublic}, ${pf.existingNumbers} numbers` : "new raffle"}; previous import sales to replace=${pf.importedSalesToReplace}`);
@@ -545,9 +554,14 @@ async function main() {
             return c === "XX" ? null : c;
           },
         });
-        if (FORCE_DRAWN.has(ext) && plan.status !== "DRAWN") {
+        if (FORCE_DRAWN.has(ext) && FORCE_ACTIVE.has(ext)) {
+          plan.blockers.push(`raffle ${ext} is in both --drawn and --active`);
+        } else if (FORCE_DRAWN.has(ext) && plan.status !== "DRAWN") {
           plan.status = "DRAWN";
           plan.warnings.push("forced DRAWN by --drawn (riffas.info's draw date is not in the past)");
+        } else if (FORCE_ACTIVE.has(ext) && plan.status !== "ACTIVE") {
+          plan.status = "ACTIVE";
+          plan.warnings.push(`forced ACTIVE by --active although the draw date ${plan.drawDate?.toISOString().slice(0, 10)} passed: update the draw date in the panel`);
         }
         return plan;
       });

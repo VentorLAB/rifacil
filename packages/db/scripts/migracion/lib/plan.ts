@@ -18,7 +18,9 @@
  *
  * Data facts (verified on the 2026-07-11 dump): `paymentAmount` is what was
  * ALREADY PAID for the number, not its price; `paymentDue` is the remaining
- * debt. The number's total is therefore paid + due.
+ * debt. The number's total is therefore paid + due. Those two are the source of
+ * truth: the abonos list has repeats (130 numbers, ~$3.900 in July) and gaps,
+ * so it is fitted to paymentAmount (see fitAbonos).
  */
 
 export type PaymentMethodName =
@@ -116,6 +118,8 @@ export interface RafflePlan {
     expectedRevenue: number;
     expectedDebt: number;
     appRevenue: number | null;
+    /** Sum of every positive abono as listed by riffas.info (includes repeats). */
+    ledgerRevenue: number;
     byStatus: Record<NumberStatusName, number>;
     methods: Record<string, number>;
   };
@@ -150,6 +154,42 @@ export function mapPaymentMethod(
   if (v.includes("zinli")) return { method: "ZINLI", known: true };
   if (v.includes("transfer")) return { method: "BANK_TRANSFER", known: true };
   return { method: "CASH", known: false };
+}
+
+/**
+ * Fits a number's abonos to what riffas.info says was paid for it.
+ * Oldest abonos are kept until `paid` is covered; later ones are repeats and
+ * are ignored (a $25 ticket with abonos [25, 25, 25] is $25 paid, not $75).
+ * If the abonos fall short, the gap becomes one assumed payment so that the
+ * sale's Payments always add up to its amountPaid.
+ */
+export function fitAbonos(
+  paid: number,
+  abonos: PlannedPayment[],
+  cashMethod: PaymentMethodName,
+  fallbackDate: Date | null,
+): { payments: PlannedPayment[]; ignored: number; added: number } {
+  const sorted = [...abonos].sort((a, b) => (a.createdAt?.getTime() ?? 0) - (b.createdAt?.getTime() ?? 0));
+  const payments: PlannedPayment[] = [];
+  let covered = 0;
+  let ignored = 0;
+  for (const a of sorted) {
+    const room = r2(paid - covered);
+    if (room <= 0.005) {
+      ignored += a.amount;
+      continue;
+    }
+    const take = r2(Math.min(a.amount, room));
+    payments.push({ ...a, amount: take });
+    covered = r2(covered + take);
+    if (take < a.amount) ignored += a.amount - take;
+  }
+  let added = 0;
+  if (paid - covered > 0.005) {
+    added = r2(paid - covered);
+    payments.push({ amount: added, method: cashMethod, createdAt: payments[payments.length - 1]?.createdAt ?? fallbackDate });
+  }
+  return { payments, ignored: r2(ignored), added };
 }
 
 /** Number status per the validated mapping. `status` is riffas.info's own value. */
@@ -216,7 +256,10 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
   const owner = new Map<string, string>(); // formatted number → receiptNumber
   const methods: Record<string, number> = {};
   let unknownMethodPays = 0;
-  let ledgerMismatch = 0;
+  const abonosOver = { count: 0, amount: 0 }; // duplicate abonos beyond what was paid
+  const abonosUnder = { count: 0, amount: 0 }; // paid without abonos detail
+  const soldZero: string[] = [];
+  let ledgerRevenue = 0;
 
   const claim = (n: string, receipt: string) => {
     if (!universeSet.has(n)) blockers.push(`number ${n} (${receipt}) is outside the raffle's numbers`);
@@ -242,26 +285,34 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
     for (const rn of mine) {
       const n = fmt(rn.number);
       claim(n, receiptNumber);
-      const due = num(rn.paymentDue);
-      const real = (rn.payments ?? []).filter((p: any) => num(p.amount) > 0);
-      const ledger = r2(real.reduce((a: number, p: any) => a + num(p.amount), 0));
-      if (Math.abs(ledger - num(rn.paymentAmount)) > 0.01) ledgerMismatch++;
-      // Debt is exactly what riffas.info says; paid is the ledger of abonos.
-      let lineTotal = r2(ledger + due);
+      // riffas.info's own per-number figures (what its board shows): paid + debt.
+      const paidHere = r2(num(rn.paymentAmount));
+      const due = r2(num(rn.paymentDue));
+      let lineTotal = r2(paidHere + due);
       if (lineTotal === 0 && rn.status !== "sold") lineTotal = price; // apartado with nothing recorded
+      if (lineTotal === 0 && rn.status === "sold") soldZero.push(n);
       total += lineTotal;
-      numbers.push({ number: n, status: mapNumberStatus(String(rn.status), lineTotal - ledger) });
+      numbers.push({ number: n, status: mapNumberStatus(String(rn.status), lineTotal - paidHere) });
 
       const reserved = toDate(rn.reservedDate);
       if (reserved && (!firstDate || reserved < firstDate)) firstDate = reserved;
-      for (const p of real) {
+      const abonos: PlannedPayment[] = [];
+      for (const p of rn.payments ?? []) {
+        if (num(p.amount) <= 0) continue;
         const label = pmName.get(String(p.paymentMethodId)) ?? "?";
         const { method, known } = mapPaymentMethod(label, opts.cashMethod);
         if (!known) unknownMethodPays++;
         methods[label] = (methods[label] ?? 0) + 1;
-        payments.push({ amount: r2(num(p.amount)), method, createdAt: toDate(p.createdAt) });
+        abonos.push({ amount: r2(num(p.amount)), method, createdAt: toDate(p.createdAt) });
         if (!vendorExtUserId && p.userId != null) vendorExtUserId = String(p.userId);
       }
+      // The abonos ledger has duplicates (e.g. [25, 25, 25] on a $25 ticket) and
+      // gaps; it is fitted to paymentAmount so receipts show the real price.
+      const fit = fitAbonos(paidHere, abonos, opts.cashMethod, reserved);
+      if (fit.ignored > 0) { abonosOver.count++; abonosOver.amount += fit.ignored; }
+      if (fit.added > 0) { abonosUnder.count++; abonosUnder.amount += fit.added; }
+      ledgerRevenue += abonos.reduce((a, p) => a + p.amount, 0);
+      payments.push(...fit.payments);
     }
 
     payments.sort((a, b) => (a.createdAt?.getTime() ?? 0) - (b.createdAt?.getTime() ?? 0));
@@ -341,8 +392,14 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
     );
   }
   if (unknownMethodPays) warnings.push(`${unknownMethodPays} payments with an unknown method → CASH`);
-  if (ledgerMismatch) {
-    warnings.push(`${ledgerMismatch} numbers where the sum of abonos ≠ riffas.info paymentAmount (abonos ledger is used; debt kept as riffas.info says)`);
+  if (abonosOver.count) {
+    warnings.push(`${abonosOver.count} numbers with MORE abonos than paid in riffas.info (repeated abonos): $${r2(abonosOver.amount).toFixed(2)} ignored`);
+  }
+  if (abonosUnder.count) {
+    warnings.push(`${abonosUnder.count} numbers paid without abono detail: $${r2(abonosUnder.amount).toFixed(2)} as an assumed ${opts.cashMethod} payment`);
+  }
+  if (soldZero.length) {
+    warnings.push(`${soldZero.length} numbers sold with $0 paid and $0 debt in riffas.info (courtesy?): ${soldZero.slice(0, 20).join(", ")}`);
   }
   if (Object.keys(methods).some((k) => norm(k).includes("efectivo"))) {
     warnings.push(`cash (efectivo) assumed ${opts.cashMethod}`);
@@ -371,7 +428,10 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
   const expectedDebt = r2(sales.reduce((a, s) => a + (s.totalAmount - s.amountPaid), 0));
   const appRevenue = det.recaudo?.totalRecaudado != null ? num(det.recaudo.totalRecaudado) : null;
   if (appRevenue != null && Math.abs(appRevenue - expectedRevenue) > 1) {
-    warnings.push(`revenue: planned $${expectedRevenue.toFixed(2)} vs riffas.info app $${appRevenue.toFixed(2)} (payments not linked to a client)`);
+    warnings.push(
+      `revenue: planned $${expectedRevenue.toFixed(2)} (riffas.info paid per number) vs riffas.info app $${appRevenue.toFixed(2)} ` +
+        `(the app sums every abono, repeats included, plus payments not linked to a client)`,
+    );
   }
 
   const prizes = String(detail.description ?? "").split("||").map((s) => s.trim()).filter(Boolean);
@@ -406,6 +466,7 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
       expectedRevenue,
       expectedDebt,
       appRevenue,
+      ledgerRevenue: r2(ledgerRevenue),
       byStatus,
       methods,
     },
