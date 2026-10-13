@@ -1,7 +1,10 @@
 generator client {
   provider        = "prisma-client-js"
   output          = "../src/generated"
-  previewFeatures = ["postgresqlExtensions"]
+  // driverAdapters: lets src/create-client.ts route queries through the VPS
+  // WebSocket bridge (DB_WS_PROXY). Without that env var the native engine is
+  // used exactly as before.
+  previewFeatures = ["postgresqlExtensions", "driverAdapters"]
   // "native" = engine para dev local (Windows). "rhel-openssl-3.0.x" = engine de
   // Linux que usan las funciones serverless de Vercel. Sin esto, en producción el
   // cliente no encuentra su query engine y Prisma crashea al inicializar.

@@ -1,8 +1,8 @@
-import { PrismaClient } from "./generated";
+import { createPrismaClient } from "./create-client";
 
 // Cliente extendido con lógica de negocio
 export const createExtendedClient = () => {
-  return new PrismaClient().$extends({
+  return createPrismaClient().$extends({
     model: {
       raffle: {
         async getAvailableNumbers(this: any, raffleId: string) {

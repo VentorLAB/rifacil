@@ -21,7 +21,17 @@ import { execSync } from "node:child_process";
 const env = process.env.VERCEL_ENV ?? "(unset)";
 const run = (cmd) => execSync(cmd, { stdio: "inherit" });
 
-if (env === "production") {
+//  - Puente al VPS (DB_WS_PROXY definida): la base NO es alcanzable por TCP
+//    desde el build de Vercel, así que `migrate deploy` no puede correr aquí.
+//    En su lugar se COMPRUEBA por el puente (solo lectura) que no falte
+//    ninguna migración; si falta, el build falla igual que antes. Las
+//    migraciones se aplican a mano: docs/MIGRACION-NEON-A-VPS.md.
+const bridged = Boolean(process.env.DB_WS_PROXY?.trim());
+
+if (env === "production" && bridged) {
+  console.log("[vercel-build] VERCEL_ENV=production + DB_WS_PROXY → check de migraciones por el puente…");
+  run("pnpm --filter @riffas/db exec tsx scripts/check-migrations.ts");
+} else if (env === "production") {
   console.log("[vercel-build] VERCEL_ENV=production → prisma migrate deploy (packages/db, DIRECT_URL)…");
   run("pnpm --filter @riffas/db exec prisma migrate deploy");
 } else {
