@@ -55,7 +55,7 @@ export const DEFAULT_WA_TEMPLATES: Record<WaTemplateKey, string> = {
   apartado: `{{saludo}}Tu apartado quedó registrado. 🍀
 
 {{resumen}}
-Números reservado(s): *{{numeros}}*
+Números reservados: *{{numeros}}*
 {{lineaValorRifa}}
 {{lineaEstado}}
 {{lineaFechaSorteo}}

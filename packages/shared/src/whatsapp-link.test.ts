@@ -30,7 +30,7 @@ describe("buildReceiptMessage", () => {
     expect(msg).toContain("Tu apartado quedó registrado. 🍀");
     expect(msg).not.toContain("Tu compra quedó");
     expect(msg).toContain(`Has realizado abonos por un total de $6\npara la rifa "El Dubai"`);
-    expect(msg).toContain("Números reservado(s): *012, 345*");
+    expect(msg).toContain("Números reservados: *012, 345*");
     expect(msg).toContain("💎 Deuda actual: $4");
     expect(msg).toContain("Cuando completes el pago confirmamos tu apartado. 🤝");
   });
@@ -52,11 +52,18 @@ describe("buildReceiptMessage", () => {
     expect(paidMsg).toContain("*PAGADO* ✅");
   });
 
-  it("Valor de la rifa (precio por número) sale solo si se pasa", () => {
-    const withPrice = buildReceiptMessage({ ...base, paid: 10, pricePerNumber: 5 });
-    expect(withPrice).toContain("💎 Valor de la rifa: $5");
-    const without = buildReceiptMessage({ ...base, paid: 10 });
-    expect(without).not.toContain("Valor de la rifa");
+  it("Valor de la rifa = precio EFECTIVO de la venta (total ÷ números), no el precio actual de la rifa", () => {
+    // Rifa HOY a $13, pero la venta fue 2 números por $24 (precio viejo/pack $12):
+    // el mensaje debe mostrar $12 para que los montos cuadren (2 × $12 = $24).
+    const old_sale = buildReceiptMessage({ ...base, total: 24, paid: 0, status: "RESERVED", pricePerNumber: 13 });
+    expect(old_sale).toContain("💎 Valor de la rifa: $12");
+    expect(old_sale).not.toContain("$13");
+    // Sin pricePerNumber también sale: se deriva del total y los números.
+    const derived = buildReceiptMessage({ ...base, paid: 10 });
+    expect(derived).toContain("💎 Valor de la rifa: $5");
+    // Respaldo: sin total/números se usa el pricePerNumber dado.
+    const fallback = buildReceiptMessage({ ...base, numbers: [], total: 0, paid: 0, status: "RESERVED", pricePerNumber: 7 });
+    expect(fallback).toContain("💎 Valor de la rifa: $7");
   });
 
   it("fechas del sorteo y del apartado, en hora de Venezuela", () => {

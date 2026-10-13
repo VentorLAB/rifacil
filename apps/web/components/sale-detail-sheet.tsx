@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
 import { SendReceiptActions, downloadReceiptPngDesktop } from "@/components/send-receipt-actions";
@@ -85,6 +85,24 @@ export function SaleDetailSheet({
   const [reference, setReference] = useState("");
 
   const { data: waTpl } = api.settings.getWaTemplates.useQuery();
+
+  // Ventas VIEJAS (importadas o anteriores al recibo con imagen) no tienen card:
+  // al abrir el detalle la REGENERAMOS (render + ImgBB) para que el reenvío
+  // wa.me lleve SIEMPRE el link ibb.co de vista previa. Sin auto-envío. Una vez
+  // por apertura (ref), y al terminar refrescamos el detalle para que el botón
+  // verde arme el mensaje ya con el preview.
+  const regenerate = api.sale.regenerateReceipt.useMutation({
+    onSuccess: () => utils.sale.getById.invalidate({ id: saleId }),
+  });
+  const regenFiredRef = useRef(false);
+  useEffect(() => {
+    if (!sale || regenFiredRef.current) return;
+    if (sale.status === "CANCELLED" || sale.status === "REFUNDED") return;
+    if (sale.receiptUrl && sale.receiptShareUrl) return;
+    regenFiredRef.current = true;
+    regenerate.mutate({ id: saleId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sale, saleId]);
   const addPayment = api.sale.addPayment.useMutation({
     onSuccess: (res) => {
       toast.success(
