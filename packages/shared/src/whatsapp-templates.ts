@@ -36,8 +36,12 @@ export interface CreateTemplateInput {
   category: "UTILITY" | "MARKETING";
   /** Código de idioma de Meta ("es", "es_LA", "en_US", ...). */
   language: string;
+  /** Tipo de encabezado: sin encabezado (default), texto o imagen. */
+  headerType?: "NONE" | "TEXT" | "IMAGE";
   /** Encabezado de texto, opcional (máx. 60, sin variables). */
   headerText?: string;
+  /** Handle de la imagen de muestra subida a Meta (Resumable Upload API). */
+  headerHandle?: string;
   /** Cuerpo con variables {{1}}, {{2}}... (máx. 1024). */
   bodyText: string;
   /** Pie, opcional (máx. 60, sin variables). */
@@ -85,7 +89,10 @@ export function extractBodyVariables(body: string): number[] | null {
 /** Arma el array `components` del payload de Meta/YCloud. */
 export function buildTemplateComponents(input: CreateTemplateInput): Array<Record<string, unknown>> {
   const components: Array<Record<string, unknown>> = [];
-  if (input.headerText?.trim()) {
+  if (input.headerType === "IMAGE" && input.headerHandle) {
+    // Meta exige el ejemplo con el handle de la Resumable Upload API.
+    components.push({ type: "HEADER", format: "IMAGE", example: { header_handle: [input.headerHandle] } });
+  } else if (input.headerText?.trim()) {
     components.push({ type: "HEADER", format: "TEXT", text: input.headerText.trim() });
   }
   const vars = extractBodyVariables(input.bodyText);
@@ -203,6 +210,61 @@ export async function listTemplates(creds: TemplateCreds): Promise<TemplateSumma
       components: t.components,
     })
   );
+}
+
+/**
+ * Sube la imagen de muestra del encabezado a Meta (Resumable Upload API) y
+ * devuelve el handle que exige el ejemplo del HEADER de tipo IMAGE.
+ * Pasos: 1) se deriva el App ID inspeccionando el propio token (debug_token),
+ * 2) se crea la sesión de subida, 3) se mandan los bytes. Solo CLOUD_API.
+ */
+export async function uploadHeaderImage(
+  creds: TemplateCreds,
+  file: { bytes: Uint8Array; contentType: string; fileName: string },
+): Promise<{ ok: boolean; handle?: string; error?: string }> {
+  if (creds.provider !== "CLOUD_API") {
+    return { ok: false, error: "El encabezado de imagen solo está soportado con Meta Cloud API." };
+  }
+  try {
+    // 1) App ID: el token se inspecciona a sí mismo (debug_token).
+    const dbgRes = await fetch(
+      `https://graph.facebook.com/${GRAPH_VERSION}/debug_token?input_token=${encodeURIComponent(creds.apiToken)}`,
+      { headers: { Authorization: `Bearer ${creds.apiToken}` } },
+    );
+    const dbg: any = await dbgRes.json().catch(() => ({}));
+    const appId = dbg?.data?.app_id;
+    if (!dbgRes.ok || !appId) {
+      return { ok: false, error: dbg?.error?.message || "No se pudo obtener el App ID del token de Meta." };
+    }
+
+    // 2) Sesión de subida.
+    const upRes = await fetch(
+      `https://graph.facebook.com/${GRAPH_VERSION}/${appId}/uploads?file_length=${file.bytes.length}&file_type=${encodeURIComponent(file.contentType)}&file_name=${encodeURIComponent(file.fileName)}`,
+      { method: "POST", headers: { Authorization: `Bearer ${creds.apiToken}` } },
+    );
+    const up: any = await upRes.json().catch(() => ({}));
+    if (!upRes.ok || !up?.id) {
+      return { ok: false, error: up?.error?.message || "Meta no creó la sesión de subida." };
+    }
+
+    // 3) Los bytes.
+    const binRes = await fetch(`https://graph.facebook.com/${GRAPH_VERSION}/${up.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `OAuth ${creds.apiToken}`,
+        file_offset: "0",
+        "Content-Type": file.contentType,
+      },
+      body: file.bytes as unknown as BodyInit,
+    });
+    const bin: any = await binRes.json().catch(() => ({}));
+    if (!binRes.ok || !bin?.h) {
+      return { ok: false, error: bin?.error?.message || "Meta rechazó la imagen." };
+    }
+    return { ok: true, handle: bin.h };
+  } catch (err) {
+    return { ok: false, error: (err as Error).message };
+  }
 }
 
 /** Crea una plantilla (queda EN REVISIÓN de Meta; no la aprueba). */

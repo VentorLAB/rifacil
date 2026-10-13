@@ -4,6 +4,7 @@ import { TRPCError } from "@trpc/server";
 import {
   listTemplates,
   createTemplate,
+  uploadHeaderImage,
   slugifyTemplateName,
   type TemplateCreds,
   type WhatsappTemplateProvider,
@@ -56,7 +57,11 @@ export const whatsappTemplateRouter = createTRPCRouter({
         name: z.string().min(2).max(100),
         category: z.enum(["UTILITY", "MARKETING"]),
         language: z.string().min(2).max(10).default("es"),
+        headerType: z.enum(["NONE", "TEXT", "IMAGE"]).default("NONE"),
         headerText: z.string().max(60).optional(),
+        // Imagen de muestra del encabezado (base64, máx. 5 MB) que Meta exige.
+        headerImageBase64: z.string().max(7_000_000).optional(),
+        headerImageType: z.string().max(50).optional(),
         bodyText: z.string().min(1).max(1024),
         footerText: z.string().max(60).optional(),
         exampleValues: z.array(z.string().max(100)).max(20).optional(),
@@ -68,7 +73,29 @@ export const whatsappTemplateRouter = createTRPCRouter({
       if (!name) {
         throw new TRPCError({ code: "BAD_REQUEST", message: "El nombre debe tener letras o números." });
       }
-      const result = await createTemplate(creds, { ...input, name });
+
+      // Encabezado de IMAGEN: subir primero la muestra a Meta (Resumable
+      // Upload API) y pasar su handle en el ejemplo del HEADER.
+      let headerHandle: string | undefined;
+      if (input.headerType === "IMAGE") {
+        if (!input.headerImageBase64) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "Sube la imagen de muestra del encabezado." });
+        }
+        const contentType = /^image\/(jpeg|png)$/.test(input.headerImageType ?? "")
+          ? input.headerImageType!
+          : "image/jpeg";
+        const bytes = Buffer.from(input.headerImageBase64, "base64");
+        if (bytes.length > 5 * 1024 * 1024) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: "La imagen no puede pasar de 5 MB." });
+        }
+        const up = await uploadHeaderImage(creds, { bytes, contentType, fileName: "encabezado.jpg" });
+        if (!up.ok || !up.handle) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: up.error ?? "Meta rechazó la imagen" });
+        }
+        headerHandle = up.handle;
+      }
+
+      const result = await createTemplate(creds, { ...input, name, headerHandle });
       if (!result.ok) {
         throw new TRPCError({ code: "BAD_REQUEST", message: result.error ?? "Meta rechazó la creación" });
       }
