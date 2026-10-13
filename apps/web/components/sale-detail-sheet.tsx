@@ -107,6 +107,9 @@ export function SaleDetailSheet({
         total: res.sale.finalAmount,
         paid: res.amountPaid,
         status: res.sale.status,
+        pricePerNumber: res.sale.raffle?.pricePerNumber,
+        drawDate: res.sale.raffle?.drawDate,
+        reservedAt: res.sale.createdAt,
         receiptUrl: res.sale.receiptUrl,
         receiptShareUrl: res.sale.receiptShareUrl,
         receiptPageUrl: res.sale.receiptUrl
@@ -381,6 +384,9 @@ export function SaleDetailSheet({
                 total={sale.finalAmount}
                 paid={sale.amountPaid}
                 status={sale.status}
+                pricePerNumber={sale.raffle.pricePerNumber}
+                drawDate={sale.raffle.drawDate}
+                reservedAt={sale.createdAt}
                 receiptUrl={sale.receiptUrl}
                 receiptShareUrl={sale.receiptShareUrl}
                 brandUrl={sale.user?.customDomain}
