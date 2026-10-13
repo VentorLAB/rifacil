@@ -339,6 +339,7 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
 
   // ── Board-only occupied numbers (no client record): name-only contact ──
   let boardOnlyNoName = 0;
+  let boardOnlyNoDate = 0;
   for (const b of board) {
     if (String(b.status) === "available") continue;
     const n = fmt(b.number);
@@ -348,7 +349,21 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
     if (!nameOnBoard) boardOnlyNoName++;
     claim(n, receiptNumber);
     const sold = String(b.status) === "sold";
-    const amount = r2(num(b.paymentAmount) + num(b.paymentDue)) || price;
+    // The board has no paymentDue: paymentAmount is what was paid. A sold number
+    // owes nothing (its total is what was paid); an apartado owes the rest of the price.
+    const paidOnBoard = r2(num(b.paymentAmount));
+    const paid = sold ? paidOnBoard || price : paidOnBoard;
+    const total = sold ? paid : r2(Math.max(price, paidOnBoard));
+    // Board payments carry no amount, but do carry the real dates and who
+    // registered them; isValid=false ones were voided in riffas.info.
+    const boardPays = (b.payments ?? [])
+      .filter((p: any) => p.isValid !== false)
+      .map((p: any) => ({ at: toDate(p.createdAt), userId: p.userId }))
+      .filter((p: { at: Date | null }) => p.at)
+      .sort((x: { at: Date }, y: { at: Date }) => x.at.getTime() - y.at.getTime());
+    const firstAt: Date | null = boardPays[0]?.at ?? toDate(b.reservedDate);
+    const lastAt: Date | null = boardPays[boardPays.length - 1]?.at ?? firstAt;
+    if (!firstAt) boardOnlyNoDate++;
     sales.push({
       receiptNumber,
       contact: {
@@ -359,13 +374,13 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
         realPhone: false,
       },
       numbers: [{ number: n, status: sold ? "PAID" : "RESERVED" }],
-      totalAmount: amount,
-      amountPaid: sold ? amount : 0,
+      totalAmount: total,
+      amountPaid: paid,
       status: sold ? "PAID" : "RESERVED",
-      createdAt: toDate(b.reservedDate),
-      paidAt: sold ? toDate(b.reservedDate) : null,
-      vendorExtUserId: null,
-      payments: sold ? [{ amount, method: opts.cashMethod, createdAt: toDate(b.reservedDate) }] : [],
+      createdAt: firstAt,
+      paidAt: sold ? lastAt : null,
+      vendorExtUserId: boardPays[0]?.userId != null ? String(boardPays[0].userId) : null,
+      payments: paid > 0 ? [{ amount: paid, method: opts.cashMethod, createdAt: lastAt }] : [],
       fromBoardOnly: true,
     });
   }
@@ -388,8 +403,11 @@ export function planRaffle(dump: any, ext: string, opts: PlanOptions): RafflePla
     warnings.push(
       `${boardOnlySales} numbers sold without a client record → name-only contact` +
         (boardOnlyNoName ? ` (${boardOnlyNoName} without a name on the board)` : "") +
-        `; sold ones get an assumed ${opts.cashMethod} payment`,
+        `; what was paid becomes one assumed ${opts.cashMethod} payment dated from the board's payments`,
     );
+  }
+  if (boardOnlyNoDate) {
+    warnings.push(`${boardOnlyNoDate} board-only numbers have no valid payment date in riffas.info: they will be dated at import time`);
   }
   if (unknownMethodPays) warnings.push(`${unknownMethodPays} payments with an unknown method → CASH`);
   if (abonosOver.count) {
