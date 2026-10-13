@@ -56,6 +56,9 @@ export default function PendingPage() {
     total: unknown;
     paid: unknown;
     status: string | null;
+    pricePerNumber: unknown;
+    drawDate: string | Date | null;
+    reservedAt: string | Date | null;
     receiptUrl: string | null;
     receiptShareUrl: string | null;
   }>(null);
@@ -75,6 +78,9 @@ export default function PendingPage() {
         total: res.finalAmount,
         paid: res.amountPaid,
         status: res.status ?? null,
+        pricePerNumber: res.raffle?.pricePerNumber ?? null,
+        drawDate: res.raffle?.drawDate ?? null,
+        reservedAt: res.createdAt ?? null,
         receiptUrl: res.receiptUrl ?? null,
         receiptShareUrl: res.receiptShareUrl ?? null,
       });
@@ -232,6 +238,9 @@ export default function PendingPage() {
               total={justConfirmed.total}
               paid={justConfirmed.paid}
               status={justConfirmed.status}
+              pricePerNumber={justConfirmed.pricePerNumber}
+              drawDate={justConfirmed.drawDate}
+              reservedAt={justConfirmed.reservedAt}
               receiptUrl={justConfirmed.receiptUrl}
               receiptShareUrl={justConfirmed.receiptShareUrl}
             />

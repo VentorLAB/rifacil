@@ -45,6 +45,12 @@ export interface SendReceiptActionsProps {
   paid?: unknown;
   /** Sale.status: "PAGADO" en el mensaje solo se afirma con "PAID". */
   status?: string | null;
+  /** Precio por número ("Valor de la rifa" en el mensaje). */
+  pricePerNumber?: unknown;
+  /** Fecha del sorteo (hora VZLA en el mensaje). */
+  drawDate?: Date | string | number | null;
+  /** Fecha del apartado/venta (hora VZLA en el mensaje). */
+  reservedAt?: Date | string | number | null;
   receiptUrl?: string | null;
   /** Link del visor de ImgBB (ibb.co) del recibo: preview GRANDE y legible en WhatsApp. */
   receiptShareUrl?: string | null;
@@ -71,6 +77,9 @@ export function SendReceiptActions({
   total,
   paid,
   status,
+  pricePerNumber,
+  drawDate,
+  reservedAt,
   receiptUrl,
   receiptShareUrl,
   brandUrl,
@@ -100,13 +109,16 @@ export function SendReceiptActions({
             total,
             paid,
             status,
+            pricePerNumber,
+            drawDate,
+            reservedAt,
             receiptUrl,
             receiptShareUrl,
             receiptPageUrl: pageUrl,
             brandUrl,
           })
         : null,
-    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, receiptUrl, receiptShareUrl, pageUrl, brandUrl]
+    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, pricePerNumber, drawDate, reservedAt, receiptUrl, receiptShareUrl, pageUrl, brandUrl]
   );
 
   // Caption del share nativo: mismos datos, pero SIN el enlace a la imagen
@@ -122,10 +134,13 @@ export function SendReceiptActions({
         total,
         paid,
         status,
+        pricePerNumber,
+        drawDate,
+        reservedAt,
         brandUrl,
         omitImageLink: true,
       }),
-    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, brandUrl]
+    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, pricePerNumber, drawDate, reservedAt, brandUrl]
   );
 
   // Auto-abrir WhatsApp tras registrar pago/abono (sin tocar el botón). Se usa

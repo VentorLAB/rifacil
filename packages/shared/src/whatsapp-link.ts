@@ -19,6 +19,26 @@ const money = (v: unknown) =>
     maximumFractionDigits: 2,
   })}`;
 
+// Fecha en hora de Venezuela, formato riffas.info: "3 oct 2026, 22:10".
+// Meses a mano (no Intl es-VE) para que "sept" salga sin punto en todo runtime.
+const VE_MONTHS = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sept", "oct", "nov", "dic"];
+export function formatVeDate(d: Date | string | number | null | undefined): string | null {
+  if (d == null) return null;
+  const date = d instanceof Date ? d : new Date(d);
+  if (Number.isNaN(date.getTime())) return null;
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Caracas",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(date);
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
+  return `${Number(get("day"))} ${VE_MONTHS[Number(get("month")) - 1]} ${get("year")}, ${get("hour")}:${get("minute")}`;
+}
+
 export interface ReceiptWaInput {
   /** Teléfono del DESTINATARIO (cualquier formato; se normaliza a E.164). */
   phone: string;
@@ -36,6 +56,12 @@ export interface ReceiptWaInput {
    * o estar desincronizados del estado que confirmó el rifero).
    */
   status?: string | null;
+  /** Precio por número ("Valor de la rifa"). Si falta, la línea no sale. */
+  pricePerNumber?: unknown;
+  /** Fecha del sorteo; se muestra en hora de Venezuela. Si falta, no sale. */
+  drawDate?: Date | string | number | null;
+  /** Fecha del apartado/venta; en hora de Venezuela. Si falta, no sale. */
+  reservedAt?: Date | string | number | null;
   /** URL de la imagen del recibo (Cloudinary). Si falta, el mensaje va sin link. */
   receiptUrl?: string | null;
   /**
@@ -59,19 +85,18 @@ export interface ReceiptWaInput {
   /**
    * Cuando el recibo se ADJUNTA como archivo (Web Share API: la imagen viaja
    * como foto real en el chat), el texto NO debe repetir el enlace a la imagen.
-   * true → omite el bloque "Aquí tienes tu comprobante" + url; deja el resto
+   * true → omite el bloque "Vista previa del recibo" + url; deja el resto
    * (datos de la venta + CTA de marca). Usado como caption del navigator.share.
    */
   omitImageLink?: boolean;
 }
 
-// El enlace PREVIEW del mensaje debe ser una IMAGEN directa: WhatsApp la muestra
-// inline en el chat (foto grande), de forma fiable en móvil Y en WhatsApp Web —
-// a diferencia de enlazar una página HTML y depender del scrapeo de og:image
-// (flaky, y peor en Web / cold start). Derivamos una versión comprimida del PNG
-// del recibo (Cloudinary): recibo COMPLETO, jpg, ancho 1080 → bien por debajo del
-// límite de preview de WhatsApp. Solo transformamos URLs de Cloudinary /upload/;
-// cualquier otra URL se usa tal cual (sigue siendo una imagen válida).
+// El enlace PREVIEW del mensaje debe terminar en una IMAGEN directa: WhatsApp la
+// muestra inline en el chat (foto grande), de forma fiable en móvil Y en
+// WhatsApp Web. Derivamos una versión comprimida del PNG del recibo
+// (Cloudinary): recibo COMPLETO, jpg, ancho 1080 → bien por debajo del límite de
+// preview de WhatsApp. Solo transformamos URLs de Cloudinary /upload/; cualquier
+// otra URL se usa tal cual (sigue siendo una imagen válida).
 function receiptImageForWa(receiptUrl: string): string {
   try {
     const u = new URL(receiptUrl);
@@ -112,8 +137,11 @@ function normalizeBrandUrl(raw?: string | null): string | null {
 }
 
 /**
- * Arma el cuerpo del mensaje del comprobante. Exportado aparte por si se quiere
- * mostrar/copiar el texto sin el enlace.
+ * Arma el cuerpo del mensaje del comprobante, con el formato de riffas.info
+ * (referencia del negocio): resumen de abonos, datos con 💎 (valor de la rifa,
+ * deuda/estado, fecha del sorteo, fecha del apartado) y la vista previa del
+ * recibo. Texto DISTINTO para apartado y para compra pagada.
+ * Exportado aparte por si se quiere mostrar/copiar el texto sin el enlace.
  */
 export function buildReceiptMessage(input: ReceiptWaInput): string {
   const total = Number(input.total ?? 0);
@@ -122,11 +150,9 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const isPaid = input.status ? input.status === "PAID" : debt <= 0;
 
   const hola = input.contactName ? `¡Hola ${input.contactName}! ` : "";
-  // Preview del chat = la IMAGEN del recibo (debe ir PRIMERA: WhatsApp previsualiza
-  // el primer enlace del mensaje).
-  // Prioridad del enlace de preview:
-  //   1) ImgBB (ibb.co): WhatsApp lo pinta como card GRANDE y legible dentro del
-  //      chat (la imagen se lee sin abrir el enlace) — el objetivo real.
+  // Preview del chat = la card del recibo vía ImgBB (prioridad 1, como en
+  // riffas.info): WhatsApp la pinta GRANDE dentro del chat.
+  //   1) ImgBB (ibb.co): card grande y legible sin abrir el enlace.
   //   2) nuestra página /rc (HTML con og:image) como respaldo.
   //   3) la URL directa de la imagen de Cloudinary.
   const previewLink =
@@ -139,20 +165,33 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const showImage = !!previewLink && !input.omitImageLink;
   // CTA tocable secundario: dominio propio del rifero; si no tiene, la página /c.
   const ctaUrl = normalizeBrandUrl(input.brandUrl) || input.receiptPageUrl || null;
+
+  const resumen = isPaid
+    ? `Has completado el pago de ${money(total)}\npara la rifa "${input.raffleTitle}" 💎`
+    : paid > 0
+      ? `Has realizado abonos por un total de ${money(paid)}\npara la rifa "${input.raffleTitle}" 💎`
+      : `Apartaste ${input.numbers.length === 1 ? "tu número" : "tus números"} por ${money(total)}\npara la rifa "${input.raffleTitle}" 💎`;
+  const estado = isPaid
+    ? `💎 Estado: *PAGADO* ✅`
+    : debt > 0
+      ? `💎 Deuda actual: ${money(debt)}`
+      : `💎 Abonado: ${money(paid)}`;
+  const price = input.pricePerNumber != null && input.pricePerNumber !== "" ? Number(input.pricePerNumber) : null;
+  const drawDate = formatVeDate(input.drawDate);
+  const reservedAt = formatVeDate(input.reservedAt);
+
   return [
-    `🎟️ *${input.raffleTitle}*`,
-    `${hola}Tu apartado quedó registrado. 🍀`,
+    `${hola}${isPaid ? "Tu compra quedó registrada. 🎉" : "Tu apartado quedó registrado. 🍀"}`,
     ``,
-    `Tus números: *${input.numbers.join(", ")}*`,
-    `Valor total: ${money(total)}`,
-    isPaid
-      ? `Estado: *PAGADO* ✅`
-      : debt > 0
-        ? `Abonado: ${money(paid)} · *Te falta: ${money(debt)}*`
-        : `Abonado: ${money(paid)}`,
+    resumen,
+    `${isPaid ? "Números:" : "Números reservado(s):"} *${input.numbers.join(", ")}*`,
+    price != null && Number.isFinite(price) ? `💎 Valor de la rifa: ${money(price)}` : null,
+    estado,
+    drawDate ? `💎 Fecha del sorteo: ${drawDate}` : null,
+    reservedAt ? `💎 Reservado: ${reservedAt}` : null,
     !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
     showImage ? `` : null,
-    showImage ? `🧾 Aquí tienes tu comprobante:` : null,
+    showImage ? `💎 Vista previa del recibo:` : null,
     showImage ? previewLink : null,
     ctaUrl ? `` : null,
     ctaUrl ? `🎉 Mira todas nuestras rifas:` : null,

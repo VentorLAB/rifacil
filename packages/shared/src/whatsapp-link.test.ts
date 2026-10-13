@@ -1,6 +1,6 @@
-// Tests del mensaje/enlace wa.me del comprobante.
+// Tests del mensaje/enlace wa.me del comprobante (formato riffas.info).
 import { describe, it, expect } from "vitest";
-import { buildReceiptMessage, buildReceiptWaLink } from "./whatsapp-link";
+import { buildReceiptMessage, buildReceiptWaLink, formatVeDate } from "./whatsapp-link";
 
 const base = {
   phone: "0424-123-4567",
@@ -12,28 +12,74 @@ const base = {
 };
 
 describe("buildReceiptMessage", () => {
-  it("pagado: estado PAGADO y sin línea de deuda", () => {
+  it("compra pagada: texto de COMPRA (no de apartado), estado PAGADO y sin deuda", () => {
     const msg = buildReceiptMessage({ ...base, paid: 10 });
-    expect(msg).toContain("*PAGADO* ✅");
-    expect(msg).not.toContain("Te falta");
+    expect(msg).toContain("Tu compra quedó registrada. 🎉");
+    expect(msg).not.toContain("Tu apartado quedó");
+    expect(msg).toContain(`Has completado el pago de $10\npara la rifa "El Dubai"`);
+    expect(msg).toContain("Números: *012, 345*");
+    expect(msg).toContain("💎 Estado: *PAGADO* ✅");
+    expect(msg).not.toContain("Deuda actual");
+    expect(msg).not.toContain("Cuando completes el pago");
     expect(msg).toContain("— Hermanos Pernía");
+    expect(msg).toContain("🏆 Todo juega hasta tener ganador.");
   });
 
-  it("con deuda: abonado + lo que falta", () => {
+  it("apartado con abono: texto de apartado, abonos totales y deuda", () => {
     const msg = buildReceiptMessage({ ...base, paid: 6 });
-    expect(msg).toContain("Abonado: $6");
-    expect(msg).toContain("*Te falta: $4*");
-    expect(msg).toContain("Cuando completes el pago");
+    expect(msg).toContain("Tu apartado quedó registrado. 🍀");
+    expect(msg).not.toContain("Tu compra quedó");
+    expect(msg).toContain(`Has realizado abonos por un total de $6\npara la rifa "El Dubai"`);
+    expect(msg).toContain("Números reservado(s): *012, 345*");
+    expect(msg).toContain("💎 Deuda actual: $4");
+    expect(msg).toContain("Cuando completes el pago confirmamos tu apartado. 🤝");
+  });
+
+  it("apartado sin abono: 'Apartaste' + deuda = total", () => {
+    const msg = buildReceiptMessage({ ...base, paid: 0, status: "RESERVED" });
+    expect(msg).toContain("Apartaste tus números por $10");
+    expect(msg).toContain("💎 Deuda actual: $10");
+    expect(msg).not.toContain("abonos por un total");
   });
 
   it("con status: PAGADO solo se afirma con PAID, nunca por la resta", () => {
     // Deuda 0 pero venta no confirmada como pagada → sin copy de PAGADO.
     const reserved = buildReceiptMessage({ ...base, paid: 10, status: "RESERVED" });
     expect(reserved).not.toContain("PAGADO");
-    expect(reserved).toContain("Abonado: $10");
+    expect(reserved).toContain("💎 Abonado: $10");
 
     const paidMsg = buildReceiptMessage({ ...base, paid: 10, status: "PAID" });
     expect(paidMsg).toContain("*PAGADO* ✅");
+  });
+
+  it("Valor de la rifa (precio por número) sale solo si se pasa", () => {
+    const withPrice = buildReceiptMessage({ ...base, paid: 10, pricePerNumber: 5 });
+    expect(withPrice).toContain("💎 Valor de la rifa: $5");
+    const without = buildReceiptMessage({ ...base, paid: 10 });
+    expect(without).not.toContain("Valor de la rifa");
+  });
+
+  it("fechas del sorteo y del apartado, en hora de Venezuela", () => {
+    const msg = buildReceiptMessage({
+      ...base,
+      paid: 10,
+      drawDate: "2026-10-04T02:10:00Z", // 3 oct 2026, 22:10 VET
+      reservedAt: new Date("2026-09-05T18:54:00Z"), // 5 sept 2026, 14:54 VET
+    });
+    expect(msg).toContain("💎 Fecha del sorteo: 3 oct 2026, 22:10");
+    expect(msg).toContain("💎 Reservado: 5 sept 2026, 14:54");
+  });
+
+  it("sin fechas, las líneas no salen", () => {
+    const msg = buildReceiptMessage({ ...base, paid: 10 });
+    expect(msg).not.toContain("Fecha del sorteo");
+    expect(msg).not.toContain("Reservado:");
+  });
+
+  it("sin saludo si no hay nombre de cliente", () => {
+    const msg = buildReceiptMessage({ ...base, contactName: null, paid: 10 });
+    expect(msg).not.toContain("¡Hola");
+    expect(msg).toContain("Tu compra quedó registrada.");
   });
 
   it("el preview es la IMAGEN del recibo (Cloudinary comprimido, recibo completo)", () => {
@@ -47,10 +93,10 @@ describe("buildReceiptMessage", () => {
     expect(msg).toContain(
       "https://res.cloudinary.com/dbi6monrl/image/upload/f_jpg,q_auto:good,w_1080/v1/riffas/receipts/R-1.png"
     );
-    expect(msg).toContain("🧾 Aquí tienes tu comprobante:");
+    expect(msg).toContain("💎 Vista previa del recibo:");
   });
 
-  it("con receiptUrl de Cloudinary + origin, el preview es la página /r (og:image), no la imagen directa", () => {
+  it("con receiptUrl de Cloudinary + origin, el preview es la página /rc (og:image), no la imagen directa", () => {
     const msg = buildReceiptMessage({
       ...base,
       paid: 10,
@@ -64,7 +110,7 @@ describe("buildReceiptMessage", () => {
     expect(msg).not.toContain("res.cloudinary.com");
   });
 
-  it("receiptShareUrl (ImgBB/ibb.co) es el preview PREFERIDO sobre /rc y la imagen directa", () => {
+  it("receiptShareUrl (ImgBB/ibb.co) es el preview PREFERIDO sobre /rc y la imagen directa (prioridad 1, como riffas.info)", () => {
     const msg = buildReceiptMessage({
       ...base,
       paid: 10,
@@ -74,7 +120,7 @@ describe("buildReceiptMessage", () => {
       receiptPageUrl: "https://rifacil.vip/c/sale123",
     });
     // Gana ImgBB: WhatsApp pinta su card GRANDE y legible dentro del chat.
-    expect(msg).toContain("https://ibb.co/7J6hKQP8");
+    expect(msg).toContain("💎 Vista previa del recibo:\nhttps://ibb.co/7J6hKQP8");
     // Y NO usa /rc ni la imagen directa cuando hay link de ImgBB.
     expect(msg).not.toContain("/rc/");
     expect(msg).not.toContain("res.cloudinary.com");
@@ -142,16 +188,29 @@ describe("buildReceiptMessage", () => {
       omitImageLink: true,
     });
     expect(msg).not.toContain("res.cloudinary.com");
-    expect(msg).not.toContain("Aquí tienes tu comprobante");
-    expect(msg).toContain("Tus números: *012, 345*");
+    expect(msg).not.toContain("Vista previa del recibo");
+    expect(msg).toContain("Números: *012, 345*");
     expect(msg).toContain("*PAGADO* ✅");
     expect(msg).toContain("https://rifashermanospernia.com");
   });
 
   it("sin recibo ni links, no hay bloque de comprobante", () => {
     const without = buildReceiptMessage({ ...base, paid: 10 });
-    expect(without).not.toContain("Aquí tienes tu comprobante");
+    expect(without).not.toContain("Vista previa del recibo");
     expect(without).not.toContain("Mira todas nuestras rifas");
+  });
+});
+
+describe("formatVeDate", () => {
+  it("formatea en hora de Venezuela (UTC-4, sin DST)", () => {
+    expect(formatVeDate("2026-10-04T02:10:00Z")).toBe("3 oct 2026, 22:10");
+    expect(formatVeDate(new Date("2026-09-05T18:54:00Z"))).toBe("5 sept 2026, 14:54");
+  });
+
+  it("null/undefined/fecha inválida → null", () => {
+    expect(formatVeDate(null)).toBeNull();
+    expect(formatVeDate(undefined)).toBeNull();
+    expect(formatVeDate("no-es-fecha")).toBeNull();
   });
 });
 

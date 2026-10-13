@@ -100,6 +100,9 @@ export function SellNumberSheet({
     total: unknown;
     paid: unknown;
     status: string | null;
+    pricePerNumber: unknown;
+    drawDate: Date | null;
+    reservedAt: Date | null;
     receiptUrl: string | null;
     receiptShareUrl: string | null;
     isFullyPaid: boolean;
@@ -127,6 +130,9 @@ export function SellNumberSheet({
         total: res.sale.finalAmount,
         paid: res.sale.amountPaid,
         status: res.sale.status ?? null,
+        pricePerNumber: res.sale.raffle.pricePerNumber ?? null,
+        drawDate: res.sale.raffle.drawDate ?? null,
+        reservedAt: res.sale.createdAt ?? null,
         receiptUrl: res.sale.receiptUrl ?? null,
         receiptShareUrl: res.sale.receiptShareUrl ?? null,
         isFullyPaid: res.isFullyPaid,
@@ -229,6 +235,9 @@ export function SellNumberSheet({
               total={sold.total}
               paid={sold.paid}
               status={sold.status}
+              pricePerNumber={sold.pricePerNumber}
+              drawDate={sold.drawDate}
+              reservedAt={sold.reservedAt}
               receiptUrl={sold.receiptUrl}
               receiptShareUrl={sold.receiptShareUrl}
             />
