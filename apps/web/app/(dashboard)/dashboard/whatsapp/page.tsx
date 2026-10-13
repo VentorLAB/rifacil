@@ -2,6 +2,7 @@
 
 import { LayoutTemplate } from "lucide-react";
 import { WhatsappTemplatesSection } from "@/components/whatsapp-templates-section";
+import { WhatsappUsageCard } from "@/components/whatsapp-usage-card";
 
 // WhatsApp PAGO: canal de Meta (Cloud API). Los textos gratis (wa.me) viven en
 // "WhatsApp gratis" (menú). Aquí: plantillas de la WABA y su estado.
@@ -16,6 +17,7 @@ export default function WhatsappPagoPage() {
         Plantillas de Meta para envíos automáticos (recibos y campañas). Estos mensajes tienen costo
         por conversación.
       </p>
+      <WhatsappUsageCard />
       <WhatsappTemplatesSection />
     </div>
   );
