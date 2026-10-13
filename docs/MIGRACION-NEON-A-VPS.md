@@ -37,7 +37,8 @@ funciones a **`fra1` (Frankfurt)**.
 
 **A. Mergear este PR.** Sin `DB_WS_PROXY` no cambia nada. Confirmar que el deploy sale verde.
 
-**B. Preparar `pg-apps`** (en el VPS):
+**B. Preparar `pg-apps`** (en el VPS) — **hecho el 13-oct** (copia del hba en
+`~/pgapps/config/pg_hba.conf.antes-rifacil-20261014-013835`):
 
 ```bash
 PASS=$(cat ~/neon/rifacil.dbpass)
@@ -59,7 +60,8 @@ echo "host      rifacil       rifacil_service      172.20.0.0/16 scram-sha-256" 
 docker exec pg-apps psql -U postgres -c "select pg_reload_conf()"
 ```
 
-**C. Abrir el puente a `pg-apps`.** Hoy `wsproxy` solo deja pasar a `supabase-db`
+**C. Abrir el puente a `pg-apps`** — **hecho el 13-oct** (config anterior en
+`~/pgapps/wsproxy-antes-20261014-013856.json`). Antes `wsproxy` solo dejaba pasar a `supabase-db`
 (`ALLOW_ADDR_REGEX=^supabase-db:5432$`), y otra app lo usa ~170 veces al día, así que
 `supabase-db` **se mantiene**. Se recrea el contenedor con la misma imagen; corta el puente
 unos 2 s:
@@ -76,8 +78,24 @@ docker logs --tail 5 wsproxy
 ```
 
 **D. Ensayo completo con datos de hoy** (Neon sigue siendo producción). Pasos 3 a 5 sin
-congelar, contra una base de ensayo `rifacil_ensayo`, para cronometrar la ventana real. Después:
-`docker exec pg-apps psql -U postgres -c "DROP DATABASE rifacil_ensayo"`.
+congelar, restaurando directo en `rifacil` (el día del corte el Paso 4 la borra y la recrea).
+Script: `~/pgapps/ensayo-rifacil.sh` (la URL entra por stdin).
+
+> **Hecho el 13-oct (19:40 VET):** volcado 3 s (1,2 MB), restauración en `pg-apps` 4 s sin
+> errores reales, comparación 2 s: **23 tablas y 28.660 filas idénticas**, mismas 4.106 ventas,
+> 7.852 pagos y 18 migraciones. Prueba por el puente real (`DB_WS_PROXY` → `pg-apps`): el guard
+> de migraciones dice "up to date", El Dubai cuadra (942/34/24), y la consulta de "Total
+> gastado" da lo mismo que por conexión directa ($151.643,63). La parte de datos del corte
+> dura **segundos**: la ventana la marcan Vercel (variables + redeploy) y la prueba de humo.
+> Ojo: el adaptador no deserializa el tipo `name` en `$queryRaw` (p. ej. `current_database()`);
+> castear a `::text`. La app no usa ninguno.
+
+**D2. `rifacil_dev` (previews y desarrollo local) — hecho el 13-oct.** Base `rifacil_dev` en
+`pg-apps`, rol propio `rifacil_dev_service` (contraseña en `~/neon/rifacil_dev.dbpass`), sin
+acceso a `rifacil` (comprobado). Viene de la copia de DEV de `supabase-db` (915 ventas), con
+las 18 migraciones aplicadas por túnel SSH. Variables de Vercel **Preview**:
+`DATABASE_URL` = `DIRECT_URL` = `postgresql://rifacil_dev_service:<pass>@pg-apps:5432/rifacil_dev`
+y el mismo `DB_WS_PROXY`. Solo funciona en previews de ramas que ya tengan este PR.
 
 **E. Backups nocturnos.** `/var/backups/ventorlab` hoy guarda un `rifacil` que es la copia
 vieja de `supabase-db`. Con `sudo`, añadir `pg-apps` / `rifacil` al script de backup y
