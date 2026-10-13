@@ -1,7 +1,42 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
-import { normalizePhone, parseGoogleContacts, countryFromE164 } from "@riffas/shared";
+import { normalizePhone, parseGoogleContacts, countryFromE164, sortBySpent } from "@riffas/shared";
+import type { PrismaClient } from "@riffas/db";
+
+/**
+ * USD actually collected per contact: CONFIRMED payments of sales that were not
+ * cancelled or refunded. Only contacts of `userId` (tenant rule #6); optionally
+ * limited to `contactIds`.
+ */
+async function spentByContact(
+  prisma: PrismaClient,
+  userId: string,
+  contactIds?: string[],
+): Promise<Map<string, number>> {
+  if (contactIds && contactIds.length === 0) return new Map();
+  const rows = contactIds
+    ? await prisma.$queryRaw<{ contactId: string; spent: unknown }[]>`
+        SELECT s."contactId", SUM(p.amount) AS spent
+        FROM "Payment" p
+        JOIN "Sale" s ON s.id = p."saleId"
+        JOIN "Contact" c ON c.id = s."contactId"
+        WHERE c."userId" = ${userId}
+          AND c.id = ANY(${contactIds}::text[])
+          AND p.status = 'CONFIRMED'
+          AND s.status NOT IN ('CANCELLED', 'REFUNDED')
+        GROUP BY s."contactId"`
+    : await prisma.$queryRaw<{ contactId: string; spent: unknown }[]>`
+        SELECT s."contactId", SUM(p.amount) AS spent
+        FROM "Payment" p
+        JOIN "Sale" s ON s.id = p."saleId"
+        JOIN "Contact" c ON c.id = s."contactId"
+        WHERE c."userId" = ${userId}
+          AND p.status = 'CONFIRMED'
+          AND s.status NOT IN ('CANCELLED', 'REFUNDED')
+        GROUP BY s."contactId"`;
+  return new Map(rows.map((r) => [r.contactId, Math.round(Number(r.spent) * 100) / 100]));
+}
 
 // Email tolerante para contactos phone-first: vacío, ausente o malformado -> null.
 // NUNCA rechaza la fila — los contactos requieren solo teléfono; muchos no traen
@@ -27,7 +62,9 @@ export const contactRouter = createTRPCRouter({
         lastPurchaseDays: z.number().optional(),
         source: z.string().optional(),
         city: z.string().optional(),
-        sortBy: z.enum(["name", "totalSpent", "lastPurchase", "createdAt"]).default("createdAt"),
+        // totalSpent = USD of CONFIRMED payments (computed, see spentByContact);
+        // purchases = number of sales.
+        sortBy: z.enum(["name", "totalSpent", "purchases", "lastPurchase", "createdAt"]).default("createdAt"),
         sortOrder: z.enum(["asc", "desc"]).default("desc"),
         limit: z.number().min(1).max(100).default(20),
         cursor: z.string().optional(),
@@ -78,17 +115,37 @@ export const contactRouter = createTRPCRouter({
       if (source) where.source = source;
       if (city) where.city = { contains: city, mode: "insensitive" };
 
-      const orderBy: any = {};
-      orderBy[sortBy] = sortOrder;
+      const include = { _count: { select: { sales: true, numbers: true } } } as const;
+
+      // "Total gastado" is not a column (the cached Contact.totalSpent is not kept
+      // in sync with every abono), so it cannot be a Prisma orderBy. Sort the
+      // whole filtered set by the real figure and page by position ("o:<offset>").
+      if (sortBy === "totalSpent") {
+        const all = await prisma.contact.findMany({ where, select: { id: true, name: true }, take: 20_000 });
+        const spent = await spentByContact(prisma, session.user.id);
+        const ordered = sortBySpent(all.map((c) => ({ ...c, spentUsd: spent.get(c.id) ?? 0 })), sortOrder);
+        const offset = cursor?.startsWith("o:") ? Number(cursor.slice(2)) || 0 : 0;
+        const pageIds = ordered.slice(offset, offset + limit).map((c) => c.id);
+        const rows = await prisma.contact.findMany({ where: { id: { in: pageIds } }, include });
+        const byId = new Map(rows.map((r) => [r.id, r]));
+        const contacts = pageIds
+          .map((id) => byId.get(id))
+          .filter((c): c is (typeof rows)[number] => !!c)
+          .map((c) => ({ ...c, spentUsd: spent.get(c.id) ?? 0 }));
+        const nextCursor = offset + limit < ordered.length ? `o:${offset + limit}` : undefined;
+        return { contacts, nextCursor };
+      }
+
+      // Columns Prisma can order by; id as tie-breaker keeps cursor pages stable.
+      const primary: any =
+        sortBy === "purchases" ? { sales: { _count: sortOrder } } : { [sortBy]: sortOrder };
 
       const contacts = await prisma.contact.findMany({
         where,
         take: limit + 1,
-        cursor: cursor ? { id: cursor } : undefined,
-        orderBy,
-        include: {
-          _count: { select: { sales: true, numbers: true } },
-        },
+        cursor: cursor && !cursor.startsWith("o:") ? { id: cursor } : undefined,
+        orderBy: [primary, { id: "asc" }],
+        include,
       });
 
       let nextCursor: typeof cursor | undefined = undefined;
@@ -97,7 +154,8 @@ export const contactRouter = createTRPCRouter({
         nextCursor = nextItem!.id;
       }
 
-      return { contacts, nextCursor };
+      const spent = await spentByContact(prisma, session.user.id, contacts.map((c) => c.id));
+      return { contacts: contacts.map((c) => ({ ...c, spentUsd: spent.get(c.id) ?? 0 })), nextCursor };
     }),
 
   // Devuelve SOLO los IDs (y total) de los contactos que matchean los filtros.

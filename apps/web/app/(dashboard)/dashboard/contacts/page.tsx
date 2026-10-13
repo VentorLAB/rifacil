@@ -2,7 +2,16 @@
 import { useMemo, useState } from "react";
 import { api } from "@/lib/trpc";
 import { toast } from "react-hot-toast";
-import { parseGoogleContacts, type ParseResult } from "@riffas/shared";
+import {
+  DEFAULT_CONTACT_SORT,
+  formatUsd,
+  parseGoogleContacts,
+  sortArrow,
+  toggleContactSort,
+  type ContactSort,
+  type ContactSortColumn,
+  type ParseResult,
+} from "@riffas/shared";
 import { Plus, Upload, Check, X, Trash2, AlertTriangle } from "lucide-react";
 
 type ListFilter = {
@@ -12,7 +21,12 @@ type ListFilter = {
 
 export default function ContactsPage() {
   const [filter, setFilter] = useState<ListFilter>({});
-  const { data, refetch } = api.contact.list.useQuery({ limit: 50, ...filter });
+  // Server-side order (the page shows 50): first the customers who invested the most.
+  const [sort, setSort] = useState<ContactSort>(DEFAULT_CONTACT_SORT);
+  const { data, refetch, isFetching } = api.contact.list.useQuery(
+    { limit: 50, ...filter, sortBy: sort.by, sortOrder: sort.dir },
+    { keepPreviousData: true },
+  );
   const utils = api.useContext();
 
   const [preview, setPreview] = useState<ParseResult | null>(null);
@@ -316,13 +330,14 @@ export default function ContactsPage() {
                   className="h-4 w-4 cursor-pointer rounded border-slate-300"
                 />
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500">Nombre</th>
+              <SortableTh label="Nombre" column="name" sort={sort} onSort={setSort} />
               <th className="px-4 py-3 text-left text-xs font-medium text-slate-500">Teléfono</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500">Compras</th>
+              <SortableTh label="Compras" column="purchases" sort={sort} onSort={setSort} />
+              <SortableTh label="Total gastado" column="totalSpent" sort={sort} onSort={setSort} align="right" />
               <th className="w-16 px-4 py-3 text-left text-xs font-medium text-slate-500">Acción</th>
             </tr>
           </thead>
-          <tbody className="divide-y">
+          <tbody className={`divide-y transition-opacity ${isFetching ? "opacity-60" : ""}`}>
             {data?.contacts.map((c) => {
               const hasSales = (c._count?.sales ?? 0) > 0;
               const checked = selectedIds.has(c.id);
@@ -340,6 +355,7 @@ export default function ContactsPage() {
                   <td className="px-4 py-3">{c.name}</td>
                   <td className="px-4 py-3 font-mono text-sm">{c.phone}</td>
                   <td className="px-4 py-3">{c._count?.sales ?? 0}</td>
+                  <td className="px-4 py-3 text-right font-medium tabular-nums">{formatUsd(c.spentUsd ?? 0)}</td>
                   <td className="px-4 py-3">
                     <button
                       onClick={() => askDeleteOne(c.id)}
@@ -360,7 +376,7 @@ export default function ContactsPage() {
             })}
             {data?.contacts.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-sm text-slate-400">
+                <td colSpan={6} className="px-4 py-8 text-center text-sm text-slate-400">
                   No hay contactos que matcheen el filtro.
                 </td>
               </tr>
@@ -505,6 +521,43 @@ export default function ContactsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+/** Clickable header: toggles ▼/▲ on its column (see toggleContactSort). */
+function SortableTh({
+  label,
+  column,
+  sort,
+  onSort,
+  align = "left",
+}: {
+  label: string;
+  column: ContactSortColumn;
+  sort: ContactSort;
+  onSort: (next: ContactSort) => void;
+  align?: "left" | "right";
+}) {
+  const active = sort.by === column;
+  const arrow = sortArrow(sort, column);
+  const hint = column === "name" ? (sort.dir === "asc" ? "A-Z" : "Z-A") : sort.dir === "desc" ? "mayor a menor" : "menor a mayor";
+  return (
+    <th
+      aria-sort={active ? (sort.dir === "asc" ? "ascending" : "descending") : "none"}
+      className={`px-4 py-3 text-xs font-medium ${align === "right" ? "text-right" : "text-left"}`}
+    >
+      <button
+        type="button"
+        onClick={() => onSort(toggleContactSort(sort, column))}
+        title={active ? `Ordenado ${hint}. Clic para invertir.` : `Ordenar por ${label}`}
+        className={`inline-flex items-center gap-1 rounded transition hover:text-slate-900 dark:hover:text-white ${
+          active ? "text-slate-900 dark:text-white" : "text-slate-500"
+        }`}
+      >
+        {label}
+        <span aria-hidden className="w-3 text-[10px]">{arrow}</span>
+      </button>
+    </th>
   );
 }
 
