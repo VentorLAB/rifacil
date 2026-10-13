@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { api } from "@/lib/trpc";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
@@ -36,6 +37,11 @@ function isActive(pathname: string, href: string) {
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  // Badge con el conteo de pagos por confirmar (se refresca solo cada 30s).
+  const { data: pendingData } = api.sale.listPending.useQuery(undefined, {
+    refetchInterval: 30_000,
+  });
+  const pendingCount = pendingData?.sales?.length ?? 0;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
@@ -81,6 +87,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   >
                     <Icon className="h-4 w-4" />
                     {label}
+                    {href === "/dashboard/pending" && pendingCount > 0 && (
+                      <span
+                        className={`ml-1 rounded-full px-1.5 py-0.5 text-[10px] font-bold ${
+                          active ? "bg-white text-red-600" : "bg-red-600 text-white"
+                        }`}
+                      >
+                        {pendingCount > 99 ? "99+" : pendingCount}
+                      </span>
+                    )}
                   </Link>
                 </li>
               );

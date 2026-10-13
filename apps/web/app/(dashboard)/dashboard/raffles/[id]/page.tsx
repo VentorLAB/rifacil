@@ -219,6 +219,7 @@ export default function RaffleDetailPage() {
         raffleId={id}
         raffleStatus={raffle.status}
         pricePerNumber={Number(raffle.pricePerNumber)}
+        discountPackages={(raffle.discountPackages as { qty: number; discountPercent: number }[] | null) ?? null}
       />
 
       {confirmDelete && (

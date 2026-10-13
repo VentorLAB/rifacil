@@ -191,6 +191,7 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
   const [phone, setPhone] = useState("");
   const [method, setMethod] = useState("PAGO_MOVIL");
   const [abono, setAbono] = useState("");
+  const [showAvail, setShowAvail] = useState(false);
 
   // Resultado de la última venta para ofrecer el envío del recibo por wa.me.
   const [lastSale, setLastSale] = useState<{
@@ -207,6 +208,25 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
   } | null>(null);
 
   const live = api.vendorPortal.numbers.useQuery({ raffleId }, { enabled: !!raffleId });
+
+  // Números escritos (fuente de verdad: el texto) y total a cobrar estimado.
+  const parsed = numbers.split(/[,\s]+/).map((x) => x.trim()).filter(Boolean);
+  const parsedSet = new Set(parsed);
+  const raffleSel = raffles.find((r) => r.id === raffleId);
+  const totalEst = parsed.length * Number(raffleSel?.pricePerNumber ?? 0);
+  const vesRate = me?.vesPerUsd ? Number(me.vesPerUsd) : null;
+  const bsEst = vesRate
+    ? `${(totalEst * vesRate).toLocaleString("es-VE", { maximumFractionDigits: 2 })} Bs`
+    : null;
+  const availableNums: string[] =
+    live.data?.numbers.filter((n: any) => n.status === "AVAILABLE").map((n: any) => n.number) ?? [];
+
+  function toggleNumber(n: string) {
+    const set = new Set(parsed);
+    if (set.has(n)) set.delete(n);
+    else set.add(n);
+    setNumbers([...set].join(", "));
+  }
   const register = api.vendorPortal.registerSale.useMutation({
     onSuccess: (r) => {
       toast.success(r.debt > 0 ? `Apartada. Resta ${money(r.debt)}` : "¡Venta registrada y pagada!");
@@ -278,9 +298,50 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
       {/* Registrar venta directa */}
       <section className="rounded-xl border bg-white p-4 space-y-3">
         <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700"><Plus className="h-4 w-4" /> Registrar venta</h2>
-        <Field label="Número(s) — separa con comas">
+        <Field label="Número(s) — separa con comas o tócalos abajo">
           <input value={numbers} onChange={(e) => setNumbers(e.target.value)} placeholder="Ej: 045, 102, 333" className={inputCls} />
         </Field>
+
+        {/* Total a cobrar + ≈Bs antes de registrar */}
+        {parsed.length > 0 && (
+          <p className="text-sm text-slate-600">
+            Total a cobrar: <span className="font-bold text-slate-900">{money(totalEst)}</span>
+            {bsEst && <span className="text-slate-400"> (≈ {bsEst})</span>}
+            {parsed.length > 1 && <span className="text-slate-400"> · {parsed.length} números</span>}
+          </p>
+        )}
+
+        {/* Mini-tablero de disponibles: toca para agregar/quitar */}
+        {availableNums.length > 0 && (
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowAvail((v) => !v)}
+              className="text-xs font-medium text-blue-600 hover:underline"
+            >
+              {showAvail ? "Ocultar disponibles" : `Ver disponibles (${availableNums.length})`}
+            </button>
+            {showAvail && (
+              <div className="mt-2 grid max-h-44 grid-cols-5 gap-1.5 overflow-y-auto rounded-xl border p-2">
+                {availableNums.map((n) => {
+                  const on = parsedSet.has(n);
+                  return (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => toggleNumber(n)}
+                      className={`rounded-md py-1.5 text-center font-mono text-xs font-semibold transition ${
+                        on ? "bg-green-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      }`}
+                    >
+                      {n}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
         <Field label="Nombre del cliente">
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre y apellido" className={inputCls} />
         </Field>

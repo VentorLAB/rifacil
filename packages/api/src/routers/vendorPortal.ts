@@ -90,6 +90,8 @@ export const vendorPortalRouter = createTRPCRouter({
       where: { userId: vendor.userId },
       select: { whatsappSaleTemplate: true },
     });
+    // Tasa activa del negocio para mostrar el ≈Bs antes de registrar.
+    const activeRate = await getActiveRate(ctx.prisma, vendor.userId);
     const raffles = await ctx.prisma.raffle.findMany({
       where: { userId: vendor.userId, status: "ACTIVE", isPublic: true },
       select: { id: true, title: true, pricePerNumber: true, numberFormat: true },
@@ -113,6 +115,7 @@ export const vendorPortalRouter = createTRPCRouter({
         url: user?.customDomain || null,
       },
       waTemplates: parseWaMessageTemplates(waSettings?.whatsappSaleTemplate),
+      vesPerUsd: activeRate ? Number(activeRate.vesPerUsd) : null,
       raffles: raffles.map((r) => ({
         id: r.id,
         title: r.title,

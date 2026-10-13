@@ -40,19 +40,28 @@ type PickedContact = { id: string; name: string; phone: string };
 export function SellNumberSheet({
   raffleId,
   raffleStatus,
-  number,
+  numbers,
   pricePerNumber,
+  discountPackages,
   onClose,
   onSold,
 }: {
   raffleId: string;
   raffleStatus: string;
-  number: string;
+  numbers: string[];
   pricePerNumber: number;
+  discountPackages?: { qty: number; discountPercent: number }[] | null;
   onClose: () => void;
   onSold: () => void;
 }) {
-  const total = pricePerNumber;
+  // Total con pack (misma regla que sale.create: el aplicable de mayor descuento).
+  const qty = numbers.length;
+  const base = pricePerNumber * qty;
+  const pack = (discountPackages ?? [])
+    .filter((p) => qty >= p.qty)
+    .sort((a, b) => b.discountPercent - a.discountPercent)[0];
+  const discount = pack ? Math.round(base * (pack.discountPercent / 100) * 100) / 100 : 0;
+  const total = Math.round((base - discount) * 100) / 100;
 
   // --- Cliente: buscar existente (fuzzy) o crear nuevo ---
   const [mode, setMode] = useState<"search" | "new">("search");
@@ -116,8 +125,12 @@ export function SellNumberSheet({
     onSuccess: (res) => {
       toast.success(
         res.isFullyPaid
-          ? `¡Número ${number} vendido! 🎉`
-          : `Número ${number} apartado · Deuda ${money(res.debt)}`
+          ? qty === 1
+            ? `¡Número ${numbers[0]} vendido! 🎉`
+            : `¡${qty} números vendidos! 🎉`
+          : qty === 1
+            ? `Número ${numbers[0]} apartado · Deuda ${money(res.debt)}`
+            : `${qty} números apartados · Deuda ${money(res.debt)}`
       );
       celebrateSale();
       const c = res.sale.contact;
@@ -158,7 +171,7 @@ export function SellNumberSheet({
 
     const base = {
       raffleId,
-      numbers: [number],
+      numbers,
       paymentMethod: method,
       amountPaid: Number(paid.toFixed(2)),
       paymentReference: reference.trim() || undefined,
@@ -197,7 +210,9 @@ export function SellNumberSheet({
         <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-white px-5 py-4">
           <div>
             <h2 className="text-lg font-bold text-slate-900">Vender / Apartar</h2>
-            <p className="font-mono text-sm text-slate-500">Número {number}</p>
+            <p className="max-w-[15rem] truncate font-mono text-sm text-slate-500">
+              {qty === 1 ? `Número ${numbers[0]}` : `Números: ${numbers.join(", ")}`}
+            </p>
           </div>
           <button
             onClick={onClose}
@@ -214,8 +229,12 @@ export function SellNumberSheet({
             <div>
               <h3 className="text-lg font-bold text-slate-900">
                 {sold.isFullyPaid
-                  ? `¡Número ${number} vendido!`
-                  : `Número ${number} apartado`}
+                  ? qty === 1
+                    ? `¡Número ${numbers[0]} vendido!`
+                    : `¡${qty} números vendidos!`
+                  : qty === 1
+                    ? `Número ${numbers[0]} apartado`
+                    : `${qty} números apartados`}
               </h3>
               <p className="mt-1 text-sm font-medium text-green-700">{sold.cheer}</p>
               <p className="mt-1 text-sm text-slate-500">
@@ -363,12 +382,19 @@ export function SellNumberSheet({
           {/* --- Pago --- */}
           <div className="rounded-xl border p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-slate-500">Valor del número</span>
+              <span className="text-sm text-slate-500">
+                {qty === 1 ? "Valor del número" : `Total por ${qty} números`}
+              </span>
               <span className="text-right">
                 <span className="block text-sm font-semibold text-slate-900">{money(total)}</span>
                 {bs(total) && <span className="block text-xs text-slate-400">≈ {bs(total)}</span>}
               </span>
             </div>
+            {pack && (
+              <p className="-mt-2 mb-3 text-xs font-medium text-green-600">
+                Pack {pack.qty}+ aplicado: te ahorras {money(discount)} ({pack.discountPercent}%)
+              </p>
+            )}
 
             <label className="mb-1 block text-xs font-medium text-slate-500">
               Monto a cobrar ahora (USD)

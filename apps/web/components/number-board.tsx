@@ -45,10 +45,12 @@ export function NumberBoard({
   raffleId,
   raffleStatus,
   pricePerNumber,
+  discountPackages,
 }: {
   raffleId: string;
   raffleStatus: string;
   pricePerNumber: number;
+  discountPackages?: { qty: number; discountPercent: number }[] | null;
 }) {
   const utils = api.useContext();
   const [status, setStatus] = useState<StatusFilter>("ALL");
@@ -61,8 +63,10 @@ export function NumberBoard({
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
 
+  // Selección multi-número: tocar un disponible lo suma a la venta en curso.
+  const [selected, setSelected] = useState<string[]>([]);
   // Sheets abiertas
-  const [sellNumber, setSellNumber] = useState<string | null>(null);
+  const [sellNumbers, setSellNumbers] = useState<string[] | null>(null);
   const [detailSaleId, setDetailSaleId] = useState<string | null>(null);
 
   // Debounce del buscador de número.
@@ -102,7 +106,10 @@ export function NumberBoard({
 
   function onPillClick(n: { number: string; status: string; saleId: string | null }) {
     if (n.status === "AVAILABLE") {
-      setSellNumber(n.number);
+      // Toca para sumar/quitar de la selección; se venden todos de una vez.
+      setSelected((cur) =>
+        cur.includes(n.number) ? cur.filter((x) => x !== n.number) : [...cur, n.number],
+      );
     } else if (n.saleId) {
       setDetailSaleId(n.saleId);
     }
@@ -207,6 +214,33 @@ export function NumberBoard({
       )}
 
       {/* Grilla de pastillas */}
+      {/* Barra de selección multi-número */}
+      {selected.length > 0 && (
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-2">
+          <span className="text-sm font-medium text-blue-900">
+            {selected.length} seleccionado{selected.length === 1 ? "" : "s"}:{" "}
+            <span className="font-mono">
+              {selected.slice(0, 6).join(", ")}
+              {selected.length > 6 ? ` +${selected.length - 6}` : ""}
+            </span>
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setSelected([])}
+              className="rounded-lg border border-blue-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50"
+            >
+              Limpiar
+            </button>
+            <button
+              onClick={() => setSellNumbers(selected)}
+              className="rounded-lg bg-blue-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-blue-700"
+            >
+              Vender ({selected.length})
+            </button>
+          </div>
+        </div>
+      )}
+
       {isLoading ? (
         <div className="flex justify-center py-12 text-slate-400">
           <Loader2 className="h-6 w-6 animate-spin" />
@@ -223,7 +257,9 @@ export function NumberBoard({
               onClick={() => onPillClick(n)}
               title={n.contact ? `${n.contact.name} · ${n.contact.phone}` : `Número ${n.number}`}
               className={`min-h-[44px] rounded-lg py-2 text-center font-mono text-xs font-semibold transition ${
-                PILL_STYLES[n.status] ?? PILL_STYLES.AVAILABLE
+                selected.includes(n.number)
+                  ? "bg-blue-600 text-white border border-blue-700 ring-2 ring-blue-300"
+                  : PILL_STYLES[n.status] ?? PILL_STYLES.AVAILABLE
               }`}
             >
               {n.number}
@@ -257,15 +293,20 @@ export function NumberBoard({
       )}
 
       {/* Sheets */}
-      {sellNumber && (
+      {sellNumbers && (
         <SellNumberSheet
           raffleId={raffleId}
           raffleStatus={raffleStatus}
-          number={sellNumber}
+          numbers={sellNumbers}
           pricePerNumber={pricePerNumber}
-          onClose={() => setSellNumber(null)}
+          discountPackages={discountPackages}
+          onClose={() => {
+            setSellNumbers(null);
+            setSelected([]);
+          }}
           onSold={() => {
-            setSellNumber(null);
+            setSellNumbers(null);
+            setSelected([]);
             refreshBoard();
           }}
         />
