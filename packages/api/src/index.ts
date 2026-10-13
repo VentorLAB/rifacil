@@ -7,6 +7,7 @@ import { campaignRouter } from "./routers/campaign";
 import { vendorRouter } from "./routers/vendor";
 import { analyticsRouter } from "./routers/analytics";
 import { settingsRouter } from "./routers/settings";
+import { whatsappTemplateRouter } from "./routers/whatsappTemplate";
 import { subscriptionRouter } from "./routers/subscription";
 import { automationRouter } from "./routers/automation";
 import { templateRouter } from "./routers/template";
@@ -24,6 +25,7 @@ export const appRouter = createTRPCRouter({
   vendor: vendorRouter,
   analytics: analyticsRouter,
   settings: settingsRouter,
+  whatsappTemplate: whatsappTemplateRouter,
   subscription: subscriptionRouter,
   automation: automationRouter,
   template: templateRouter,

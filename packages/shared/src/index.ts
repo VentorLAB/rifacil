@@ -9,3 +9,4 @@ export * from "./whatsapp-link";
 export * from "./whatsapp-cloud"; // fetch puro, sin binarios nativos: seguro de importar estático
 export * from "./whatsapp-rates"; // fetch puro y constantes: seguro
 export * from "./contact-sort"; // orden de la tabla de Contactos (API + UI)
+export * from "./whatsapp-templates"; // gestión de plantillas WABA: fetch puro, seguro

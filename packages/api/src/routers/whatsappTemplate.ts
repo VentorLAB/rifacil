@@ -1,0 +1,77 @@
+import { z } from "zod";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { TRPCError } from "@trpc/server";
+import {
+  listTemplates,
+  createTemplate,
+  slugifyTemplateName,
+  type TemplateCreds,
+  type WhatsappTemplateProvider,
+} from "@riffas/shared";
+
+// Gestión de plantillas de la WABA (listar/crear/motivo de rechazo). SOLO
+// gestión: el envío de mensajes sigue por los caminos de siempre (wa.me +
+// recibo_compra). Las credenciales salen de userSettings del tenant (regla #6).
+async function templateCreds(prisma: any, businessId: string): Promise<TemplateCreds> {
+  const cfg = await prisma.userSettings.findUnique({
+    where: { userId: businessId },
+    select: {
+      whatsappConnected: true,
+      whatsappProvider: true,
+      whatsappApiToken: true,
+      whatsappBusinessId: true,
+    },
+  });
+  if (!cfg?.whatsappConnected || !cfg.whatsappApiToken || !cfg.whatsappProvider || cfg.whatsappProvider === "NONE") {
+    throw new TRPCError({
+      code: "PRECONDITION_FAILED",
+      message: "Conecta tu WhatsApp API en Ajustes → WhatsApp para gestionar plantillas.",
+    });
+  }
+  if (cfg.whatsappProvider === "CLOUD_API" && !cfg.whatsappBusinessId) {
+    throw new TRPCError({
+      code: "PRECONDITION_FAILED",
+      message: "Falta el WABA ID (Business Account ID) en Ajustes → WhatsApp.",
+    });
+  }
+  return {
+    provider: cfg.whatsappProvider as WhatsappTemplateProvider,
+    apiToken: cfg.whatsappApiToken,
+    businessId: cfg.whatsappBusinessId,
+  };
+}
+
+export const whatsappTemplateRouter = createTRPCRouter({
+  // Lista las plantillas de la WABA con estado y motivo de rechazo.
+  list: protectedProcedure.query(async ({ ctx }) => {
+    const creds = await templateCreds(ctx.prisma, ctx.businessId);
+    return listTemplates(creds);
+  }),
+
+  // Crea una plantilla y la envía a revisión de Meta. NO la aprueba: Meta tarda
+  // de minutos a horas; el estado se ve en la lista.
+  create: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().min(2).max(100),
+        category: z.enum(["UTILITY", "MARKETING"]),
+        language: z.string().min(2).max(10).default("es"),
+        headerText: z.string().max(60).optional(),
+        bodyText: z.string().min(1).max(1024),
+        footerText: z.string().max(60).optional(),
+        exampleValues: z.array(z.string().max(100)).max(20).optional(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const creds = await templateCreds(ctx.prisma, ctx.businessId);
+      const name = slugifyTemplateName(input.name);
+      if (!name) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: "El nombre debe tener letras o números." });
+      }
+      const result = await createTemplate(creds, { ...input, name });
+      if (!result.ok) {
+        throw new TRPCError({ code: "BAD_REQUEST", message: result.error ?? "Meta rechazó la creación" });
+      }
+      return result;
+    }),
+});
