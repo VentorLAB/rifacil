@@ -18,7 +18,7 @@ export const campaignRouter = createTRPCRouter({
         .optional()
     )
     .query(async ({ ctx, input }) => {
-      const where: any = { userId: ctx.session.user.id };
+      const where: any = { userId: ctx.businessId };
       if (input?.status) where.status = input.status;
 
       const campaigns = await ctx.prisma.campaign.findMany({
@@ -33,7 +33,7 @@ export const campaignRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const campaign = await ctx.prisma.campaign.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
       });
       if (!campaign) throw new TRPCError({ code: "NOT_FOUND" });
       return campaign;
@@ -41,7 +41,7 @@ export const campaignRouter = createTRPCRouter({
 
   // Opciones para armar segmentos: etiquetas existentes + rifas del rifero.
   options: protectedProcedure.query(async ({ ctx }) => {
-    const userId = ctx.session.user.id;
+    const userId = ctx.businessId;
     const contacts = await ctx.prisma.contact.findMany({
       where: { userId },
       select: { tags: true },
@@ -72,7 +72,7 @@ export const campaignRouter = createTRPCRouter({
     )
     .query(async ({ ctx, input }) => {
       const { prisma, session } = ctx;
-      const userId = session.user.id;
+      const userId = ctx.businessId;
 
       const money = (v: number) =>
         `$${Number(v ?? 0).toLocaleString("en-US", {
@@ -171,7 +171,7 @@ export const campaignRouter = createTRPCRouter({
       })
     )
     .query(async ({ ctx, input }) => {
-      const where: any = { userId: ctx.session.user.id };
+      const where: any = { userId: ctx.businessId };
       if (!input.targetAll && input.targetTags.length > 0) {
         where.tags = { hasSome: input.targetTags };
       }
@@ -194,10 +194,10 @@ export const campaignRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { prisma, session } = ctx;
+      const { prisma } = ctx;
 
-      // Estimar destinatarios al momento de crear.
-      const where: any = { userId: session.user.id };
+      // Estimar destinatarios al momento de crear (multi-tenant: businessId).
+      const where: any = { userId: ctx.businessId };
       if (!input.targetAll && input.targetTags.length > 0) {
         where.tags = { hasSome: input.targetTags };
       }
@@ -205,7 +205,7 @@ export const campaignRouter = createTRPCRouter({
 
       const campaign = await prisma.campaign.create({
         data: {
-          userId: session.user.id,
+          userId: ctx.businessId,
           name: input.name,
           type: input.type,
           message: input.message,
@@ -225,7 +225,7 @@ export const campaignRouter = createTRPCRouter({
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const owned = await ctx.prisma.campaign.findFirst({
-        where: { id: input.id, userId: ctx.session.user.id },
+        where: { id: input.id, userId: ctx.businessId },
         select: { id: true },
       });
       if (!owned) throw new TRPCError({ code: "NOT_FOUND" });
