@@ -143,8 +143,8 @@ async function preflight(prisma: PrismaClient, plan: RafflePlan, userId: string 
 
   // Which raffle does this land on?
   const mapped = idMap[plan.ext];
-  const sel = { id: true, title: true, status: true, isPublic: true, totalNumbers: true } as const;
-  let target: { id: string; title: string; status: string; isPublic: boolean; totalNumbers: number } | null = null;
+  const sel = { id: true, title: true, status: true, isPublic: true, totalNumbers: true, pricePerNumber: true } as const;
+  let target: { id: string; title: string; status: string; isPublic: boolean; totalNumbers: number; pricePerNumber: unknown } | null = null;
   if (mapped) {
     target = await prisma.raffle.findFirst({ where: { id: mapped.raffleId, userId }, select: sel });
     if (!target) pf.blockers.push(`id-map points to raffle ${mapped.raffleId}, which is not in this account (wrong database or deleted)`);
@@ -178,6 +178,10 @@ async function preflight(prisma: PrismaClient, plan: RafflePlan, userId: string 
     pf.existing = { title: target.title, status: target.status, isPublic: target.isPublic };
     if (target.totalNumbers !== plan.totalNumbers) {
       pf.blockers.push(`"${target.title}" has ${target.totalNumbers} numbers in rifacil vs ${plan.totalNumbers} in riffas.info`);
+    }
+    // Adoption keeps rifacil's price; a different price would make receipts disagree with the sales.
+    if (Math.abs(Number(target.pricePerNumber) - plan.pricePerNumber) > 0.005) {
+      pf.blockers.push(`"${target.title}" costs $${Number(target.pricePerNumber)} per number in rifacil vs $${plan.pricePerNumber} in riffas.info`);
     }
     if (target.status === "DRAWN" && plan.status === "ACTIVE") {
       pf.blockers.push(`"${target.title}" is DRAWN in rifacil but its riffas.info draw date is in the future — confirm which is right`);
@@ -489,7 +493,8 @@ function printPlan(p: RafflePlan, pf: Preflight | null) {
   console.log(`\n━━ [${p.ext}] ${p.title}  →  ${pf ? pf.mode.toUpperCase() : "OFFLINE"}${pf?.raffleId ? ` (${pf.raffleId})` : ""}`);
   console.log(`   status=${p.status} drawDate=${p.drawDate?.toISOString().slice(0, 10) ?? "?"} price=$${p.pricePerNumber} numbers=${p.totalNumbers}`);
   console.log(`   board occupied=${s.boardOccupied}  planned occupied=${s.plannedOccupied}  (client sales=${s.clientSales}, board-only=${s.boardOnlySales})`);
-  console.log(`   PAID=${s.byStatus.PAID} SOLD=${s.byStatus.SOLD} RESERVED=${s.byStatus.RESERVED}  revenue=$${s.expectedRevenue.toFixed(2)} debt=$${s.expectedDebt.toFixed(2)}${s.appRevenue != null ? ` (riffas.info app: $${s.appRevenue.toFixed(2)})` : ""}`);
+  console.log(`   PAID=${s.byStatus.PAID} SOLD=${s.byStatus.SOLD} RESERVED=${s.byStatus.RESERVED}  revenue=$${s.expectedRevenue.toFixed(2)} debt=$${s.expectedDebt.toFixed(2)}`);
+  console.log(`   revenue check: abonos as listed=$${s.ledgerRevenue.toFixed(2)}${s.appRevenue != null ? `  riffas.info app=$${s.appRevenue.toFixed(2)}` : ""}`);
   console.log(`   methods: ${Object.entries(s.methods).map(([k, v]) => `${k}=${v}`).join(", ") || "-"}`);
   if (pf) {
     console.log(`   target: ${pf.existing ? `"${pf.existing.title}" ${pf.existing.status} public=${pf.existing.isPublic}, ${pf.existingNumbers} numbers` : "new raffle"}; previous import sales to replace=${pf.importedSalesToReplace}`);

@@ -37,6 +37,14 @@ funcionando sin tocar código.
   `paymentDue` es la deuda. Total del número = abonado + deuda. La deuda queda exactamente
   como dice riffas.info. *(El importador anterior tomaba `paymentAmount` como precio y
   marcaba como PAGADO todo apartado con abono: borraba la deuda.)*
+- **Abonos (13-oct):** lo pagado por número es `paymentAmount`, que es lo que muestra el
+  tablero de riffas.info. **La lista de abonos tiene repetidos** (un boleto de $25 con abonos
+  `[25, 25, 25]`; en julio, 130 números y ~$3.900). En la Gran Rifa la lista suma $13.038, más
+  que el máximo posible de 1.000 × $13. Por eso los abonos se importan en orden de fecha hasta
+  cubrir lo pagado: los que sobran se ignoran, y si faltan se añade un pago asumido en
+  efectivo. Ambos casos se reportan. La recaudación importada sale **más baja** que la suma
+  de abonos y que el "recaudo" de la app de riffas.info, que cuenta los repetidos; el reporte
+  muestra las dos cifras.
 - **Ventas:** agrupadas por cliente × rifa; cada abono real es un `Payment` CONFIRMED **con
   su fecha original** y su método. La venta toma la fecha del primer apartado.
 - **Métodos:** efectivo → `EFECTIVO_USD` (supuesto; `--cash-method EFECTIVO_VES` lo cambia),
@@ -61,7 +69,7 @@ funcionando sin tocar código.
 - Un número en dos ventas, o fuera del rango de la rifa (p. ej. 1..1000 vs 000..999).
 - Una ficha de cliente sobre un número que el tablero da por disponible.
 - En la rifa destino, ventas que no hizo esta importación (ventas de rifacil): se listan.
-- Varias rifas de rifacil que encajan con el mismo título, o un tamaño distinto.
+- Varias rifas de rifacil que encajan con el mismo título, o un tamaño o precio distinto.
 - Recibos que ya existen en otra rifa.
 - `--user-id` de un miembro del equipo (hay que usar la cuenta raíz de Orlando).
 
@@ -148,7 +156,9 @@ y correo para confirmarla. Revisar con Marco:
   prueba), se excluyen con `--skip-raffle "96,<ext>"` (incluir siempre el 96).
 - Destino por rifa: 88/79/73 → **ADOPT** sobre las existentes; 117/112 → **CREATE**.
 - Conteos contra el dump del 11-oct (diferencias pequeñas = ventas entre el 11 y el
-  congelamiento):
+  congelamiento). Ojo: la columna de recaudo se calculó sumando abonos, con los repetidos
+  incluidos. Compárala con la línea `abonos as listed` del reporte, no con `revenue`, que
+  ya viene sin repetidos:
 
   | Rifa | Vendidos | Recaudo 11-oct |
   |---|---|---|

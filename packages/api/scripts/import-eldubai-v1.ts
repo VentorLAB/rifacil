@@ -28,7 +28,7 @@ import { prisma } from "@riffas/db";
 import { normalizePhone } from "@riffas/shared";
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import { mapNumberStatus, mapPaymentMethod, type NumberStatusName } from "../../db/scripts/migracion/lib/plan";
+import { fitAbonos, mapNumberStatus, mapPaymentMethod, type NumberStatusName } from "../../db/scripts/migracion/lib/plan";
 import { assertExpectedHost, hostOf, recomputeContactMetrics, recomputeRaffleStats } from "../../db/scripts/migracion/lib/db-helpers";
 import { countPhones, testSignals, vetTime } from "../../db/scripts/migracion/lib/test-signals";
 
@@ -87,22 +87,29 @@ type V1 = {
   const pmName = new Map<string, string>();
   for (const pm of dump.raffleDetails?.[V1_RAFFLE_ID]?.paymethods ?? []) pmName.set(String(pm.id), String(pm.payMethode?.name ?? "?"));
   let unknownMethods = 0;
+  const abonosOver = { count: 0, amount: 0 };
+  const abonosUnder = { count: 0, amount: 0 };
   const v1 = new Map<number, V1>();
   for (const c of dump.clients ?? []) {
     for (const rn of c.raffleNumbers ?? []) {
       if (Number(rn.raffleId) !== V1_RAFFLE_ID) continue;
       const phone = normalizePhone(c.phone || "", "VE") || (c.phone || "").trim() || `importv1-dubai-${rn.number}`;
-      const payments: V1Pay[] = (rn.payments ?? [])
+      const abonos: V1Pay[] = (rn.payments ?? [])
         .filter((p: any) => Number(p.amount) > 0)
         .map((p: any) => {
           const { method, known } = mapPaymentMethod(pmName.get(String(p.paymentMethodId)) ?? "?", CASH_METHOD);
           if (!known) unknownMethods++;
           return { amount: r2(Number(p.amount)), method, createdAt: toDate(p.createdAt) };
-        })
-        .sort((a: V1Pay, b: V1Pay) => (a.createdAt?.getTime() ?? 0) - (b.createdAt?.getTime() ?? 0));
-      // paymentAmount es lo YA abonado; el abonado real es el ledger de abonos.
-      const paid = r2(payments.reduce((a, p) => a + p.amount, 0));
+        });
+      // paymentAmount (lo YA abonado) y paymentDue (la deuda) son la verdad de v1.
+      // La lista de abonos trae repetidos ([25, 25, 25] en un boleto de $25) y huecos:
+      // se ajusta a paymentAmount para que el recibo muestre el precio real.
+      const paid = r2(Number(rn.paymentAmount) || 0);
       const due = r2(Number(rn.paymentDue) || 0);
+      const fit = fitAbonos(paid, abonos, CASH_METHOD, toDate(rn.reservedDate));
+      if (fit.ignored > 0) { abonosOver.count++; abonosOver.amount += fit.ignored; }
+      if (fit.added > 0) { abonosUnder.count++; abonosUnder.amount += fit.added; }
+      const payments = fit.payments;
       v1.set(Number(rn.number), {
         num: Number(rn.number), status: String(rn.status), paid, due,
         target: mapNumberStatus(String(rn.status), due),
@@ -113,6 +120,8 @@ type V1 = {
     }
   }
   console.log(`[v1] números con ficha de cliente en El Dubai: ${v1.size}${unknownMethods ? `  (⚠ ${unknownMethods} abonos con método desconocido → CASH)` : ""}`);
+  if (abonosOver.count) console.log(`⚠  ${abonosOver.count} números con MÁS abonos que lo pagado (abonos repetidos en v1): $${r2(abonosOver.amount).toFixed(2)} ignorados`);
+  if (abonosUnder.count) console.log(`⚠  ${abonosUnder.count} números pagados sin detalle de abonos: $${r2(abonosUnder.amount).toFixed(2)} como pago asumido ${CASH_METHOD}`);
 
   // Cruce con el tablero: un número ocupado en v1 SIN ficha quedaría libre en
   // rifacil → doble venta. Es una anomalía que bloquea el APPLY.
