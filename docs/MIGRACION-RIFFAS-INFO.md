@@ -55,9 +55,13 @@ funcionando sin tocar código.
   cambia el nombre**. Teléfonos imposibles ("Usaaa") se guardan tal cual. Las métricas del
   CRM (gastado, boletos, última compra) se recalculan con sus ventas reales.
 - **Números sin ficha de cliente** (873 en la rifa 73, 18 en la 79, 2 en la 88): contacto
-  solo-nombre y, si están vendidos, pago asumido en efectivo. Si en el tablero no hay ni
-  nombre, se importa como "Sin nombre (tablero #NNN)": **nunca se deja libre un número
-  ocupado**.
+  solo-nombre y lo pagado (`paymentAmount` del tablero) como un pago asumido en efectivo.
+  Si están vendidos, no deben nada; si están apartados, deben el resto del precio. **Las
+  fechas y el vendedor salen de los `payments` del tablero**: la fecha del primer y del
+  último pago válido, y el `userId` (se ignoran los `isValid: false`). *(Hasta el 13-oct se
+  importaban con la fecha del día de la importación: se corrigió re-importando 73, 79 y 88.)*
+  Si en el tablero no hay ni nombre, se importa como "Sin nombre (tablero #NNN)": **nunca se
+  deja libre un número ocupado**.
 - **Estado de la rifa:** por fecha de sorteo. Pasada → DRAWN (cerrada a la venta), aunque
   le queden números. Una rifa DRAWN en rifacil nunca se reabre.
 - **Vendedores:** se reutilizan por código, cédula o teléfono; los nuevos llevan código

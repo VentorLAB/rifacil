@@ -15,7 +15,7 @@
  *   # rollback of what this tool imported (dry-run unless --confirm MIGRAR)
  *   npx tsx scripts/migracion/import-riffas-info.ts --dump <dir> --rollback [--expect-host <host> --confirm MIGRAR]
  *
- * Options: --raffle-id <ext> (only that raffle) · --map <ext=raffleId|new,...>
+ * Options: --raffle-id <ext,...> (only those raffles) · --map <ext=raffleId|new,...>
  * (explicit target; otherwise matched by title) · --drawn <ext,...> (force DRAWN)
  * · --active <ext,...> (keep selling although the draw date passed)
  * · --skip-raffle <ext,ext>
@@ -64,7 +64,9 @@ const USER_ID = getArg("--user-id");
 const EXPECT_HOST = getArg("--expect-host") ?? process.env.EXPECT_HOST ?? null;
 const DUMP_ARG = getArg("--dump");
 const CASH_METHOD = (getArg("--cash-method") ?? "EFECTIVO_USD") as PaymentMethodName;
-const ONLY = getArg("--raffle-id");
+// --raffle-id 73,79,88 : only these riffas.info raffles (import and rollback).
+const ONLY_SET = new Set((getArg("--raffle-id") ?? "").split(",").map((s) => s.trim()).filter(Boolean));
+const ONLY = ONLY_SET.size > 0;
 const SKIP = new Set((getArg("--skip-raffle") ?? "96").split(",").map((s) => s.trim()).filter(Boolean));
 // --drawn 79,73,112 : force DRAWN (closed to sales) regardless of riffas.info's date.
 const FORCE_DRAWN = new Set((getArg("--drawn") ?? "").split(",").map((s) => s.trim()).filter(Boolean));
@@ -207,11 +209,19 @@ async function preflight(prisma: PrismaClient, plan: RafflePlan, userId: string 
     if (strayOccupied) pf.blockers.push(`${strayOccupied} numbers already occupied in rifacil by something other than this import`);
     const sales = await prisma.sale.findMany({
       where: { raffleId: target.id },
-      select: { receiptNumber: true, source: true, numbers: true, amountPaid: true, contact: { select: { name: true, phone: true } } },
+      select: {
+        receiptNumber: true, source: true, numbers: true, amountPaid: true,
+        receiptUrl: true, receiptShareUrl: true, receiptSent: true, whatsappSent: true,
+        contact: { select: { name: true, phone: true } },
+      },
     });
+    let sentReceipts = 0;
     for (const s of sales) {
-      if (s.source === "import" && s.receiptNumber.startsWith(receiptPrefix(plan.ext))) pf.importedSalesToReplace++;
-      else {
+      if (s.source === "import" && s.receiptNumber.startsWith(receiptPrefix(plan.ext))) {
+        pf.importedSalesToReplace++;
+        // Replacing a sale gives it a new id: a receipt link already sent would stop working.
+        if (s.receiptUrl || s.receiptShareUrl || s.receiptSent || s.whatsappSent) sentReceipts++;
+      } else {
         pf.protectedSales.push({
           receiptNumber: s.receiptNumber, source: s.source, contact: `${s.contact.name} · ${s.contact.phone}`,
           numbers: s.numbers, amountPaid: Number(s.amountPaid),
@@ -220,6 +230,9 @@ async function preflight(prisma: PrismaClient, plan: RafflePlan, userId: string 
     }
     if (pf.protectedSales.length) {
       pf.blockers.push(`${pf.protectedSales.length} sales in this raffle were NOT made by this import (protected): review the list`);
+    }
+    if (sentReceipts) {
+      pf.blockers.push(`${sentReceipts} previously imported sales already had a receipt or WhatsApp sent: re-importing would break those links`);
     }
   }
 
@@ -409,7 +422,7 @@ async function importRaffle(prisma: PrismaClient, plan: RafflePlan, pf: Prefligh
 
 // ── rollback of what this tool imported ──
 async function rollback(prisma: PrismaClient, idMap: IdMap): Promise<void> {
-  const entries = Object.entries(idMap).filter(([ext]) => !ONLY || ext === ONLY);
+  const entries = Object.entries(idMap).filter(([ext]) => !ONLY || ONLY_SET.has(ext));
   if (!entries.length) {
     console.log("id-map.json is empty: nothing to roll back.");
     return;
@@ -543,7 +556,7 @@ async function main() {
     const now = new Date();
     const plans = (dump.raffles as any[])
       .map((r) => String(r.id))
-      .filter((ext) => (ONLY ? ext === ONLY : !SKIP.has(ext)))
+      .filter((ext) => (ONLY ? ONLY_SET.has(ext) : !SKIP.has(ext)))
       .map((ext) => {
         const plan = planRaffle(dump, ext, {
           now,

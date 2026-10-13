@@ -166,12 +166,51 @@ describe("planRaffle", () => {
   });
 
   it("board-only sold numbers become name-only contacts with an assumed cash payment", () => {
-    const p = planRaffle(dump({ board: { 4: { status: "sold", firstName: "Luis", paymentAmount: "10.00", paymentDue: "0.00" } } }), "5", opts);
+    const p = planRaffle(dump({ board: { 4: { status: "sold", firstName: "Luis", paymentAmount: "10.00" } } }), "5", opts);
     expect(p.blockers).toEqual([]);
     const s = p.sales.find((x) => x.fromBoardOnly)!;
     expect(s.contact).toMatchObject({ name: "Luis", phone: "import-5-004", realPhone: false });
     expect(s.payments).toEqual([{ amount: 10, method: "EFECTIVO_USD", createdAt: null }]);
     expect(s.numbers).toEqual([{ number: "004", status: "PAID" }]);
+    expect(p.warnings.join()).toMatch(/1 board-only numbers have no valid payment date/);
+  });
+
+  it("board-only numbers take the REAL dates and vendor from the board's valid payments", () => {
+    const p = planRaffle(
+      dump({
+        board: {
+          4: {
+            status: "sold", firstName: "Luis", paymentAmount: "8.00",
+            payments: [
+              { userId: 120, createdAt: "2026-02-10T15:00:00Z", isValid: true },
+              { userId: 118, createdAt: "2026-01-05T15:00:00Z", isValid: false }, // voided: ignored
+              { userId: 121, createdAt: "2026-02-20T15:00:00Z", isValid: true },
+            ],
+          },
+        },
+      }),
+      "5",
+      opts,
+    );
+    const s = p.sales.find((x) => x.fromBoardOnly)!;
+    expect(s.createdAt).toEqual(new Date("2026-02-10T15:00:00Z"));
+    expect(s.paidAt).toEqual(new Date("2026-02-20T15:00:00Z"));
+    expect(s.payments).toEqual([{ amount: 8, method: "EFECTIVO_USD", createdAt: new Date("2026-02-20T15:00:00Z") }]);
+    expect(s.vendorExtUserId).toBe("120");
+    expect(s.totalAmount).toBe(8); // sold with a discount: nothing owed
+    expect(p.warnings.join()).not.toMatch(/no valid payment date/);
+  });
+
+  it("a board-only apartado keeps what was paid and owes the rest of the price", () => {
+    const p = planRaffle(
+      dump({ board: { 7: { status: "pending", firstName: "Ana", paymentAmount: "4.00", payments: [{ userId: 120, createdAt: "2026-02-10T15:00:00Z", isValid: true }] } } }),
+      "5",
+      opts,
+    );
+    const s = p.sales.find((x) => x.fromBoardOnly)!;
+    expect(s).toMatchObject({ totalAmount: 10, amountPaid: 4, status: "RESERVED", paidAt: null });
+    expect(s.payments).toEqual([{ amount: 4, method: "EFECTIVO_USD", createdAt: new Date("2026-02-10T15:00:00Z") }]);
+    expect(p.stats.expectedDebt).toBe(6);
   });
 
   it("does NOT drop an occupied board number that has no name (it used to become AVAILABLE)", () => {
