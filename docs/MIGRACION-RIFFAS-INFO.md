@@ -12,7 +12,7 @@ sin que Marco las marque como prueba.
 
 | Rifa (riffas.info) | Destino en rifacil | Herramienta |
 |---|---|---|
-| 117 El Plateado de tu Suerte | rifa nueva, ACTIVE | `import-riffas-info.ts` |
+| 117 El Plateado de tu Suerte | rifa nueva, **ACTIVE** aunque su fecha (4-oct) pasó | `import-riffas-info.ts --active 117` |
 | 112 Resuelve tu Agosto | rifa nueva, **DRAWN** (cerrada) | `import-riffas-info.ts --drawn 112` |
 | 88 Gran Rifa Resuelve | **adopta** la "Gran Rifa Resuelve" que ya existe (DRAWN) | `import-riffas-info.ts` |
 | 79 El Azulejo | **adopta** "El Azulejo" existente (DRAWN, aunque le queden 8 libres) | `import-riffas-info.ts` |
@@ -143,7 +143,7 @@ Con `DATABASE_URL` de producción en la ventana:
 
 ```powershell
 # las 5 rifas (El Dubai va aparte)
-npx -y pnpm@9.15.9 exec tsx scripts/migracion/import-riffas-info.ts --dump $DIR --user-id cmqg5sisi0000sz3bc27a4u9y --drawn "79,73,112"
+npx -y pnpm@9.15.9 exec tsx scripts/migracion/import-riffas-info.ts --dump $DIR --user-id cmqg5sisi0000sz3bc27a4u9y --drawn "79,73,112" --active 117
 # El Dubai (escribe un backup JSON y un CSV en $DIR)
 npx -y pnpm@9.15.9 exec tsx ../api/scripts/import-eldubai-v1.ts "$DIR\riffas-info-dump.json"
 ```
@@ -187,7 +187,7 @@ y correo para confirmarla. Revisar con Marco:
 
 ```powershell
 $H = "<host anotado en el Paso 0>"
-npx -y pnpm@9.15.9 exec tsx scripts/migracion/import-riffas-info.ts --dump $DIR --user-id cmqg5sisi0000sz3bc27a4u9y --drawn "79,73,112" --expect-host $H --confirm MIGRAR
+npx -y pnpm@9.15.9 exec tsx scripts/migracion/import-riffas-info.ts --dump $DIR --user-id cmqg5sisi0000sz3bc27a4u9y --drawn "79,73,112" --active 117 --expect-host $H --confirm MIGRAR
 $env:APPLY = "1"; $env:EXPECT_HOST = $H; $env:DROP_SALES = "<receipt>,<receipt>"   # entre comillas
 npx -y pnpm@9.15.9 exec tsx ../api/scripts/import-eldubai-v1.ts "$DIR\riffas-info-dump.json"
 Remove-Item Env:APPLY, Env:EXPECT_HOST, Env:DROP_SALES

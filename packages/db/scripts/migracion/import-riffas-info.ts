@@ -17,6 +17,7 @@
  *
  * Options: --raffle-id <ext> (only that raffle) · --map <ext=raffleId|new,...>
  * (explicit target; otherwise matched by title) · --drawn <ext,...> (force DRAWN)
+ * · --active <ext,...> (keep selling although the draw date passed)
  * · --skip-raffle <ext,ext>
  * (default 96: El Dubai is reconciled by packages/api/scripts/import-eldubai-v1.ts)
  * · --cash-method EFECTIVO_USD|EFECTIVO_VES|CASH · --offline (plan only, no DB).
@@ -67,6 +68,9 @@ const ONLY = getArg("--raffle-id");
 const SKIP = new Set((getArg("--skip-raffle") ?? "96").split(",").map((s) => s.trim()).filter(Boolean));
 // --drawn 79,73,112 : force DRAWN (closed to sales) regardless of riffas.info's date.
 const FORCE_DRAWN = new Set((getArg("--drawn") ?? "").split(",").map((s) => s.trim()).filter(Boolean));
+// --active 117 : keep selling a raffle whose riffas.info draw date already passed
+// (Marco 13-oct: El Plateado stays ACTIVE although its playDate was 4-oct).
+const FORCE_ACTIVE = new Set((getArg("--active") ?? "").split(",").map((s) => s.trim()).filter(Boolean));
 // --map 73=<rifacil raffle id>,117=new : explicit target per riffas.info raffle.
 const MAP = new Map(
   (getArg("--map") ?? "").split(",").map((s) => s.trim()).filter(Boolean).map((kv) => {
@@ -550,9 +554,14 @@ async function main() {
             return c === "XX" ? null : c;
           },
         });
-        if (FORCE_DRAWN.has(ext) && plan.status !== "DRAWN") {
+        if (FORCE_DRAWN.has(ext) && FORCE_ACTIVE.has(ext)) {
+          plan.blockers.push(`raffle ${ext} is in both --drawn and --active`);
+        } else if (FORCE_DRAWN.has(ext) && plan.status !== "DRAWN") {
           plan.status = "DRAWN";
           plan.warnings.push("forced DRAWN by --drawn (riffas.info's draw date is not in the past)");
+        } else if (FORCE_ACTIVE.has(ext) && plan.status !== "ACTIVE") {
+          plan.status = "ACTIVE";
+          plan.warnings.push(`forced ACTIVE by --active although the draw date ${plan.drawDate?.toISOString().slice(0, 10)} passed: update the draw date in the panel`);
         }
         return plan;
       });
