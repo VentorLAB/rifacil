@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   Ticket,
   Upload,
+  Copy,
 } from "lucide-react";
 
 const PAGE_SIZE = 120;
@@ -44,6 +45,20 @@ const PILL: Record<string, string> = {
   SOLD: "bg-yellow-300 text-yellow-900",
   PAID: "bg-green-500 text-white",
 };
+
+// Total con pack (misma regla que public.createSale: el aplicable de mayor %).
+function totalWithPacks(
+  price: number,
+  qty: number,
+  packs?: { qty: number; discountPercent: number }[] | null,
+) {
+  const base = price * qty;
+  const pack = (packs ?? [])
+    .filter((p) => qty >= p.qty)
+    .sort((a, b) => b.discountPercent - a.discountPercent)[0];
+  const discount = pack ? Math.round(base * (pack.discountPercent / 100) * 100) / 100 : 0;
+  return { total: Math.round((base - discount) * 100) / 100, pack, discount };
+}
 
 const money = (v: number) =>
   `$${Number(v ?? 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -107,7 +122,10 @@ export default function PublicRafflePage() {
   // complementa. Secundario para degradados/acentos.
   const color = raffle.brand.color || raffle.color || "#7c3aed";
   const color2 = raffle.brand.colorSecondary || color;
-  const total = raffle.pricePerNumber * selected.size;
+  const { total, pack } = totalWithPacks(raffle.pricePerNumber, selected.size, raffle.discountPackages);
+  const ves = raffle.vesPerUsd ? Number(raffle.vesPerUsd) : null;
+  const bs = (v: number) =>
+    ves ? `${(v * ves).toLocaleString("es-VE", { maximumFractionDigits: 2 })} Bs` : null;
 
   function toggle(n: string) {
     setSelected((prev) => {
@@ -116,6 +134,23 @@ export default function PublicRafflePage() {
       else next.add(n);
       return next;
     });
+  }
+
+  // "Elegir a la suerte": N números al azar entre los disponibles (la reserva
+  // real la hace el servidor al apartar; esto solo sugiere).
+  const [luckyCount, setLuckyCount] = useState(1);
+  const lucky = api.public.randomAvailable.useQuery(
+    { raffleId: id, count: luckyCount },
+    { enabled: false, refetchOnWindowFocus: false },
+  );
+  async function pickLucky() {
+    const r = await lucky.refetch();
+    const nums = r.data?.numbers ?? [];
+    if (nums.length === 0) {
+      toast.error("No quedan números disponibles");
+      return;
+    }
+    setSelected((prev) => new Set([...prev, ...nums]));
   }
 
   if (done) {
@@ -237,7 +272,29 @@ export default function PublicRafflePage() {
 
         {/* Tablero de números */}
         <section>
-          <h2 className="mb-2 text-sm font-semibold text-slate-700">Elige tu número</h2>
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-sm font-semibold text-slate-700">Elige tu número</h2>
+            <div className="flex items-center gap-1.5">
+              {[1, 3, 5, 10].map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setLuckyCount(c)}
+                  className={`rounded-lg px-2 py-1 text-xs font-semibold transition ${
+                    luckyCount === c ? "bg-slate-800 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+              <button
+                onClick={pickLucky}
+                disabled={lucky.isFetching}
+                className="flex items-center gap-1 rounded-lg bg-amber-400 px-2.5 py-1 text-xs font-bold text-amber-900 hover:bg-amber-300 disabled:opacity-50"
+              >
+                {lucky.isFetching ? "…" : "🎲"} A la suerte
+              </button>
+            </div>
+          </div>
           <NumberPicker raffleId={id} color={color} selected={selected} onToggle={toggle} canBuy={raffle.canBuy} />
         </section>
 
@@ -259,7 +316,11 @@ export default function PublicRafflePage() {
         <div className="fixed inset-x-0 bottom-0 z-40 border-t bg-white p-3 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]">
           <div className="mx-auto flex max-w-2xl items-center gap-3">
             <div className="min-w-0 flex-1">
-              <p className="text-xs text-slate-500">{selected.size} número(s) · {money(total)}</p>
+              <p className="text-xs text-slate-500">
+                {selected.size} número(s) · {money(total)}
+                {bs(total) && <span className="block">≈ {bs(total)}</span>}
+                {pack && <span className="block font-medium text-green-600">Pack {pack.qty}+ aplicado</span>}
+              </p>
               <p className="truncate font-mono text-sm text-slate-700">{[...selected].join(", ")}</p>
             </div>
             <button
@@ -279,6 +340,8 @@ export default function PublicRafflePage() {
           color={color}
           numbers={[...selected]}
           pricePerNumber={raffle.pricePerNumber}
+          discountPackages={raffle.discountPackages}
+          vesPerUsd={raffle.vesPerUsd}
           paymentAccounts={raffle.paymentAccounts}
           vendorCode={vendorCode}
           onClose={() => setCheckout(false)}
@@ -505,6 +568,8 @@ function CheckoutSheet({
   color,
   numbers,
   pricePerNumber,
+  discountPackages,
+  vesPerUsd,
   paymentAccounts,
   vendorCode,
   onClose,
@@ -514,12 +579,17 @@ function CheckoutSheet({
   color: string;
   numbers: string[];
   pricePerNumber: number;
+  discountPackages?: { qty: number; discountPercent: number }[] | null;
+  vesPerUsd?: number | null;
   paymentAccounts: any[];
   vendorCode?: string;
   onClose: () => void;
   onDone: (res: { numbers: string[]; amountPaid: number; debt: number }) => void;
 }) {
-  const total = pricePerNumber * numbers.length;
+  const { total, pack, discount } = totalWithPacks(pricePerNumber, numbers.length, discountPackages);
+  const ves = vesPerUsd ? Number(vesPerUsd) : null;
+  const bs = (v: number) =>
+    ves ? `${(v * ves).toLocaleString("es-VE", { maximumFractionDigits: 2 })} Bs` : null;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [method, setMethod] = useState<string>(paymentAccounts[0]?.method ?? "PAGO_MOVIL");
@@ -608,6 +678,12 @@ function CheckoutSheet({
             <p className="text-2xl font-bold" style={{ color }}>
               {money(total)}
             </p>
+            {bs(total) && <p className="text-sm text-slate-400">≈ {bs(total)}</p>}
+            {pack && (
+              <p className="mt-1 text-xs font-medium text-green-600">
+                Pack {pack.qty}+ aplicado: ahorras {money(discount)}
+              </p>
+            )}
           </div>
 
           <div>
@@ -766,6 +842,13 @@ function AccountDetails({ account: a }: { account: any }) {
   ];
   const present = rows.filter(([, v]) => v);
   if (present.length === 0) return null;
+  const copy = () => {
+    const text = `${METHOD_LABELS[a.method] ?? a.method}\n${present.map(([l, v]) => `${l}: ${v}`).join("\n")}`;
+    navigator.clipboard.writeText(text).then(
+      () => toast.success("Datos de pago copiados"),
+      () => toast.error("No se pudo copiar"),
+    );
+  };
   return (
     <div className="mt-2 space-y-0.5 border-t pt-2 text-sm">
       {present.map(([label, v]) => (
@@ -774,6 +857,16 @@ function AccountDetails({ account: a }: { account: any }) {
           <span className="text-right font-medium text-slate-800">{v}</span>
         </div>
       ))}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          copy();
+        }}
+        className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-200"
+      >
+        <Copy className="h-3.5 w-3.5" /> Copiar datos
+      </button>
     </div>
   );
 }
