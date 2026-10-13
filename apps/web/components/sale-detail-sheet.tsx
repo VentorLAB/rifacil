@@ -84,6 +84,7 @@ export function SaleDetailSheet({
     useState<(typeof ABONO_METHODS)[number]>("PAGO_MOVIL");
   const [reference, setReference] = useState("");
 
+  const { data: waTpl } = api.settings.getWaTemplates.useQuery();
   const addPayment = api.sale.addPayment.useMutation({
     onSuccess: (res) => {
       toast.success(
@@ -389,6 +390,7 @@ export function SaleDetailSheet({
                 reservedAt={sale.createdAt}
                 receiptUrl={sale.receiptUrl}
                 receiptShareUrl={sale.receiptShareUrl}
+                waTemplates={waTpl?.templates}
                 brandUrl={sale.user?.customDomain}
               />
             )}

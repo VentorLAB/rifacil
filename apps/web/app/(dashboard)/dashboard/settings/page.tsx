@@ -6,7 +6,6 @@ import { BrandSection } from "@/components/brand-section";
 import { PaymentAccountsSection } from "@/components/payment-accounts-section";
 import { RateSection } from "@/components/rate-section";
 import { WhatsappSection } from "@/components/whatsapp-section";
-import { WhatsappTemplatesSection } from "@/components/whatsapp-templates-section";
 
 export default function SettingsPage() {
   const { data: settings, refetch } = api.settings.get.useQuery();
@@ -47,7 +46,6 @@ export default function SettingsPage() {
       <PaymentAccountsSection />
 
       <WhatsappSection />
-      <WhatsappTemplatesSection />
     </div>
   );
 }

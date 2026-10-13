@@ -4,6 +4,7 @@ import { PaymentMethod } from "@riffas/db";
 import { createTRPCRouter, publicProcedure, vendorProcedure } from "../trpc";
 import { getVendorIdFromReq } from "../lib/vendorAuth";
 import { getActiveRate } from "../lib/exchangeRate";
+import { parseWaMessageTemplates } from "@riffas/shared";
 import { brandFor, raffleReceiptFields, receiptCardUrl } from "../lib/receiptData";
 import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
 
@@ -84,6 +85,11 @@ export const vendorPortalRouter = createTRPCRouter({
       where: { id: vendor.userId },
       select: { name: true, brandName: true, brandColor: true, brandColorSecondary: true, brandLogo: true, customDomain: true },
     });
+    // Plantillas wa.me editables del negocio (Ajustes → Mensajes de WhatsApp).
+    const waSettings = await ctx.prisma.userSettings.findUnique({
+      where: { userId: vendor.userId },
+      select: { whatsappSaleTemplate: true },
+    });
     const raffles = await ctx.prisma.raffle.findMany({
       where: { userId: vendor.userId, status: "ACTIVE", isPublic: true },
       select: { id: true, title: true, pricePerNumber: true, numberFormat: true },
@@ -106,6 +112,7 @@ export const vendorPortalRouter = createTRPCRouter({
         logo: user?.brandLogo || null,
         url: user?.customDomain || null,
       },
+      waTemplates: parseWaMessageTemplates(waSettings?.whatsappSaleTemplate),
       raffles: raffles.map((r) => ({
         id: r.id,
         title: r.title,

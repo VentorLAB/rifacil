@@ -320,6 +320,7 @@ function SellSection({ me, color, origin, onCopyRef }: { me: any; color: string;
               status={lastSale.status}
               receiptUrl={lastSale.receiptUrl}
               receiptShareUrl={lastSale.receiptShareUrl}
+              waTemplates={me?.waTemplates}
             />
           </div>
         )}

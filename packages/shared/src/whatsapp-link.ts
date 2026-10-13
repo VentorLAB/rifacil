@@ -10,6 +10,11 @@
 // CLIENT-SAFE: JS puro (normalizePhone + encodeURIComponent). Se puede importar
 // desde Client Components.
 import { normalizePhone } from "./phone";
+import {
+  DEFAULT_WA_TEMPLATES,
+  renderWaTemplate,
+  type WaMessageTemplates,
+} from "./whatsapp-message-templates";
 
 // Mismo formato que el recibo (imagen): sin decimales si es entero, hasta 2 si hay
 // centavos. Antes usaba 2 fijos ($9.00) y no cuadraba con la imagen ($9).
@@ -141,9 +146,13 @@ function normalizeBrandUrl(raw?: string | null): string | null {
  * (referencia del negocio): resumen de abonos, datos con 💎 (valor de la rifa,
  * deuda/estado, fecha del sorteo, fecha del apartado) y la vista previa del
  * recibo. Texto DISTINTO para apartado y para compra pagada.
+ *
+ * `templates` (opcional): plantillas editables del rifero (Ajustes → Mensajes
+ * de WhatsApp). Sin plantilla, se usa el texto DEFAULT (este formato de
+ * siempre, que es exactamente el que se ve en DEFAULT_WA_TEMPLATES).
  * Exportado aparte por si se quiere mostrar/copiar el texto sin el enlace.
  */
-export function buildReceiptMessage(input: ReceiptWaInput): string {
+export function buildReceiptMessage(input: ReceiptWaInput, templates?: WaMessageTemplates): string {
   const total = Number(input.total ?? 0);
   const paid = Number(input.paid ?? total);
   const debt = Math.max(0, Math.round((total - paid) * 100) / 100);
@@ -180,38 +189,43 @@ export function buildReceiptMessage(input: ReceiptWaInput): string {
   const drawDate = formatVeDate(input.drawDate);
   const reservedAt = formatVeDate(input.reservedAt);
 
-  return [
-    `${hola}${isPaid ? "Tu compra quedó registrada. 🎉" : "Tu apartado quedó registrado. 🍀"}`,
-    ``,
+  // Variables disponibles para la plantilla (las de línea/bloque quedan vacías
+  // cuando no aplican y el render omite la línea completa).
+  const vars: Record<string, string> = {
+    saludo: hola,
     resumen,
-    `${isPaid ? "Números:" : "Números reservado(s):"} *${input.numbers.join(", ")}*`,
-    price != null && Number.isFinite(price) ? `💎 Valor de la rifa: ${money(price)}` : null,
-    estado,
-    drawDate ? `💎 Fecha del sorteo: ${drawDate}` : null,
-    reservedAt ? `💎 Reservado: ${reservedAt}` : null,
-    !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : null,
-    showImage ? `` : null,
-    showImage ? `💎 Vista previa del recibo:` : null,
-    showImage ? previewLink : null,
-    ctaUrl ? `` : null,
-    ctaUrl ? `🎉 Mira todas nuestras rifas:` : null,
-    ctaUrl ? ctaUrl : null,
-    ``,
-    `🏆 Todo juega hasta tener ganador.`,
-    `— ${input.brandName ?? "Riffas"}`,
-  ]
-    .filter((l) => l !== null)
-    .join("\n");
+    numeros: input.numbers.join(", "),
+    lineaValorRifa: price != null && Number.isFinite(price) ? `💎 Valor de la rifa: ${money(price)}` : "",
+    lineaEstado: estado,
+    lineaFechaSorteo: drawDate ? `💎 Fecha del sorteo: ${drawDate}` : "",
+    lineaReservado: reservedAt ? `💎 Reservado: ${reservedAt}` : "",
+    lineaCuandoCompletes: !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : "",
+    bloqueVistaPrevia: showImage && previewLink ? `\n💎 Vista previa del recibo:\n${previewLink}` : "",
+    bloqueCtaRifas: ctaUrl ? `\n🎉 Mira todas nuestras rifas:\n${ctaUrl}` : "",
+    marca: input.brandName ?? "Riffas",
+    nombre: input.contactName ?? "",
+    rifa: input.raffleTitle,
+    total: money(total),
+    abonado: money(paid),
+    deuda: money(debt),
+    valorRifa: price != null && Number.isFinite(price) ? money(price) : "",
+    fechaSorteo: drawDate ?? "",
+    reservado: reservedAt ?? "",
+  };
+
+  const template = (isPaid ? templates?.pagado : templates?.apartado) ??
+    (isPaid ? DEFAULT_WA_TEMPLATES.pagado : DEFAULT_WA_TEMPLATES.apartado);
+  return renderWaTemplate(template, vars);
 }
 
 /**
  * Devuelve el enlace `https://wa.me/<dígitos>?text=...` listo para abrir, o `null`
  * si el teléfono no es válido. Abre WhatsApp con el mensaje + link del recibo.
  */
-export function buildReceiptWaLink(input: ReceiptWaInput): string | null {
+export function buildReceiptWaLink(input: ReceiptWaInput, templates?: WaMessageTemplates): string | null {
   const e164 = normalizePhone(input.phone, "VE");
   if (!e164) return null;
   const digits = e164.replace(/[^\d]/g, ""); // wa.me espera solo dígitos, sin '+'
-  const text = encodeURIComponent(buildReceiptMessage(input));
+  const text = encodeURIComponent(buildReceiptMessage(input, templates));
   return `https://wa.me/${digits}?text=${text}`;
 }

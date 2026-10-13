@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { PaymentMethod } from "@riffas/db";
 import { TRPCError } from "@trpc/server";
+import { parseWaMessageTemplates, serializeWaMessageTemplates, DEFAULT_WA_TEMPLATES } from "@riffas/shared";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { fetchBinanceP2PRate, getActiveRate, saveRate } from "../lib/exchangeRate";
 
@@ -78,6 +79,41 @@ export const settingsRouter = createTRPCRouter({
         },
       });
       return settings;
+    }),
+
+  // --- Plantillas EDITABLES de los mensajes wa.me (canal manual/gratis) ---
+  // Se guardan como JSON {"apartado","pagado"} en la columna TEXT legada
+  // UserSettings.whatsappSaleTemplate (sin migración). Vacías → defaults.
+
+  getWaTemplates: protectedProcedure.query(async ({ ctx }) => {
+    const settings = await ctx.prisma.userSettings.findUnique({
+      where: { userId: ctx.businessId },
+      select: { whatsappSaleTemplate: true },
+    });
+    return {
+      templates: parseWaMessageTemplates(settings?.whatsappSaleTemplate),
+      defaults: DEFAULT_WA_TEMPLATES,
+    };
+  }),
+
+  saveWaTemplates: protectedProcedure
+    .input(
+      z.object({
+        apartado: z.string().max(4000).optional().nullable(),
+        pagado: z.string().max(4000).optional().nullable(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const serialized = serializeWaMessageTemplates({
+        apartado: input.apartado ?? undefined,
+        pagado: input.pagado ?? undefined,
+      });
+      await ctx.prisma.userSettings.upsert({
+        where: { userId: ctx.businessId },
+        update: { whatsappSaleTemplate: serialized },
+        create: { userId: ctx.businessId, whatsappSaleTemplate: serialized },
+      });
+      return { ok: true as const };
     }),
 
   // --- Medios de pago / Datos de cobro (una fila por método) ---
