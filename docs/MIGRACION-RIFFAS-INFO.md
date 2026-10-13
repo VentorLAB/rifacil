@@ -163,6 +163,13 @@ y correo para confirmarla. Revisar con Marco:
 - **El Dubai — lista PROTEGIDOS:** Marco marca cuáles son **prueba** (la 066 del 11-oct lo
   es) y cuáles reales. Las de prueba se pasan por receiptNumber en `DROP_SALES`. Volver a
   correr el dry-run con `DROP_SALES` hasta que `conflicto = 0` y `ANOMALÍA = 0`.
+  - El reporte marca con **🧪** las que *parecen* de prueba, con el motivo: nombre Marco
+    Vera o tipo Test/Prueba, teléfono del propio negocio (dueño, equipo, vendedor) o
+    repetido en 3+ ventas, madrugada (00:00–05:59 VET), monto simbólico (≤ $1) o redondo
+    que no es múltiplo del precio. **Es solo una sugerencia**: una compra real de madrugada
+    también sale marcada. Nada se borra sin `DROP_SALES`.
+  - Imprime una línea `DROP_SALES="…"` sugerida y deja `protegidos-eldubai-<fecha>.csv` en
+    `$DIR` para revisarlo con Instinct antes de decidir.
 
 **Marco da el OK por escrito con el reporte delante.**
 

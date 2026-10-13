@@ -30,6 +30,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { mapNumberStatus, mapPaymentMethod, type NumberStatusName } from "../../db/scripts/migracion/lib/plan";
 import { assertExpectedHost, hostOf, recomputeContactMetrics, recomputeRaffleStats } from "../../db/scripts/migracion/lib/db-helpers";
+import { countPhones, testSignals, vetTime } from "../../db/scripts/migracion/lib/test-signals";
 
 const ORLANDO_EMAIL = "orlando.pernia@rifacil.vip";
 const RAFFLE_TITLE = "El Dubai";
@@ -73,7 +74,7 @@ type V1 = {
   if (!user) { console.error("✖ Usuario Orlando no encontrado — aborto."); process.exit(1); }
   const raffle = await prisma.raffle.findFirst({
     where: { userId: user.id, title: RAFFLE_TITLE },
-    select: { id: true, title: true, totalNumbers: true, status: true },
+    select: { id: true, title: true, totalNumbers: true, status: true, pricePerNumber: true },
   });
   if (!raffle) { console.error(`✖ Rifa "${RAFFLE_TITLE}" no encontrada — aborto.`); process.exit(1); }
   console.log(`[rifa] ${raffle.title} id=${raffle.id} total=${raffle.totalNumbers} status=${raffle.status}`);
@@ -213,23 +214,62 @@ type V1 = {
 
   // Lista de protegidos POR VENTA (lo que Marco marca: real o prueba).
   const protectedNums = [...buckets.PROTECT_CONFLICT, ...buckets.PROTECT_KEEP].map((b) => b.num);
-  const bySale = new Map<string, { receipt: string; source: string | null; holder: string; nums: number[]; conflicts: string[] }>();
-  for (const n of protectedNums) {
+  type Prot = { receipt: string; source: string | null; name: string; phone: string; nums: number[]; conflicts: string[]; dropped: boolean };
+  const bySale = new Map<string, Prot>();
+  const addProt = (n: number, dropped: boolean) => {
     const p = prod.get(n)!;
     const key = p.sale?.receiptNumber ?? `(sin venta) #${pad3(n)}`;
-    const e = bySale.get(key) ?? { receipt: key, source: p.sale?.source ?? null, holder: `${p.contact?.name ?? "?"} · ${p.contact?.phone ?? "?"}`, nums: [], conflicts: [] };
+    const e = bySale.get(key) ?? { receipt: key, source: p.sale?.source ?? null, name: p.contact?.name ?? "?", phone: p.contact?.phone ?? "?", nums: [], conflicts: [], dropped };
     e.nums.push(n);
     const a = v1.get(n);
     if (a) e.conflicts.push(`#${pad3(n)}→${a.name} · ${a.phone}`);
     bySale.set(key, e);
-  }
-  if (bySale.size) {
-    console.log(`\n── PROTEGIDOS por venta (marca cuáles son PRUEBA y pásalas en DROP_SALES) ──`);
-    for (const e of [...bySale.values()].sort((x, y) => x.nums[0] - y.nums[0])) {
-      const sale = sales.find((s) => s.receiptNumber === e.receipt);
-      console.log(`  ${e.receipt}  src=${String(e.source).padEnd(7)} ${e.holder}  #${e.nums.map(pad3).join(",")}  abonado=$${Number(sale?.amountPaid ?? 0)}  ${sale ? sale.createdAt.toISOString().slice(0, 10) : ""}`);
+  };
+  for (const n of protectedNums) addProt(n, false);
+  // Las ya marcadas en DROP_SALES también se listan, para confirmar la decisión.
+  for (const r of prodRows) if (isDropped(r)) addProt(parseInt(r.number, 10), true);
+
+  // 🧪 Sugerencia de "parece prueba" (solo sugiere: nada se borra sin DROP_SALES).
+  const team = await prisma.user.findMany({ where: { OR: [{ id: user.id }, { businessOwnerId: user.id }] }, select: { phone: true } });
+  const vendorPhones = await prisma.vendor.findMany({ where: { userId: user.id }, select: { phone: true } });
+  const businessPhones = new Set([...team, ...vendorPhones].map((x) => x.phone).filter(Boolean));
+  const protList = [...bySale.values()].sort((x, y) => x.nums[0] - y.nums[0]);
+  const phoneSaleCount = countPhones(protList.map((e) => ({ contactPhone: e.phone })));
+  const price = Number(raffle.pricePerNumber);
+  const flagged: Array<Prot & { reasons: string[]; createdAt: Date | null; paid: number }> = protList.map((e) => {
+    const sale = sales.find((s) => s.receiptNumber === e.receipt);
+    const createdAt = sale?.createdAt ?? null;
+    const paid = Number(sale?.amountPaid ?? 0);
+    const reasons = createdAt
+      ? testSignals({ receiptNumber: e.receipt, contactName: e.name, contactPhone: e.phone, createdAt, amountPaid: paid }, { pricePerNumber: price, businessPhones, phoneSaleCount })
+      : [];
+    return { ...e, reasons, createdAt, paid };
+  });
+
+  if (flagged.length) {
+    const tests = flagged.filter((e) => e.reasons.length);
+    console.log(`\n── PROTEGIDOS por venta: ${flagged.length} (🧪 ${tests.length} parecen de prueba; confirma cada una) ──`);
+    for (const e of flagged) {
+      const when = e.createdAt ? `${e.createdAt.toISOString().slice(0, 10)} ${vetTime(e.createdAt).label}` : "";
+      const mark = e.reasons.length ? "🧪" : "  ";
+      const state = e.dropped ? " [en DROP_SALES]" : "";
+      console.log(`${mark} ${e.receipt}${state}  src=${String(e.source).padEnd(7)} ${e.name} · ${e.phone}  #${e.nums.map(pad3).join(",")}  abonado=$${e.paid}  ${when}`);
+      if (e.reasons.length) console.log(`      🧪 ${e.reasons.join(" · ")}`);
       if (e.conflicts.length) console.log(`      ⚔ v1 asigna a otra persona: ${e.conflicts.join(" | ")}`);
     }
+    const suggested = tests.filter((e) => !e.dropped && !e.receipt.startsWith("(sin venta)")).map((e) => e.receipt);
+    if (suggested.length) console.log(`\n   Sugerencia (CONFIRMAR antes de usarla): DROP_SALES="${[...DROP, ...suggested].join(",")}"`);
+
+    const protCsv = resolve(OUT_DIR, `protegidos-eldubai-${STAMP}.csv`);
+    const rows = [["prueba", "motivos", "receipt", "en_drop_sales", "source", "nombre", "telefono", "numeros", "abonado", "fecha_vet", "conflicto_v1"].join(",")];
+    for (const e of flagged) {
+      rows.push([
+        e.reasons.length ? "🧪" : "", e.reasons.join(" · "), e.receipt, e.dropped ? "si" : "", e.source ?? "", e.name, e.phone,
+        e.nums.map(pad3).join(" "), e.paid, e.createdAt ? `${e.createdAt.toISOString().slice(0, 10)} ${vetTime(e.createdAt).label}` : "", e.conflicts.join(" | "),
+      ].map(csvEsc).join(","));
+    }
+    writeFileSync(protCsv, rows.join("\n"));
+    console.log(`📄 Lista PROTEGIDOS (para revisar con Instinct): ${protCsv}`);
   } else {
     console.log(`\n── PROTEGIDOS: ninguno ──`);
   }
