@@ -33,6 +33,7 @@ export function downloadReceiptPngDesktop(saleId: string) {
   document.body.removeChild(a);
 }
 import { MessageCircle, Receipt, Loader2 } from "lucide-react";
+import type { WaMessageTemplates } from "@riffas/shared";
 
 export interface SendReceiptActionsProps {
   saleId: string;
@@ -65,6 +66,8 @@ export interface SendReceiptActionsProps {
   autoOpen?: boolean;
   /** Versión reducida (portal del vendedor). */
   compact?: boolean;
+  /** Plantillas wa.me editables del negocio (Ajustes → Mensajes de WhatsApp). */
+  waTemplates?: WaMessageTemplates;
 }
 
 export function SendReceiptActions({
@@ -85,6 +88,7 @@ export function SendReceiptActions({
   brandUrl,
   autoOpen,
   compact = false,
+  waTemplates,
 }: SendReceiptActionsProps) {
   // Origen leído tras montar (nunca en render: evita mismatch de hidratación
   // si el sheet llegara a renderizarse en servidor).
@@ -116,9 +120,9 @@ export function SendReceiptActions({
             receiptShareUrl,
             receiptPageUrl: pageUrl,
             brandUrl,
-          })
+          }, waTemplates)
         : null,
-    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, pricePerNumber, drawDate, reservedAt, receiptUrl, receiptShareUrl, pageUrl, brandUrl]
+    [phone, contactName, brandName, raffleTitle, numbers, total, paid, status, pricePerNumber, drawDate, reservedAt, receiptUrl, receiptShareUrl, pageUrl, brandUrl, waTemplates]
   );
 
   // Caption del share nativo: mismos datos, pero SIN el enlace a la imagen

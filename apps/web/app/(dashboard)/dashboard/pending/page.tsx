@@ -35,6 +35,7 @@ const fmtDate = (d: Date | string) =>
 export default function PendingPage() {
   const utils = api.useContext();
   const { data, isLoading } = api.sale.listPending.useQuery();
+  const { data: waTpl } = api.settings.getWaTemplates.useQuery();
 
   const refresh = () => {
     utils.sale.listPending.invalidate();
@@ -243,6 +244,7 @@ export default function PendingPage() {
               reservedAt={justConfirmed.reservedAt}
               receiptUrl={justConfirmed.receiptUrl}
               receiptShareUrl={justConfirmed.receiptShareUrl}
+              waTemplates={waTpl?.templates}
             />
             <button
               onClick={() => setJustConfirmed(null)}

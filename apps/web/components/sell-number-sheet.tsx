@@ -74,6 +74,8 @@ export function SellNumberSheet({
 
   // Tasa USD->VES para mostrar el equivalente en Bs.
   const { data: rate } = api.settings.getRate.useQuery();
+  // Plantillas wa.me editables del negocio (Ajustes → Mensajes de WhatsApp).
+  const { data: waTpl } = api.settings.getWaTemplates.useQuery();
   const vesPerUsd = rate ? Number(rate.vesPerUsd) : null;
   const bs = (v: number) =>
     vesPerUsd ? `${(v * vesPerUsd).toLocaleString("es-VE", { maximumFractionDigits: 2 })} Bs` : null;
@@ -240,6 +242,7 @@ export function SellNumberSheet({
               reservedAt={sold.reservedAt}
               receiptUrl={sold.receiptUrl}
               receiptShareUrl={sold.receiptShareUrl}
+              waTemplates={waTpl?.templates}
             />
             {!sold.receiptUrl && (
               <p className="text-xs text-slate-400">
