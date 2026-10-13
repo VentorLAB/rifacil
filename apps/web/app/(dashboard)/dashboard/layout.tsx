@@ -11,6 +11,7 @@ import {
   Users,
   UserCog,
   MessageSquare,
+  MessageCircle,
   Settings,
   LogOut,
   ClipboardCheck,
@@ -24,6 +25,7 @@ const NAV = [
   { href: "/dashboard/contacts", label: "Contactos", icon: Users },
   { href: "/dashboard/vendors", label: "Vendedores", icon: UserCog },
   { href: "/dashboard/campaigns", label: "Campañas", icon: MessageSquare },
+  { href: "/dashboard/whatsapp", label: "WhatsApp", icon: MessageCircle },
   { href: "/dashboard/settings", label: "Ajustes", icon: Settings },
 ];
 
