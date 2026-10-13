@@ -55,7 +55,7 @@ const QUICK_ACTIONS = [
   {
     href: "/dashboard/raffles",
     label: "Vender",
-    description: "Abrí una rifa y vendé números",
+    description: "Abre una rifa y vende números",
     icon: Ticket,
   },
   {
@@ -95,7 +95,7 @@ export default function DashboardHomePage() {
         <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{greet}</h1>
           <p className="text-sm text-slate-500 dark:text-slate-400">
-            Tu resumen de hoy. Rifá fácil, cobrá fácil.
+            Tu resumen de hoy. Rifa fácil, cobra fácil.
           </p>
         </div>
         <Link

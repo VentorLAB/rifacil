@@ -166,8 +166,8 @@ export function BrandSection() {
             </p>
             <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-xs text-slate-500">
               <li>Escribe tu dominio acá (sin <span className="font-mono">https://</span> ni <span className="font-mono">www.</span>) y guardá.</li>
-              <li>En tu proveedor de DNS, apuntá un registro <span className="font-mono">CNAME</span> a <span className="font-mono">cname.vercel-dns.com</span>.</li>
-              <li>Avisanos para activar el dominio en el servidor (puede tardar unos minutos en propagar).</li>
+              <li>En tu proveedor de DNS, apunta un registro <span className="font-mono">CNAME</span> a <span className="font-mono">cname.vercel-dns.com</span>.</li>
+              <li>Avísanos para activar el dominio en el servidor (puede tardar unos minutos en propagar).</li>
             </ol>
             {me?.customDomain && (
               <p className="mt-2 text-xs text-slate-600">
