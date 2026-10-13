@@ -193,9 +193,24 @@ export async function generateMetadata({ params }: { params: { host: string } })
   const host = decodeURIComponent(params.host);
   try {
     const data = await getPublicCaller().public.getStorefrontByDomain({ host });
+    const description = `${data.brand.name} — Premios reales, sorteos en vivo. Elige tus números y participa.`;
     return {
       title: data.brand.name,
-      description: `${data.brand.name} — Premios reales, sorteos en vivo. Elige tus números y participa.`,
+      description,
+      // OG PROPIO de la marca del rifero: sin esto, Next heredaba el openGraph del
+      // root layout (Rifácil) y WhatsApp pintaba la vista previa del catálogo con
+      // el branding de rifacil ("Rifácil — Rifas, cobros y WhatsApp para riferos")
+      // en vez de la marca del rifero. La imagen es su logo (Cloudinary).
+      openGraph: {
+        type: "website",
+        siteName: data.brand.name,
+        title: data.brand.name,
+        description,
+        url: `https://${host}`,
+        ...(data.brand.logo
+          ? { images: [{ url: data.brand.logo, alt: data.brand.name }] }
+          : {}),
+      },
       // Favicon de marca (isotipo HP) SOLO en la landing — no pisa el favicon de
       // plataforma (Rifácil) del root layout. Generados desde el logo de Cloudinary.
       icons: {

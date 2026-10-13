@@ -93,7 +93,9 @@ describe("buildTemplateComponents con header de imagen", () => {
 });
 
 describe("uploadHeaderImage", () => {
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
 
   it("flujo feliz: debug_token → sesión → bytes → handle", async () => {
     const calls: any[] = [];

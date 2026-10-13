@@ -61,7 +61,7 @@ export interface ReceiptWaInput {
    * o estar desincronizados del estado que confirmó el rifero).
    */
   status?: string | null;
-  /** Precio por número ("Valor de la rifa"). Si falta, la línea no sale. */
+  /** Precio por número de la rifa (respaldo de "Valor de la rifa"; se prefiere el precio efectivo total÷números). */
   pricePerNumber?: unknown;
   /** Fecha del sorteo; se muestra en hora de Venezuela. Si falta, no sale. */
   drawDate?: Date | string | number | null;
@@ -185,7 +185,15 @@ export function buildReceiptMessage(input: ReceiptWaInput, templates?: WaMessage
     : debt > 0
       ? `💎 Deuda actual: ${money(debt)}`
       : `💎 Abonado: ${money(paid)}`;
-  const price = input.pricePerNumber != null && input.pricePerNumber !== "" ? Number(input.pricePerNumber) : null;
+  // "Valor de la rifa" = precio EFECTIVO de ESTA venta (total ÷ números), no el
+  // precio actual de la rifa: si la rifa cambió de precio después del apartado (o
+  // hubo pack de descuento), el precio de hoy haría que los montos no cuadraran
+  // (2 números por $24 con "valor $13" → 2×$13≠$24). Con el efectivo, cuadran.
+  // Respaldo: el pricePerNumber pasado por el llamador (ventas sin números/total).
+  const given = input.pricePerNumber != null && input.pricePerNumber !== "" ? Number(input.pricePerNumber) : null;
+  const nNums = input.numbers.length;
+  const effective = total > 0 && nNums > 0 ? Math.round((total / nNums) * 100) / 100 : null;
+  const price = effective ?? (given != null && Number.isFinite(given) ? given : null);
   const drawDate = formatVeDate(input.drawDate);
   const reservedAt = formatVeDate(input.reservedAt);
 

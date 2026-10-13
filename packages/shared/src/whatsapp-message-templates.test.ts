@@ -56,7 +56,7 @@ describe("buildReceiptMessage con plantillas", () => {
   it("sin plantillas → default apartado (con deuda)", () => {
     const msg = buildReceiptMessage({ ...base, paid: 10, status: "RESERVED" });
     expect(msg).toContain("Tu apartado quedó registrado. 🍀");
-    expect(msg).toContain("Números reservado(s): *045, 102*");
+    expect(msg).toContain("Números reservados: *045, 102*");
     expect(msg).toContain("💎 Deuda actual: $10");
   });
 
@@ -92,7 +92,7 @@ describe("buildReceiptMessage con plantillas", () => {
     // Si cambian el formato base, este test obliga a actualizar DEFAULT_WA_TEMPLATES.
     const vars = { saludo: "¡Hola X! ", resumen: "R", numeros: "N", lineaValorRifa: "V", lineaEstado: "E", lineaFechaSorteo: "F", lineaReservado: "RS", lineaCuandoCompletes: "C", bloqueVistaPrevia: "\nP", bloqueCtaRifas: "\nCTA", marca: "M" };
     expect(renderWaTemplate(DEFAULT_WA_TEMPLATES.apartado, vars)).toBe(
-      "¡Hola X! Tu apartado quedó registrado. 🍀\n\nR\nNúmeros reservado(s): *N*\nV\nE\nF\nRS\nC\n\nP\n\nCTA\n\n🏆 Todo juega hasta tener ganador.\n— M"
+      "¡Hola X! Tu apartado quedó registrado. 🍀\n\nR\nNúmeros reservados: *N*\nV\nE\nF\nRS\nC\n\nP\n\nCTA\n\n🏆 Todo juega hasta tener ganador.\n— M"
     );
   });
 });

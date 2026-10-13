@@ -38,7 +38,8 @@ async function safeGenerateReceipt(args: ReceiptArgs): Promise<string | null> {
 async function issueSaleReceipt(
   prisma: any,
   businessId: string,
-  sale: any // Sale con include { contact, raffle }
+  sale: any, // Sale con include { contact, raffle }
+  opts: { autoSend?: boolean } = {}
 ): Promise<{
   receiptUrl: string | null;
   receiptShareUrl: string | null;
@@ -82,7 +83,12 @@ async function issueSaleReceipt(
   }
   // Auto-envío integrado (si el rifero conectó WhatsApp API): el recibo llega
   // solo al comprador. Falla suave → el wa.me de respaldo sigue saliendo.
-  await tryAutoSendReceipt(prisma, businessId, sale, receiptUrl, allNums.length ? allNums : sale.numbers);
+  // Auto-envío SOLO en los flujos de venta/abono/confirmación (autoSend por
+  // defecto). La REGENERACIÓN al reenviar una venta vieja lo apaga: abrir el
+  // detalle de una venta de hace meses no debe disparar un WhatsApp automático.
+  if (opts.autoSend !== false) {
+    await tryAutoSendReceipt(prisma, businessId, sale, receiptUrl, allNums.length ? allNums : sale.numbers);
+  }
   return { receiptUrl, receiptShareUrl, brand };
 }
 
@@ -780,6 +786,31 @@ export const saleRouter = createTRPCRouter({
 
       if (!sale) throw new TRPCError({ code: "NOT_FOUND" });
       return sale;
+    }),
+
+  // REGENERA el recibo de una venta vieja que quedó sin card (ventas importadas
+  // de riffas.info o anteriores al recibo con imagen: receiptUrl/receiptShareUrl
+  // null). El detalle de venta la dispara SOLO cuando falta la card, para que el
+  // reenvío wa.me lleve SIEMPRE el link de ImgBB (preview grande en WhatsApp).
+  // NUNCA auto-envía por WhatsApp API: solo re-renderiza y persiste.
+  regenerateReceipt: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const sale = await ctx.prisma.sale.findFirst({
+        where: { id: input.id, userId: ctx.businessId },
+        include: { contact: true, raffle: true },
+      });
+      if (!sale) throw new TRPCError({ code: "NOT_FOUND" });
+      if (sale.status === "CANCELLED" || sale.status === "REFUNDED") {
+        return { receiptUrl: sale.receiptUrl, receiptShareUrl: sale.receiptShareUrl };
+      }
+      const { receiptUrl, receiptShareUrl } = await issueSaleReceipt(
+        ctx.prisma,
+        ctx.businessId,
+        sale,
+        { autoSend: false }
+      );
+      return { receiptUrl, receiptShareUrl };
     }),
 
   cancel: protectedProcedure
