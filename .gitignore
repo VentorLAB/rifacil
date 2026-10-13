@@ -57,3 +57,7 @@ rifas-hermanos-pernia.zip
 
 # Conclave gate seal (local, no commitear)
 .conclave/
+
+# riffas.info migration dumps: personal data of ~1.150 clients. Keep them OUTSIDE the repo.
+migration-dump/
+migracion-riffas-info/
