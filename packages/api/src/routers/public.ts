@@ -223,6 +223,8 @@ export const publicRouter = createTRPCRouter({
         winner = { number: raffle.winnerNumber, holder: wc ? maskName(wc.name) : null };
       }
 
+      const activeRate = await getActiveRate(ctx.prisma, raffle.userId);
+
       return {
         id: raffle.id,
         winner,
@@ -233,6 +235,8 @@ export const publicRouter = createTRPCRouter({
         bannerMobileUrl: raffle.bannerMobileUrl,
         iconUrl: raffle.iconUrl,
         pricePerNumber: Number(raffle.pricePerNumber),
+        discountPackages: (raffle.discountPackages as { qty: number; discountPercent: number }[] | null) ?? null,
+        vesPerUsd: activeRate ? Number(activeRate.vesPerUsd) : null,
         totalNumbers: raffle.totalNumbers,
         loteria: raffle.loteria,
         drawDate: raffle.drawDate,
@@ -377,6 +381,28 @@ export const publicRouter = createTRPCRouter({
 
   // Verificar mis números: por teléfono o por número de boleto. Solo lectura.
   // Da confianza al comprador sin exponer datos de otros (nombre enmascarado).
+  // Números al azar entre los disponibles ("Elegir a la suerte"). Aviso al
+  // comprador: la reserva real sigue siendo la atómica de createSale.
+  randomAvailable: publicProcedure
+    .input(z.object({ raffleId: z.string(), count: z.number().int().min(1).max(50) }))
+    .query(async ({ ctx, input }) => {
+      const raffle = await ctx.prisma.raffle.findFirst({
+        where: { id: input.raffleId, isPublic: true, status: "ACTIVE" },
+        select: { id: true },
+      });
+      if (!raffle) throw new TRPCError({ code: "NOT_FOUND" });
+
+      const all = await ctx.prisma.raffleNumber.findMany({
+        where: { raffleId: raffle.id, status: "AVAILABLE" },
+        select: { number: true },
+      });
+      for (let i = all.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [all[i], all[j]] = [all[j], all[i]];
+      }
+      return { numbers: all.slice(0, input.count).map((n) => n.number) };
+    }),
+
   verify: publicProcedure
     .input(z.object({ raffleId: z.string(), query: z.string().min(2) }))
     .query(async ({ ctx, input }) => {
