@@ -99,7 +99,7 @@ export default function LoginPage() {
             Continuar con Google
           </button>
           <p className="text-center text-sm text-slate-500 mt-6">
-            No tienes cuenta? <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">Registrate gratis</Link>
+            No tienes cuenta? <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">Regístrate gratis</Link>
           </p>
         </div>
       </div>

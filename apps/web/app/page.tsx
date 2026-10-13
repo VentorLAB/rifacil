@@ -8,7 +8,7 @@ export default function HomePage() {
           Hecho para riferos 🇻🇪
         </span>
         <h1 className="text-4xl font-bold tracking-tight">
-          Rifá fácil. Cobrá fácil.
+          Rifa fácil. Cobra fácil.
         </h1>
         <p className="text-balance text-slate-600 dark:text-slate-400">
           Crea rifas, vende números, gestiona tus clientes y manda campañas de

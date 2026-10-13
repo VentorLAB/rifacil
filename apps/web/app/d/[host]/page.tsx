@@ -81,7 +81,7 @@ const TRUST_SEALS: { icon: string; text: string }[] = [
 // Paso 5 — "Cómo funciona" (3 pasos) para el comprador frío.
 const HOW_IT_WORKS: { h: string; p: string }[] = [
   { h: "Elige tu número y apártalo", p: "Entra a la rifa, escoge tu número y resérvalo en segundos. Mientras más lleves, menos pagas por cada uno." },
-  { h: "Paga y sube tu comprobante (o coordiná por WhatsApp)", p: "Pago Móvil, Binance, Zelle, Zinli, Bancolombia o efectivo. Subí la captura en el sitio o mandánosla por WhatsApp." },
+  { h: "Paga y sube tu comprobante (o coordina por WhatsApp)", p: "Pago Móvil, Binance, Zelle, Zinli, Bancolombia o efectivo. Sube la captura en el sitio o mándanosla por WhatsApp." },
   { h: "Mira el sorteo EN VIVO — si tu número sale, ganaste 🏆", p: "El sorteo se transmite por Instagram con la Lotería del Táchira. Transparencia total: el resultado no lo decidimos nosotros." },
 ];
 

@@ -412,7 +412,7 @@ export default function ContactsPage() {
             {confirmDelete.strong && (
               <div>
                 <label className="mb-1 block text-sm font-medium text-slate-700">
-                  Para confirmar, escribí: <span className="font-mono">{strongConfirmExpected}</span>
+                  Para confirmar, escribe: <span className="font-mono">{strongConfirmExpected}</span>
                 </label>
                 <input
                   value={strongConfirmText}
