@@ -1,7 +1,7 @@
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { v2 as cloudinary } from "cloudinary";
-import { INTER_SEMIBOLD_WOFF_BASE64 } from "./inter-font";
+import { COURIER_PRIME_REGULAR_TTF_BASE64, COURIER_PRIME_BOLD_TTF_BASE64 } from "./courier-prime-font";
 import { RECEIPT_CARD_TRANSFORM } from "./receipt-card";
 
 /**
@@ -52,15 +52,20 @@ function readableOn(hex?: string | null): string {
   return yiq >= 150 ? "#12141A" : "#ffffff";
 }
 
-// --- Fuente para Satori (se cachea entre invocaciones del worker) ---
-// Inter 600 EMBEBIDA en base64 (./inter-font). No se lee del filesystem a
-// propósito: en serverless (Vercel) este paquete se transpila/bundlea y
-// import.meta.url/__dirname no apuntan al .woff en disco — un readFileSync
-// crashearía en prod. Embebida = cero filesystem y cero red.
-let fontCache: Buffer | null = null;
-function getFont(): Buffer {
+// --- Fuentes para Satori (se cachean entre invocaciones del worker) ---
+// Courier Prime (regular + bold) EMBEBIDA en base64 (./courier-prime-font). No
+// se lee del filesystem a propósito: en serverless (Vercel) este paquete se
+// transpila/bundlea y import.meta.url/__dirname no apuntan al archivo en disco
+// — un readFileSync crashearía en prod. Embebida = cero filesystem y cero red.
+// Courier Prime = el look "máquina de escribir" de la referencia (riffas.info),
+// con trazo GRUESO que se lee hasta en la miniatura de WhatsApp.
+let fontCache: { regular: Buffer; bold: Buffer } | null = null;
+function getFonts(): { regular: Buffer; bold: Buffer } {
   if (fontCache) return fontCache;
-  fontCache = Buffer.from(INTER_SEMIBOLD_WOFF_BASE64, "base64");
+  fontCache = {
+    regular: Buffer.from(COURIER_PRIME_REGULAR_TTF_BASE64, "base64"),
+    bold: Buffer.from(COURIER_PRIME_BOLD_TTF_BASE64, "base64"),
+  };
   return fontCache;
 }
 
@@ -81,6 +86,7 @@ const money = (v: unknown) => {
 };
 
 const MONTHS = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+const MONTHS_LONG = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
 // "11 JUL 2026, 10:10 PM" (fecha del sorteo). SIEMPRE en hora de Caracas: el
 // servidor (Vercel) corre en UTC y sin timeZone el sorteo salía 4h corrido
@@ -101,22 +107,42 @@ function fmtDraw(d?: Date | string | null): string {
   return cleanSpaces(`${get("day")} ${MONTHS[Number(get("month")) - 1]} ${get("year")}, ${get("hour")}:${get("minute")} ${get("dayPeriod").toUpperCase()}`);
 }
 
+// "3 de octubre de 2026, 22:10" — formato LARGO de la fecha del sorteo, como el
+// encabezado de la referencia (riffas.info). 24h, hora de Caracas.
+function fmtDrawLong(d?: Date | string | null): string {
+  if (!d) return "";
+  const parts = new Intl.DateTimeFormat("es-VE", {
+    timeZone: VE_TZ,
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(new Date(d));
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
+  return cleanSpaces(`${get("day")} de ${MONTHS_LONG[Number(get("month")) - 1]} de ${get("year")}, ${get("hour")}:${get("minute")}`);
+}
+
 // El CLDR es-VE mete U+202F (narrow no-break space) dentro del dayPeriod
 // ("p.\u202Fm.") y a veces U+00A0: la Inter embebida NO tiene esos glifos y
 // resvg dibuja un TOFU (▯) en "Sorteo ... 10:18 P.▯M.". Normalizamos a espacio
 // normal en TODA fecha que va al recibo.
 const cleanSpaces = (s: string) => s.replace(/[\u00A0\u202F]/g, " ").replace(/\s{2,}/g, " ").trim();
 
-// Fecha de reserva (corta, es-VE)
+// Fecha de reserva/compra (corta, es-VE, 24h como la referencia riffas.info:
+// "5 sept 2026, 14:54"). 24h a propósito: elimina el dayPeriod ("p. m.") y su
+// U+202F de raíz.
 function fmtReserva(d?: Date | string | null): string {
   if (!d) return "";
   return cleanSpaces(new Date(d).toLocaleString("es-VE", {
     timeZone: VE_TZ,
-    day: "2-digit",
+    day: "numeric",
     month: "short",
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+    hour12: false,
   }));
 }
 
@@ -213,15 +239,7 @@ export interface GenerateReceiptInput {
 // para poder probar el layout localmente sin credenciales de Cloudinary.
 export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<string> {
   const { sale, raffle, contact } = input;
-  const brandName = input.brandName || "Hermanos Pernía";
-  const instagram = input.brandInstagram || "@rifashermanospernia";
-  const website = (input.brandWebsite || "rifashermanospernia.com").replace(/^https?:\/\//, "");
-  // Normalizamos el color de marca para que SIEMPRE lleve '#': un valor guardado
-  // como "df0815" (sin almohadilla) pasaría un regex laxo y rompería/ensuciaría el
-  // render. Sin match válido → rojo de marca por defecto.
-  const brandMatch = /^#?([0-9a-f]{6})$/i.exec((input.brandColor || "").trim());
-  const brand = brandMatch ? `#${brandMatch[1]}` : "#DF0815";
-  const onBrand = readableOn(brand);
+  const brandName = (input.brandName || "").trim() || "Tu rifa";
 
   // Montos: total a cobrar vs. lo efectivamente abonado. La deuda es el resto.
   // num() neutraliza NaN (un monto no numérico jamás debe salir como "$NaN").
@@ -232,116 +250,73 @@ export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<str
   const totalValue = num(sale.totalAmount ?? sale.finalAmount);
   const paidValue = num(sale.amountPaid ?? sale.finalAmount);
   const debtValue = Math.max(0, Number((totalValue - paidValue).toFixed(2)));
-  const paid = debtValue <= 0;
 
-  // Premio (línea corta y persuasiva bajo el título).
-  const prizeText = (
-    raffle.prizeTagline ||
-    raffle.prizes?.[0]?.titulo ||
-    raffle.prize ||
-    ""
-  ).trim();
-  // Emoji del premio según el texto (auto, moto, efectivo, tecnología, o regalo).
-  const prizeIcon = /(carro|auto|toyota|agya|aveo|veh[ií]culo|camioneta|0\s?km)/i.test(prizeText)
-    ? "🚗"
-    : /(moto|motocicleta|scooter)/i.test(prizeText)
-      ? "🏍️"
-      : /(efectivo|d[oó]lares|dinero|cash|usd)/i.test(prizeText)
-        ? "💵"
-        : /(iphone|celular|tel[eé]fono|laptop|tv|televisor|tecnolog)/i.test(prizeText)
-          ? "📱"
-          : "🎁";
+  // ── DISEÑO "TICKET riffas.info" (v3) ───────────────────────────────────
+  // Espejo 1:1 del recibo de la app de referencia (decisión de Marco, 14-oct
+  // "haslo como la referencia"): ticket blanco, TODO en Courier Prime (look
+  // máquina de escribir, trazo grueso → se lee hasta en la miniatura chica de
+  // WhatsApp), separadores punteados, icono de ticket con $, campos en UNA
+  // columna y "¡Gracias por su compra!" al final. SIN chip de estado, SIN
+  // premio, SIN footer web: exactamente los campos de la referencia.
+  // Montos ENTEROS (regla de Marco para rifacil) aunque la referencia usa 2
+  // decimales.
 
-  // Sorteo + lotería (contexto y gancho: "está por jugarse").
-  const drawStr = fmtDraw(raffle.drawDate);
-  const lotStr = raffle.lottery
-    ? /^loter[ií]a\b/i.test(raffle.lottery.trim())
-      ? raffle.lottery.trim()
-      : `Lotería ${raffle.lottery.trim()}`
-    : "";
-  const drawLine = [drawStr ? `Sorteo ${drawStr}` : "", lotStr].filter(Boolean).join("  ·  ");
-
-  const firstName = (contact.name || "").trim().split(/\s+/)[0] || "";
-  const persuasive = paid
-    ? `🍀 ¡Ya estás jugando${firstName ? `, ${firstName}` : ""}! Mucha suerte`
-    : `🤝 Completa tu pago y asegura tus números`;
-
-  // Logo del rifero (falla suave a null).
-  const logoUri = await fetchDataUri(input.brandLogo);
-
-  // Números como TEXTO legible (como riffas.info): "045, 088, 112". Muestra TODOS
-  // los del comprador. Si son muchos, envuelve; nunca se recorta.
-  // ESCALADO por cantidad: un comprador mayorista (50-80 números, común en VE) haría
-  // crecer el alto hasta volver la imagen VERTICAL → WhatsApp la dejaría en blanco.
-  // Bajamos el tamaño (y compactamos el separador) según cuántos sean, para que la
-  // imagen se mantenga HORIZONTAL aun con muchos números.
-  const numCount = (sale.numbers || []).length;
-  const numbersText = (sale.numbers || []).join(numCount > 20 ? ", " : ",  ") || "—";
-  const numbersFontSizeV2 =
-    numCount <= 8 ? 44 : numCount <= 16 ? 36 : numCount <= 30 ? 29 : numCount <= 60 ? 23 : numCount <= 100 ? 18 : 15;
-  const numbersLetterSpacing = numCount <= 24 ? 1 : 0.3;
-
-  // ── REDISEÑO "ticket legible" (v2) ─────────────────────────────────────
-  // Objetivo: la misma legibilidad del recibo viejo de riffas.info (UNA
-  // columna, texto GRANDE que llena el ancho) con el acabado visual de la v2
-  // (marca, colores, chip de estado). El lienzo apunta a ~4:3 (1000x~730) para
-  // que el derivado 1080x790 de WhatsApp no tenga que achicarlo ni rellenarlo.
-  const rowBig = (label: string, value: string, valueColor: string = C.ink, valueWeight = 400) =>
-    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 9 }, [
-      el("div", { display: "flex", color: C.ink, fontSize: 27, fontWeight: 700, width: 215 }, label),
+  // Fila etiqueta:valor (UNA columna, como la referencia). Label regular,
+  // valor NEGRITA grande: legible en miniatura (exigencia de Marco).
+  const row = (label: string, value: string, size = 27, valueWeight = 700) =>
+    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 8 }, [
+      el("div", { display: "flex", color: C.ink, fontSize: size, fontWeight: 400, width: 235 }, label),
       el(
         "div",
-        { display: "flex", color: valueColor, fontSize: 27, fontWeight: valueWeight, flexGrow: 1, flexBasis: 0 },
+        { display: "flex", color: C.ink, fontSize: size, fontWeight: valueWeight, flexGrow: 1, flexBasis: 0 },
         value
       ),
     ]);
 
-  const rowMoney = (label: string, value: string, valueColor: string = C.ink) =>
-    el("div", { display: "flex", flexDirection: "row", alignItems: "flex-start", marginBottom: 10 }, [
-      el("div", { display: "flex", color: C.ink, fontSize: 30, fontWeight: 700, width: 215 }, label),
-      el(
-        "div",
-        { display: "flex", color: valueColor, fontSize: 30, fontWeight: 700, flexGrow: 1, flexBasis: 0 },
-        value
-      ),
-    ]);
-
-  // Separador troquelado (línea de puntos horizontal).
+  // Separador punteado (como las líneas troqueladas de la referencia).
   const sep = () =>
-    el("div", { display: "flex", width: "100%", height: 0, borderTop: `2px dashed ${C.dash}`, margin: "13px 0" });
+    el("div", { display: "flex", width: "100%", height: 0, borderTop: `2px dashed ${C.dash}`, margin: "12px 0" });
 
-  // Franja de estado a todo el ancho (chip grande, imposible de no ver).
-  const statusBanner = paid
-    ? el(
-        "div",
-        {
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#E7F7EE",
-          border: "2px solid #A6E2C2",
-          borderRadius: 16,
-          padding: "11px 20px",
-          marginTop: 4,
-        },
-        el("div", { color: C.green, fontSize: 26, fontWeight: 700 }, "PAGADO · ¡ESTÁS DENTRO!")
-      )
-    : el(
-        "div",
-        {
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#FDF3E2",
-          border: "2px solid #F0D9A6",
-          borderRadius: 16,
-          padding: "11px 20px",
-          marginTop: 4,
-        },
-        el(
-          "div",
-          { color: C.amber, fontSize: 26, fontWeight: 700 },
-          `APARTADO · TE FALTA ${money(debtValue)}`
-        )
-      );
+  // Icono del ticket: cuadrito de borde punteado con un ticket azul y el $.
+  // Hecho con divs de Satori (cero assets externos, cero fuentes del sistema).
+  const ticketIcon = el(
+    "div",
+    {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 74,
+      height: 74,
+      border: `2px dashed ${C.dash}`,
+      borderRadius: 10,
+      marginRight: 18,
+      flexShrink: 0,
+    },
+    el(
+      "div",
+      {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 48,
+        height: 34,
+        backgroundColor: "#2D9CDB",
+        borderRadius: 7,
+      },
+      el("div", { display: "flex", color: "#FFFFFF", fontSize: 24, fontWeight: 700, fontFamily: "Courier Prime" }, "$")
+    )
+  );
+
+  // Sorteo (formato largo, como la referencia) + lotería en crudo.
+  const drawLong = fmtDrawLong(raffle.drawDate);
+  const lotLine = raffle.lottery ? `Lotería: ${raffle.lottery.trim()}` : "";
+
+  // Números: todos, en una línea que envuelve. ESCALADO por cantidad: un
+  // comprador mayorista (50-80 números, común en VE) no debe romper el ticket.
+  const numCount = (sale.numbers || []).length;
+  const numbersText = (sale.numbers || []).join(", ") || "—";
+  const numbersFontSize =
+    numCount <= 8 ? 32 : numCount <= 16 ? 28 : numCount <= 30 ? 24 : numCount <= 60 ? 19 : numCount <= 100 ? 16 : 14;
 
   const card = el(
     "div",
@@ -350,88 +325,54 @@ export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<str
       flexDirection: "column",
       width: "100%",
       backgroundColor: C.card,
-      borderRadius: 24,
-      border: `3px dashed ${brand}`,
-      overflow: "hidden",
-      fontFamily: "Inter",
-      padding: "24px 40px",
+      fontFamily: "Courier Prime",
+      padding: "30px 40px",
     },
     [
-      // 1) Encabezado: marca (color del rifero) + título de la rifa + premio.
-      // Con logo: SOLO el logo, GRANDE (los logos de los riferos ya traen el
-      // nombre como wordmark; a 30px de alto quedaba ilegible y pegado al texto
-      // de marca duplicado — se veía "superpuesto"). Sin logo: el nombre en texto.
+      // 1) Encabezado: icono ticket + (título / organizador / sorteo / lotería)
+      //    centrados, como la referencia.
       el("div", { display: "flex", flexDirection: "row", alignItems: "center" }, [
-        logoUri
-          ? img(logoUri, { height: 46, width: 220, objectFit: "contain", objectPosition: "left" })
-          : el("div", {}),
-        logoUri
-          ? el("div", {})
-          : el(
-              "div",
-              { display: "flex", color: brand, fontSize: 17, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase" },
-              brandName
-            ),
+        ticketIcon,
+        el("div", { display: "flex", flexDirection: "column", alignItems: "center", flexGrow: 1, flexBasis: 0 }, [
+          el("div", { display: "flex", color: C.ink, fontSize: 32, fontWeight: 700, textAlign: "center" }, raffle.title || "Rifa"),
+          el("div", { display: "flex", color: C.ink, fontSize: 22, marginTop: 4, textAlign: "center" }, brandName),
+          drawLong
+            ? el("div", { display: "flex", color: C.sub, fontSize: 19, marginTop: 4, textAlign: "center" }, drawLong)
+            : el("div", {}),
+          lotLine
+            ? el("div", { display: "flex", color: C.faint, fontSize: 17, marginTop: 3, textAlign: "center" }, lotLine)
+            : el("div", {}),
+        ]),
       ]),
-      el("div", { display: "flex", color: C.ink, fontSize: 34, fontWeight: 700, marginTop: 4 }, raffle.title || "Rifa"),
-      prizeText
-        ? el("div", { display: "flex", color: C.sub, fontSize: 22, marginTop: 4 }, `${prizeIcon} ${prizeText}`)
-        : el("div", {}),
-      drawLine
-        ? el("div", { display: "flex", color: C.faint, fontSize: 18, marginTop: 3 }, drawLine)
-        : el("div", {}),
 
       sep(),
 
-      // 2) Números: protagonistas, GRANDES (escalan si son muchos).
-      el(
-        "div",
-        { display: "flex", color: C.faint, fontSize: 17, fontWeight: 700, letterSpacing: 2, marginBottom: 8 },
-        "TUS NÚMEROS"
-      ),
-      el(
-        "div",
-        {
-          display: "flex",
-          flexWrap: "wrap",
-          color: C.ink,
-          fontSize: numbersFontSizeV2,
-          fontWeight: 700,
-          letterSpacing: numbersLetterSpacing,
-        },
-        numbersText
-      ),
+      // 2) Números + datos del comprador (etiqueta:valor, una sola columna).
+      row("Números:", numbersText, numbersFontSize),
+      row("Comprador:", contact.name || "—", 27),
+      contact.phone ? row("Teléfono:", contact.phone, 27) : el("div", {}),
+      sale.createdAt ? row("Reservado:", fmtReserva(sale.createdAt), 27) : el("div", {}),
 
       sep(),
 
-      // 3) Datos del comprador (etiqueta:valor, una sola columna, texto grande).
-      rowBig("Comprador:", contact.name + (contact.city ? ` · ${contact.city}` : "")),
-      contact.phone ? rowBig("Teléfono:", contact.phone) : el("div", {}),
-      sale.createdAt ? rowBig("Reservado:", fmtReserva(sale.createdAt)) : el("div", {}),
+      // 3) Montos + fecha (todos en negrita, enteros, como manda rifacil).
+      row("Valor total:", money(totalValue), 28),
+      row("Abonado:", money(paidValue), 28),
+      row("Deuda:", money(debtValue), 28),
+      row("Fecha:", fmtReserva(sale.paidAt || sale.createdAt), 27),
 
       sep(),
 
-      // 4) Montos: etiqueta:valor grandes y con color semántico.
-      rowMoney("Valor total:", money(totalValue)),
-      rowMoney(paid ? "Pagado:" : "Abonado:", money(paidValue), C.green),
-      !paid ? rowMoney("Deuda:", money(debtValue), brand) : el("div", {}),
-
-      // 5) Estado a todo lo ancho + cierre cálido + pie de confianza.
-      statusBanner,
+      // 4) Cierre de la referencia.
       el(
         "div",
-        { display: "flex", justifyContent: "center", marginTop: 14 },
-        el("div", { display: "flex", color: C.ink, fontSize: 24, fontWeight: 600 }, persuasive)
-      ),
-      el(
-        "div",
-        { display: "flex", justifyContent: "center", marginTop: 10 },
-        el("div", { display: "flex", color: C.faint, fontSize: 17 }, `${website}  ·  ${instagram}  ·  Recibo ${sale.receiptNumber}`)
+        { display: "flex", justifyContent: "center", marginTop: 2 },
+        el("div", { display: "flex", color: C.ink, fontSize: 26, fontWeight: 700 }, "¡Gracias por su compra!")
       ),
     ]
   );
 
-  // Marco exterior (da el aire alrededor del boleto).
+  // Marco exterior (da el aire alrededor del ticket).
   const tree = el(
     "div",
     {
@@ -439,21 +380,21 @@ export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<str
       width: "100%",
       padding: 16,
       backgroundColor: C.frame,
-      fontFamily: "Inter",
+      fontFamily: "Courier Prime",
     },
     card
   );
 
-  const font = getFont();
+  const fonts = getFonts();
   return satori(tree as any, {
     // Boleto HORIZONTAL (~4:3): WhatsApp SOLO pinta como card GRANDE las imágenes
-    // horizontales (una vertical/alta la deja en blanco). Ancho grande para las 2
-    // columnas; la altura sale ~4:3 como la referencia (riffas.info 1080x790).
+    // horizontales (una vertical/alta la deja en blanco). El lienzo final de la
+    // card se clava a 1080x790 exactos en rasterizeCardExact.
     width: 1000,
     fonts: [
-      { name: "Inter", data: font, weight: 400, style: "normal" },
-      { name: "Inter", data: font, weight: 600, style: "normal" },
-      { name: "Inter", data: font, weight: 700, style: "normal" },
+      { name: "Courier Prime", data: fonts.regular, weight: 400, style: "normal" },
+      { name: "Courier Prime", data: fonts.bold, weight: 600, style: "normal" },
+      { name: "Courier Prime", data: fonts.bold, weight: 700, style: "normal" },
     ],
     loadAdditionalAsset: async (code: string, segment: string) =>
       code === "emoji" ? await loadEmoji(segment) : "",
