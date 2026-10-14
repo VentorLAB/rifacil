@@ -98,20 +98,26 @@ function fmtDraw(d?: Date | string | null): string {
     hour12: true,
   }).formatToParts(new Date(d));
   const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
-  return `${get("day")} ${MONTHS[Number(get("month")) - 1]} ${get("year")}, ${get("hour")}:${get("minute")} ${get("dayPeriod").toUpperCase()}`;
+  return cleanSpaces(`${get("day")} ${MONTHS[Number(get("month")) - 1]} ${get("year")}, ${get("hour")}:${get("minute")} ${get("dayPeriod").toUpperCase()}`);
 }
+
+// El CLDR es-VE mete U+202F (narrow no-break space) dentro del dayPeriod
+// ("p.\u202Fm.") y a veces U+00A0: la Inter embebida NO tiene esos glifos y
+// resvg dibuja un TOFU (▯) en "Sorteo ... 10:18 P.▯M.". Normalizamos a espacio
+// normal en TODA fecha que va al recibo.
+const cleanSpaces = (s: string) => s.replace(/[\u00A0\u202F]/g, " ").replace(/\s{2,}/g, " ").trim();
 
 // Fecha de reserva (corta, es-VE)
 function fmtReserva(d?: Date | string | null): string {
   if (!d) return "";
-  return new Date(d).toLocaleString("es-VE", {
+  return cleanSpaces(new Date(d).toLocaleString("es-VE", {
     timeZone: VE_TZ,
     day: "2-digit",
     month: "short",
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-  });
+  }));
 }
 
 // --- Imágenes: Satori NO baja URLs remotas de forma confiable; las traemos y
@@ -352,15 +358,20 @@ async function renderReceiptSvg(input: GenerateReceiptInput): Promise<string> {
     },
     [
       // 1) Encabezado: marca (color del rifero) + título de la rifa + premio.
+      // Con logo: SOLO el logo, GRANDE (los logos de los riferos ya traen el
+      // nombre como wordmark; a 30px de alto quedaba ilegible y pegado al texto
+      // de marca duplicado — se veía "superpuesto"). Sin logo: el nombre en texto.
       el("div", { display: "flex", flexDirection: "row", alignItems: "center" }, [
         logoUri
-          ? img(logoUri, { height: 30, width: 120, objectFit: "contain" })
+          ? img(logoUri, { height: 46, width: 220, objectFit: "contain", objectPosition: "left" })
           : el("div", {}),
-        el(
-          "div",
-          { display: "flex", color: brand, fontSize: 17, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", marginLeft: logoUri ? 12 : 0 },
-          brandName
-        ),
+        logoUri
+          ? el("div", {})
+          : el(
+              "div",
+              { display: "flex", color: brand, fontSize: 17, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase" },
+              brandName
+            ),
       ]),
       el("div", { display: "flex", color: C.ink, fontSize: 34, fontWeight: 700, marginTop: 4 }, raffle.title || "Rifa"),
       prizeText
