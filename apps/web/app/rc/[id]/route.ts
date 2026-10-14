@@ -75,7 +75,7 @@ img{width:100%;height:auto;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.
 p{font-size:13px;color:#98a1ad;margin:14px 0 0}</style>
 </head><body><div class="wrap">
 <img src="${esc(full)}" alt="Comprobante de la rifa">
-<p>🧾 Tu comprobante · guardá esta imagen</p>
+<p>🧾 Tu comprobante · guarda esta imagen</p>
 </div></body></html>`;
 
   return new Response(html, {
