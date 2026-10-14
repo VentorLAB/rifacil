@@ -3,7 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { PaymentMethod } from "@riffas/db";
 import { getActiveRate } from "../lib/exchangeRate";
-import { brandFor, raffleReceiptFields, contactRaffleNumbers, receiptCardUrl } from "../lib/receiptData";
+import { brandFor, raffleReceiptFields, contactRaffleNumbers } from "../lib/receiptData";
 // imgbb.ts NO tiene binarios nativos (solo fetch) → import estático seguro, a
 // diferencia de receipt.ts (satori/resvg) que se importa diferido más abajo.
 import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
@@ -17,12 +17,14 @@ const round2 = (n: number) => Math.round(n * 100) / 100;
 // Vercel— TODA la API tRPC crashea al iniciar ("Cannot find module ...resvg..."), lo que
 // tumbaba rifas, contactos, vendedores, etc. Lo importamos solo al generar el recibo y
 // toleramos el fallo: la venta/abono se guarda aunque el recibo no se pueda renderizar.
-type ReceiptArgs = Parameters<typeof import("@riffas/shared/receipt")["generateReceipt"]>[0];
+type ReceiptArgs = Parameters<typeof import("@riffas/shared/receipt")["generateReceiptAndCard"]>[0];
 
-async function safeGenerateReceipt(args: ReceiptArgs): Promise<string | null> {
+async function safeGenerateReceipt(
+  args: ReceiptArgs
+): Promise<{ receiptUrl: string; cardPng: Buffer } | null> {
   try {
-    const { generateReceipt } = await import("@riffas/shared/receipt");
-    return await generateReceipt(args);
+    const { generateReceiptAndCard } = await import("@riffas/shared/receipt");
+    return await generateReceiptAndCard(args);
   } catch (err) {
     console.error("[sale] generateReceipt falló; la venta se guardó sin recibo:", err);
     return null;
@@ -54,12 +56,13 @@ async function issueSaleReceipt(
   // El recibo muestra TODOS los números que el contacto tiene en la rifa
   // (no solo los de esta venta), para que el comprador vea todos los suyos.
   const allNums = await contactRaffleNumbers(prisma, sale.raffleId, sale.contactId);
-  const receiptUrl = await safeGenerateReceipt({
+  const generated = await safeGenerateReceipt({
     sale: { ...sale, numbers: allNums.length ? allNums : sale.numbers },
     raffle: await raffleReceiptFields(prisma, sale.raffle, prizes),
     contact: sale.contact,
     ...brand,
   });
+  const receiptUrl = generated?.receiptUrl ?? null;
   // Persistimos receiptUrl YA (barato y durable), ANTES de la subida a ImgBB: si el
   // proceso muere durante la subida (timeout serverless, OOM), la venta no queda sin
   // recibo.
@@ -68,12 +71,13 @@ async function issueSaleReceipt(
     where: { saleId: sale.id },
     data: { receiptUrl },
   });
-  // Subimos a ImgBB el derivado **1080x790 (4:3)** — NO el PNG crudo — para que
-  // WhatsApp muestre la card GRANDE (mismo formato que riffas.info; el crudo, más
-  // ancho/alto, WhatsApp lo dejaba en blanco o chico). Falla suave: sin IMGBB_API_KEY
-  // o si falla, receiptShareUrl = null y el wa.me cae a /rc.
-  const receiptShareUrl = receiptUrl
-    ? (await uploadReceiptToImgBB(receiptCardUrl(receiptUrl), sale.receiptNumber))?.viewerUrl ?? null
+  // Subimos a ImgBB el PNG **RGBA DIRECTO de resvg** (1080 de ancho) — NO el
+  // derivado RGB de Cloudinary: en prod WhatsApp pintaba ese RGB como miniatura
+  // chica ilegible; el RGBA (formato de la app de referencia) sale como card
+  // GRANDE. Falla suave: sin IMGBB_API_KEY o si falla, receiptShareUrl = null y
+  // el wa.me cae a /rc.
+  const receiptShareUrl = generated
+    ? (await uploadReceiptToImgBB(generated.cardPng.toString("base64"), sale.receiptNumber))?.viewerUrl ?? null
     : null;
   // Persistimos el link de ImgBB → el reenvío desde una venta ya abierta (getById),
   // el portal del vendedor y la página /c también muestran la card grande, no solo el

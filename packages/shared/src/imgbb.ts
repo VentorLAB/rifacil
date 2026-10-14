@@ -104,7 +104,19 @@ export async function uploadReceiptToImgBB(
       const json: any = await res.json();
       const viewerUrl: string | undefined = json?.data?.url_viewer;
       const directUrl: string | undefined = json?.data?.url;
-      if (viewerUrl && directUrl) return { viewerUrl, directUrl };
+      if (viewerUrl && directUrl) {
+        // WARM-UP: el crawler de WhatsApp scrapea el link SEGUNDOS después del
+        // envío; si la imagen aún no está caliente en el CDN de ImgBB, la preview
+        // cae a la miniatura chica (le pasó al reenvío de una venta vieja, 13-oct).
+        // Pegamos un fetch a la página y a la imagen directa ANTES de devolver el
+        // link, para que el primer scrape real ya la encuentre servida. Best-effort:
+        // si falla, el link igual funciona.
+        await Promise.all([
+          fetchWithTimeout(viewerUrl, {}, 4_000).catch(() => null),
+          fetchWithTimeout(directUrl, {}, 4_000).catch(() => null),
+        ]);
+        return { viewerUrl, directUrl };
+      }
       if (attempt === 0) {
         await new Promise((r) => setTimeout(r, 300));
         continue;
