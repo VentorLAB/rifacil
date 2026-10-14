@@ -7,9 +7,16 @@
 // desde un CDN de imágenes puro y WhatsApp la renderiza de forma FIABLE como card
 // grande. Nuestra página en Cloudinary caía a la miniatura chica.
 //
-// La API acepta `image` como URL, base64 o binario → le pasamos la URL de
-// Cloudinary del recibo (ya generado). Falla suave: si no hay API key o la subida
-// falla, devuelve null y el llamador cae al comportamiento anterior (/rc).
+// DOS vías de subida (experimento 13-oct, sin garantías — la decisión
+// grande/chico la toma la app del que ENVÍA y WhatsApp no la documenta):
+//   1. PRIMARIA — INVITADO (sin cuenta): endpoint web de ibb.co, igual que un
+//      usuario anónimo del sitio. La página viewer sale "hosted on ImgBB" SIN
+//      álbum — BYTE A BYTE como la referencia de riffas.info (la API oficial
+//      con key deja la imagen en el perfil de la cuenta y la página sale
+//      "in the X's images album", la única diferencia restante detectada).
+//   2. RESPALDO — API oficial (api.imgbb.com con IMGBB_API_KEY): si el
+//      endpoint web falla o cambia. Cae en el perfil/álbum de la cuenta.
+// Falla suave: si ambas fallan, devuelve null y el llamador cae a /rc.
 //
 // La API key va SOLO en env de servidor (IMGBB_API_KEY). NUNCA hardcodear.
 
@@ -22,7 +29,8 @@ export interface ImgbbResult {
 
 /**
  * Sube una imagen (por URL, base64 o data-URI) a ImgBB. Devuelve el link del visor
- * (ibb.co) + la imagen directa, o `null` si no hay API key o la subida falla.
+ * (ibb.co) + la imagen directa, o `null` si ambas vías de subida fallan.
+ * No requiere API key para la vía primaria (invitado); la key es solo respaldo.
  *
  * @param image  URL http(s), base64 puro, o data-URI de la imagen del recibo.
  * @param name   Nombre del archivo en ImgBB (p.ej. el receiptNumber). Se sanea.
@@ -63,31 +71,111 @@ export async function uploadReceiptToImgBB(
   image: string,
   name?: string | null
 ): Promise<ImgbbResult | null> {
-  const key = process.env.IMGBB_API_KEY;
-  if (!key || !image) return null;
+  if (!image) return null;
 
-  // Resolver a base64. Si viene una URL http(s), la bajamos nosotros (fiable, con
-  // reintento) y mandamos los BYTES. Si ya es data-URI/base64, se usa tal cual.
-  let payload: string;
+  // Resolver a BYTES. Si viene una URL http(s), la bajamos nosotros (fiable, con
+  // reintento). Si ya es data-URI/base64, se usa tal cual.
+  let bytes: Buffer | null = null;
   if (/^https?:\/\//i.test(image)) {
     const b64 = await fetchImageBase64(image);
     if (!b64) {
       console.warn("[imgbb] no se pudo descargar la imagen del recibo para subir a ImgBB");
       return null;
     }
-    payload = b64;
+    bytes = Buffer.from(b64, "base64");
   } else {
-    payload = image.startsWith("data:") ? image.replace(/^data:[^,]+,/, "") : image;
+    const b64 = image.startsWith("data:") ? image.replace(/^data:[^,]+,/, "") : image;
+    try {
+      bytes = Buffer.from(b64, "base64");
+    } catch {
+      bytes = null;
+    }
   }
+  if (!bytes || bytes.length === 0) return null;
 
   // Nombre saneado (solo lo permitido en un nombre de archivo simple).
   const safeName = (name || "recibo").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 80) || "recibo";
 
+  // 1) PRIMARIA: subida de INVITADO (sin cuenta) — viewer "hosted on ImgBB".
+  const guest = await uploadGuest(bytes, safeName);
+  if (guest) {
+    await warmUp(guest);
+    return guest;
+  }
+
+  // 2) RESPALDO: API oficial con key (cae en el perfil/álbum de la cuenta).
+  const key = process.env.IMGBB_API_KEY;
+  if (!key) return null;
+  const api = await uploadWithApiKey(bytes, safeName, key);
+  if (api) {
+    await warmUp(api);
+    return api;
+  }
+  return null;
+}
+
+// Subida de INVITADO al endpoint web de ImgBB (https://ibb.co/json) — el mismo
+// que usa el sitio para usuarios anónimos. NO usa API key y la imagen NO queda
+// ligada a ninguna cuenta/álbum: la página viewer sale "Image X hosted on
+// ImgBB", idéntica a la de la referencia riffas.info. Endpoint NO documentado:
+// por eso es la vía primaria pero con respaldo automático en la API oficial.
+async function uploadGuest(png: Buffer, safeName: string): Promise<ImgbbResult | null> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const form = new FormData();
+      form.set("action", "upload");
+      form.set("type", "file");
+      form.set("source", new Blob([new Uint8Array(png)], { type: "image/png" }), `${safeName}.png`);
+      const res = await fetchWithTimeout(
+        "https://ibb.co/json",
+        { method: "POST", headers: { accept: "application/json" }, body: form },
+        10_000
+      );
+      if (!res.ok) {
+        if (attempt === 0) {
+          await new Promise((r) => setTimeout(r, 300));
+          continue;
+        }
+        console.warn("[imgbb] subida invitado devolvió estado", res.status);
+        return null;
+      }
+      const json: any = await res.json();
+      const viewerUrl: string | undefined = json?.image?.url_viewer;
+      const directUrl: string | undefined = json?.image?.url;
+      if (json?.status_code === 200 && viewerUrl && directUrl) {
+        return { viewerUrl, directUrl };
+      }
+      if (attempt === 0) {
+        await new Promise((r) => setTimeout(r, 300));
+        continue;
+      }
+      console.warn("[imgbb] respuesta invitado sin url_viewer/url");
+      return null;
+    } catch (err) {
+      if (attempt === 0) {
+        await new Promise((r) => setTimeout(r, 300));
+        continue;
+      }
+      console.warn("[imgbb] subida invitado falló:", (err as Error)?.message);
+      return null;
+    }
+  }
+  return null;
+}
+
+// Subida por la API OFICIAL de ImgBB (api.imgbb.com/1/upload?key=...). La imagen
+// queda ligada al perfil de la cuenta dueña de la key (su página viewer sale
+// "in the X's images album"). Se usa solo como respaldo de la vía invitado.
+async function uploadWithApiKey(
+  png: Buffer,
+  safeName: string,
+  key: string
+): Promise<ImgbbResult | null> {
   // OJO: la key va como query param (así lo exige la API de ImgBB). NUNCA loguear
   // esta URL completa.
   const endpoint = `https://api.imgbb.com/1/upload?key=${encodeURIComponent(key)}&name=${encodeURIComponent(safeName)}`;
   const body = new URLSearchParams();
-  body.set("image", payload);
+  body.set("image", png.toString("base64"));
 
   // Subida con 1 reintento (errores transitorios de ImgBB → no caer al respaldo).
   for (let attempt = 0; attempt < 2; attempt++) {
@@ -105,16 +193,6 @@ export async function uploadReceiptToImgBB(
       const viewerUrl: string | undefined = json?.data?.url_viewer;
       const directUrl: string | undefined = json?.data?.url;
       if (viewerUrl && directUrl) {
-        // WARM-UP: el crawler de WhatsApp scrapea el link SEGUNDOS después del
-        // envío; si la imagen aún no está caliente en el CDN de ImgBB, la preview
-        // cae a la miniatura chica (le pasó al reenvío de una venta vieja, 13-oct).
-        // Pegamos un fetch a la página y a la imagen directa ANTES de devolver el
-        // link, para que el primer scrape real ya la encuentre servida. Best-effort:
-        // si falla, el link igual funciona.
-        await Promise.all([
-          fetchWithTimeout(viewerUrl, {}, 4_000).catch(() => null),
-          fetchWithTimeout(directUrl, {}, 4_000).catch(() => null),
-        ]);
         return { viewerUrl, directUrl };
       }
       if (attempt === 0) {
@@ -133,4 +211,17 @@ export async function uploadReceiptToImgBB(
     }
   }
   return null;
+}
+
+// WARM-UP: el crawler de WhatsApp scrapea el link SEGUNDOS después del envío;
+// si la imagen aún no está caliente en el CDN de ImgBB, la preview cae a la
+// miniatura chica (le pasó al reenvío de una venta vieja, 13-oct). Pegamos un
+// fetch a la página y a la imagen directa ANTES de devolver el link, para que
+// el primer scrape real ya la encuentre servida. Best-effort: si falla, el
+// link igual funciona.
+async function warmUp(result: ImgbbResult): Promise<void> {
+  await Promise.all([
+    fetchWithTimeout(result.viewerUrl, {}, 4_000).catch(() => null),
+    fetchWithTimeout(result.directUrl, {}, 4_000).catch(() => null),
+  ]);
 }
