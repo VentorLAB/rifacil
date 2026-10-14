@@ -457,7 +457,7 @@ export function ExitIntentPopup({
 
   if (!show) return null;
   const wa = whatsapp
-    ? `https://wa.me/${whatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+    ? `https://api.whatsapp.com/send?phone=${whatsapp.replace(/[^\d]/g, "")}&text=${encodeURIComponent(
         "Quiero apartar números antes de que se agoten 🎟️"
       )}`
     : null;
@@ -497,7 +497,7 @@ export function WhatsAppFloat({ contacts, text }: { contacts: Contact[]; text?: 
         <div className="sf-wa-menu">
           <div className="sf-wa-menu-head">Escríbenos por WhatsApp</div>
           {contacts.map((c) => (
-            <a key={c.phone} className="sf-wa-contact" href={`https://wa.me/${c.phone}?text=${msg}`} target="_blank" rel="noopener noreferrer">
+            <a key={c.phone} className="sf-wa-contact" href={`https://api.whatsapp.com/send?phone=${c.phone}&text=${msg}`} target="_blank" rel="noopener noreferrer">
               <span className="wa-ic">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff" aria-hidden><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
               </span>

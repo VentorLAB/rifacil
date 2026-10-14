@@ -224,7 +224,8 @@ describe("formatVeDate", () => {
 describe("buildReceiptWaLink", () => {
   it("normaliza el teléfono venezolano a dígitos wa.me", () => {
     const link = buildReceiptWaLink({ ...base, paid: 10 });
-    expect(link).toMatch(/^https:\/\/wa\.me\/584241234567\?text=/);
+    // api.whatsapp.com/send directo (wa.me rompe emojis en escritorio — bug de WhatsApp).
+    expect(link).toMatch(/^https:\/\/api\.whatsapp\.com\/send\?phone=584241234567&text=/);
   });
 
   it("teléfono inválido → null", () => {

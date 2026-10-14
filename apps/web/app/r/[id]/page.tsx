@@ -885,7 +885,7 @@ function SuccessScreen({
   onReset: () => void;
 }) {
   const waLink = contactWhatsapp
-    ? `https://wa.me/${contactWhatsapp.replace(/[^\d]/g, "")}?text=${encodeURIComponent(
+    ? `https://api.whatsapp.com/send?phone=${contactWhatsapp.replace(/[^\d]/g, "")}&text=${encodeURIComponent(
         `Hola ${brandName}, aparté el/los número(s) ${result.numbers.join(", ")}.` +
           (result.debt > 0 ? ` Aboné ${money(result.amountPaid)} (resta ${money(result.debt)}).` : "")
       )}`

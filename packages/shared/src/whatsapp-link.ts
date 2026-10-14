@@ -227,13 +227,21 @@ export function buildReceiptMessage(input: ReceiptWaInput, templates?: WaMessage
 }
 
 /**
- * Devuelve el enlace `https://wa.me/<dígitos>?text=...` listo para abrir, o `null`
- * si el teléfono no es válido. Abre WhatsApp con el mensaje + link del recibo.
+ * Devuelve el enlace `https://api.whatsapp.com/send?phone=<dígitos>&text=...`
+ * listo para abrir, o `null` si el teléfono no es válido. Abre WhatsApp con el
+ * mensaje + link del recibo. (api.whatsapp.com directo: el redirect de wa.me
+ * rompe los emojis del texto en escritorio — bug de WhatsApp.)
  */
 export function buildReceiptWaLink(input: ReceiptWaInput, templates?: WaMessageTemplates): string | null {
   const e164 = normalizePhone(input.phone, "VE");
   if (!e164) return null;
-  const digits = e164.replace(/[^\d]/g, ""); // wa.me espera solo dígitos, sin '+'
+  const digits = e164.replace(/[^\d]/g, "");
   const text = encodeURIComponent(buildReceiptMessage(input, templates));
-  return `https://wa.me/${digits}?text=${text}`;
+  // api.whatsapp.com/send DIRECTO, no wa.me: el redirect de wa.me ROMPE los
+  // emojis del texto prellenado en ESCRITORIO (los sustituye por U+FFFD "�";
+  // bug conocido de WhatsApp, verificado 14-oct con el recibo de una venta
+  // real: 💎✅🎉 llegaban como "�"). En móvil wa.me funcionaba, por eso solo
+  // se veía al mandar desde la computadora. api.whatsapp.com/send es el
+  // endpoint canonical (wa.me solo redirige ahí) y no tiene ese bug.
+  return `https://api.whatsapp.com/send?phone=${digits}&text=${text}`;
 }
