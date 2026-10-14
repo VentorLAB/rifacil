@@ -4,6 +4,34 @@
 (o el agente con su OK explícito en cada paso que escribe). **Neon no se cancela hasta que
 el Paso 9 esté cerrado.**
 
+## ✅ Estado: corte HECHO el 13-oct-2026 a las 20:36 VET
+
+- Producción de rifacil corre en **`pg-apps`** (VPS) por el puente; funciones de Vercel en **`fra1`**.
+- Congelado de Neon 20:11 → volcado, restauración y comparación en **11 s** (23 tablas y 28.660
+  filas idénticas) → variables de Vercel → redeploy → prueba de humo: los tres dominios dan 200,
+  El Dubai cuadra (942/34/24) y una **escritura real** (el contador de visitas) llegó al VPS.
+- **Neon `ep-billowing-bread` queda CONGELADO (solo lectura) hasta el 20-oct-2026**, como red de
+  seguridad. Ese día se borra. Rollback mientras tanto: sección "Rollback" (variables a Neon +
+  `ALTER DATABASE neondb RESET default_transaction_read_only`).
+- Backups: `ventorlab-backup-pgapps` (systemd, 03:20) respalda cifrado todo `pg-apps`; el
+  `ventorlab-backup-remoto` de las 03:37 lo sube a R2. Ver Paso E.
+- Preview apunta a `rifacil_dev` (variables cargadas el 13-oct).
+
+### Lo que se aprendió en el corte (para la próxima)
+- **Proyecto pausado en Vercel:** el proyecto estaba *Paused* y eso **bloquea todos los deploys**
+  (estado `BLOCKED`, sin mensaje de error) y además sirve `503 DEPLOYMENT_PAUSED`. Comprobar antes
+  del corte: `vercel api /v9/projects/<id>?teamId=<team>` → `paused`. Se reanuda con
+  `vercel api /v1/projects/<id>/unpause?teamId=<team> -X POST`.
+- **`vercel api` (CLI 58+)** hace llamadas autenticadas a la API: así se cambió la región
+  (`PATCH /v9/projects/<id>` con `serverlessFunctionRegion=fra1`).
+- **Variables de entorno:** en este equipo todas quedan *sensitive* (`env pull` devuelve
+  `[SENSITIVE]`), así que no se pueden releer. La verificación es el build: el check de
+  migraciones por el puente falla si `DATABASE_URL`/`DB_WS_PROXY` están mal, y producción sigue
+  con el deploy anterior. Cargarlas con `cmd /c "vercel env add NOMBRE production < archivo"`.
+  Las tuberías de PowerShell añaden CRLF, así que hay que quitarlo con `tr -d '\r'` en el VPS.
+- **Corrección de un supuesto:** tribu11 y capturatodo **viven en `supabase-db`**, no en `pg-apps`.
+  Las bases con esos nombres en `pg-apps` son copias viejas del 8-sep (pendiente borrarlas).
+
 ## Qué cambia
 
 | | Hoy | Después del corte |
@@ -97,9 +125,16 @@ las 18 migraciones aplicadas por túnel SSH. Variables de Vercel **Preview**:
 `DATABASE_URL` = `DIRECT_URL` = `postgresql://rifacil_dev_service:<pass>@pg-apps:5432/rifacil_dev`
 y el mismo `DB_WS_PROXY`. Solo funciona en previews de ramas que ya tengan este PR.
 
-**E. Backups nocturnos.** `/var/backups/ventorlab` hoy guarda un `rifacil` que es la copia
-vieja de `supabase-db`. Con `sudo`, añadir `pg-apps` / `rifacil` al script de backup y
-comprobar a la mañana siguiente que aparece `rifacil_<fecha>.dump.enc`.
+**E. Backups nocturnos — hecho el 13-oct.** `ventorlab-backup` (03:37) solo cubre
+`supabase-db`. Para `pg-apps` se instaló, **sin tocar ese script**, un servicio aparte:
+`/usr/local/bin/ventorlab-backup-pgapps` + `ventorlab-backup-pgapps.{service,timer}` (03:20).
+Usa el mismo cifrado (`/opt/ventorlab/secretos/backup.pass`) y la misma carpeta, con prefijo
+`pgapps-` porque hay bases con el mismo nombre en los dos contenedores. Hace 14 copias por base,
+y su patrón de rotación no mezcla `rifacil` con `rifacil_dev`. R2 lo sube el
+`ventorlab-backup-remoto` de las 03:37 (todo `*.enc` de las últimas 48 h). Fuente e instalador
+en `~/pgapps/backup-pgapps/` (`sudo bash instalar.sh`). Primera copia verificada: el volcado de
+rifacil se descifra y su índice se lee (185 entradas).
+Nota sobre el script viejo: su rotación `capturatodo_*` también cuenta los de `capturatodo_anterior`.
 
 ## El día (ventana ≈ 20–30 min, madrugada VET)
 
