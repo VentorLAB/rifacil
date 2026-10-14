@@ -20,6 +20,24 @@
 //
 // La API key va SOLO en env de servidor (IMGBB_API_KEY). NUNCA hardcodear.
 
+// Nombre "bonito" de la imagen del recibo en ImgBB → se convierte en el
+// og:title de la página visor ("<nombre> hosted at ImgBB"), o sea el TÍTULO
+// que WhatsApp pinta en el preview del mensaje. Antes se subía el receiptNumber
+// ("R 1792009879091 X9ST") y el preview salía con ese código feo (14-oct).
+// OJO: ImgBB NO muestra guiones/separadores en el título (los quita) — el
+// título sale como frase corrida de palabras.
+export function receiptShareName(parts: {
+  raffleTitle?: string | null;
+  brandName?: string | null;
+  receiptNumber?: string | null;
+}): string {
+  const bits = ["Tu recibo"];
+  if (parts.raffleTitle) bits.push(parts.raffleTitle);
+  if (parts.brandName) bits.push(parts.brandName);
+  if (bits.length === 1 && parts.receiptNumber) bits.push(parts.receiptNumber);
+  return bits.join(" - ");
+}
+
 export interface ImgbbResult {
   /** Página del visor (https://ibb.co/XXXX) — este es el link que se manda por WhatsApp. */
   viewerUrl: string;
@@ -93,8 +111,16 @@ export async function uploadReceiptToImgBB(
   }
   if (!bytes || bytes.length === 0) return null;
 
-  // Nombre saneado (solo lo permitido en un nombre de archivo simple).
-  const safeName = (name || "recibo").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 80) || "recibo";
+  // Nombre saneado: letras Unicode (con acentos), dígitos, espacios, guion y
+  // underscore. Verificado 14-oct contra el endpoint real de ibb.co: el nombre
+  // llega INTACTO (espacios y acentos incluidos) al og:title de la página visor
+  // → es el TÍTULO del preview de WhatsApp ("<nombre> hosted at ImgBB").
+  const safeName = (name || "recibo")
+    .replace(/[^\p{L}\p{N} _-]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 100)
+    .trim() || "recibo";
 
   // 1) PRIMARIA: subida de INVITADO (sin cuenta) — viewer "hosted on ImgBB".
   const guest = await uploadGuest(bytes, safeName);

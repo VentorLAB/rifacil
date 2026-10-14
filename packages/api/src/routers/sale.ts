@@ -6,7 +6,7 @@ import { getActiveRate } from "../lib/exchangeRate";
 import { brandFor, raffleReceiptFields, contactRaffleNumbers } from "../lib/receiptData";
 // imgbb.ts NO tiene binarios nativos (solo fetch) → import estático seguro, a
 // diferencia de receipt.ts (satori/resvg) que se importa diferido más abajo.
-import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
+import { uploadReceiptToImgBB, receiptShareName } from "@riffas/shared/imgbb";
 
 // Redondeo a 2 decimales para montos de dinero.
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -77,7 +77,17 @@ async function issueSaleReceipt(
   // GRANDE. Falla suave: sin IMGBB_API_KEY o si falla, receiptShareUrl = null y
   // el wa.me cae a /rc.
   const receiptShareUrl = generated
-    ? (await uploadReceiptToImgBB(generated.cardPng.toString("base64"), sale.receiptNumber))?.viewerUrl ?? null
+    ? (await uploadReceiptToImgBB(
+        generated.cardPng.toString("base64"),
+        // Nombre BONITO → og:title de la página ibb.co → título del preview de
+        // WhatsApp ("Tu recibo <rifa> <marca> hosted at ImgBB"). Antes iba el
+        // receiptNumber crudo y el preview salía "R 1792009879091 X9ST hosted…".
+        receiptShareName({
+          raffleTitle: sale.raffle?.title ?? null,
+          brandName: brand.brandName ?? null,
+          receiptNumber: sale.receiptNumber,
+        })
+      ))?.viewerUrl ?? null
     : null;
   // Persistimos el link de ImgBB → el reenvío desde una venta ya abierta (getById),
   // el portal del vendedor y la página /c también muestran la card grande, no solo el

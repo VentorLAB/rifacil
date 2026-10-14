@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { uploadReceiptToImgBB } from "./imgbb";
+import { uploadReceiptToImgBB, receiptShareName } from "./imgbb";
 
 // Respuesta del endpoint de INVITADO (ibb.co/json).
 const GUEST_OK_JSON = {
@@ -138,5 +138,48 @@ describe("uploadReceiptToImgBB", () => {
   it("invitado y API lanzan/fallan siempre → null", async () => {
     vi.spyOn(globalThis, "fetch" as any).mockRejectedValue(new Error("network"));
     expect(await uploadReceiptToImgBB(B64, "R-1")).toBeNull();
+  });
+});
+
+describe("receiptShareName (título bonito del preview de WhatsApp)", () => {
+  it("arma 'Tu recibo - <rifa> - <marca>'", () => {
+    expect(
+      receiptShareName({
+        raffleTitle: "El Plateado de tu Suerte",
+        brandName: "Grandes Rifas Hermanos Pernía",
+        receiptNumber: "R 1792009879091 X9ST",
+      })
+    ).toBe("Tu recibo - El Plateado de tu Suerte - Grandes Rifas Hermanos Pernía");
+  });
+
+  it("sin rifa ni marca cae al receiptNumber", () => {
+    expect(
+      receiptShareName({ receiptNumber: "R 1792009879091 X9ST" })
+    ).toBe("Tu recibo - R 1792009879091 X9ST");
+  });
+
+  it("omite partes vacías", () => {
+    expect(receiptShareName({ raffleTitle: "Mi Rifa" })).toBe("Tu recibo - Mi Rifa");
+  });
+});
+
+describe("saneado del nombre (espacios y acentos SOBREVIVEN — verificado 14-oct contra ibb.co real)", () => {
+  it("el filename del upload conserva espacios/acentos y quita chars raros", async () => {
+    const seen: string[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (url: any, opts: any) => {
+      if (String(url).includes("ibb.co/json")) {
+        const fd = opts.body as FormData;
+        const file = fd.get("source") as File;
+        seen.push(file.name);
+        return guestUploadOk();
+      }
+      return { ok: true } as any; // warm-up
+    }));
+    const res = await uploadReceiptToImgBB(
+      B64,
+      'Tu recibo - El Plateado de tu Suerte - Grandes Rifas Hermanos Pernía <>:"/\\|?*'
+    );
+    expect(res?.viewerUrl).toBe("https://ibb.co/7J6hKQP8");
+    expect(seen[0]).toBe("Tu recibo - El Plateado de tu Suerte - Grandes Rifas Hermanos Pernía.png");
   });
 });

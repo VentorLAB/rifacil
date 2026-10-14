@@ -6,7 +6,7 @@ import { getVendorIdFromReq } from "../lib/vendorAuth";
 import { getActiveRate } from "../lib/exchangeRate";
 import { parseWaMessageTemplates } from "@riffas/shared";
 import { brandFor, raffleReceiptFields } from "../lib/receiptData";
-import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
+import { uploadReceiptToImgBB, receiptShareName } from "@riffas/shared/imgbb";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
@@ -54,7 +54,17 @@ async function emitReceipt(
   // Mismo formato que el panel: subimos a ImgBB el PNG RGBA directo de resvg (NO el
   // derivado RGB de Cloudinary) → card GRANDE en WhatsApp.
   const receiptShareUrl = generated
-    ? (await uploadReceiptToImgBB(generated.cardPng.toString("base64"), sale.receiptNumber))?.viewerUrl ?? null
+    ? (await uploadReceiptToImgBB(
+        generated.cardPng.toString("base64"),
+        // Nombre BONITO → og:title de la página ibb.co → título del preview de
+        // WhatsApp ("Tu recibo <rifa> <marca> hosted at ImgBB"). Antes iba el
+        // receiptNumber crudo y el preview salía "R 1792009879091 X9ST hosted…".
+        receiptShareName({
+          raffleTitle: sale.raffle?.title ?? null,
+          brandName: brand.brandName ?? null,
+          receiptNumber: sale.receiptNumber,
+        })
+      ))?.viewerUrl ?? null
     : null;
   if (receiptShareUrl) {
     await prisma.sale.update({ where: { id: saleId }, data: { receiptShareUrl } });
