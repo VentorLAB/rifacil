@@ -240,6 +240,10 @@ export interface GenerateReceiptInput {
 export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<string> {
   const { sale, raffle, contact } = input;
   const brandName = (input.brandName || "").trim() || "Tu rifa";
+  // Color de marca normalizado (SIEMPRE con '#'): se usa en los separadores
+  // punteados (acento rojo pedido por Marco, 14-oct). Sin match → rojo rifacil.
+  const brandMatch = /^#?([0-9a-f]{6})$/i.exec((input.brandColor || "").trim());
+  const brand = brandMatch ? `#${brandMatch[1]}` : "#DF0815";
 
   // Montos: total a cobrar vs. lo efectivamente abonado. La deuda es el resto.
   // num() neutraliza NaN (un monto no numérico jamás debe salir como "$NaN").
@@ -274,8 +278,15 @@ export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<str
     ]);
 
   // Separador punteado (como las líneas troqueladas de la referencia).
+  // Separadores punteados en el color de MARCA (acento rojo pedido por Marco,
+  // 14-oct: "un reborde rojo en vez de las líneas punteadas en negra").
   const sep = () =>
-    el("div", { display: "flex", width: "100%", height: 0, borderTop: `2px dashed ${C.dash}`, margin: "12px 0" });
+    el("div", { display: "flex", width: "100%", height: 0, borderTop: `2px dashed ${brand}`, margin: "12px 0" });
+
+  // Logo del rifero en el encabezado (pedido de Marco, 14-oct: "tipo con el
+  // logo mejor aun"). Se descarga y embebe como data-URI; si no hay logo o no
+  // carga, cae al icono ticket con $ de la referencia.
+  const logoUri = await fetchDataUri(input.brandLogo);
 
   // Icono del ticket: cuadrito de borde punteado con un ticket azul y el $.
   // Hecho con divs de Satori (cero assets externos, cero fuentes del sistema).
@@ -287,7 +298,7 @@ export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<str
       justifyContent: "center",
       width: 74,
       height: 74,
-      border: `2px dashed ${C.dash}`,
+      border: `2px dashed ${brand}`,
       borderRadius: 10,
       marginRight: 18,
       flexShrink: 0,
@@ -332,7 +343,9 @@ export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<str
       // 1) Encabezado: icono ticket + (título / organizador / sorteo / lotería)
       //    centrados, como la referencia.
       el("div", { display: "flex", flexDirection: "row", alignItems: "center" }, [
-        ticketIcon,
+        logoUri
+          ? img(logoUri, { height: 74, width: 148, objectFit: "contain", objectPosition: "left", marginRight: 18, flexShrink: 0 })
+          : ticketIcon,
         el("div", { display: "flex", flexDirection: "column", alignItems: "center", flexGrow: 1, flexBasis: 0 }, [
           el("div", { display: "flex", color: C.ink, fontSize: 32, fontWeight: 700, textAlign: "center" }, raffle.title || "Rifa"),
           el("div", { display: "flex", color: C.ink, fontSize: 22, marginTop: 4, textAlign: "center" }, brandName),
