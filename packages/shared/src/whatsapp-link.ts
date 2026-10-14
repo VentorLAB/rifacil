@@ -143,8 +143,9 @@ function normalizeBrandUrl(raw?: string | null): string | null {
 
 /**
  * Arma el cuerpo del mensaje del comprobante, con el formato de riffas.info
- * (referencia del negocio): resumen de abonos, datos con 💎 (valor de la rifa,
- * deuda/estado, fecha del sorteo, fecha del apartado) y la vista previa del
+ * (referencia del negocio): resumen de abonos, datos con EMOJIS SEMÁNTICOS
+ * variados (💵 valor, 📉 deuda, 🗓 sorteo, ⏱ reservado, 🖼 vista previa — 14-oct:
+ * antes 💎 repetido en cada línea, se leía como muro) y la vista previa del
  * recibo. Texto DISTINTO para apartado y para compra pagada.
  *
  * `templates` (opcional): plantillas editables del rifero (Ajustes → Mensajes
@@ -176,15 +177,15 @@ export function buildReceiptMessage(input: ReceiptWaInput, templates?: WaMessage
   const ctaUrl = normalizeBrandUrl(input.brandUrl) || input.receiptPageUrl || null;
 
   const resumen = isPaid
-    ? `Has completado el pago de ${money(total)}\npara la rifa "${input.raffleTitle}" 💎`
+    ? `Has completado el pago de ${money(total)}\npara la rifa "${input.raffleTitle}" 🏷`
     : paid > 0
-      ? `Has realizado abonos por un total de ${money(paid)}\npara la rifa "${input.raffleTitle}" 💎`
-      : `Apartaste ${input.numbers.length === 1 ? "tu número" : "tus números"} por ${money(total)}\npara la rifa "${input.raffleTitle}" 💎`;
+      ? `Has realizado abonos por un total de ${money(paid)}\npara la rifa "${input.raffleTitle}" 🏷`
+      : `Apartaste ${input.numbers.length === 1 ? "tu número" : "tus números"} por ${money(total)}\npara la rifa "${input.raffleTitle}" 🏷`;
   const estado = isPaid
-    ? `💎 Estado: *PAGADO* ✅`
+    ? `✅ Estado: *PAGADO*`
     : debt > 0
-      ? `💎 Deuda actual: ${money(debt)}`
-      : `💎 Abonado: ${money(paid)}`;
+      ? `📉 Deuda actual: ${money(debt)}`
+      : `💵 Abonado: ${money(paid)}`;
   // "Valor de la rifa" = precio EFECTIVO de ESTA venta (total ÷ números), no el
   // precio actual de la rifa: si la rifa cambió de precio después del apartado (o
   // hubo pack de descuento), el precio de hoy haría que los montos no cuadraran
@@ -203,12 +204,12 @@ export function buildReceiptMessage(input: ReceiptWaInput, templates?: WaMessage
     saludo: hola,
     resumen,
     numeros: input.numbers.join(", "),
-    lineaValorRifa: price != null && Number.isFinite(price) ? `💎 Valor de la rifa: ${money(price)}` : "",
+    lineaValorRifa: price != null && Number.isFinite(price) ? `💵 Valor de la rifa: ${money(price)}` : "",
     lineaEstado: estado,
-    lineaFechaSorteo: drawDate ? `💎 Fecha del sorteo: ${drawDate}` : "",
-    lineaReservado: reservedAt ? `💎 Reservado: ${reservedAt}` : "",
+    lineaFechaSorteo: drawDate ? `🗓 Fecha del sorteo: ${drawDate}` : "",
+    lineaReservado: reservedAt ? `⏱ Reservado: ${reservedAt}` : "",
     lineaCuandoCompletes: !isPaid && debt > 0 ? `Cuando completes el pago confirmamos tu apartado. 🤝` : "",
-    bloqueVistaPrevia: showImage && previewLink ? `\n💎 Vista previa del recibo:\n${previewLink}` : "",
+    bloqueVistaPrevia: showImage && previewLink ? `\n🖼 Vista previa del recibo:\n${previewLink}` : "",
     bloqueCtaRifas: ctaUrl ? `\n🎉 Mira todas nuestras rifas:\n${ctaUrl}` : "",
     marca: input.brandName ?? "Riffas",
     nombre: input.contactName ?? "",

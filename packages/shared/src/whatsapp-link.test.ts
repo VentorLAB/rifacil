@@ -18,7 +18,7 @@ describe("buildReceiptMessage", () => {
     expect(msg).not.toContain("Tu apartado quedó");
     expect(msg).toContain(`Has completado el pago de $10\npara la rifa "El Dubai"`);
     expect(msg).toContain("Números: *012, 345*");
-    expect(msg).toContain("💎 Estado: *PAGADO* ✅");
+    expect(msg).toContain("✅ Estado: *PAGADO*");
     expect(msg).not.toContain("Deuda actual");
     expect(msg).not.toContain("Cuando completes el pago");
     expect(msg).toContain("— Hermanos Pernía");
@@ -31,14 +31,14 @@ describe("buildReceiptMessage", () => {
     expect(msg).not.toContain("Tu compra quedó");
     expect(msg).toContain(`Has realizado abonos por un total de $6\npara la rifa "El Dubai"`);
     expect(msg).toContain("Números reservados: *012, 345*");
-    expect(msg).toContain("💎 Deuda actual: $4");
+    expect(msg).toContain("📉 Deuda actual: $4");
     expect(msg).toContain("Cuando completes el pago confirmamos tu apartado. 🤝");
   });
 
   it("apartado sin abono: 'Apartaste' + deuda = total", () => {
     const msg = buildReceiptMessage({ ...base, paid: 0, status: "RESERVED" });
     expect(msg).toContain("Apartaste tus números por $10");
-    expect(msg).toContain("💎 Deuda actual: $10");
+    expect(msg).toContain("📉 Deuda actual: $10");
     expect(msg).not.toContain("abonos por un total");
   });
 
@@ -46,24 +46,24 @@ describe("buildReceiptMessage", () => {
     // Deuda 0 pero venta no confirmada como pagada → sin copy de PAGADO.
     const reserved = buildReceiptMessage({ ...base, paid: 10, status: "RESERVED" });
     expect(reserved).not.toContain("PAGADO");
-    expect(reserved).toContain("💎 Abonado: $10");
+    expect(reserved).toContain("💵 Abonado: $10");
 
     const paidMsg = buildReceiptMessage({ ...base, paid: 10, status: "PAID" });
-    expect(paidMsg).toContain("*PAGADO* ✅");
+    expect(paidMsg).toContain("✅ Estado: *PAGADO*");
   });
 
   it("Valor de la rifa = precio EFECTIVO de la venta (total ÷ números), no el precio actual de la rifa", () => {
     // Rifa HOY a $13, pero la venta fue 2 números por $24 (precio viejo/pack $12):
     // el mensaje debe mostrar $12 para que los montos cuadren (2 × $12 = $24).
     const old_sale = buildReceiptMessage({ ...base, total: 24, paid: 0, status: "RESERVED", pricePerNumber: 13 });
-    expect(old_sale).toContain("💎 Valor de la rifa: $12");
+    expect(old_sale).toContain("💵 Valor de la rifa: $12");
     expect(old_sale).not.toContain("$13");
     // Sin pricePerNumber también sale: se deriva del total y los números.
     const derived = buildReceiptMessage({ ...base, paid: 10 });
-    expect(derived).toContain("💎 Valor de la rifa: $5");
+    expect(derived).toContain("💵 Valor de la rifa: $5");
     // Respaldo: sin total/números se usa el pricePerNumber dado.
     const fallback = buildReceiptMessage({ ...base, numbers: [], total: 0, paid: 0, status: "RESERVED", pricePerNumber: 7 });
-    expect(fallback).toContain("💎 Valor de la rifa: $7");
+    expect(fallback).toContain("💵 Valor de la rifa: $7");
   });
 
   it("fechas del sorteo y del apartado, en hora de Venezuela", () => {
@@ -73,8 +73,8 @@ describe("buildReceiptMessage", () => {
       drawDate: "2026-10-04T02:10:00Z", // 3 oct 2026, 22:10 VET
       reservedAt: new Date("2026-09-05T18:54:00Z"), // 5 sept 2026, 14:54 VET
     });
-    expect(msg).toContain("💎 Fecha del sorteo: 3 oct 2026, 22:10");
-    expect(msg).toContain("💎 Reservado: 5 sept 2026, 14:54");
+    expect(msg).toContain("🗓 Fecha del sorteo: 3 oct 2026, 22:10");
+    expect(msg).toContain("⏱ Reservado: 5 sept 2026, 14:54");
   });
 
   it("sin fechas, las líneas no salen", () => {
@@ -100,7 +100,7 @@ describe("buildReceiptMessage", () => {
     expect(msg).toContain(
       "https://res.cloudinary.com/dbi6monrl/image/upload/f_jpg,q_auto:good,w_1080/v1/riffas/receipts/R-1.png"
     );
-    expect(msg).toContain("💎 Vista previa del recibo:");
+    expect(msg).toContain("🖼 Vista previa del recibo:");
   });
 
   it("con receiptUrl de Cloudinary + origin, el preview es la página /rc (og:image), no la imagen directa", () => {
@@ -127,7 +127,7 @@ describe("buildReceiptMessage", () => {
       receiptPageUrl: "https://rifacil.vip/c/sale123",
     });
     // Gana ImgBB: WhatsApp pinta su card GRANDE y legible dentro del chat.
-    expect(msg).toContain("💎 Vista previa del recibo:\nhttps://ibb.co/7J6hKQP8");
+    expect(msg).toContain("🖼 Vista previa del recibo:\nhttps://ibb.co/7J6hKQP8");
     // Y NO usa /rc ni la imagen directa cuando hay link de ImgBB.
     expect(msg).not.toContain("/rc/");
     expect(msg).not.toContain("res.cloudinary.com");
@@ -197,7 +197,7 @@ describe("buildReceiptMessage", () => {
     expect(msg).not.toContain("res.cloudinary.com");
     expect(msg).not.toContain("Vista previa del recibo");
     expect(msg).toContain("Números: *012, 345*");
-    expect(msg).toContain("*PAGADO* ✅");
+    expect(msg).toContain("✅ Estado: *PAGADO*");
     expect(msg).toContain("https://rifashermanospernia.com");
   });
 

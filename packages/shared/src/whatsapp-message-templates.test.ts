@@ -57,13 +57,13 @@ describe("buildReceiptMessage con plantillas", () => {
     const msg = buildReceiptMessage({ ...base, paid: 10, status: "RESERVED" });
     expect(msg).toContain("Tu apartado quedó registrado. 🍀");
     expect(msg).toContain("Números reservados: *045, 102*");
-    expect(msg).toContain("💎 Deuda actual: $10");
+    expect(msg).toContain("📉 Deuda actual: $10");
   });
 
   it("sin plantillas → default pagado", () => {
     const msg = buildReceiptMessage({ ...base, paid: 20, status: "PAID" });
     expect(msg).toContain("Tu compra quedó registrada. 🎉");
-    expect(msg).toContain("💎 Estado: *PAGADO* ✅");
+    expect(msg).toContain("✅ Estado: *PAGADO*");
     expect(msg).toContain("Números: *045, 102*");
   });
 
