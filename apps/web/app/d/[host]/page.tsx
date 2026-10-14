@@ -382,7 +382,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
                         {waNumber && (
                           <a
                             className="btn btn-wa btn-block"
-                            href={`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage(r.title, prizeEmoji(r.prize)))}`}
+                            href={`https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(waMessage(r.title, prizeEmoji(r.prize)))}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -564,7 +564,7 @@ export default async function BrandLanding({ params }: { params: { host: string 
                     </a>
                   )}
                   {contacts[0] && (
-                    <a href={`https://wa.me/${contacts[0].phone}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <a href={`https://api.whatsapp.com/send?phone=${contacts[0].phone}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
                     </a>
                   )}

@@ -155,7 +155,8 @@ export const campaignRouter = createTRPCRouter({
         // muestra la vista previa) para que el comprador la vea.
         const text = input.imageUrl ? `${message}\n\n${input.imageUrl}` : message;
         const digits = r.phone.replace(/\D/g, "");
-        const waLink = `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
+        // api.whatsapp.com/send directo: el redirect de wa.me rompe emojis en escritorio (bug de WhatsApp).
+        const waLink = `https://api.whatsapp.com/send?phone=${digits}&text=${encodeURIComponent(text)}`;
         return { contactId: r.contactId, name: r.name, phone: r.phone, debt: r.debt, message, waLink };
       });
 
