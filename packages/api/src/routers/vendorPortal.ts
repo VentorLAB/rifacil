@@ -5,17 +5,19 @@ import { createTRPCRouter, publicProcedure, vendorProcedure } from "../trpc";
 import { getVendorIdFromReq } from "../lib/vendorAuth";
 import { getActiveRate } from "../lib/exchangeRate";
 import { parseWaMessageTemplates } from "@riffas/shared";
-import { brandFor, raffleReceiptFields, receiptCardUrl } from "../lib/receiptData";
+import { brandFor, raffleReceiptFields } from "../lib/receiptData";
 import { uploadReceiptToImgBB } from "@riffas/shared/imgbb";
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
 // Recibo server-side (best-effort). Mismo patrón que sale.ts: import diferido del
 // generador (satori/resvg nativos) para no arrastrar binarios al cargar el router.
-async function safeGenerateReceipt(args: any): Promise<string | null> {
+async function safeGenerateReceipt(
+  args: any
+): Promise<{ receiptUrl: string; cardPng: Buffer } | null> {
   try {
-    const { generateReceipt } = await import("@riffas/shared/receipt");
-    return await generateReceipt(args);
+    const { generateReceiptAndCard } = await import("@riffas/shared/receipt");
+    return await generateReceiptAndCard(args);
   } catch (err) {
     console.error("[vendorPortal] generateReceipt falló; venta guardada sin recibo:", err);
     return null;
@@ -38,19 +40,21 @@ async function emitReceipt(
     select: { titulo: true },
   });
   const brand = await brandFor(prisma, businessId);
-  const receiptUrl = await safeGenerateReceipt({
+  const generated = await safeGenerateReceipt({
     sale,
     raffle: await raffleReceiptFields(prisma, sale.raffle, prizes),
     contact: sale.contact,
     ...brand,
   });
+  const receiptUrl = generated?.receiptUrl ?? null;
   // Persistimos receiptUrl YA (durable) antes de la subida a ImgBB (por si el proceso
   // muere durante la subida).
   await prisma.sale.update({ where: { id: saleId }, data: { receiptUrl } });
   await prisma.raffleNumber.updateMany({ where: { saleId }, data: { receiptUrl } });
-  // Mismo formato que el panel: subimos a ImgBB el derivado 1080x790 (RGB) → card grande.
-  const receiptShareUrl = receiptUrl
-    ? (await uploadReceiptToImgBB(receiptCardUrl(receiptUrl), sale.receiptNumber))?.viewerUrl ?? null
+  // Mismo formato que el panel: subimos a ImgBB el PNG RGBA directo de resvg (NO el
+  // derivado RGB de Cloudinary) → card GRANDE en WhatsApp.
+  const receiptShareUrl = generated
+    ? (await uploadReceiptToImgBB(generated.cardPng.toString("base64"), sale.receiptNumber))?.viewerUrl ?? null
     : null;
   if (receiptShareUrl) {
     await prisma.sale.update({ where: { id: saleId }, data: { receiptShareUrl } });

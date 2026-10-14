@@ -54,9 +54,22 @@ describe("uploadReceiptToImgBB", () => {
       .mockResolvedValue(imgbbUploadOk());
     const res = await uploadReceiptToImgBB(B64, "R-1");
     expect(res?.viewerUrl).toBe("https://ibb.co/7J6hKQP8");
-    // Solo 1 fetch (la subida): no hubo descarga previa.
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    expect(String(fetchMock.mock.calls[0]?.[0])).toContain("api.imgbb.com");
+    // 1 sola SUBIDA (no hubo descarga previa); las llamadas extra son el warm-up.
+    const uploads = fetchMock.mock.calls.filter((c: any[]) =>
+      String(c[0]).includes("api.imgbb.com")
+    );
+    expect(uploads).toHaveLength(1);
+  });
+
+  it("tras subir, hace WARM-UP del viewer y de la imagen directa (CDN caliente para el crawler de WhatsApp)", async () => {
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch" as any)
+      .mockResolvedValue(imgbbUploadOk());
+    const res = await uploadReceiptToImgBB(B64, "R-1");
+    expect(res).not.toBeNull();
+    const warmed = fetchMock.mock.calls.map((c: any[]) => String(c[0]));
+    expect(warmed).toContain("https://ibb.co/7J6hKQP8");
+    expect(warmed).toContain("https://i.ibb.co/QF10MkLz/R-1.png");
   });
 
   it("sin API key → null (no llama a la red)", async () => {

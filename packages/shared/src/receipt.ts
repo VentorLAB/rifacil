@@ -203,11 +203,9 @@ export interface GenerateReceiptInput {
   brandWebsite?: string | null;
 }
 
-// Render puro (sin Cloudinary): árbol Satori -> SVG -> PNG. Separado de la subida
+// Render puro (sin Cloudinary): árbol Satori -> SVG. Separado de la subida
 // para poder probar el layout localmente sin credenciales de Cloudinary.
-export async function renderReceiptPng(
-  input: GenerateReceiptInput
-): Promise<Buffer> {
+async function renderReceiptSvg(input: GenerateReceiptInput): Promise<string> {
   const { sale, raffle, contact } = input;
   const brandName = input.brandName || "Hermanos Pernía";
   const instagram = input.brandInstagram || "@rifashermanospernia";
@@ -436,7 +434,7 @@ export async function renderReceiptPng(
   );
 
   const font = getFont();
-  const svg = await satori(tree as any, {
+  return satori(tree as any, {
     // Boleto HORIZONTAL (~4:3): WhatsApp SOLO pinta como card GRANDE las imágenes
     // horizontales (una vertical/alta la deja en blanco). Ancho grande para las 2
     // columnas; la altura sale ~4:3 como la referencia (riffas.info 1080x790).
@@ -449,18 +447,52 @@ export async function renderReceiptPng(
     loadAdditionalAsset: async (code: string, segment: string) =>
       code === "emoji" ? await loadEmoji(segment) : "",
   } as any);
+}
 
-  // Rasterizamos a 2x (940 -> 1880) para un PNG nítido en pantallas retina.
-  const png = new Resvg(svg, { fitTo: { mode: "width", value: 1880 } })
+// Rasteriza el SVG a PNG RGBA (resvg SIEMPRE entrega RGBA) al ancho pedido.
+function rasterize(svg: string, width: number): Buffer {
+  return new Resvg(svg, { fitTo: { mode: "width", value: width } })
     .render()
     .asPng();
-  return png;
+}
+
+// Render puro (sin Cloudinary): árbol Satori -> SVG -> PNG RGBA a 2x (1880).
+export async function renderReceiptPng(
+  input: GenerateReceiptInput,
+  width = 1880
+): Promise<Buffer> {
+  return rasterize(await renderReceiptSvg(input), width);
+}
+
+// Recibo + card para WhatsApp EN UN SOLO render de Satori:
+//   - receiptUrl: PNG 2x subido a Cloudinary (fuente durable; /rc y el header de
+//     la Cloud API derivan de ahí con el c_pad 1080x790).
+//   - cardPng: PNG **RGBA** a 1080 de ancho DIRECTO de resvg, para subir a ImgBB.
+// Por qué RGBA y no el derivado de Cloudinary: el derivado c_pad sale RGB (sin
+// alfa) y la evidencia en prod (13-oct, reenvío de venta vieja) es que WhatsApp
+// pinta ese PNG RGB como MINIATURA chica ilegible; la app de referencia
+// (riffas.info) sube RGBA y esa SÍ sale como card grande. Alimentamos ImgBB con
+// el PNG original de resvg (RGBA) y nos saltamos la conversión de Cloudinary.
+export async function generateReceiptAndCard(
+  input: GenerateReceiptInput
+): Promise<{ receiptUrl: string; cardPng: Buffer }> {
+  const svg = await renderReceiptSvg(input);
+  const png = rasterize(svg, 1880);
+  const cardPng = rasterize(svg, 1080);
+  const receiptUrl = await uploadReceiptCloudinary(png, input.sale.receiptNumber);
+  return { receiptUrl, cardPng };
 }
 
 export async function generateReceipt(
   input: GenerateReceiptInput
 ): Promise<string> {
-  const png = await renderReceiptPng(input);
+  return (await generateReceiptAndCard(input)).receiptUrl;
+}
+
+async function uploadReceiptCloudinary(
+  png: Buffer,
+  receiptNumber: string
+): Promise<string> {
   const dataUri = `data:image/png;base64,${png.toString("base64")}`;
   // Transform del derivado del recibo (constante compartida, misma que usan ImgBB vía
   // receiptData y la página /rc). PNG RGB SIN q_auto (no paleta) → WhatsApp lo pinta
@@ -469,7 +501,7 @@ export async function generateReceipt(
 
   const uploaded = await cloudinary.uploader.upload(dataUri, {
     folder: "riffas/receipts",
-    public_id: input.sale.receiptNumber,
+    public_id: receiptNumber,
     overwrite: true,
     // Al regenerar el recibo (p.ej. APARTADO→PAGADO tras un abono) invalidamos el
     // edge cache para que la card de WhatsApp no muestre el estado/montos viejos.
