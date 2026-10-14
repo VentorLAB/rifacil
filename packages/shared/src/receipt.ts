@@ -211,7 +211,7 @@ export interface GenerateReceiptInput {
 
 // Render puro (sin Cloudinary): árbol Satori -> SVG. Separado de la subida
 // para poder probar el layout localmente sin credenciales de Cloudinary.
-async function renderReceiptSvg(input: GenerateReceiptInput): Promise<string> {
+export async function renderReceiptSvg(input: GenerateReceiptInput): Promise<string> {
   const { sale, raffle, contact } = input;
   const brandName = input.brandName || "Hermanos Pernía";
   const instagram = input.brandInstagram || "@rifashermanospernia";
@@ -467,6 +467,42 @@ function rasterize(svg: string, width: number): Buffer {
     .asPng();
 }
 
+// ── Card de WhatsApp con lienzo EXACTO 1080x790 ──────────────────────────
+// La referencia que SÍ sale como card GRANDE (riffas.info) es un PNG de
+// EXACTAMENTE 1080x790. La nuestra salía con el alto que diera el contenido
+// (p.ej. 794). Con el contenido variable (cantidad de números, wrap) el alto
+// nunca es estable, así que rasterizamos al ancho y luego componemos el PNG
+// sobre un lienzo fijo 1080x790 rellenando con el color del marco (contain,
+// centrado, NUNCA recortar contenido; solo se achica si el contenido se pasa
+// del alto — caso extremo de muchos números). Todo con resvg (cero deps
+// nuevas): el PNG se embebe como data-URI en un SVG-lienzo y se re-rasteriza.
+export const RECEIPT_CARD_WIDTH = 1080;
+export const RECEIPT_CARD_HEIGHT = 790;
+
+export function rasterizeCardExact(svg: string): Buffer {
+  const rendered = new Resvg(svg, {
+    fitTo: { mode: "width", value: RECEIPT_CARD_WIDTH },
+  }).render();
+  const w = rendered.width;
+  const h = rendered.height;
+  if (w === RECEIPT_CARD_WIDTH && h === RECEIPT_CARD_HEIGHT) return rendered.asPng();
+  const pngB64 = rendered.asPng().toString("base64");
+  // contain: si cabe, tamaño natural centrado; si se pasa de alto, se achica
+  // proporcionalmente (y sobra a los lados) antes que recortar.
+  const scale = Math.min(RECEIPT_CARD_WIDTH / w, RECEIPT_CARD_HEIGHT / h, 1);
+  const drawW = Math.max(1, Math.round(w * scale));
+  const drawH = Math.max(1, Math.round(h * scale));
+  const x = Math.round((RECEIPT_CARD_WIDTH - drawW) / 2);
+  const y = Math.round((RECEIPT_CARD_HEIGHT - drawH) / 2);
+  const canvas =
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ` +
+    `width="${RECEIPT_CARD_WIDTH}" height="${RECEIPT_CARD_HEIGHT}" viewBox="0 0 ${RECEIPT_CARD_WIDTH} ${RECEIPT_CARD_HEIGHT}">` +
+    `<rect width="${RECEIPT_CARD_WIDTH}" height="${RECEIPT_CARD_HEIGHT}" fill="${C.frame}"/>` +
+    `<image x="${x}" y="${y}" width="${drawW}" height="${drawH}" xlink:href="data:image/png;base64,${pngB64}"/>` +
+    `</svg>`;
+  return new Resvg(canvas).render().asPng();
+}
+
 // Render puro (sin Cloudinary): árbol Satori -> SVG -> PNG RGBA a 2x (1880).
 export async function renderReceiptPng(
   input: GenerateReceiptInput,
@@ -478,18 +514,18 @@ export async function renderReceiptPng(
 // Recibo + card para WhatsApp EN UN SOLO render de Satori:
 //   - receiptUrl: PNG 2x subido a Cloudinary (fuente durable; /rc y el header de
 //     la Cloud API derivan de ahí con el c_pad 1080x790).
-//   - cardPng: PNG **RGBA** a 1080 de ancho DIRECTO de resvg, para subir a ImgBB.
-// Por qué RGBA y no el derivado de Cloudinary: el derivado c_pad sale RGB (sin
-// alfa) y la evidencia en prod (13-oct, reenvío de venta vieja) es que WhatsApp
-// pinta ese PNG RGB como MINIATURA chica ilegible; la app de referencia
-// (riffas.info) sube RGBA y esa SÍ sale como card grande. Alimentamos ImgBB con
-// el PNG original de resvg (RGBA) y nos saltamos la conversión de Cloudinary.
+//   - cardPng: PNG **RGBA** con lienzo EXACTO 1080x790 DIRECTO de resvg, para
+//     subir a ImgBB. Por qué no el derivado c_pad de Cloudinary: sale RGB (sin
+//     alfa). Alimentamos ImgBB con el PNG original de resvg (RGBA) y nos
+//     saltamos la conversión de Cloudinary.
 export async function generateReceiptAndCard(
   input: GenerateReceiptInput
 ): Promise<{ receiptUrl: string; cardPng: Buffer }> {
   const svg = await renderReceiptSvg(input);
   const png = rasterize(svg, 1880);
-  const cardPng = rasterize(svg, 1080);
+  // Card de ImgBB con lienzo EXACTO 1080x790 (experimento 13-oct: igualar a la
+  // referencia riffas.info byte a byte en lo controlable; ver imgbb.ts).
+  const cardPng = rasterizeCardExact(svg);
   const receiptUrl = await uploadReceiptCloudinary(png, input.sale.receiptNumber);
   return { receiptUrl, cardPng };
 }
