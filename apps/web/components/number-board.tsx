@@ -305,7 +305,12 @@ export function NumberBoard({
             setSelected([]);
           }}
           onSold={() => {
-            setSellNumbers(null);
+            // NO cerrar el sheet aquí: tras el confeti debe quedar en su
+            // pantalla de "Enviar por WhatsApp" (autoOpen dispara el wa.me del
+            // comprador automáticamente). Si lo cerramos, el autoOpen muere con
+            // el sheet y el rifero tiene que buscar el envío en el detalle de
+            // la venta. La grilla se refresca por detrás; el sheet se cierra
+            // con su propio botón "Listo" (onClose).
             setSelected([]);
             refreshBoard();
           }}
